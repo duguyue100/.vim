@@ -1,6 +1,16 @@
 "Author - Yuhuang Hu
 "Email  - duguyue100@gmail.com
 
+" === Vundle ===
+
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
+call vundle#end()
+
 " === General ===
 
 "" file indent
@@ -73,6 +83,7 @@ set mat=2
 "" tabs
 set tabstop=4
 set softtabstop=4
+set textwidth=79
 set expandtab
 set smarttab
 set lbr
@@ -124,9 +135,38 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 " === Files, backup and undo ===
-
 set nobackup
 set nowb
 set noswapfile
 
+" === Moving around, tabs, window and buffers ===
+map <space> /
+map <c-space> ?
 
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+
+" === Status line ===
+set laststatus=2
+
+" === Spell checking ===
+map <leader>ss :setlocal spell!<cr>
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+
+" === Python ===
+
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" === Functions ===
+
+"" Returns true if paste mode is enabled
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    endif
+    return ''
+endfunction
