@@ -30,7 +30,7 @@ filetype indent on
 set autoread
 
 "" fast saving
-nmap <leader>w :w!<cr>
+nmap <leader>s :w!<cr>
 
 "" :W sudo saves the file 
 "" (useful for handling the permission-denied error)
@@ -173,3 +173,6 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
+" syntax checking
+
+let g:syntastic_check_on_open = 1
