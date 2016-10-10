@@ -105,6 +105,7 @@ set wrap "Wrap lines
 
 "" Add a bit extra margin to the left
 set foldcolumn=1
+set colorcolumn=80
 
 "" No annoying sound on errors
 set noerrorbells
