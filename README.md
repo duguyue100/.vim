@@ -49,3 +49,12 @@ to compile it.
 ### gist-vim
 
 In order to publish Gist, you need to setup it by following the instructions [here](https://github.com/mattn/gist-vim)
+
+## For `neovim`
+
+If you are using `neovim` then you need to add two symlinks to get this configuration works:
+
+```shell
+ln -s ~/.vim ~/.config/nvim
+ln -s ~/.vim/vimrc ~/.vim/init.vim
+```
