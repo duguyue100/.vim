@@ -48,7 +48,7 @@ command W w !sudo tee % > /dev/null
 " === User Interface ===
 
 "" Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+set so=12
 
 "" Wild menu
 set wildmenu
@@ -88,6 +88,7 @@ set incsearch
 
 "" Don't redraw while executing macros (good performance config)
 set lazyredraw 
+set ttyfast
 
 " For regular expressions turn magic on
 set magic
@@ -99,6 +100,7 @@ set showmatch
 set mat=2
 
 "" tabs
+set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set textwidth=79
