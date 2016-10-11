@@ -27,6 +27,8 @@ Plugin 'Shougo/unite.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
 call vundle#end()
 
 " === General ===
@@ -213,4 +215,8 @@ let g:NERDCompactSexyComs = 1
 let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDDefaultAlign = 'left'
+
+" === Gist ===
+let g:gist_open_browser_after_post = 1
+let g:gist_show_privates = 1
 
