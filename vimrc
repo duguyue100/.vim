@@ -24,9 +24,12 @@ Plugin 'lervag/vimtex'
 Plugin 'Shougo/vimproc.vim', {'do' : 'make'}
 Plugin 'shougo/vimshell.vim'
 Plugin 'Shougo/unite.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
 call vundle#end()
 
 " === General ===
+let mapleader = ","
 
 "" file indent
 filetype plugin on
@@ -36,7 +39,7 @@ filetype indent on
 set autoread
 
 "" fast saving
-nmap <leader>s :w!<cr>
+nmap <leader>w :w!<cr>
 
 "" :W sudo saves the file 
 "" (useful for handling the permission-denied error)
