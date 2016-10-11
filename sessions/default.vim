@@ -1,6 +1,6 @@
 " ~/.vim/sessions/default.vim:
 " Vim session script.
-" Created by session.vim 2.13.1 on 11 October 2016 at 11:35:02.
+" Created by session.vim 2.13.1 on 11 October 2016 at 14:13:36.
 " Open this file in Vim and run :source % to restore your session.
 
 if exists('g:syntax_on') != 1 | syntax on | endif
@@ -17,28 +17,44 @@ if &cp | set nocp | endif
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Documents/workspace/snn_toolbox/snntoolbox/core
+cd ~/macman
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 inisim.py
-badd +0 ~/Documents/workspace/snn_toolbox/snntoolbox/gui/gui.py
+badd +1 tools/functors.sh
+badd +116 macman
+badd +0 tools/help.sh
+badd +0 README.md
 argglobal
 silent! argdel *
-argadd inisim.py
-edit inisim.py
+argadd .
+edit macman
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
 1wincmd h
+wincmd _ | wincmd |
+split
+1wincmd k
+wincmd w
+wincmd w
+wincmd _ | wincmd |
+split
+1wincmd k
 wincmd w
 set nosplitbelow
 set nosplitright
 wincmd t
 set winheight=1 winwidth=1
+exe '1resize ' . ((&lines * 22 + 24) / 48)
 exe 'vert 1resize ' . ((&columns * 83 + 83) / 167)
+exe '2resize ' . ((&lines * 21 + 24) / 48)
 exe 'vert 2resize ' . ((&columns * 83 + 83) / 167)
+exe '3resize ' . ((&lines * 22 + 24) / 48)
+exe 'vert 3resize ' . ((&columns * 83 + 83) / 167)
+exe '4resize ' . ((&lines * 21 + 24) / 48)
+exe 'vert 4resize ' . ((&columns * 83 + 83) / 167)
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -49,7 +65,7 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 23) / 46)
+let s:l = 1 - ((0 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -57,7 +73,7 @@ normal! zt
 normal! 0
 wincmd w
 argglobal
-edit ~/Documents/workspace/snn_toolbox/snntoolbox/gui/gui.py
+edit tools/help.sh
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -67,16 +83,63 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 35 - ((34 * winheight(0) + 23) / 46)
+let s:l = 76 - ((13 * winheight(0) + 10) / 21)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-35
-normal! 0
+76
+normal! 015|
+wincmd w
+argglobal
+edit README.md
+setlocal fdm=expr
+setlocal fde=Foldexpr_markdown(v:lnum)
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+25
+silent! normal! zo
+25
+silent! normal! zo
+40
+silent! normal! zo
+let s:l = 135 - ((14 * winheight(0) + 11) / 22)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+135
+normal! 029|
+wincmd w
+argglobal
+edit tools/functors.sh
+setlocal fdm=manual
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+silent! normal! zE
+let s:l = 98 - ((9 * winheight(0) + 10) / 21)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+98
+normal! 06|
 wincmd w
 2wincmd w
+exe '1resize ' . ((&lines * 22 + 24) / 48)
 exe 'vert 1resize ' . ((&columns * 83 + 83) / 167)
+exe '2resize ' . ((&lines * 21 + 24) / 48)
 exe 'vert 2resize ' . ((&columns * 83 + 83) / 167)
+exe '3resize ' . ((&lines * 22 + 24) / 48)
+exe 'vert 3resize ' . ((&columns * 83 + 83) / 167)
+exe '4resize ' . ((&lines * 21 + 24) / 48)
+exe 'vert 4resize ' . ((&columns * 83 + 83) / 167)
 tabnext 1
 if exists('s:wipebuf')
 "   silent exe 'bwipe ' . s:wipebuf

@@ -26,6 +26,7 @@ Plugin 'shougo/vimshell.vim'
 Plugin 'Shougo/unite.vim'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
+Plugin 'scrooloose/nerdcommenter'
 call vundle#end()
 
 " === General ===
@@ -204,4 +205,12 @@ let g:vimtex_view_general_options_latexmk = '-r 1'
 " === Markdown ===
 
 let g:vim_markdown_folding_disabled = 1
+
+" === NERD Commenting ===
+
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+let g:NERDDefaultAlign = 'left'
 
