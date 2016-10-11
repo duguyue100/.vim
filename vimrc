@@ -44,10 +44,7 @@ set autoread
 
 "" fast saving
 nmap <leader>w :w!<cr>
-
-"" :W sudo saves the file 
-"" (useful for handling the permission-denied error)
-command W w !sudo tee % > /dev/null
+nmap <leader>q :qall<cr>
 
 " === User Interface ===
 
@@ -221,5 +218,9 @@ let g:NERDDefaultAlign = 'left'
 let g:gist_open_browser_after_post = 1
 let g:gist_show_privates = 1
 
-" === Vim Gutter ==
+" === Git Gutter ===
 set updatetime=250
+
+" === Vim Session ===
+let g:session_autoload = 'yes'
+let g:session_autosave = 'yes'
