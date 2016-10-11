@@ -29,6 +29,7 @@ Plugin 'xolox/vim-session'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
+Plugin 'airblade/vim-gitgutter'
 call vundle#end()
 
 " === General ===
@@ -220,3 +221,5 @@ let g:NERDDefaultAlign = 'left'
 let g:gist_open_browser_after_post = 1
 let g:gist_show_privates = 1
 
+" === Vim Gutter ==
+set updatetime=250
