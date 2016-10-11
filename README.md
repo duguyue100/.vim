@@ -35,3 +35,17 @@ There are few plugins that need some post compilation.
 Compile project through instruction found [here](http://valloric.github.io/YouCompleteMe/)
 
 You can add flags so that there are more language supports.
+
+### webapi-vim
+
+This plugin is at `bundle/webapi-vim`, just run
+
+```bash
+make
+```
+
+to compile it.
+
+### gist-vim
+
+In order to publish Gist, you need to setup it by following the instructions [here](https://github.com/mattn/gist-vim)
