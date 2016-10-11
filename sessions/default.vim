@@ -1,6 +1,6 @@
 " ~/.vim/sessions/default.vim:
 " Vim session script.
-" Created by session.vim 2.13.1 on 11 October 2016 at 14:13:36.
+" Created by session.vim 2.13.1 on 11 October 2016 at 14:45:15.
 " Open this file in Vim and run :source % to restore your session.
 
 if exists('g:syntax_on') != 1 | syntax on | endif
@@ -22,13 +22,15 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +1 tools/functors.sh
-badd +116 macman
-badd +0 tools/help.sh
-badd +0 README.md
+badd +65 tools/functors.sh
+badd +1 macman
+badd +1 tools/help.sh
+badd +1 README.md
+badd +0 ~/macman
+badd +0 tools/git.sh
 argglobal
 silent! argdel *
-argadd .
+argadd ~/macman
 edit macman
 set splitbelow splitright
 wincmd _ | wincmd |
@@ -83,12 +85,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 76 - ((13 * winheight(0) + 10) / 21)
+let s:l = 44 - ((10 * winheight(0) + 10) / 21)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-76
-normal! 015|
+44
+normal! 029|
 wincmd w
 argglobal
 edit README.md
@@ -100,7 +102,7 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-25
+2
 silent! normal! zo
 25
 silent! normal! zo
@@ -114,7 +116,7 @@ normal! zt
 normal! 029|
 wincmd w
 argglobal
-edit tools/functors.sh
+edit tools/git.sh
 setlocal fdm=manual
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -124,12 +126,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 98 - ((9 * winheight(0) + 10) / 21)
+let s:l = 18 - ((10 * winheight(0) + 10) / 21)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-98
-normal! 06|
+18
+normal! 017|
 wincmd w
 2wincmd w
 exe '1resize ' . ((&lines * 22 + 24) / 48)
