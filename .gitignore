@@ -5,3 +5,7 @@
 # ignore sessions
 
 sessions/*
+
+# ignore symlink of vimsrc
+
+init.vim
