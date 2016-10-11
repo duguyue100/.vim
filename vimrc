@@ -20,6 +20,10 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'lervag/vimtex'
+Plugin 'Shougo/vimproc.vim', {'do' : 'make'}
+Plugin 'shougo/vimshell.vim'
+Plugin 'Shougo/unite.vim'
 call vundle#end()
 
 " === General ===
@@ -138,6 +142,7 @@ if has("gui_running")
     set guioptions-=e
     set t_Co=256
     set guitablabel=%M\ %t
+    set guifont=Ubuntu\ Mono:h20
 endif
 
 "" set encoding
@@ -159,6 +164,10 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+inoremap <C-e> <C-o>$
+inoremap <C-a> <C-o>0
+map <F2> u
+map! <F2> <C-O>u
 
 " === Status line ===
 set laststatus=2
@@ -175,7 +184,14 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
+
 
 " syntax checking
 
 let g:syntastic_check_on_open = 1
+
+" === LaTeX ===
+let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '-r @line @pdf @tex'
+let g:vimtex_view_general_options_latexmk = '-r 1'
