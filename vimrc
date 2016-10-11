@@ -187,14 +187,10 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " === Python ===
-
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
-
-
-" syntax checking
-
 let g:syntastic_check_on_open = 1
 
 " === LaTeX ===
