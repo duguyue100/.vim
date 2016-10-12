@@ -179,7 +179,7 @@ map! <F2> <C-O>u
 set laststatus=2
 
 " === Spell checking ===
-hi SpellBad ctermfg=128 ctermbg=000 cterm=none guifg=#FF0000 guibg=#000000 gui=none
+hi SpellBad ctermfg=128 ctermbg=000 cterm=none guifg=#FF0000 guibg=#0000FF gui=none
 setlocal spell spelllang=en_us
 
 " === Configure Airline ===
