@@ -179,7 +179,8 @@ map! <F2> <C-O>u
 set laststatus=2
 
 " === Spell checking ===
-map <leader>ss :setlocal spell!<cr>
+hi SpellBad ctermfg=128 ctermbg=000 cterm=none guifg=#FF0000 guibg=#000000 gui=none
+setlocal spell spelllang=en_us
 
 " === Configure Airline ===
 let g:airline#extensions#tabline#enabled = 1
