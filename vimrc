@@ -30,6 +30,9 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'junegunn/goyo.vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'pangloss/vim-javascript'
 call vundle#end()
 
 " === General ===
@@ -48,7 +51,7 @@ nmap <leader>q :qall<cr>
 
 " === User Interface ===
 
-"" Set 7 lines to the cursor - when moving vertically using j/k
+"" Set 12 lines to the cursor - when moving vertically using j/k
 set so=12
 
 "" Wild menu
@@ -64,6 +67,9 @@ endif
 
 "" Always show current position
 set ruler
+
+"" Use enter to create new lines w/o entering insert mode
+nnoremap <CR> o<Esc>
 
 "" Height of the command bar
 set cmdheight=2
@@ -148,7 +154,7 @@ if has("gui_running")
     set guioptions-=e
     set t_Co=256
     set guitablabel=%M\ %t
-    set guifont=Ubuntu\ Mono:h20
+    set guifont=Ubuntu\ Mono:h18
 endif
 
 "" set encoding
@@ -156,6 +162,32 @@ set encoding=utf8
 
 "" use Unix as file type
 set ffs=unix,dos,mac
+
+"" use vertical diff
+set diffopt+=vertical
+
+"" save using ctrl+w
+
+noremap <silent> <C-W>          :update<CR>
+vnoremap <silent> <C-W>         <C-C>:update<CR>
+inoremap <silent> <C-W>         <C-O>:update<CR>
+
+"" resize pane
+nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
+
+"" automatically rebalance windows on vim resize
+autocmd VimResized * :wincmd =
+
+"" update dir to current file
+autocmd BufEnter * silent! cd %:p:h
+
+"" Timeout
+set timeoutlen=500 ttimeoutlen=0
+
+"" clipboard sharing
+set clipboard=unnamed
 
 " === Files, backup and undo ===
 set nobackup
@@ -174,6 +206,8 @@ inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>0
 map <F2> u
 map! <F2> <C-O>u
+
+imap vv <Esc>
 
 " === Status line ===
 set laststatus=2
@@ -217,3 +251,10 @@ set updatetime=250
 " === Vim Session ===
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
+
+" === JS ===
+
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+let g:javascript_plugin_flow = 1
+
