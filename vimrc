@@ -207,6 +207,9 @@ map <F2> u
 map! <F2> <C-O>u
 
 imap vv <Esc>
+imap mm <Esc>:w!<cr>a
+imap <F3> <Esc>[s1z=`]a
+imap <F4> <Esc>[sz=
 
 " === Status line ===
 set laststatus=2
