@@ -203,6 +203,12 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>0
+
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
 map <F2> u
 map! <F2> <C-O>u
 
@@ -225,6 +231,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " === Python ===
 let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_goto_buffer_command='vertical-split'
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
