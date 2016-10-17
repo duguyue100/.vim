@@ -267,4 +267,4 @@ let g:javascript_plugin_flow = 1
 
 " === Markdown ===
 
-let g:goyo_width = 150
+let g:goyo_width = 120
