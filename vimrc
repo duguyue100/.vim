@@ -141,7 +141,8 @@ set showcmd
 
 "" set colors
 syntax enable
-colorscheme badwolf
+colorscheme despacio 
+set background=dark
 
 if $COLORTERM == 'gnome-terminal'
     set t_Co=256
