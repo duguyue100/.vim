@@ -43,6 +43,7 @@ filetype indent on
 
 "" autoread if modified elsewehre
 set autoread
+set autoread
 
 "" fast saving
 nmap <leader>w :w!<cr>
