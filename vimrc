@@ -206,6 +206,11 @@ map <C-l> <C-W>l
 inoremap <C-e> <C-o>$
 inoremap <C-a> <C-o>0
 
+if has('nvim')
+    nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+    tnoremap <Esc> <C-\><C-n>
+endif
+
 map <up> <nop>
 map <down> <nop>
 map <left> <nop>
