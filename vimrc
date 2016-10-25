@@ -32,6 +32,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'junegunn/goyo.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'pangloss/vim-javascript'
+Plugin 'junegunn/vim-easy-align' 
 call vundle#end()
 
 " === General ===
@@ -275,3 +276,10 @@ let g:javascript_plugin_flow = 1
 " === Markdown ===
 
 let g:goyo_width = 120
+
+" === Easy Align ===
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
