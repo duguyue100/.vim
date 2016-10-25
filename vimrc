@@ -225,6 +225,11 @@ imap <F3> <Esc>[s1z=`]a
 imap <F4> <Esc>[sz=
 map ; :
 
+" real delete
+nnoremap <leader>d "_d
+vnoremap <leader>d "_d
+vnoremap <leader>p "_dP
+
 " === Status line ===
 set laststatus=2
 
