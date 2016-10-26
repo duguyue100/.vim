@@ -146,6 +146,14 @@ syntax enable
 colorscheme despacio 
 set background=dark
 
+"" set color scheme when quit Goyo
+function! GoyoAfter()
+  colorscheme despacio
+  set background=dark
+endfunction
+
+let g:goyo_callbacks = [function('GoyoAfter')]
+
 if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
@@ -210,6 +218,7 @@ inoremap <C-a> <C-o>0
 if has('nvim')
     nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
     tnoremap <Esc> <C-\><C-n>
+    set termguicolors
 endif
 
 map <up> <nop>
