@@ -33,6 +33,8 @@ Plugin 'junegunn/goyo.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'junegunn/vim-easy-align' 
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 call vundle#end()
 
 " === General ===
@@ -297,3 +299,10 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" === snippet ===
+"
+let g:UltiSnipsExpandTrigger="<s-t>"
+let g:UltiSnipsJumpForwardTrigger="<s-j>"
+let g:UltiSnipsJumpBackwardTrigger="<s-k>"
+let g:UltiSnipsEditSplit="vertical"
