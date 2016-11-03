@@ -302,7 +302,7 @@ nmap ga <Plug>(EasyAlign)
 
 " === snippet ===
 "
-let g:UltiSnipsExpandTrigger="<s-t>"
-let g:UltiSnipsJumpForwardTrigger="<s-j>"
-let g:UltiSnipsJumpBackwardTrigger="<s-k>"
+let g:UltiSnipsExpandTrigger="<c-t>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-x>"
 let g:UltiSnipsEditSplit="vertical"
