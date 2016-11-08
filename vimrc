@@ -234,7 +234,7 @@ map! <F2> <C-O>u
 imap vv <Esc>
 imap <F3> <Esc>[s1z=`]a
 imap <F4> <Esc>[sz=
-map ; :
+map ; :!
 
 " real delete
 nnoremap <leader>d "_d
