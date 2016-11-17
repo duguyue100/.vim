@@ -262,6 +262,8 @@ nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 let g:syntastic_check_on_open = 1
 
 " === LaTeX ===
+nmap <leader>tc :VimtexCompile<cr>
+nmap <leader>tv :VimtexView<cr>
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '-r @line @pdf @tex'
 let g:vimtex_view_general_options_latexmk = '-r 1'
