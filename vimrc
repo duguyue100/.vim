@@ -260,6 +260,7 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 let g:syntastic_check_on_open = 1
+let g:syntastic_python_checkers = ['flake8']
 
 " === LaTeX ===
 nmap <leader>tc :VimtexCompile<cr>
