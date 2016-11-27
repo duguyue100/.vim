@@ -236,6 +236,10 @@ imap <F3> <Esc>[s1z=`]a
 imap <F4> <Esc>[sz=
 map ; :!
 
+nmap <leader>bn :bn<cr>
+nmap <leader>bp :bp<cr>
+nmap <leader>bd :bd<cr>
+
 " real delete
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
