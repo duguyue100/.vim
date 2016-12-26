@@ -35,6 +35,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'junegunn/vim-easy-align' 
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+Plugin 'Chiel92/vim-autoformat'
 call vundle#end()
 
 " === General ===
@@ -258,9 +259,11 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " === Python ===
-let g:ycm_autoclose_preview_window_after_completion=1
-let g:ycm_goto_buffer_command='vertical-split'
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" let g:ycm_autoclose_preview_window_after_completion=1
+" let g:ycm_goto_buffer_command='vertical-split'
+" map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+
 
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 let g:syntastic_check_on_open = 1
