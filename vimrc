@@ -36,6 +36,7 @@ Plugin 'junegunn/vim-easy-align'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'JuliaEditorSupport/julia-vim'
 call vundle#end()
 
 " === General ===
