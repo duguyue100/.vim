@@ -37,6 +37,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'JuliaEditorSupport/julia-vim'
+Plugin 'wakatime/vim-wakatime'
 call vundle#end()
 
 " === General ===
