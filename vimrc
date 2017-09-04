@@ -267,6 +267,8 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:completor_python_binary = '/Users/dgyHome/anaconda/bin/python'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 let g:syntastic_check_on_open = 1
