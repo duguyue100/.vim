@@ -8,7 +8,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-Plugin 'valloric/youcompleteme'
+" Plugin 'valloric/youcompleteme'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -38,6 +38,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'JuliaEditorSupport/julia-vim'
 Plugin 'wakatime/vim-wakatime'
+Plugin 'maralla/completor.vim'
 call vundle#end()
 
 " === General ===
@@ -264,8 +265,8 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 " let g:ycm_autoclose_preview_window_after_completion=1
 " let g:ycm_goto_buffer_command='vertical-split'
 " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-
+let g:completor_python_binary = '/Users/dgyHome/anaconda/bin/python'
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 let g:syntastic_check_on_open = 1

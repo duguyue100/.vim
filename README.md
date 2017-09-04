@@ -74,3 +74,21 @@ bind-key -n C-k if-shell "$is_vim" "send-keys C-k"  "select-pane -U"
 bind-key -n C-l if-shell "$is_vim" "send-keys C-l"  "select-pane -R"
 bind-key -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
 ```
+
+## For completor
+
+The completor is [here](https://github.com/maralla/completor.vim)
+
+Use the following for python support:
+
+```vim
+let g:completor_python_binary = '/path/to/python/with/jedi/installed'
+```
+
+Use the following for tab selection:
+
+```vim
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+```
