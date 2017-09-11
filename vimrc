@@ -265,7 +265,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 " let g:ycm_autoclose_preview_window_after_completion=1
 " let g:ycm_goto_buffer_command='vertical-split'
 " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-let g:completor_python_binary = '/Users/dgyHome/anaconda/bin/python'
+let g:completor_python_binary = '/home/dgywork/anaconda2/bin/python'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
