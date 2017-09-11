@@ -30,12 +30,6 @@ And if needed, run following commands to update all repository:
 
 There are few plugins that need some post compilation.
 
-### YouCompleteMe
-
-Compile project through instruction found [here](http://valloric.github.io/YouCompleteMe/)
-
-You can add flags so that there are more language supports.
-
 ### webapi-vim
 
 This plugin is at `bundle/webapi-vim`, just run
