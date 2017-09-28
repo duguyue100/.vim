@@ -203,7 +203,7 @@ autocmd BufEnter * silent! cd %:p:h
 set timeoutlen=500 ttimeoutlen=0
 
 "" clipboard sharing
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " === Files, backup and undo ===
 set nobackup
