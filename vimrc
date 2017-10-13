@@ -144,7 +144,12 @@ endif
 " === Colors and Fonts ===
 
 "" Set line numbers
-set number
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * if &nu | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter   * if &nu | set nornu | endif
+augroup END
 set showcmd
 
 "" set colors
