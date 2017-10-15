@@ -283,9 +283,9 @@ let g:syntastic_python_checkers = ['flake8']
 " === LaTeX ===
 nmap <leader>tc :VimtexCompile<cr>
 nmap <leader>tv :VimtexView<cr>
-let g:vimtex_view_general_viewer = 'zathura'
-let g:vimtex_view_general_options = '-r @line @pdf @tex'
-let g:vimtex_view_general_options_latexmk = '-r 1'
+let g:vimtex_view_general_viewer = 'qpdfview'
+let g:vimtex_view_general_options = '--unique @pdf\#src:@tex:@line:@col'
+let g:vimtex_view_general_options_latexmk = '--unique'
 
 " === NERD Commenting ===
 let g:NERDSpaceDelims = 1
