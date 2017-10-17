@@ -220,7 +220,8 @@ set noswapfile
 
 " === Moving around, tabs, window and buffers ===
 map <space> /
-map <c-space> ?
+" map <c-space> ?
+inoremap <C-Space> <C-x><C-o>
 
 map <C-j> <C-W>j
 map <C-k> <C-W>k
