@@ -48,6 +48,9 @@ let mapleader = ","
 filetype plugin on
 filetype indent on
 
+"" Turn on omni completion
+set omnifunc=syntaxcomplete
+
 "" autoread if modified elsewehre
 set autoread
 set autoread
@@ -217,7 +220,8 @@ set noswapfile
 
 " === Moving around, tabs, window and buffers ===
 map <space> /
-map <c-space> ?
+" map <c-space> ?
+inoremap <C-Space> <C-x><C-o>
 
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -280,8 +284,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_python_checkers = ['flake8']
 
 " === LaTeX ===
-nmap <leader>tc :VimtexCompile<cr>
-nmap <leader>tv :VimtexView<cr>
+nmap <leader>tt :VimtexCompile<cr>
+nmap <leader>vv :VimtexView<cr>
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '-r @line @pdf @tex'
 let g:vimtex_view_general_options_latexmk = '-r 1'
