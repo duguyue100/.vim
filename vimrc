@@ -48,6 +48,9 @@ let mapleader = ","
 filetype plugin on
 filetype indent on
 
+"" Turn on omni completion
+set omnifunc=syntaxcomplete
+
 "" autoread if modified elsewehre
 set autoread
 set autoread
