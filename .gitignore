@@ -9,3 +9,7 @@ sessions/*
 # ignore symlink of vimsrc
 
 init.vim
+
+# ignore folder
+eclim
+plugin
