@@ -290,6 +290,8 @@ nmap <leader>vv :VimtexView<cr>
 let g:vimtex_view_general_viewer = 'qpdfview'
 let g:vimtex_view_general_options = '--unique @pdf\#src:@tex:@line:@col'
 let g:vimtex_view_general_options_latexmk = '--unique'
+let g:vimtex_latexmk_options = '-verbose -pdf -file-line-error -synctex=1 -shell-escape
+      \ -interaction=nonstopmode'
 
 " === NERD Commenting ===
 let g:NERDSpaceDelims = 1
