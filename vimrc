@@ -158,14 +158,15 @@ set showcmd
 
 "" set colors
 syntax enable
-" colorscheme despacio
-colorscheme nova
+colorscheme despacio
+" colorscheme nova
 set background=dark
 highlight ColorColumn ctermbg=1 guibg=#666699
 
 "" set color scheme when quit Goyo
 function! GoyoAfter()
-  colorscheme nova
+  colorscheme despacio
+  " colorscheme nova
   set background=dark
 endfunction
 
