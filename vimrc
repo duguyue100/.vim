@@ -39,6 +39,7 @@ Plugin 'Chiel92/vim-autoformat'
 Plugin 'JuliaEditorSupport/julia-vim'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'maralla/completor.vim'
+Plugin 'trevordmiller/nova-vim'
 call vundle#end()
 
 " === General ===
@@ -157,12 +158,13 @@ set showcmd
 
 "" set colors
 syntax enable
-colorscheme despacio 
+" colorscheme despacio
+colorscheme nova
 set background=dark
 
 "" set color scheme when quit Goyo
 function! GoyoAfter()
-  colorscheme despacio
+  colorscheme nova
   set background=dark
 endfunction
 
