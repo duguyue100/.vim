@@ -8,7 +8,7 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
-" Plugin 'valloric/youcompleteme'
+Plugin 'valloric/youcompleteme'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -40,6 +40,7 @@ Plugin 'JuliaEditorSupport/julia-vim'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'maralla/completor.vim'
 Plugin 'trevordmiller/nova-vim'
+Plugin 'taketwo/vim-ros'
 call vundle#end()
 
 " === General ===
@@ -337,3 +338,7 @@ let g:UltiSnipsExpandTrigger="<c-t>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-x>"
 let g:UltiSnipsEditSplit="vertical"
+
+" === ROS ===
+let g:ros_build_system="catkin-tools"
+let g:ycm_global_ycm_extra_conf = "$HOME/.vim/.ycm_extra_conf.py"
