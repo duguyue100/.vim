@@ -18,6 +18,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'christoomey/vim-tmux-navigator'
 " Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 " Plugin 'gabrielelana/vim-markdown'
 Plugin 'lervag/vimtex'
 Plugin 'Shougo/vimproc.vim', {'do' : 'make'}
@@ -323,6 +324,8 @@ let g:javascript_plugin_flow = 1
 " === Markdown ===
 
 let g:goyo_width = 120
+let g:vim_markdown_math = 1
+let g:vim_markdown_folding_disabled = 1
 
 " === Easy Align ===
 " Start interactive EasyAlign in visual mode (e.g. vipga)
