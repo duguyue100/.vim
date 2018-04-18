@@ -39,7 +39,9 @@ Plugin 'honza/vim-snippets'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'JuliaEditorSupport/julia-vim'
 Plugin 'wakatime/vim-wakatime'
-Plugin 'maralla/completor.vim'
+" Plugin 'maralla/completor.vim'
+Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plugin 'zchee/deoplete-jedi'
 call vundle#end()
 
 " === General ===
@@ -276,7 +278,9 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 " let g:ycm_autoclose_preview_window_after_completion=1
 " let g:ycm_goto_buffer_command='vertical-split'
 " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-let g:completor_python_binary = '/Users/dgyHome/anaconda3/bin/python'
+" let g:completor_python_binary = '/Users/dgyHome/anaconda3/bin/python'
+let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog = '/Users/dgyHome/anaconda3/bin/python'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
