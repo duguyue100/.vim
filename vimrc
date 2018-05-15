@@ -249,6 +249,7 @@ map! <F2> <C-O>u
 
 " imap vv <Esc>
 inoremap é <Esc>
+inoremap � <Esc>
 imap <F3> <Esc>[s1z=`]a
 imap <F4> <Esc>[sz=
 map ; :!
