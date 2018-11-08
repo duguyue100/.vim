@@ -7,7 +7,7 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 " Plugin 'valloric/youcompleteme'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
@@ -342,5 +342,5 @@ let g:UltiSnipsJumpBackwardTrigger="<c-x>"
 let g:UltiSnipsEditSplit="vertical"
 
 " === ROS ===
-let g:ros_build_system="catkin-tools"
-let g:ycm_global_ycm_extra_conf = "$HOME/.vim/.ycm_extra_conf.py"
+" let g:ros_build_system="catkin-tools"
+" let g:ycm_global_ycm_extra_conf = "$HOME/.vim/.ycm_extra_conf.py"
