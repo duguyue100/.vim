@@ -314,8 +314,9 @@ let g:NERDDefaultAlign = 'left'
 let g:gist_open_browser_after_post = 1
 let g:gist_show_privates = 1
 
-" === Git Gutter ===
-set updatetime=250
+" === Git Gutter or Signify ===
+" set updatetime=250
+let g:signify_vcs_list = [ 'git' ]
 
 " === Vim Session ===
 let g:session_autoload = 'yes'
