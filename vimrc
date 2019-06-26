@@ -29,7 +29,8 @@ Plugin 'xolox/vim-session'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
-Plugin 'airblade/vim-gitgutter'
+" Plugin 'airblade/vim-gitgutter'
+Plugin 'mhinz/vim-signify'
 Plugin 'junegunn/goyo.vim'
 Plugin 'mattn/emmet-vim'
 Plugin 'pangloss/vim-javascript'
@@ -309,7 +310,8 @@ let g:gist_open_browser_after_post = 1
 let g:gist_show_privates = 1
 
 " === Git Gutter ===
-set updatetime=250
+" set updatetime=250
+let g:signify_vcs_list = [ 'git' ]
 
 " === Vim Session ===
 let g:session_autoload = 'yes'
