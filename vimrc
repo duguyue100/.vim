@@ -294,6 +294,9 @@ nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 let g:syntastic_check_on_open = 1
 let g:syntastic_python_checkers = ['flake8']
 
+let g:syntastic_cpp_compiler = "g++"
+let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
+
 " === LaTeX ===
 nmap <leader>tt :VimtexCompile<cr>
 nmap <leader>vv :VimtexView<cr>
