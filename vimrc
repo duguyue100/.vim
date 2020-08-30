@@ -9,7 +9,8 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 " Plugin 'valloric/youcompleteme'
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
+Plugin 'dense-analysis/ale'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'kien/ctrlp.vim'
@@ -290,10 +291,14 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
-let g:syntastic_check_on_open = 1
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_cpp_compiler = "/usr/local/bin/g++-10"
-let g:syntastic_cpp_compiler_options = "-std=c++11"
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_python_checkers = ['flake8']
+" let g:syntastic_cpp_compiler = "/usr/local/bin/g++-10"
+" let g:syntastic_cpp_compiler_options = "-std=c++11"
+"
+let g:ale_lint_on_enter = 1
+let g:ale_warn_about_trailing_whitespace = 0
+let g:ale_cpp_cc_executable = "/usr/local/bin/g++-10"
 
 " === LaTeX ===
 nmap <leader>tt :VimtexCompile<cr>
@@ -301,6 +306,7 @@ nmap <leader>vv :VimtexView<cr>
 let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '-r @line @pdf @tex'
 let g:vimtex_view_general_options_latexmk = '-r 1'
+let g:tex_flavor = "latex"
 
 " === NERD Commenting ===
 let g:NERDSpaceDelims = 1
