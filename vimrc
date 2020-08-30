@@ -192,7 +192,10 @@ set encoding=utf8
 set ffs=unix,dos,mac
 
 "" use vertical diff
-set diffopt+=vertical
+if &diff
+    set diffopt-=internal
+    set diffopt+=vertical
+endif
 
 "" save using ctrl+w
 
@@ -280,9 +283,8 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 " let g:ycm_autoclose_preview_window_after_completion=1
 " let g:ycm_goto_buffer_command='vertical-split'
 " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-" let g:completor_python_binary = '/Users/dgyHome/anaconda3/bin/python'
 let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = '/Users/dgyHome/anaconda3/bin/python'
+let g:python3_host_prog = '/Users/dgyhomem/miniconda3/bin/python'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
@@ -290,6 +292,8 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 let g:syntastic_check_on_open = 1
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_cpp_compiler = "/usr/local/bin/g++-10"
+let g:syntastic_cpp_compiler_options = "-std=c++11"
 
 " === LaTeX ===
 nmap <leader>tt :VimtexCompile<cr>
