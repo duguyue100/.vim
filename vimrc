@@ -293,12 +293,12 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 " let g:syntastic_check_on_open = 1
 " let g:syntastic_python_checkers = ['flake8']
-" let g:syntastic_cpp_compiler = "/usr/local/bin/g++-10"
+" let g:syntastic_cpp_compiler = "/usr/local/bin/g++-9"
 " let g:syntastic_cpp_compiler_options = "-std=c++11"
 "
 let g:ale_lint_on_enter = 1
 let g:ale_warn_about_trailing_whitespace = 0
-let g:ale_cpp_cc_executable = "/usr/local/bin/g++-10"
+let g:ale_cpp_cc_executable = "/usr/local/bin/g++-9"
 
 " === LaTeX ===
 nmap <leader>tt :VimtexCompile<cr>
