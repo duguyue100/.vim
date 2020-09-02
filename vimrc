@@ -285,7 +285,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 " let g:ycm_goto_buffer_command='vertical-split'
 " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = '/Users/dgyhomem/miniconda3/bin/python'
+let g:python3_host_prog = '/Users/dgyhome/anaconda3/bin/python'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
