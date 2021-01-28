@@ -284,18 +284,24 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 " let g:ycm_autoclose_preview_window_after_completion=1
 " let g:ycm_goto_buffer_command='vertical-split'
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#statement_length = 200
 let g:python3_host_prog = '/home/dgywork/miniconda3/bin/python'
 " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
-nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
+" nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 let g:syntastic_check_on_open = 1
 let g:syntastic_python_checkers = ['flake8']
 
 let g:syntastic_cpp_compiler = "g++"
 let g:syntastic_cpp_compiler_options = "-std=c++11 -Wall -Wextra -Wpedantic"
+
+" === Debugger ===
+
+let g:vimspector_enable_mappings = 'HUMAN'
+packadd! vimspector
 
 " === LaTeX ===
 nmap <leader>tt :VimtexCompile<cr>

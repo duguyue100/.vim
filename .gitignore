@@ -13,3 +13,5 @@ init.vim
 # ignore folder
 eclim
 plugin
+
+pack
