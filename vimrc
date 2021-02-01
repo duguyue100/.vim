@@ -42,8 +42,8 @@ Plugin 'JuliaEditorSupport/julia-vim'
 Plugin 'wakatime/vim-wakatime'
 " Plugin 'maralla/completor.vim'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plugin 'davidhalter/jedi-vim'
-" Plugin 'zchee/deoplete-jedi'
+" Plugin 'davidhalter/jedi-vim'
+Plugin 'deoplete-plugins/deoplete-jedi'
 " Plugin 'trevordmiller/nova-vim'
 " Plugin 'taketwo/vim-ros'
 call vundle#end()
@@ -282,17 +282,18 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " === Python ===
-" let g:ycm_autoclose_preview_window_after_completion=1
-" let g:ycm_goto_buffer_command='vertical-split'
 let g:python3_host_prog = '/home/dgywork/miniconda3/bin/python3'
 let g:deoplete#enable_at_startup = 1
-let g:jedi#environment_path = "/home/dgywork/miniconda3/bin/python3"
-let g:jedi#popup_select_first = 0
-let g:jedi#show_call_signatures = "2"
-" let g:deoplete#sources#jedi#enable_typeinfo = 1
-" let g:deoplete#sources#jedi#statement_length = 200
-" let g:deoplete#sources#jedi#enable_short_types = 1
-" map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" let g:jedi#environment_path = "/home/dgywork/miniconda3/bin/python3"
+" let g:jedi#popup_select_first = 0
+" let g:jedi#show_call_signatures = "2"
+
+let g:deoplete#sources#jedi#python_path = "/home/dgywork/miniconda3/bin/python3"
+let g:deoplete#sources#jedi#enable_typeinfo = 1
+let g:deoplete#sources#jedi#statement_length = 200
+let g:deoplete#sources#jedi#enable_short_types = 1
+let g:deoplete#sources#jedi#show_docstring = 1
+
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
