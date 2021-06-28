@@ -46,6 +46,7 @@ Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'deoplete-plugins/deoplete-jedi'
 " Plugin 'trevordmiller/nova-vim'
 " Plugin 'taketwo/vim-ros'
+Plugin 'tmhedberg/SimpylFold'
 call vundle#end()
 
 " === General ===
