@@ -44,6 +44,9 @@ Plugin 'wakatime/vim-wakatime'
 " Plugin 'maralla/completor.vim'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'zchee/deoplete-jedi'
+
+Plugin 'nvim-lua/plenary.nvim'
+Plugin 'nvim-telescope/telescope.nvim'
 call vundle#end()
 
 " === General ===
