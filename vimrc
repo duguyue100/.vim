@@ -5,49 +5,58 @@
 
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-" Plugin 'valloric/youcompleteme'
-" Plugin 'scrooloose/syntastic'
-Plugin 'dense-analysis/ale'
-Plugin 'scrooloose/nerdtree'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'christoomey/vim-tmux-navigator'
-" Plugin 'godlygeek/tabular'
-" Plugin 'gabrielelana/vim-markdown'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'lervag/vimtex'
-Plugin 'Shougo/vimproc.vim', {'do' : 'make'}
-Plugin 'shougo/vimshell.vim'
-Plugin 'Shougo/unite.vim'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-session'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'mattn/webapi-vim'
-Plugin 'mattn/gist-vim'
-" Plugin 'airblade/vim-gitgutter'
-Plugin 'mhinz/vim-signify'
-Plugin 'junegunn/goyo.vim'
-Plugin 'mattn/emmet-vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'junegunn/vim-easy-align' 
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'JuliaEditorSupport/julia-vim'
-Plugin 'wakatime/vim-wakatime'
-" Plugin 'maralla/completor.vim'
-Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plugin 'zchee/deoplete-jedi'
 
-Plugin 'nvim-lua/plenary.nvim'
-Plugin 'nvim-telescope/telescope.nvim'
-call vundle#end()
+call plug#begin()
+
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'christoomey/vim-tmux-navigator'
+call plug#end()
+
+
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
+" Plugin 'gmarik/Vundle.vim'
+" " Plugin 'valloric/youcompleteme'
+" " Plugin 'scrooloose/syntastic'
+" Plugin 'dense-analysis/ale'
+" Plugin 'scrooloose/nerdtree'
+" Plugin 'jistr/vim-nerdtree-tabs'
+" Plugin 'kien/ctrlp.vim'
+" Plugin 'tpope/vim-fugitive'
+" Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
+" Plugin 'christoomey/vim-tmux-navigator'
+" " Plugin 'godlygeek/tabular'
+" " Plugin 'gabrielelana/vim-markdown'
+" Plugin 'plasticboy/vim-markdown'
+" Plugin 'lervag/vimtex'
+" Plugin 'Shougo/vimproc.vim', {'do' : 'make'}
+" Plugin 'shougo/vimshell.vim'
+" Plugin 'Shougo/unite.vim'
+" Plugin 'xolox/vim-misc'
+" Plugin 'xolox/vim-session'
+" Plugin 'scrooloose/nerdcommenter'
+" Plugin 'mattn/webapi-vim'
+" Plugin 'mattn/gist-vim'
+" " Plugin 'airblade/vim-gitgutter'
+" Plugin 'mhinz/vim-signify'
+" Plugin 'junegunn/goyo.vim'
+" Plugin 'mattn/emmet-vim'
+" Plugin 'pangloss/vim-javascript'
+" Plugin 'junegunn/vim-easy-align'
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
+" Plugin 'Chiel92/vim-autoformat'
+" Plugin 'JuliaEditorSupport/julia-vim'
+" Plugin 'wakatime/vim-wakatime'
+" " Plugin 'maralla/completor.vim'
+" Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plugin 'zchee/deoplete-jedi'
+"
+" Plugin 'nvim-lua/plenary.nvim'
+" Plugin 'nvim-telescope/telescope.nvim'
+" call vundle#end()
 
 " === General ===
 let mapleader = ","
