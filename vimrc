@@ -6,57 +6,45 @@
 set nocompatible
 filetype off
 
-call plug#begin()
+call plug#begin('~/.vim/plugged')
+Plug 'dense-analysis/ale'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
 Plug 'christoomey/vim-tmux-navigator'
+
+Plug 'lervag/vimtex'
+Plug 'junegunn/goyo.vim'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'wakatime/vim-wakatime'
+
+" assuming you're using vim-plug: https://github.com/junegunn/vim-plug
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
+" IMPORTANT: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+
+" NOTE: you need to install completion sources to get completions. Check
+" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-jedi'
+
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+Plug 'scrooloose/nerdcommenter'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 call plug#end()
-
-
-" set rtp+=~/.vim/bundle/Vundle.vim
-" call vundle#begin()
-" Plugin 'gmarik/Vundle.vim'
-" " Plugin 'valloric/youcompleteme'
-" " Plugin 'scrooloose/syntastic'
-" Plugin 'dense-analysis/ale'
-" Plugin 'scrooloose/nerdtree'
-" Plugin 'jistr/vim-nerdtree-tabs'
-" Plugin 'kien/ctrlp.vim'
-" Plugin 'tpope/vim-fugitive'
-" Plugin 'vim-airline/vim-airline'
-" Plugin 'vim-airline/vim-airline-themes'
-" Plugin 'christoomey/vim-tmux-navigator'
-" " Plugin 'godlygeek/tabular'
-" " Plugin 'gabrielelana/vim-markdown'
-" Plugin 'plasticboy/vim-markdown'
-" Plugin 'lervag/vimtex'
-" Plugin 'Shougo/vimproc.vim', {'do' : 'make'}
-" Plugin 'shougo/vimshell.vim'
-" Plugin 'Shougo/unite.vim'
-" Plugin 'xolox/vim-misc'
-" Plugin 'xolox/vim-session'
-" Plugin 'scrooloose/nerdcommenter'
-" Plugin 'mattn/webapi-vim'
-" Plugin 'mattn/gist-vim'
-" " Plugin 'airblade/vim-gitgutter'
-" Plugin 'mhinz/vim-signify'
-" Plugin 'junegunn/goyo.vim'
-" Plugin 'mattn/emmet-vim'
-" Plugin 'pangloss/vim-javascript'
-" Plugin 'junegunn/vim-easy-align'
-" Plugin 'SirVer/ultisnips'
-" Plugin 'honza/vim-snippets'
-" Plugin 'Chiel92/vim-autoformat'
-" Plugin 'JuliaEditorSupport/julia-vim'
-" Plugin 'wakatime/vim-wakatime'
-" " Plugin 'maralla/completor.vim'
-" Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plugin 'zchee/deoplete-jedi'
-"
-" Plugin 'nvim-lua/plenary.nvim'
-" Plugin 'nvim-telescope/telescope.nvim'
-" call vundle#end()
 
 " === General ===
 let mapleader = ","
@@ -293,22 +281,13 @@ let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " === Python ===
-" let g:ycm_autoclose_preview_window_after_completion=1
-" let g:ycm_goto_buffer_command='vertical-split'
-" map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#statement_length = 200
 let g:python3_host_prog = '/Users/dgyhomem/miniconda3/bin/python'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_python_checkers = ['flake8']
-" let g:syntastic_cpp_compiler = "/usr/local/bin/g++-10"
-" let g:syntastic_cpp_compiler_options = "-std=c++11"
-"
+
 let g:ale_lint_on_enter = 1
 let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_cpp_cc_executable = "/usr/local/bin/g++-10"
@@ -336,10 +315,6 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDDefaultAlign = 'left'
 
-" === Gist ===
-let g:gist_open_browser_after_post = 1
-let g:gist_show_privates = 1
-
 " === Git Gutter ===
 " set updatetime=250
 let g:signify_vcs_list = [ 'git' ]
@@ -347,11 +322,6 @@ let g:signify_vcs_list = [ 'git' ]
 " === Vim Session ===
 let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
-
-" === JS ===
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_ngdoc = 1
-let g:javascript_plugin_flow = 1
 
 " === Markdown ===
 
