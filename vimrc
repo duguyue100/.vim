@@ -19,6 +19,7 @@ Plug 'junegunn/goyo.vim'
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'cljoly/telescope-repo.nvim'
 
 Plug 'wakatime/vim-wakatime'
 
@@ -306,6 +307,7 @@ let g:tex_flavor = "latex"
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fp <cmd>Telescope git_files<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
