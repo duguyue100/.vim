@@ -292,8 +292,8 @@ nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 
 let g:ale_lint_on_enter = 1
 let g:ale_warn_about_trailing_whitespace = 0
-let g:ale_cpp_cc_executable = "/usr/local/bin/g++-10"
-let g:ale_fixers = {'python': ['black', 'autoflake', 'reorder-python-imports']}
+" let g:ale_cpp_cc_executable = "/usr/local/bin/g++-10"
+let g:ale_fixers = {'python': ['black', 'autoflake']}
 let g:ale_fix_on_save = 1
 nnoremap <leader>gd <cmd>ALEGoToDefinition<cr>
 
@@ -301,7 +301,7 @@ nnoremap <leader>gd <cmd>ALEGoToDefinition<cr>
 " === LaTeX ===
 nmap <leader>tt :VimtexCompile<cr>
 nmap <leader>vv :VimtexView<cr>
-let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+" let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 let g:vimtex_view_general_options = '-r @line @pdf @tex'
 let g:vimtex_view_general_options_latexmk = '-r 1'
 let g:tex_flavor = "latex"
