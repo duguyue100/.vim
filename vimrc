@@ -221,7 +221,9 @@ autocmd BufEnter * silent! cd %:p:h
 set timeoutlen=500 ttimeoutlen=0
 
 "" clipboard sharing
-set clipboard=unnamed
+" set clipboard=unnamed
+" if it doesn't work by default, try install xclip by sudo apt-get install xclip
+set clipboard+=unnamedplus
 
 " === Files, backup and undo ===
 set nobackup
