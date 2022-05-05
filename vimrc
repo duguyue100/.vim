@@ -138,7 +138,7 @@ set wrap "Wrap lines
 
 "" Add a bit extra margin to the left
 set foldcolumn=1
-set colorcolumn=80
+set colorcolumn=88
 
 "" No annoying sound on errors
 set noerrorbells
@@ -293,9 +293,11 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 
 let g:ale_lint_on_enter = 1
+let g:ale_python_flake8_options = '--max-line-length=88 --ignore=E203,E501,W503'
 let g:ale_warn_about_trailing_whitespace = 0
 " let g:ale_cpp_cc_executable = "/usr/local/bin/g++-10"
-let g:ale_fixers = {'python': ['black', 'autoflake']}
+let g:ale_fixers = {'python': ['black']}
+let g:ale_linters = {'python': ['mypy']}
 let g:ale_fix_on_save = 1
 nnoremap <leader>gd <cmd>ALEGoToDefinition<cr>
 
