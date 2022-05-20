@@ -27,6 +27,8 @@ Plug 'wakatime/vim-wakatime'
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
 
@@ -318,6 +320,10 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fp <cmd>Telescope git_files<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" CHADTree
+
+nnoremap <leader>v <cmd>CHADopen --version-ctl<cr>
 
 " === NERD Commenting ===
 let g:NERDSpaceDelims = 1
