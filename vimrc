@@ -73,6 +73,10 @@ nmap <leader>q :qall<cr>
 "" Set 12 lines to the cursor - when moving vertically using j/k
 set so=12
 
+"" Enable mouse
+
+set mouse=a
+
 "" Wild menu
 set wildmenu
 
