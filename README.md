@@ -14,7 +14,7 @@ My VIM config --- actually my dotfiles
   ### Install software
 
   ```bash
-  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq
+  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep
   ```
   
 </details>
@@ -26,7 +26,7 @@ My VIM config --- actually my dotfiles
   # general software install
   sudo apt-get update
   sudo apt-get upgrade
-  sudo apt-get install build-essential binutils cmake curl tmux unzip openssh-server xclip zsh
+  sudo apt-get install build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep
   # latest git
   sudo apt-add-repository ppa:git-core/ppa
   sudo apt-get update
