@@ -21,14 +21,50 @@ My VIM config --- very naive..
 
 <details>
   <summary>Ubuntu</summary>
+
+  ```bash
+  # general software install
+  sudo apt-get update
+  sudo apt-get upgrade
+  sudo apt-get install build-essential binutils cmake curl tmux unzip openssh-server xclip zsh
+  # latest git
+  sudo apt-add-repository ppa:git-core/ppa
+  sudo apt-get update
+  sudo apt-get install git
+  # nvidia driver
+  sudo add-apt-repository ppa:graphics-drivers/ppa
+  sudo apt-get update
+  sudo apt-get install nvidia-driver-xxx  # select your version
+  sudo apt-get install nvidia-modprobe  # for nvidia-docker
+  ```
+  
 </details>
 
-## zshrc
+## zsh
 
-Make symbolic link:
-```bash
-ln -s ~/.vim/zshrc_mac ~/.zshrc
-```
+1. Install `oh-my-zsh`:
+    ```bash
+    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    ```
+
+2. Make symbolic link for zshrc:
+    ```bash
+    # For mac
+    ln -s ~/.vim/zshrc_mac ~/.zshrc
+    # For linux
+    ln -s ~/.vim/zshrc_linux ~/.zshrc
+    ```
+3. Install p10k
+    ```bash
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+    ```
+4. Install plugins
+    ```bash
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
+    git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+    ```
 
 ## Python + Common Dependencies
 
@@ -60,12 +96,6 @@ pip install jedi-language-server -U
 pip install mypy -U
 pip install flake8 -U
 pip install black -U
-```
-
-## For Linux
-
-```
-sudo apt-get install xclip
 ```
 
 ## For `neovim`
@@ -105,5 +135,3 @@ ln -s ~/.vim/vimrc ~/.vim/init.vim
 ## WakaTime
 
 Will promote for WakaTime key, get it from the website
-
-## TODO: zshrc
