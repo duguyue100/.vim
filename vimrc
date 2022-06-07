@@ -778,7 +778,7 @@ let g:NERDDefaultAlign = 'left'
 set updatetime=100
 let g:signify_vcs_list = [ 'git' ]
 let g:blamer_enabled = 1
-let g:blamer_delay = 300
+let g:blamer_delay = 500
 let g:blamer_relative_time = 1
 
 " === Vim Session ===
