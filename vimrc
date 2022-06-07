@@ -23,29 +23,23 @@ Plug 'cljoly/telescope-repo.nvim'
 
 Plug 'wakatime/vim-wakatime'
 
-" assuming you're using vim-plug: https://github.com/junegunn/vim-plug
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
+" Completion
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 
-" Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+Plug 'SirVer/ultisnips'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
-" enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-
-" IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
-
-" NOTE: you need to install completion sources to get completions. Check
-" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-jedi'
-Plug 'ncm2/ncm2-ultisnips'
+Plug 'neovim/nvim-lspconfig'
+Plug 'ray-x/lsp_signature.nvim'
+Plug 'kosayoda/nvim-lightbulb'
 
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'scrooloose/nerdcommenter'
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 Plug 'ray-x/aurora'
@@ -54,8 +48,13 @@ Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 
 Plug 'kyazdani42/nvim-tree.lua'
+Plug 'airblade/vim-rooter'
+
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 call plug#end()
+
+set completeopt=menu,menuone,noselect
 
 " === General ===
 let mapleader = ","
@@ -78,7 +77,7 @@ vim.cmd [[
  endfunction
 ]]
 
-local options = {
+local buf_options = {
    options = {
       offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
       buffer_close_icon = "",
@@ -129,7 +128,7 @@ local options = {
 }
 
 -- check for any override
-bufferline.setup(options)
+bufferline.setup(buf_options)
 
 -- NVIMTree
 require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
@@ -144,9 +143,9 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
   open_on_setup_file = true,
   open_on_tab = false,
   sort_by = "name",
-  update_cwd = false,
+  update_cwd = true,
   reload_on_bufenter = false,
-  respect_buf_cwd = false,
+  respect_buf_cwd = true,
   view = {
     adaptive_size = false,
     centralize_selection = false,
@@ -304,6 +303,200 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
     },
   },
 } -- END_DEFAULT_OPTS
+
+-- Blankline
+local present, blankline = pcall(require, "indent_blankline")
+
+if not present then
+  return
+end
+
+local blankline_options = {
+  indentLine_enabled = 1,
+  char = "▏",
+  filetype_exclude = {
+     "help",
+     "terminal",
+     "alpha",
+     "packer",
+     "lspinfo",
+     "TelescopePrompt",
+     "TelescopeResults",
+     "nvchad_cheatsheet",
+     "lsp-installer",
+     "",
+  },
+  buftype_exclude = { "terminal" },
+  show_trailing_blankline_indent = false,
+  show_first_indent_level = false,
+}
+
+blankline.setup(blankline_options)
+
+-- Telescope
+local present, telescope = pcall(require, "telescope")
+
+if not present then
+   return
+end
+
+local telescope_options = {
+   defaults = {
+      vimgrep_arguments = {
+         "rg",
+         "--color=never",
+         "--no-heading",
+         "--with-filename",
+         "--line-number",
+         "--column",
+         "--smart-case",
+      },
+      prompt_prefix = "   ",
+      selection_caret = "  ",
+      entry_prefix = "  ",
+      initial_mode = "insert",
+      selection_strategy = "reset",
+      sorting_strategy = "ascending",
+      layout_strategy = "horizontal",
+      layout_config = {
+         horizontal = {
+            prompt_position = "top",
+            preview_width = 0.55,
+            results_width = 0.8,
+         },
+         vertical = {
+            mirror = false,
+         },
+         width = 0.87,
+         height = 0.80,
+         preview_cutoff = 120,
+      },
+      file_sorter = require("telescope.sorters").get_fuzzy_file,
+      file_ignore_patterns = { "node_modules" },
+      generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+      path_display = { "truncate" },
+      winblend = 0,
+      border = {},
+      borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
+      color_devicons = true,
+      use_less = true,
+      set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
+      file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+      grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+      qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+      -- Developer configurations: Not meant for general override
+      buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+      mappings = {
+         n = { ["q"] = require("telescope.actions").close },
+      },
+   },
+
+   extensions_list = { "themes", "terms" },
+}
+
+-- check for any override
+telescope.setup(telescope_options)
+
+-- load extensions
+pcall(function()
+   for _, ext in ipairs(telescope_options.extensions_list) do
+      telescope.load_extension(ext)
+   end
+end)
+
+-- LSP
+require'lspconfig'.jedi_language_server.setup{}
+
+local present, lsp_signature = pcall(require, "lsp_signature")
+
+if not present then
+  return
+end
+
+local lsp_signature_options = {
+  bind = true,
+  doc_lines = 0,
+  floating_window = true,
+  fix_pos = true,
+  hint_enable = true,
+  hint_prefix = " ",
+  hint_scheme = "String",
+  hi_parameter = "Search",
+  max_height = 22,
+  max_width = 140, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+  handler_opts = {
+     border = "single", -- double, single, shadow, none
+  },
+  zindex = 200, -- by default it will be on top of all floating windows, set to 50 send it to bottom
+  padding = "", -- character to pad on left and right of signature can be ' ', or '|'  etc
+}
+
+lsp_signature.setup(lsp_signature_options)
+
+-- Setup nvim-cmp.
+local cmp = require'cmp'
+
+cmp.setup({
+snippet = {
+  -- REQUIRED - you must specify a snippet engine
+  expand = function(args)
+    vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+  end,
+},
+window = {
+  completion = cmp.config.window.bordered(),
+  documentation = cmp.config.window.bordered(),
+},
+mapping = cmp.mapping.preset.insert({
+  ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+  ['<C-f>'] = cmp.mapping.scroll_docs(4),
+  ['<C-Space>'] = cmp.mapping.complete(),
+  ['<C-e>'] = cmp.mapping.abort(),
+  ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+}),
+sources = cmp.config.sources({
+  { name = 'nvim_lsp' },
+  { name = 'ultisnips' }, -- For ultisnips users.
+}, {
+  { name = 'buffer' },
+})
+})
+
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+sources = cmp.config.sources({
+  { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+}, {
+  { name = 'buffer' },
+})
+})
+
+-- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline('/', {
+mapping = cmp.mapping.preset.cmdline(),
+sources = {
+  { name = 'buffer' }
+}
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+mapping = cmp.mapping.preset.cmdline(),
+sources = cmp.config.sources({
+  { name = 'path' }
+}, {
+  { name = 'cmdline' }
+})
+})
+
+-- Setup lspconfig.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+require('lspconfig')['jedi_language_server'].setup {
+  capabilities = capabilities
+}
+
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]]
 
 EOF
 
@@ -541,12 +734,9 @@ hi SpellBad ctermfg=128 ctermbg=000 cterm=none guifg=#FF0000 guibg=#0000FF gui=n
 setlocal spell spelllang=en_us
 
 " === Python ===
-let g:python3_host_prog = '/home/yuhuang/miniconda3/bin/python'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
-
-nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
 
 let g:ale_floating_preview = 1
 let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
@@ -579,10 +769,6 @@ nnoremap <leader>fp <cmd>Telescope git_files<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
-" CHADTree
-
-" nnoremap <leader>v <cmd>CHADopen --version-ctl<cr>
-
 " === NERD Commenting ===
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
@@ -599,7 +785,6 @@ let g:session_autoload = 'yes'
 let g:session_autosave = 'yes'
 
 " === Markdown ===
-
 let g:goyo_width = 120
 let g:vim_markdown_math = 1
 let g:vim_markdown_folding_disabled = 1
@@ -610,10 +795,3 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
-" === snippet ===
-inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
-" let g:UltiSnipsExpandTrigger="<c-t>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:UltiSnipsEditSplit="vertical"
