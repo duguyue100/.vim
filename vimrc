@@ -27,7 +27,7 @@ Plug 'wakatime/vim-wakatime'
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+" Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -48,10 +48,264 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+Plug 'ray-x/aurora'
+
+Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+
+Plug 'kyazdani42/nvim-tree.lua'
+
 call plug#end()
 
 " === General ===
 let mapleader = ","
+
+"" Terminal colors
+set termguicolors
+lua << EOF
+local present, bufferline = pcall(require, "bufferline")
+
+if not present then
+   return
+end
+
+vim.cmd [[
+ function! Toggle_theme(a,b,c,d)
+   lua require('base46').toggle_theme()
+ endfunction
+ function! Quit_vim(a,b,c,d)
+     qa
+ endfunction
+]]
+
+local options = {
+   options = {
+      offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+      buffer_close_icon = "",
+      modified_icon = "",
+      close_icon = "",
+      show_close_icon = false,
+      left_trunc_marker = " ",
+      right_trunc_marker = " ",
+      max_name_length = 14,
+      max_prefix_length = 13,
+      tab_size = 20,
+      show_tab_indicators = true,
+      enforce_regular_tabs = false,
+      view = "multiwindow",
+      show_buffer_close_icons = true,
+      separator_style = "thin",
+      always_show_bufferline = true,
+      diagnostics = false,
+      themable = true,
+
+      custom_areas = {
+         right = function()
+            return {
+               { text = "%@Toggle_theme@" .. vim.g.toggle_theme_icon .. "%X" },
+               { text = "%@Quit_vim@ %X" },
+            }
+         end,
+      },
+
+      custom_filter = function(buf_number)
+         -- Func to filter out our managed/persistent split terms
+         local present_type, type = pcall(function()
+            return vim.api.nvim_buf_get_var(buf_number, "term_type")
+         end)
+
+         if present_type then
+            if type == "vert" then
+               return false
+            elseif type == "hori" then
+               return false
+            end
+            return true
+         end
+
+         return true
+      end,
+   },
+}
+
+-- check for any override
+bufferline.setup(options)
+
+-- NVIMTree
+require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
+  auto_reload_on_write = true,
+  create_in_closed_folder = false,
+  disable_netrw = false,
+  hijack_cursor = false,
+  hijack_netrw = true,
+  hijack_unnamed_buffer_when_opening = false,
+  ignore_buffer_on_setup = false,
+  open_on_setup = true,
+  open_on_setup_file = true,
+  open_on_tab = false,
+  sort_by = "name",
+  update_cwd = false,
+  reload_on_bufenter = false,
+  respect_buf_cwd = false,
+  view = {
+    adaptive_size = false,
+    centralize_selection = false,
+    width = 40,
+    height = 30,
+    hide_root_folder = false,
+    side = "left",
+    preserve_window_proportions = false,
+    number = false,
+    relativenumber = false,
+    signcolumn = "yes",
+    mappings = {
+      custom_only = false,
+      list = {
+        -- user mappings go here
+      },
+    },
+  },
+  renderer = {
+    add_trailing = false,
+    group_empty = false,
+    highlight_git = false,
+    full_name = false,
+    highlight_opened_files = "none",
+    root_folder_modifier = ":~",
+    indent_markers = {
+      enable = false,
+      icons = {
+        corner = "└ ",
+        edge = "│ ",
+        item = "│ ",
+        none = "  ",
+      },
+    },
+    icons = {
+      webdev_colors = true,
+      git_placement = "before",
+      padding = " ",
+      symlink_arrow = " ➛ ",
+      show = {
+        file = true,
+        folder = true,
+        folder_arrow = true,
+        git = true,
+      },
+      glyphs = {
+        default = "",
+        symlink = "",
+        folder = {
+          arrow_closed = "",
+          arrow_open = "",
+          default = "",
+          open = "",
+          empty = "",
+          empty_open = "",
+          symlink = "",
+          symlink_open = "",
+        },
+        git = {
+          unstaged = "✗",
+          staged = "✓",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "★",
+          deleted = "",
+          ignored = "◌",
+        },
+      },
+    },
+    special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
+  },
+  hijack_directories = {
+    enable = true,
+    auto_open = true,
+  },
+  update_focused_file = {
+    enable = true,
+    update_cwd = true,
+    ignore_list = {},
+  },
+  ignore_ft_on_setup = {},
+  system_open = {
+    cmd = "",
+    args = {},
+  },
+  diagnostics = {
+    enable = false,
+    show_on_dirs = false,
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    },
+  },
+  filters = {
+    dotfiles = false,
+    custom = {},
+    exclude = {},
+  },
+  filesystem_watchers = {
+    enable = false,
+    interval = 100,
+  },
+  git = {
+    enable = true,
+    ignore = true,
+    timeout = 400,
+  },
+  actions = {
+    use_system_clipboard = true,
+    change_dir = {
+      enable = true,
+      global = false,
+      restrict_above_cwd = false,
+    },
+    expand_all = {
+      max_folder_discovery = 300,
+    },
+    open_file = {
+      quit_on_open = false,
+      resize_window = true,
+      window_picker = {
+        enable = true,
+        chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+        exclude = {
+          filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+          buftype = { "nofile", "terminal", "help" },
+        },
+      },
+    },
+    remove_file = {
+      close_window = true,
+    },
+  },
+  trash = {
+    cmd = "gio trash",
+    require_confirm = true,
+  },
+  live_filter = {
+    prefix = "[FILTER]: ",
+    always_show_folders = true,
+  },
+  log = {
+    enable = false,
+    truncate = false,
+    types = {
+      all = false,
+      config = false,
+      copy_paste = false,
+      diagnostics = false,
+      git = false,
+      profile = false,
+      watcher = false,
+    },
+  },
+} -- END_DEFAULT_OPTS
+
+EOF
 
 "" file indent
 filetype plugin on
@@ -74,7 +328,6 @@ nmap <leader>q :qall<cr>
 set so=12
 
 "" Enable mouse
-
 set mouse=a
 
 "" Wild menu
@@ -170,12 +423,14 @@ set showcmd
 
 "" set colors
 syntax enable
-colorscheme despacio 
-set background=dark
+" colorscheme despacio
+colorscheme aurora
+" set background=dark
 
 "" set color scheme when quit Goyo
 function! GoyoAfter()
-  colorscheme despacio
+  " colorscheme despacio
+  colorscheme aurora
   set background=dark
 endfunction
 
@@ -285,11 +540,6 @@ set laststatus=2
 hi SpellBad ctermfg=128 ctermbg=000 cterm=none guifg=#FF0000 guibg=#0000FF gui=none
 setlocal spell spelllang=en_us
 
-" === Configure Airline ===
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-
 " === Python ===
 let g:python3_host_prog = '/home/yuhuang/miniconda3/bin/python'
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -297,6 +547,10 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
 nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>
+
+let g:ale_floating_preview = 1
+let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
+let g:ale_set_balloons = 1
 
 let g:ale_lint_on_enter = 1
 let g:ale_python_flake8_options = '--max-line-length=88 --ignore=E203,E501,W503'
@@ -327,7 +581,7 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " CHADTree
 
-nnoremap <leader>v <cmd>CHADopen --version-ctl<cr>
+" nnoremap <leader>v <cmd>CHADopen --version-ctl<cr>
 
 " === NERD Commenting ===
 let g:NERDSpaceDelims = 1
