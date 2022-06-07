@@ -1,6 +1,13 @@
 # .vim
 My VIM config --- very naive..
 
+## zshrc
+
+Make symbolic link:
+```bash
+ln -s ~/.vim/zshrc_mac ~/.zshrc
+```
+
 ## Python Related Dependencies
 
 __Version might be sensitive between projects, make sure you install the correct version.__
