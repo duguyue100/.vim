@@ -5,6 +5,12 @@ My VIM config --- very naive..
 
 <details>
   <summary>macOS</summary>
+
+  ### Install homebrew
+  ```bash
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  ```
+  
 </details>
 
 <details>
@@ -18,7 +24,27 @@ Make symbolic link:
 ln -s ~/.vim/zshrc_mac ~/.zshrc
 ```
 
-## Python Related Dependencies
+## Python + Common Dependencies
+
+Download and install miniconda from [here](https://docs.conda.io/en/latest/miniconda.html)
+
+### Install PyTorch
+
+Install PyTorch from [here](https://pytorch.org/get-started/locally/)
+
+Preferably from Conda build because this can avoid also installing CUDA from scratch.
+For CPU version, use `pip`.
+
+### Install Scientific Computing Packages
+
+Some of these maybe installed previously with PyTorch.
+
+```bash
+pip install matpliblib, seaborn
+pip install numpy, scipy, scikit-learn, scikit-image
+pip install pandas, h5py
+```
+### Python Dependencies for Coding
 
 __Version might be sensitive between projects, make sure you install the correct version.__
 
