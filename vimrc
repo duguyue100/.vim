@@ -38,6 +38,7 @@ Plug 'ray-x/lsp_signature.nvim'
 
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
+Plug 'APZelos/blamer.nvim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'honza/vim-snippets'
 
@@ -773,9 +774,12 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDDefaultAlign = 'left'
 
-" === Git Gutter ===
-" set updatetime=250
+" === Git ===
+set updatetime=100
 let g:signify_vcs_list = [ 'git' ]
+let g:blamer_enabled = 1
+let g:blamer_delay = 300
+let g:blamer_relative_time = 1
 
 " === Vim Session ===
 let g:session_autoload = 'yes'
