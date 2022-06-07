@@ -1,5 +1,5 @@
 # .vim
-My VIM config --- very naive..
+My VIM config --- actually my dotfiles
 
 ## System Configuration
 
@@ -82,9 +82,9 @@ For CPU version, use `pip`.
 Some of these maybe installed previously with PyTorch.
 
 ```bash
-pip install matpliblib, seaborn
-pip install numpy, scipy, scikit-learn, scikit-image
-pip install pandas, h5py
+pip install matpliblib seaborn
+pip install numpy scipy scikit-learn scikit-image opencv-python
+pip install pandas h5py tqdm
 ```
 ### Python Dependencies for Coding
 
@@ -93,32 +93,32 @@ __Version might be sensitive between projects, make sure you install the correct
 ```bash
 pip install pynvim -U
 pip install jedi-language-server -U
-pip install mypy -U
+pip install mypy==0.942 -U
 pip install flake8 -U
-pip install black -U
+pip install black==19.10b0 -U
 ```
 
-## For `neovim`
+## `neovim`
 
 ```shell
 ln -s ~/.vim ~/.config/nvim
 ln -s ~/.vim/vimrc ~/.vim/init.vim
 ```
 
-## For vim-tmux binding
+## vim-tmux binding
 
 1. Make symbolic link
-    ```
+    ```bash
     ln -s ~/.vim/tmux.conf ~/.tmux.conf
     ```
 
 2. Get tmux plugin manage
-    ```
+    ```bash
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     ```
 
 3. Install Powerline
-    ```
+    ```bash
     pip install powerline-status
     git clone https://github.com/powerline/fonts.git --depth=1
     cd fonts
@@ -128,7 +128,7 @@ ln -s ~/.vim/vimrc ~/.vim/init.vim
     ```
 
 4. Install tmux Plugins
-    ```
+    ```bash
     ~/.tmux/plugins/tpm/bin/install_plugins
     ```
 
