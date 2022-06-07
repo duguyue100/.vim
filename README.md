@@ -1,6 +1,16 @@
 # .vim
 My VIM config --- very naive..
 
+## System Configuration
+
+<details>
+  <summary>macOS</summary>
+</details>
+
+<details>
+  <summary>Ubuntu</summary>
+</details>
+
 ## zshrc
 
 Make symbolic link:
