@@ -775,7 +775,6 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDDefaultAlign = 'left'
 
 " === Git ===
-set updatetime=100
 let g:signify_vcs_list = [ 'git' ]
 let g:blamer_enabled = 1
 let g:blamer_delay = 500
