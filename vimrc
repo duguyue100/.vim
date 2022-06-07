@@ -35,7 +35,6 @@ Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
-Plug 'kosayoda/nvim-lightbulb'
 
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
@@ -495,8 +494,6 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 require('lspconfig')['jedi_language_server'].setup {
   capabilities = capabilities
 }
-
-vim.cmd [[autocmd CursorHold,CursorHoldI * lua require('nvim-lightbulb').update_lightbulb()]]
 
 EOF
 
