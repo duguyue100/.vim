@@ -56,3 +56,5 @@ ln -s ~/.vim/vimrc ~/.vim/init.vim
 ## WakaTime
 
 Will promote for WakaTime key, get it from the website
+
+## TODO: zshrc
