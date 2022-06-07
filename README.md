@@ -10,6 +10,12 @@ My VIM config --- very naive..
   ```bash
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   ```
+
+  ### Install software
+
+  ```bash
+  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq
+  ```
   
 </details>
 
@@ -26,7 +32,7 @@ ln -s ~/.vim/zshrc_mac ~/.zshrc
 
 ## Python + Common Dependencies
 
-Download and install miniconda from [here](https://docs.conda.io/en/latest/miniconda.html)
+Download and install miniconda from [here](https://docs.conda.io/en/latest/miniconda.html).
 
 ### Install PyTorch
 
