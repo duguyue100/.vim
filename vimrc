@@ -52,6 +52,13 @@ Plug 'airblade/vim-rooter'
 
 Plug 'lukas-reineke/indent-blankline.nvim'
 
+" Support Testing
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+
+Plug 'vim-test/vim-test'
+Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
+
 call plug#end()
 
 set completeopt=menu,menuone,noselect
@@ -507,7 +514,6 @@ set omnifunc=syntaxcomplete
 
 "" autoread if modified elsewehre
 set autoread
-set autoread
 
 "" fast saving
 nmap <leader>w :w!<cr>
@@ -795,3 +801,7 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" === Testing ===
+let test#python#pytest#options = "--color=yes"
+let g:ultest_use_pty = 1

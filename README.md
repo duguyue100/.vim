@@ -6,6 +6,10 @@ My VIM config --- actually my dotfiles
 <details>
   <summary>macOS</summary>
 
+  ### iTerm2
+
+  Install iTerm2 from [here](https://iterm2.com/downloads.html)
+
   ### Install homebrew
   ```bash
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -26,7 +30,7 @@ My VIM config --- actually my dotfiles
   # general software install
   sudo apt-get update
   sudo apt-get upgrade
-  sudo apt-get install build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep htop mc
+  sudo apt-get install build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep htop mc terminator
   # latest git
   sudo apt-add-repository ppa:git-core/ppa
   sudo apt-get update
@@ -136,6 +140,15 @@ ln -s ~/.vim/vimrc ~/.vim/init.vim
 4. Install tmux Plugins
     ```bash
     ~/.tmux/plugins/tpm/bin/install_plugins
+    ```
+
+## Terminal
+
++ Showing unicode character correctly, try
+    ```bash
+    sudo update-locale LANG=en_US.UTF-8 LANGUAGE=en.UTF-8
+    # Then reboot
+    sudo reboot
     ```
 
 ## WakaTime
