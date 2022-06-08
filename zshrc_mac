@@ -112,6 +112,7 @@ alias n=nvim
 export PATH="$HOME/miniconda3/bin:$PATH"
 alias towork="cd $HOME/workspace"
 alias todown="cd $HOME/Downloads"
+alias lg="lazygit"
 
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

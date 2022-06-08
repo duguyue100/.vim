@@ -37,6 +37,12 @@ My VIM config --- actually my dotfiles
   sudo apt-get install nvidia-driver-xxx  # select your version
   sudo apt-get install nvidia-modprobe  # for nvidia-docker
   ```
+
+  ```bash
+  # install this after conda
+  conda install -c conda-forge lazygit
+  ```
+  
   
 </details>
 
