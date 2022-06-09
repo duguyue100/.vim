@@ -113,6 +113,8 @@ export PATH="$HOME/miniconda3/bin:$PATH"
 alias towork="cd $HOME/workspace"
 alias todown="cd $HOME/Downloads"
 alias lg="lazygit"
+alias clg="CHANGELOG_OK=1 lazygit"
+alias cslg="CHANGELOG_OK=1 SKIP=pytest,pytest_docs,mypy lazygit"
 
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
