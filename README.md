@@ -18,7 +18,7 @@ My VIM config --- actually my dotfiles
   ### Install software
 
   ```bash
-  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop
+  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander
   ```
   
 </details>
@@ -30,7 +30,7 @@ My VIM config --- actually my dotfiles
   # general software install
   sudo apt-get update
   sudo apt-get upgrade
-  sudo apt-get install build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep htop terminator
+  sudo apt-get install build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep htop mc terminator
   # latest git
   sudo apt-add-repository ppa:git-core/ppa
   sudo apt-get update
@@ -106,6 +106,8 @@ pip install jedi-language-server -U
 pip install mypy==0.942 -U
 pip install flake8 -U
 pip install black==19.10b0 -U
+# if use a higher version of black, this might not be a problem
+pip install click==8.0.4
 ```
 
 ## `neovim`
