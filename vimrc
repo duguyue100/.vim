@@ -59,6 +59,8 @@ Plug 'roxma/vim-hug-neovim-rpc'
 Plug 'vim-test/vim-test'
 Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
 
+Plug 'famiu/bufdelete.nvim'
+
 call plug#end()
 
 set completeopt=menu,menuone,noselect
@@ -723,7 +725,7 @@ map ; :!
 
 nmap <leader>bn :bn<cr>
 nmap <leader>bp :bp<cr>
-nmap <leader>bd :bd<cr>
+nmap <leader>bd :Bdelete<cr>
 
 " real delete
 nnoremap <leader>d "_d
