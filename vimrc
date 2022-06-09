@@ -718,6 +718,8 @@ map <right> <nop>
 map <F2> u
 map! <F2> <C-O>u
 
+nmap ; :
+
 " imap vv <Esc>
 inoremap é <Esc>
 inoremap � <Esc>
