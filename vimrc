@@ -723,7 +723,6 @@ inoremap é <Esc>
 inoremap � <Esc>
 imap <F3> <Esc>[s1z=`]a
 imap <F4> <Esc>[sz=
-map ; :!
 
 nmap <leader>bn :bn<cr>
 nmap <leader>bp :bd<cr>
@@ -792,6 +791,7 @@ let g:signify_vcs_list = [ 'git' ]
 let g:blamer_enabled = 1
 let g:blamer_delay = 500
 let g:blamer_relative_time = 1
+let g:blamer_show_in_visual_modes = 0
 
 " === Vim Session ===
 let g:session_autoload = 'yes'
