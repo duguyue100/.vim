@@ -729,8 +729,8 @@ nmap <leader>bn :bn<cr>
 nmap <leader>bp :bd<cr>
 nmap <leader>bd :Bdelete<cr>
 
-nnoremap <silent>bn :BufferLineMoveNext<CR>
-nnoremap <silent>bp :BufferLineMovePrev<CR>
+nnoremap <silent>mn :BufferLineMoveNext<CR>
+nnoremap <silent>mp :BufferLineMovePrev<CR>
 
 " real delete
 nnoremap <leader>d "_d
