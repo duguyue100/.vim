@@ -7,50 +7,74 @@ set nocompatible
 filetype off
 
 call plug#begin('~/.vim/plugged')
-Plug 'dense-analysis/ale'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" === UI ===
 
+" Status line and Bufferline
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+Plug 'famiu/bufdelete.nvim'
+
+" Color theme
+Plug 'ray-x/aurora'
+
+" Icons
+Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+
+" Indent Blankline
+Plug 'lukas-reineke/indent-blankline.nvim'
+
+" Dashboard
+Plug 'mhinz/vim-startify'
+" Plug 'goolord/alpha-nvim'
+"
+" File Explorer
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'airblade/vim-rooter'
+
+" == Utility == 
 Plug 'christoomey/vim-tmux-navigator'
 
+" Vimtex
 Plug 'lervag/vimtex'
+
+" Goyo for focused writing.
 Plug 'junegunn/goyo.vim'
 
+" Telescope
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'cljoly/telescope-repo.nvim'
 
+" Wakatime support
 Plug 'wakatime/vim-wakatime'
 
-" Completion
+" == Coding Assistance ==
+
+" LSP Related
+Plug 'neovim/nvim-lspconfig'
+Plug 'ray-x/lsp_signature.nvim'
+
+" Static Analysis, Fixers, etc.
+Plug 'dense-analysis/ale'
+
+" Code Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
+" Code Snippets
 Plug 'SirVer/ultisnips'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+Plug 'honza/vim-snippets'
 
-Plug 'neovim/nvim-lspconfig'
-Plug 'ray-x/lsp_signature.nvim'
-
+" Git Related
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'APZelos/blamer.nvim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'honza/vim-snippets'
-
-Plug 'ray-x/aurora'
-
-Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
-Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
-
-Plug 'kyazdani42/nvim-tree.lua'
-Plug 'airblade/vim-rooter'
-
-Plug 'lukas-reineke/indent-blankline.nvim'
 
 " Support Testing
 Plug 'roxma/nvim-yarp'
@@ -58,12 +82,6 @@ Plug 'roxma/vim-hug-neovim-rpc'
 
 Plug 'vim-test/vim-test'
 Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
-
-Plug 'famiu/bufdelete.nvim'
-
-" dashboard
-Plug 'mhinz/vim-startify'
-" Plug 'goolord/alpha-nvim'
 
 call plug#end()
 
@@ -509,6 +527,37 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 require('lspconfig')['jedi_language_server'].setup {
   capabilities = capabilities
+}
+
+-- Statusline
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'material',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+    globalstatus = false,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
 }
 
 EOF
