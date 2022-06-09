@@ -89,6 +89,8 @@ vim.cmd [[
 local buf_options = {
    options = {
       offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
+      close_command = "Bdelete! %d",
+      right_mouse_command = "Bdelete! %d",
       buffer_close_icon = "",
       modified_icon = "",
       close_icon = "",
@@ -724,8 +726,11 @@ imap <F4> <Esc>[sz=
 map ; :!
 
 nmap <leader>bn :bn<cr>
-nmap <leader>bp :bp<cr>
+nmap <leader>bp :bd<cr>
 nmap <leader>bd :Bdelete<cr>
+
+nnoremap <silent>bn :BufferLineMoveNext<CR>
+nnoremap <silent>bp :BufferLineMovePrev<CR>
 
 " real delete
 nnoremap <leader>d "_d
