@@ -92,7 +92,7 @@ For CPU version, use `pip`.
 Some of these maybe installed previously with PyTorch.
 
 ```bash
-pip install matpliblib seaborn
+pip install matplotlib seaborn
 pip install numpy scipy scikit-learn scikit-image opencv-python
 pip install pandas h5py tqdm
 ```
