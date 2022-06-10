@@ -103,6 +103,7 @@ __Version might be sensitive between projects, make sure you install the correct
 ```bash
 pip install pynvim -U
 pip install jedi-language-server -U
+pip install pre-commit -U
 pip install mypy==0.942 -U
 pip install flake8 -U
 pip install black==19.10b0 -U
