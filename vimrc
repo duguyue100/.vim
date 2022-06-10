@@ -442,6 +442,7 @@ end)
 
 -- LSP
 require'lspconfig'.jedi_language_server.setup{}
+require'lspconfig'.clangd.setup{}
 
 local present, lsp_signature = pcall(require, "lsp_signature")
 
@@ -887,10 +888,16 @@ let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_fix_on_save = 1
 
 let g:ale_python_flake8_options = '--max-line-length=88 --ignore=E203,E501,W503'
-let g:ale_fixers = {'python': ['black']}
-let g:ale_linters = {'python': ['mypy', "jedils", "flake8"]}
-if has("mac") 
-    let g:ale_cpp_cc_executable = "/usr/local/bin/g++-10"
+let g:ale_fixers = {
+\   'python': ['black'],
+\   'cpp': ['clang-format'],
+\}
+let g:ale_linters = {
+\   'python': ['mypy', "jedils", "flake8"],
+\   'cpp': ['clangd'],
+\}
+if has("mac")
+    let g:ale_cpp_cc_executable = "/usr/local/bin/g++-11"
 endif
 
 nnoremap <leader>gd <cmd>ALEGoToDefinition<cr>
