@@ -107,6 +107,9 @@ pip install pre-commit -U
 pip install mypy==0.942 -U
 pip install flake8 -U
 pip install black==19.10b0 -U
+pip install reorder-python-imports -U
+pip install pyupgrade -U
+pip install docformatter -U
 # if use a higher version of black, this might not be a problem
 pip install click==8.0.4
 pip install cpplint - U
