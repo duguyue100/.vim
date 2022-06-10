@@ -896,3 +896,4 @@ nmap ga <Plug>(EasyAlign)
 " === Testing ===
 let test#python#pytest#options = "--color=yes"
 let g:ultest_use_pty = 1
+let g:ultest_running_sign = "⦿"
