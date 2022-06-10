@@ -109,6 +109,8 @@ pip install black==19.10b0 -U
 # if use a higher version of black, this might not be a problem
 pip install click==8.0.4
 pip install cpplint - U
+# python profiler
+pip install pyinstrument -U
 ```
 
 ## `neovim`
