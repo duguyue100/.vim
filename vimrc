@@ -688,11 +688,6 @@ set novisualbell
 set t_vb=
 set tm=500
 
-"" Properly disable sound on errors on MacVim
-if has("gui_macvim")
-    autocmd GUIEnter * set vb t_vb=
-endif
-
 " === Colors and Fonts ===
 
 "" Set line numbers
@@ -706,13 +701,10 @@ set showcmd
 
 "" set colors
 syntax enable
-" colorscheme despacio
 colorscheme aurora
-" set background=dark
 
 "" set color scheme when quit Goyo
 function! GoyoAfter()
-  " colorscheme despacio
   colorscheme aurora
   set background=dark
 endfunction
@@ -745,15 +737,9 @@ if &diff
 endif
 
 "" save using ctrl+w
-
 noremap <silent> <C-W>          :update<CR>
 vnoremap <silent> <C-W>         <C-C>:update<CR>
 inoremap <silent> <C-W>         <C-O>:update<CR>
-
-"" resize pane
-nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
-
 
 "" automatically rebalance windows on vim resize
 autocmd VimResized * :wincmd =
@@ -779,6 +765,7 @@ map <space> /
 " map <c-space> ?
 inoremap <C-Space> <C-x><C-o>
 
+" Quick navigation between splits
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -789,33 +776,19 @@ inoremap <C-a> <C-o>0
 if has('nvim')
     nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
     tnoremap <Esc> <C-\><C-n>
-    set termguicolors
 endif
 
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
-map <F2> u
-map! <F2> <C-O>u
-
+" Use ; for :
 nmap ; :
 
-" imap vv <Esc>
-inoremap é <Esc>
-inoremap � <Esc>
-imap <F3> <Esc>[s1z=`]a
-imap <F4> <Esc>[sz=
-
-nmap <leader>bn :bn<cr>
-nmap <leader>bp :bd<cr>
+" Manage tabs
+nmap <leader>bn :BufferLineCycleNext<cr>
+nmap <leader>bp :BufferLineCyclePrev<cr>
 nmap <leader>bd :Bdelete<cr>
-
 nnoremap <silent>mn :BufferLineMoveNext<CR>
 nnoremap <silent>mp :BufferLineMovePrev<CR>
 
-" real delete
+" Real delete for text
 nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 vnoremap <leader>p "_dP
@@ -827,36 +800,34 @@ set laststatus=2
 hi SpellBad ctermfg=128 ctermbg=000 cterm=none guifg=#FF0000 guibg=#0000FF gui=none
 setlocal spell spelllang=en_us
 
-" === Python ===
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
-
+" === ALE ===
 let g:ale_floating_preview = 1
 let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰']
 let g:ale_set_balloons = 1
-
 let g:ale_lint_on_enter = 1
-let g:ale_python_flake8_options = '--max-line-length=88 --ignore=E203,E501,W503'
 let g:ale_warn_about_trailing_whitespace = 0
-" let g:ale_cpp_cc_executable = "/usr/local/bin/g++-10"
+let g:ale_fix_on_save = 1
+
+let g:ale_python_flake8_options = '--max-line-length=88 --ignore=E203,E501,W503'
 let g:ale_fixers = {'python': ['black']}
 let g:ale_linters = {'python': ['mypy', "jedils", "flake8"]}
-let g:ale_fix_on_save = 1
-nnoremap <leader>gd <cmd>ALEGoToDefinition<cr>
+if has("mac") 
+    let g:ale_cpp_cc_executable = "/usr/local/bin/g++-10"
+endif
 
+nnoremap <leader>gd <cmd>ALEGoToDefinition<cr>
 
 " === LaTeX ===
 nmap <leader>tt :VimtexCompile<cr>
 nmap <leader>vv :VimtexView<cr>
-" let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+if has("mac")
+    let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+endif
 let g:vimtex_view_general_options = '-r @line @pdf @tex'
 let g:vimtex_view_general_options_latexmk = '-r 1'
 let g:tex_flavor = "latex"
 
 " === Telescope ===
-
-" Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fp <cmd>Telescope git_files<cr>
@@ -885,13 +856,6 @@ let g:session_autosave = 'yes'
 let g:goyo_width = 120
 let g:vim_markdown_math = 1
 let g:vim_markdown_folding_disabled = 1
-
-" === Easy Align ===
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
 
 " === Testing ===
 let test#python#pytest#options = "--color=yes"
