@@ -606,7 +606,7 @@ require('jaq-nvim').setup{
 			typescript = "deno run %",
 			javascript = "node %",
 			markdown = "glow %",
-			python = "python3 %",
+			python = "~/miniconda3/bin/python %",
 			rust = "rustc % && ./$fileBase && rm $fileBase",
 			cpp = "g++ % -o $fileBase && ./$fileBase",
 			go = "go run %",
