@@ -86,8 +86,8 @@ Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
 " Code Runner
 Plug 'is0n/jaq-nvim'
 
-" Code minimap
-Plug 'wfxr/minimap.vim'
+" Code bar
+Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
 
 " Code skimming
 Plug 'simrat39/symbols-outline.nvim'
@@ -957,7 +957,8 @@ let g:ultest_running_sign = "⦿"
 " === Code Runner ===
 nnoremap <leader>r <cmd>Jaq<cr>
 
-" === Code minimap ===
-let g:minimap_width = 10
-let g:minimap_auto_start = 1
-let g:minimap_auto_start_win_enter = 1
+" === Code scroll bar===
+let g:scrollview_excluded_filetypes = ['nerdtree']
+let g:scrollview_current_only = 1
+let g:scrollview_winblend = 75
+highlight ScrollView ctermbg=159 guibg=LightCyan
