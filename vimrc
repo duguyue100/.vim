@@ -86,6 +86,9 @@ Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
 " Code Runner
 Plug 'is0n/jaq-nvim'
 
+" Code minimap
+Plug 'wfxr/minimap.vim'
+
 call plug#end()
 
 set completeopt=menu,menuone,noselect
@@ -950,3 +953,8 @@ let g:ultest_running_sign = "⦿"
 
 " === Code Runner ===
 nnoremap <leader>r <cmd>Jaq<cr>
+
+" === Code minimap ===
+let g:minimap_width = 10
+let g:minimap_auto_start = 1
+let g:minimap_auto_start_win_enter = 1

@@ -18,7 +18,7 @@ My VIM config --- actually my dotfiles
   ### Install software
 
   ```bash
-  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander clang-format
+  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander clang-format code-minimap
   ```
   
 </details>
@@ -46,6 +46,8 @@ My VIM config --- actually my dotfiles
   # install this after conda
   conda install -c conda-forge lazygit
   ```
+
+  For `code-minimap`, install from [release](https://github.com/wfxr/code-minimap/releases)
   
   
 </details>
