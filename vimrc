@@ -89,6 +89,9 @@ Plug 'is0n/jaq-nvim'
 " Code minimap
 Plug 'wfxr/minimap.vim'
 
+" Code skimming
+Plug 'simrat39/symbols-outline.nvim'
+
 call plug#end()
 
 set completeopt=menu,menuone,noselect
