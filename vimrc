@@ -57,6 +57,8 @@ Plug 'ray-x/lsp_signature.nvim'
 
 " Static Analysis, Fixers, etc.
 Plug 'dense-analysis/ale'
+" formatter for docformatter
+Plug 'sbdchd/neoformat'
 
 " Code Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -908,6 +910,19 @@ if has("mac")
 endif
 
 nnoremap <leader>gd <cmd>ALEGoToDefinition<cr>
+
+" ==== NeoFormat ===
+let g:neoformat_python_docformatter = {
+            \ 'exe': 'docformatter',
+            \ 'args': ['--wrap-summaries 88', '--wrap-descriptions 88'],
+            \ 'stdin': 1,
+            \ 'no_append': 1,
+            \ }
+let g:neoformat_enabled_python = ['docformatter']
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * undojoin | Neoformat
+augroup END
 
 " === LaTeX ===
 nmap <leader>tt :VimtexCompile<cr>
