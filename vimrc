@@ -32,6 +32,9 @@ Plug 'duguyue100/alpha-nvim'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'airblade/vim-rooter'
 
+" Smooth scroll
+Plug 'karb94/neoscroll.nvim'
+
 " == Utility == 
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -676,6 +679,9 @@ require('jaq-nvim').setup{
 		}
 	}
 }
+
+-- Smooth scroll
+require('neoscroll').setup()
 
 EOF
 
