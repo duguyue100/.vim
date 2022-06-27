@@ -80,6 +80,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'APZelos/blamer.nvim'
 Plug 'scrooloose/nerdcommenter'
+Plug 'sindrets/diffview.nvim'
 
 " Support Testing
 Plug 'vim-test/vim-test'
