@@ -82,11 +82,13 @@ Plug 'APZelos/blamer.nvim'
 Plug 'scrooloose/nerdcommenter'
 
 " Support Testing
-Plug 'roxma/nvim-yarp'
-Plug 'roxma/vim-hug-neovim-rpc'
-
 Plug 'vim-test/vim-test'
-Plug 'rcarriga/vim-ultest', { 'do': ':UpdateRemotePlugins' }
+Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'antoinemadec/FixCursorHold.nvim'
+Plug 'nvim-neotest/neotest'
+Plug 'nvim-neotest/neotest-python'
+Plug 'nvim-neotest/neotest-plenary'
+Plug 'nvim-neotest/neotest-vim-test'
 
 " Code Runner
 Plug 'is0n/jaq-nvim'
@@ -617,7 +619,7 @@ require('jaq-nvim').setup{
 			typescript = "deno run %",
 			javascript = "node %",
 			markdown = "glow %",
-			python = "~/miniconda3/bin/python %",
+			python = "$(which python) %",
 			rust = "rustc % && ./$fileBase && rm $fileBase",
 			cpp = "g++ % -o $fileBase && ./$fileBase",
 			go = "go run %",
@@ -682,6 +684,20 @@ require('jaq-nvim').setup{
 
 -- Smooth scroll
 require('neoscroll').setup()
+
+-- NeoTest
+require("neotest").setup({
+  diagnostic = {
+    enabled = true
+  },
+  adapters = {
+    require("neotest-vim-test")({ allow_file_types = { "python" } }),
+  },
+
+  icons = {
+    running = "⦿"
+  },
+})
 
 EOF
 
@@ -969,13 +985,18 @@ let g:goyo_width = 120
 let g:vim_markdown_math = 1
 let g:vim_markdown_folding_disabled = 1
 
-" === Testing ===
-let test#python#pytest#options = "--color=yes"
-let g:ultest_use_pty = 1
-let g:ultest_running_sign = "⦿"
-
 " === Code Runner ===
 nnoremap <leader>r <cmd>Jaq<cr>
+
+" === NeoTest ===
+let test#python#pytest#options = "--color=yes"
+command NTestRun :lua require("neotest").run.run(vim.fn.expand("%"))
+command NTestRunNearest :lua require("neotest").run.run()
+command NTestStopNearest :lua require("neotest").run.stop()
+command NTestSummaryOpen :lua require("neotest").summary.open()
+command NTestSummaryClose :lua require("neotest").summary.close()
+command NTestSummaryToggle :lua require("neotest").summary.toggle()
+command NTestOutput :lua require("neotest").output.open({ enter = true })
 
 " === Code scroll bar===
 let g:scrollview_excluded_filetypes = ['nerdtree']
