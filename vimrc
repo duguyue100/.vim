@@ -695,7 +695,12 @@ require("neotest").setup({
   },
 
   icons = {
-    running = "⦿"
+    expanded = "",
+    collapsed = "",
+    passed = "",
+    running = "",
+    failed = "",
+    unknown = "",
   },
 })
 
