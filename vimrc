@@ -695,6 +695,24 @@ require("neotest").setup({
     require("neotest-vim-test")({ allow_file_types = { "python" } }),
   },
 
+  highlights = {
+    passed = "NeotestPassed",
+    running = "NeotestRunning",
+    failed = "NeotestFailed",
+    skipped = "NeotestSkipped",
+    test = "NeotestTest",
+    namespace = "NeotestNamespace",
+    focused = "NeotestFocused",
+    file = "NeotestFile",
+    dir = "NeotestDir",
+    border = "NeotestBorder",
+    indent = "NeotestIndent",
+    expand_marker = "NeotestExpandMarker",
+    adapter_name = "NeotestAdapterName",
+    select_win = "NeotestWinSelect",
+    marked = "NeotestMarked",
+  },
+
   icons = {
     expanded = "",
     collapsed = "",
