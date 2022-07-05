@@ -30,7 +30,7 @@ My VIM config --- actually my dotfiles
   # general software install
   sudo apt-get update
   sudo apt-get upgrade
-  sudo apt-get install build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep htop mc terminator clang-format
+  sudo apt-get install build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep htop mc terminator clang-format ruby-full
   # latest git
   sudo apt-add-repository ppa:git-core/ppa
   sudo apt-get update
@@ -161,6 +161,11 @@ ln -s ~/.vim/vimrc ~/.vim/init.vim
     # Then reboot
     sudo reboot
     ```
+## colorls
+
+Make your terminal list prettier.
+
+[Installation instruction](https://github.com/athityakumar/colorls#installation).
 
 ## WakaTime
 
