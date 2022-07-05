@@ -108,15 +108,23 @@ export LANGUAGE=en.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/3.1.0/bin:$PATH"
+
 alias m=$HOME/macman/macman
 alias n=nvim
 export PATH="$HOME/miniconda3/bin:$PATH"
 alias towork="cd $HOME/workspace"
 alias todown="cd $HOME/Downloads"
+alias tocore="cd $HOME/workspace/core"
+alias toslice="cd $HOME/workspace/slicing"
+alias tozoo="cd $HOME/workspace/models_zoo"
 alias lg="lazygit"
 alias clg="CHANGELOG_OK=1 lazygit"
 alias cslg="CHANGELOG_OK=1 SKIP=pytest,pytest_docs,mypy lazygit"
+alias ls='colorls -A --sd --gs'
 
+source $(dirname $(gem which colorls))/tab_complete.sh
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
