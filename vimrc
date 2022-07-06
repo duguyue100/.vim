@@ -16,7 +16,9 @@ Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'famiu/bufdelete.nvim'
 
 " Color theme
-Plug 'ray-x/aurora'
+Plug 'projekt0n/github-nvim-theme'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'EdenEast/nightfox.nvim'
 
 " Icons
 Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
@@ -842,11 +844,11 @@ set showcmd
 
 "" set colors
 syntax enable
-colorscheme aurora
+colorscheme duskfox
 
 "" set color scheme when quit Goyo
 function! GoyoAfter()
-  colorscheme aurora
+  colorscheme duskfox
   set background=dark
 endfunction
 
