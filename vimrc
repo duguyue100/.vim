@@ -1,7 +1,7 @@
 "Author - Yuhuang Hu
 "Email  - duguyue100@gmail.com
 
-" === Vundle ===
+" === Vim Plug ===
 
 set nocompatible
 filetype off
@@ -74,6 +74,7 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'SirVer/ultisnips'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 " Git Related
 Plug 'tpope/vim-fugitive'
@@ -1027,3 +1028,6 @@ let g:scrollview_excluded_filetypes = ['nerdtree']
 let g:scrollview_current_only = 1
 let g:scrollview_winblend = 75
 highlight ScrollView ctermbg=159 guibg=LightCyan
+
+" === Vim Doge for docstring ===
+let g:doge_doc_standard_python = 'google'
