@@ -120,11 +120,10 @@ pip install cpplint - U
 pip install pyinstrument -U
 ```
 
-## `neovim`
+Darglint docstring linter support:
 
-```shell
-ln -s ~/.vim ~/.config/nvim
-ln -s ~/.vim/vimrc ~/.vim/init.vim
+```bash
+ln -s ~/.vim/.darglint ~/.darglint
 ```
 
 ## vim-tmux binding

@@ -1,0 +1,3 @@
+[darglint]
+ignore=DAR401,DAR402
+strictness=short
