@@ -101,6 +101,9 @@ Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
 " Code skimming
 Plug 'simrat39/symbols-outline.nvim'
 
+" Todos
+Plug 'folke/todo-comments.nvim'
+
 call plug#end()
 
 set completeopt=menu,menuone,noselect
@@ -723,6 +726,9 @@ require("neotest").setup({
     unknown = "❔",
   },
 })
+
+-- TODOs
+require("todo-comments").setup()
 
 EOF
 
