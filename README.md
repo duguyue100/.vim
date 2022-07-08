@@ -18,7 +18,7 @@ My VIM config --- actually my dotfiles
   ### Install software
 
   ```bash
-  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander clang-format code-minimap ruby
+  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander clang-format code-minimap ruby lsd
   ```
   
 </details>
@@ -161,11 +161,11 @@ ln -s ~/.vim/.darglint ~/.darglint
     # Then reboot
     sudo reboot
     ```
-## colorls
+## lsd
 
 Make your terminal list prettier.
 
-[Installation instruction](https://github.com/athityakumar/colorls#installation).
+[Installation instruction](https://github.com/Peltoche/lsd#installation).
 
 ## neovim tree-sitter
 
