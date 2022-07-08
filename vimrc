@@ -37,6 +37,9 @@ Plug 'airblade/vim-rooter'
 " Smooth scroll
 Plug 'karb94/neoscroll.nvim'
 
+" Stablize
+Plug 'luukvbaal/stabilize.nvim'
+
 " == Utility == 
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -105,6 +108,12 @@ Plug 'simrat39/symbols-outline.nvim'
 
 " Todos
 Plug 'folke/todo-comments.nvim'
+
+" Code Find and Replace
+Plug 'gabrielpoca/replacer.nvim'
+
+" Code context
+Plug 'nvim-treesitter/nvim-treesitter-context'
 
 call plug#end()
 
@@ -732,6 +741,12 @@ require("neotest").setup({
 -- TODOs
 require("todo-comments").setup()
 
+-- Stablize split
+require("stabilize").setup()
+
+-- Code context
+require('treesitter-context').setup()
+
 EOF
 
 "" file indent
@@ -1039,3 +1054,6 @@ highlight ScrollView ctermbg=159 guibg=LightCyan
 
 " === Vim Doge for docstring ===
 let g:doge_doc_standard_python = 'google'
+
+" === Find and Replace
+nmap <leader>r :lua require("replacer").run()<cr>

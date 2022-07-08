@@ -167,6 +167,14 @@ Make your terminal list prettier.
 
 [Installation instruction](https://github.com/athityakumar/colorls#installation).
 
+## neovim tree-sitter
+
+Install python tree-sitter via
+
+```
+:TSInstall python
+```
+
 ## WakaTime
 
 Will promote for WakaTime key, get it from the website
