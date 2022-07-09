@@ -62,6 +62,7 @@ Plug 'wakatime/vim-wakatime'
 " LSP Related
 Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
+Plug 'glepnir/lspsaga.nvim'
 
 " Static Analysis, Fixers, etc.
 Plug 'dense-analysis/ale'
@@ -750,6 +751,10 @@ require("stabilize").setup()
 -- Code context
 require('treesitter-context').setup()
 
+-- LSP SAGA
+local saga = require 'lspsaga'
+saga.init_lsp_saga()
+
 EOF
 
 "" file indent
@@ -970,6 +975,7 @@ let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_fix_on_save = 1
 
 let g:ale_python_flake8_options = '--max-line-length=88 --ignore=E203,E501,W503'
+let g:ale_python_autoimport_options = '--config-file ~/.vim/autoimport-config.toml'
 let g:ale_fixers = {
 \   'python': ['black'],
 \   'cpp': ['clang-format'],
