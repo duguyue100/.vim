@@ -115,6 +115,9 @@ Plug 'gabrielpoca/replacer.nvim'
 " Code context
 Plug 'nvim-treesitter/nvim-treesitter-context'
 
+" Code scratchpad
+Plug 'Shougo/junkfile.vim'
+
 call plug#end()
 
 set completeopt=menu,menuone,noselect
@@ -1056,4 +1059,4 @@ highlight ScrollView ctermbg=159 guibg=LightCyan
 let g:doge_doc_standard_python = 'google'
 
 " === Find and Replace
-nmap <leader>r :lua require("replacer").run()<cr>
+nmap <leader>h :lua require("replacer").run()<cr>
