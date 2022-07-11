@@ -62,7 +62,7 @@ Plug 'wakatime/vim-wakatime'
 " LSP Related
 Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
-Plug 'glepnir/lspsaga.nvim'
+" Plug 'glepnir/lspsaga.nvim'
 
 " Static Analysis, Fixers, etc.
 Plug 'dense-analysis/ale'
@@ -750,10 +750,6 @@ require("stabilize").setup()
 
 -- Code context
 require('treesitter-context').setup()
-
--- LSP SAGA
-local saga = require 'lspsaga'
-saga.init_lsp_saga()
 
 EOF
 
