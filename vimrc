@@ -119,6 +119,9 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 " Code scratchpad
 Plug 'Shougo/junkfile.vim'
 
+" Floating terminal
+Plug 'voldikss/vim-floaterm'
+
 call plug#end()
 
 set completeopt=menu,menuone,noselect
