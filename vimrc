@@ -1063,5 +1063,9 @@ highlight ScrollView ctermbg=159 guibg=LightCyan
 " === Vim Doge for docstring ===
 let g:doge_doc_standard_python = 'google'
 
-" === Find and Replace
+" === Find and Replace ===
 nmap <leader>h :lua require("replacer").run()<cr>
+
+" === Float Terminal ===
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.8
