@@ -178,3 +178,5 @@ Install python tree-sitter via
 ## WakaTime
 
 Will promote for WakaTime key, get it from the website
+
+## [InkScape](https://inkscape.org/)
