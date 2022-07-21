@@ -18,13 +18,18 @@ My VIM config --- actually my dotfiles
   ### Install software
 
   ```bash
-  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander clang-format code-minimap ruby lsd
+  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander clang-format ruby lsd
+  # SQLite
+  brew install sqlite 
+  brew install --cask db-browser-for-sqlite
   ```
   
 </details>
 
 <details>
   <summary>Ubuntu</summary>
+
+  ## Install Software
 
   ```bash
   # general software install
@@ -40,15 +45,26 @@ My VIM config --- actually my dotfiles
   sudo apt-get update
   sudo apt-get install nvidia-driver-xxx  # select your version
   sudo apt-get install nvidia-modprobe  # for nvidia-docker
+  # SQLite
+  sudo apt-get update
+  sudo apt install sqlite3
+  sudo apt-get install sqlitebrowser
   ```
 
+  ### Install neovim
+
+  + Download the latest release [here](https://github.com/neovim/neovim/releases).
+  + Install package using `sudo dpkg -i installer.deb`.
+
+  ### LazyGit
   ```bash
   # install this after conda
   conda install -c conda-forge lazygit
   ```
 
-  For `code-minimap`, install from [release](https://github.com/wfxr/code-minimap/releases)
-  
+  ### lsd - Make your terminal list prettier.
+
+  [Installation instruction](https://github.com/Peltoche/lsd#installation).
   
 </details>
 
@@ -161,11 +177,6 @@ ln -s ~/.vim/.darglint ~/.darglint
     # Then reboot
     sudo reboot
     ```
-## lsd
-
-Make your terminal list prettier.
-
-[Installation instruction](https://github.com/Peltoche/lsd#installation).
 
 ## neovim tree-sitter
 
@@ -177,6 +188,6 @@ Install python tree-sitter via
 
 ## WakaTime
 
-Will promote for WakaTime key, get it from the website
+Will promote for WakaTime key, get it from the website.
 
 ## [InkScape](https://inkscape.org/)
