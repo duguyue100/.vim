@@ -70,23 +70,28 @@ My VIM config --- actually my dotfiles
 
 ## zsh
 
-1. Install `oh-my-zsh`:
+1. Change default bash to zsh:
+  ```bash
+  chsh -s $(which zsh)
+  ```
+
+2. Install `oh-my-zsh`:
     ```bash
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     ```
 
-2. Make symbolic link for zshrc:
+3. Make symbolic link for zshrc:
     ```bash
     # For mac
     ln -s ~/.vim/zshrc_mac ~/.zshrc
     # For linux
     ln -s ~/.vim/zshrc_linux ~/.zshrc
     ```
-3. Install p10k
+4. Install p10k
     ```bash
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
     ```
-4. Install plugins
+5. Install plugins
     ```bash
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
