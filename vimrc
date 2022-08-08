@@ -85,7 +85,7 @@ Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 " Git Related
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
-Plug 'APZelos/blamer.nvim'
+Plug 'f-person/git-blame.nvim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sindrets/diffview.nvim'
 
@@ -1023,10 +1023,6 @@ let g:NERDDefaultAlign = 'left'
 
 " === Git ===
 let g:signify_vcs_list = [ 'git' ]
-let g:blamer_enabled = 1
-let g:blamer_delay = 500
-let g:blamer_relative_time = 1
-let g:blamer_show_in_visual_modes = 0
 
 " === Vim Session ===
 let g:session_autoload = 'yes'
