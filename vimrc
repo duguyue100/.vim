@@ -84,6 +84,8 @@ Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 " Git Related
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'mhinz/vim-signify'
 Plug 'f-person/git-blame.nvim'
 Plug 'scrooloose/nerdcommenter'
