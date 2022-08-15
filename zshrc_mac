@@ -116,7 +116,6 @@ alias n=nvim
 export PATH="$HOME/miniconda3/bin:$PATH"
 alias towork="cd $HOME/workspace"
 alias todown="cd $HOME/Downloads"
-alias tocore="cd $HOME/workspace/core"
 alias toslice="cd $HOME/workspace/slicing"
 alias tozoo="cd $HOME/workspace/models_zoo"
 alias lg="lazygit"
