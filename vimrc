@@ -752,6 +752,9 @@ require("stabilize").setup()
 -- Code context
 require('treesitter-context').setup()
 
+-- Symbols outline
+require("symbols-outline").setup()
+
 EOF
 
 "" file indent
