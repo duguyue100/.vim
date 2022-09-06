@@ -982,10 +982,9 @@ let g:ale_fixers = {
 \}
 let g:ale_linters = {
 \   'python': ['mypy', "jedils", "flake8"],
-\   'cpp': ['clangd'],
 \}
 if has("mac")
-    let g:ale_cpp_cc_executable = "/usr/local/bin/g++-11"
+    let g:ale_cpp_cc_executable = "/usr/local/bin/g++-12"
 endif
 
 nnoremap <leader>gd <cmd>ALEGoToDefinition<cr>
