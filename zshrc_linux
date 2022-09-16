@@ -121,6 +121,6 @@ alias tozoo="cd $HOME/workspace/models_zoo"
 alias open="xdg-open"
 alias lg="lazygit"
 alias clg="CHANGELOG_OK=1 lazygit"
-alias cslg="CHANGELOG_OK=1 SKIP=pytest,pytest_docs,mypy lazygit"
+alias cslg="CHANGELOG_OK=1 SKIP=pytest,pytest_docs,mypy,nbqa-mypy lazygit"
 
 alias ls='lsd -X --group-directories-first -A'
