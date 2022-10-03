@@ -976,7 +976,7 @@ let g:ale_fix_on_save = 1
 let g:ale_python_flake8_options = '--max-line-length=88 --ignore=E203,E501,W503'
 let g:ale_python_autoimport_options = '--config-file ~/.vim/autoimport-config.toml'
 let g:ale_fixers = {
-\   'python': ['black'],
+\   'python': ['black', 'reorder_python_imports'],
 \   'cpp': ['clang-format'],
 \}
 let g:ale_linters = {
