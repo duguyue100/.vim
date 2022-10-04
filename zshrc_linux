@@ -116,7 +116,7 @@ export PATH="$PATH:$HOME/miniconda3/bin"
 
 alias towork="cd $HOME/workspace"
 alias todown="cd $HOME/Downloads"
-alias tocore="cd $HOME/workspace/slicing/core"
+alias tocore="cd $HOME/workspace/slicing/latticeflow/core"
 alias toslice="cd $HOME/workspace/slicing"
 alias tozoo="cd $HOME/workspace/models_zoo"
 alias open="xdg-open"
