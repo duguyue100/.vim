@@ -205,6 +205,9 @@ local buf_options = {
 bufferline.setup(buf_options)
 
 -- NVIMTree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
   auto_reload_on_write = true,
   create_in_closed_folder = false,
@@ -221,9 +224,9 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
   reload_on_bufenter = false,
   respect_buf_cwd = true,
   view = {
-    adaptive_size = false,
+    adaptive_size = true,
     centralize_selection = false,
-    width = 40,
+    -- width = 30,
     hide_root_folder = false,
     side = "left",
     preserve_window_proportions = false,
