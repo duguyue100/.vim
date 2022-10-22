@@ -474,8 +474,15 @@ pcall(function()
 end)
 
 -- LSP
-require'lspconfig'.jedi_language_server.setup{}
-require'lspconfig'.clangd.setup{}
+-- Setup lspconfig.
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+require('lspconfig').jedi_language_server.setup {
+  capabilities = capabilities
+}
+require'lspconfig'.clangd.setup{
+  capabilities = capabilities
+}
 
 local present, lsp_signature = pcall(require, "lsp_signature")
 
@@ -559,13 +566,6 @@ sources = cmp.config.sources({
   { name = 'cmdline' }
 })
 })
-
--- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-require('lspconfig').jedi_language_server.setup {
-  capabilities = capabilities
-}
 
 -- Statusline
 require('lualine').setup {
