@@ -18,7 +18,7 @@ My VIM config --- actually my dotfiles
   ### Install software
 
   ```bash
-  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander clang-format ruby lsd
+  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander clang-format ruby lsd zoxide
   # SQLite
   brew install sqlite 
   brew install --cask db-browser-for-sqlite
@@ -35,7 +35,7 @@ My VIM config --- actually my dotfiles
   # general software install
   sudo apt-get update
   sudo apt-get upgrade
-  sudo apt-get install build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep htop mc terminator clang-format ruby-full curl
+  sudo apt-get install build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep htop mc terminator clang-format ruby-full curl zoxide
   # latest git
   sudo apt-add-repository ppa:git-core/ppa
   sudo apt-get update
