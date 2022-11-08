@@ -129,3 +129,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source activate latticeflow
+
+eval "$(zoxide init zsh)"
+alias cd='z'
