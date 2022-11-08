@@ -125,3 +125,6 @@ alias clg="CHANGELOG_OK=1 lazygit"
 alias cslg="CHANGELOG_OK=1 SKIP=pytest,pytest_docs,mypy,nbqa-mypy,mypy_nbqa_runner lazygit"
 
 alias ls='lsd -X --group-directories-first -A'
+
+eval "$(zoxide init zsh)"
+alias cd='z'
