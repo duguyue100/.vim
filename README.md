@@ -160,6 +160,8 @@ pip install click==8.0.4
 pip install cpplint - U
 # python profiler
 pip install pyinstrument -U
+# Jupyter
+pip install jupyter-nbextensions-configurator
 ```
 
 Darglint docstring linter support:
