@@ -18,11 +18,25 @@ My VIM config --- actually my dotfiles
   ### Install software
 
   ```bash
-  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander clang-format ruby lsd zoxide
+  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango
   # SQLite
   brew install sqlite 
   brew install --cask db-browser-for-sqlite
+  # TeX
+  brew install texlive
+  brew install latexit
+  # node
+  npm install --global yarn
   ```
+
+  ### Common App to install
+
+  + [Slack](https://slack.com/downloads/mac)
+  + [InkScape](https://inkscape.org/release/)
+  + [VLC](https://www.videolan.org/vlc/download-macosx.html): Download based on your chipset.
+  + Gifski: from AppStore
+  + Color Picker: from AppStore
+  + [Skim](https://skim-app.sourceforge.io/)
   
 </details>
 
@@ -68,6 +82,10 @@ My VIM config --- actually my dotfiles
   
 </details>
 
+### Post Configuration
+
+Do you have dot folders and `pip.conf` to set?
+
 ## zsh
 
 1. Change default bash to zsh:
@@ -95,7 +113,7 @@ My VIM config --- actually my dotfiles
     ```bash
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_CUSTOM/plugins/zsh-vi-mode
+    git clone https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode
     git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
     ```
 
@@ -119,6 +137,9 @@ pip install matplotlib seaborn
 pip install numpy scipy scikit-learn scikit-image opencv-python
 pip install pandas h5py tqdm
 ```
+
+To install TensorFlow in Apple M1, follow the instructions [here](https://developer.apple.com/metal/tensorflow-plugin/).
+
 ### Python Dependencies for Coding
 
 __Version might be sensitive between projects, make sure you install the correct version.__
@@ -127,13 +148,13 @@ __Version might be sensitive between projects, make sure you install the correct
 pip install pynvim -U
 pip install jedi-language-server -U
 pip install pre-commit -U
-pip install mypy==0.942 -U
+pip install mypy==0.961 types-setuptools -U
 pip install flake8 -U
-pip install black==19.10b0 -U
+pip install black==22.3.0 -U
 pip install reorder-python-imports -U
 pip install pyupgrade -U
 pip install docformatter -U
-pip install draglint -U
+pip install darglint -U
 # if use a higher version of black, this might not be a problem
 pip install click==8.0.4
 pip install cpplint - U
@@ -182,6 +203,22 @@ ln -s ~/.vim/.darglint ~/.darglint
     # Then reboot
     sudo reboot
     ```
+
+## neovim
+
++ If you are using `neovim` then you need to add two symlinks to get this configuration works:
+
+```bash
+ln -s ~/.vim ~/.config/nvim
+ln -s ~/.vim/vimrc ~/.vim/init.vim
+```
+
++ Install Vim Plugged, run the following:
+
+```bash
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
 
 ## neovim tree-sitter
 
