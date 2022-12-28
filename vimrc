@@ -12,7 +12,7 @@ call plug#begin('~/.vim/plugged')
 
 " Status line and Bufferline
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 Plug 'famiu/bufdelete.nvim'
 
 " Color theme
@@ -21,7 +21,7 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'EdenEast/nightfox.nvim'
 
 " Icons
-Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
+Plug 'nvim-tree/nvim-web-devicons' " Recommended (for coloured icons)
 
 " Indent Blankline
 Plug 'lukas-reineke/indent-blankline.nvim'
