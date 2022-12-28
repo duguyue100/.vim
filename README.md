@@ -37,6 +37,12 @@ My VIM config --- actually my dotfiles
   + Gifski: from AppStore
   + Color Picker: from AppStore
   + [Skim](https://skim-app.sourceforge.io/)
+  + KataGo
+    + Install `katago` through `brew`
+      ```bash
+      brew install katago
+      ```
+    + Install KaTrain from [here](https://github.com/sanderland/katrain/releases) 
   
 </details>
 
@@ -146,6 +152,7 @@ __Version might be sensitive between projects, make sure you install the correct
 
 ```bash
 pip install pynvim -U
+pip install neovim - U
 pip install jedi-language-server -U
 pip install pre-commit -U
 pip install mypy==0.961 types-setuptools -U
