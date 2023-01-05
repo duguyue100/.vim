@@ -10,7 +10,16 @@ My VIM config --- actually my dotfiles
 
   Install iTerm2 from [here](https://iterm2.com/downloads.html)
 
-  ### Install homebrew
+  #### iTerm2 color schemes
+
+  + Color schemes are in `iterm-colors` folder.
+  + Type `cmd+i`.
+  + Navigate to Colors tab.
+  + Click on Load Presets.
+  + Click on Import.
+  + Set the color scheme in Settings (`cmd+,`) -> Profiles -> Colors.
+
+  ### Install [homebrew](https://brew.sh/)
   ```bash
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   ```
@@ -71,6 +80,10 @@ My VIM config --- actually my dotfiles
   sudo apt-get install sqlitebrowser
   ```
 
+  ### Set terminator color schemes
+
+  Follow the instructions in [`terminator-themes`](https://github.com/EliverLara/terminator-themes).
+
   ### Install neovim
 
   + Download the latest release [here](https://github.com/neovim/neovim/releases).
@@ -95,11 +108,11 @@ Do you have dot folders and `pip.conf` to set?
 ## zsh
 
 1. Change default bash to zsh:
-  ```bash
-  chsh -s $(which zsh)
-  ```
+    ```bash
+    chsh -s $(which zsh)
+    ```
 
-2. Install `oh-my-zsh`:
+2. Install [`oh-my-zsh`](https://ohmyz.sh/#install):
     ```bash
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     ```
@@ -206,7 +219,7 @@ ln -s ~/.vim/.darglint ~/.darglint
 
 ## Terminal
 
-+ Showing unicode character correctly, try
++ [Ubuntu] Showing unicode character correctly, try
     ```bash
     sudo update-locale LANG=en_US.UTF-8 LANGUAGE=en.UTF-8
     # Then reboot
@@ -229,7 +242,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-## neovim tree-sitter
+### neovim tree-sitter
 
 Install python tree-sitter via
 
@@ -237,7 +250,7 @@ Install python tree-sitter via
 :TSInstall python
 ```
 
-## WakaTime
+### WakaTime
 
 Will promote for WakaTime key, get it from the website.
 
