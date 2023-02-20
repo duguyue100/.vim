@@ -40,6 +40,10 @@ Plug 'karb94/neoscroll.nvim'
 " Stablize
 Plug 'luukvbaal/stabilize.nvim'
 
+" Floating command line
+Plug 'MunifTanjim/nui.nvim'
+Plug 'VonHeikemen/fine-cmdline.nvim'
+
 " == Utility == 
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -951,6 +955,7 @@ endif
 
 " Use ; for :
 nmap ; :
+nnoremap : <cmd>FineCmdline<CR>
 
 " Manage tabs
 nmap <leader>bn :BufferLineCycleNext<cr>
