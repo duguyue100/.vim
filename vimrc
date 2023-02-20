@@ -953,9 +953,8 @@ if has('nvim')
     tnoremap <Esc> <C-\><C-n>
 endif
 
-" Use ; for :
-nmap ; :
-nnoremap : <cmd>FineCmdline<CR>
+" use ; for command
+nnoremap ; <cmd>FineCmdline<CR>
 
 " Manage tabs
 nmap <leader>bn :BufferLineCycleNext<cr>
