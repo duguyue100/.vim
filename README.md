@@ -86,8 +86,19 @@ My VIM config --- actually my dotfiles
 
   ### Install neovim
 
+  #### If there is deb package
   + Download the latest release [here](https://github.com/neovim/neovim/releases).
   + Install package using `sudo dpkg -i installer.deb`.
+
+  ### AppImage
+  + Download AppImage and make it executable
+    ```bash
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    chmod u+x nvim.appimage
+    mv nvim.appimage nvim
+    ```
+
+  + Move it into `$HOME/bin` folder which is reserved for AppImage. If you don't have this folder, create one.
 
   ### LazyGit
   ```bash
