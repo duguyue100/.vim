@@ -84,9 +84,9 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'github/copilot.vim'
 
 " Code Snippets
-Plug 'SirVer/ultisnips'
-Plug 'quangnguyen30192/cmp-nvim-ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'SirVer/ultisnips'
+" Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+" Plug 'honza/vim-snippets'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 " Git Related
