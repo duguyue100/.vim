@@ -1077,3 +1077,7 @@ nmap <leader>h :lua require("replacer").run()<cr>
 " === Float Terminal ===
 let g:floaterm_width = 0.8
 let g:floaterm_height = 0.8
+
+" === Copilot ===
+imap <silent> <C-f> <Plug>(copilot-next)
+imap <silent> <C-b> <Plug>(copilot-previous)
