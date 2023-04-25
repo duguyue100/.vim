@@ -43,6 +43,7 @@ Plug 'luukvbaal/stabilize.nvim'
 " Floating command line
 Plug 'folke/noice.nvim'
 Plug 'MunifTanjim/nui.nvim'
+Plug 'rcarriga/nvim-notify'
 
 " == Utility == 
 Plug 'christoomey/vim-tmux-navigator'
@@ -768,7 +769,38 @@ require('treesitter-context').setup()
 require("symbols-outline").setup()
 
 -- noice
-require("noice").setup({lsp = { signature = { enabled = false }}})
+require("noice").setup(
+    {
+        lsp = { 
+            signature = { enabled = false }
+        },
+        routes = {
+            {
+                view = "notify",
+                filter = { event = "msg_showmode" },
+            },
+        },
+        cmdline= {
+            format = {
+                cmdline = { pattern = "^:", icon = "🫡", lang = "vim" },
+                search_down = { kind = "search", pattern = "^/", icon = "🧐 ", lang = "regex" },
+                search_up = { kind = "search", pattern = "^%?", icon = "🧐 ", lang = "regex" },
+            },
+        },
+        views = {
+          cmdline_popup = {
+            position = {
+              row = 8,
+              col = "50%",
+            },
+            size = {
+              width = 80,
+              height = "auto",
+            },
+          },
+        },
+    }
+)
 
 EOF
 
@@ -785,7 +817,7 @@ set omnifunc=syntaxcomplete
 set autoread
 
 "" fast saving
-nmap <leader>w :w!<cr>
+nmap <silent> <leader>w :w!<cr>
 nmap <leader>q :qall<cr>
 
 " === User Interface ===
@@ -962,9 +994,9 @@ if has('nvim')
 endif
 
 " Manage tabs
-nmap <leader>bn :BufferLineCycleNext<cr>
-nmap <leader>bp :BufferLineCyclePrev<cr>
-nmap <leader>bd :Bdelete<cr>
+nmap <silent> <leader>bn :BufferLineCycleNext<cr>
+nmap <silent> <leader>bp :BufferLineCyclePrev<cr>
+nmap  <silent> <leader>bd :Bdelete<cr>
 nnoremap <silent>mn :BufferLineMoveNext<CR>
 nnoremap <silent>mp :BufferLineMovePrev<CR>
 
@@ -987,6 +1019,7 @@ let g:ale_set_balloons = 1
 let g:ale_lint_on_enter = 1
 let g:ale_warn_about_trailing_whitespace = 0
 let g:ale_fix_on_save = 1
+let g:ale_echo_cursor = 0
 
 let g:ale_python_flake8_options = '--max-line-length=88 --ignore=E203,E501,W503'
 let g:ale_python_autoimport_options = '--config-file ~/.vim/autoimport-config.toml'
@@ -1001,7 +1034,7 @@ if has("mac")
     let g:ale_cpp_cc_executable = "/usr/local/bin/g++-12"
 endif
 
-nnoremap <leader>gd <cmd>ALEGoToDefinition<cr>
+nnoremap <silent> <leader>gd <cmd>ALEGoToDefinition<cr>
 
 " ==== NeoFormat ===
 let g:neoformat_python_docformatter = {
@@ -1016,8 +1049,8 @@ augroup fmt
 augroup END
 
 " === LaTeX ===
-nmap <leader>tt :VimtexCompile<cr>
-nmap <leader>vv :VimtexView<cr>
+nmap <silent> <leader>tt :VimtexCompile<cr>
+nmap <slient> <leader>vv :VimtexView<cr>
 if has("mac")
     let g:vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 endif
@@ -1026,11 +1059,11 @@ let g:vimtex_view_general_options_latexmk = '-r 1'
 let g:tex_flavor = "latex"
 
 " === Telescope ===
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fp <cmd>Telescope git_files<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <silent> <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <silent> <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <silent> <leader>fp <cmd>Telescope git_files<cr>
+nnoremap <silent> <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <silent> <leader>fh <cmd>Telescope help_tags<cr>
 
 " === NERD Commenting ===
 let g:NERDSpaceDelims = 1
