@@ -138,6 +138,11 @@ set completeopt=menu,menuone,noselect
 " === General ===
 let mapleader = ","
 
+" Spell languages
+set spelllang=en_us
+" Turn on spell checker
+set spell
+
 "" Terminal colors
 set termguicolors
 lua << EOF
