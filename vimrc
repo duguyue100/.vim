@@ -41,8 +41,8 @@ Plug 'karb94/neoscroll.nvim'
 Plug 'luukvbaal/stabilize.nvim'
 
 " Floating command line
+Plug 'folke/noice.nvim'
 Plug 'MunifTanjim/nui.nvim'
-Plug 'VonHeikemen/fine-cmdline.nvim'
 
 " == Utility == 
 Plug 'christoomey/vim-tmux-navigator'
@@ -144,8 +144,10 @@ set spelllang=en_us
 set spell
 
 "" Terminal colors
-set termguicolors
+" set termguicolors
 lua << EOF
+vim.opt.termguicolors = true
+
 local present, bufferline = pcall(require, "bufferline")
 
 if not present then
@@ -217,7 +219,7 @@ local buf_options = {
 bufferline.setup(buf_options)
 
 -- NVIMTree
-vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
@@ -765,6 +767,9 @@ require('treesitter-context').setup()
 -- Symbols outline
 require("symbols-outline").setup()
 
+-- noice
+require("noice").setup({lsp = { signature = { enabled = false }}})
+
 EOF
 
 autocmd VimEnter * NvimTreeOpen
@@ -955,9 +960,6 @@ if has('nvim')
     nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
     tnoremap <Esc> <C-\><C-n>
 endif
-
-" use ; for command
-nnoremap ; <cmd>FineCmdline<CR>
 
 " Manage tabs
 nmap <leader>bn :BufferLineCycleNext<cr>
