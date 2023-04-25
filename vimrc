@@ -384,13 +384,6 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
   },
 } -- END_DEFAULT_OPTS
 
-local function open_nvim_tree()
-    -- always open the tree
-    require("nvim-tree.api").tree.open()
-end
-
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
-
 -- Blankline
 local present, blankline = pcall(require, "indent_blankline")
 
@@ -773,6 +766,8 @@ require('treesitter-context').setup()
 require("symbols-outline").setup()
 
 EOF
+
+autocmd VimEnter * NvimTreeOpen
 
 "" file indent
 filetype plugin on
