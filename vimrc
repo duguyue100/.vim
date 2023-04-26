@@ -43,7 +43,7 @@ Plug 'luukvbaal/stabilize.nvim'
 " Floating command line
 Plug 'folke/noice.nvim'
 Plug 'MunifTanjim/nui.nvim'
-Plug 'rcarriga/nvim-notify'
+" Plug 'rcarriga/nvim-notify'
 
 " == Utility == 
 Plug 'christoomey/vim-tmux-navigator'
