@@ -132,8 +132,6 @@ Plug 'Shougo/junkfile.vim'
 " Floating terminal
 Plug 'voldikss/vim-floaterm'
 
-Plug 'chipsenkbeil/distant.nvim', { 'branch': 'v0.2' }
-
 call plug#end()
 
 set completeopt=menu,menuone,noselect
@@ -150,15 +148,6 @@ set spell
 " set termguicolors
 lua << EOF
 vim.opt.termguicolors = true
-
-require('distant').setup {
-  -- Applies Chip's personal settings to every machine you connect to
-  --
-  -- 1. Ensures that distant servers terminate with no connections
-  -- 2. Provides navigation bindings for remote directories
-  -- 3. Provides keybinding to jump into a remote file's parent directory
-  ['*'] = require('distant.settings').chip_default()
-}
 
 local present, bufferline = pcall(require, "bufferline")
 
