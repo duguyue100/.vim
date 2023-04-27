@@ -115,7 +115,7 @@ Plug 'is0n/jaq-nvim'
 Plug 'dstein64/nvim-scrollview', { 'branch': 'main' }
 
 " Code skimming
-Plug 'simrat39/symbols-outline.nvim'
+Plug 'duguyue100/symbols-outline.nvim'
 
 " Todos
 Plug 'folke/todo-comments.nvim'
@@ -915,7 +915,7 @@ augroup END
 set showcmd
 
 "" set colors
-syntax enable
+" syntax enable
 colorscheme duskfox
 
 "" set color scheme when quit Goyo
@@ -1009,8 +1009,9 @@ vnoremap <leader>p "_dP
 set laststatus=2
 
 " === Spell checking ===
-hi SpellBad ctermfg=128 ctermbg=000 cterm=none guifg=#FF0000 guibg=#0000FF gui=none
-setlocal spell spelllang=en_us
+" hi SpellBad ctermfg=128 ctermbg=000 cterm=none guifg=#FF0000 guibg=#0000FF gui=none
+" hi SpellBad cterm=none ctermfg=red ctermbg=000 gui=undercurl
+" setlocal spell spelllang=en_us
 
 " === ALE ===
 let g:ale_floating_preview = 1
