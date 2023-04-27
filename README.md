@@ -9,7 +9,8 @@ My VIM config --- actually my dotfiles
   ### iTerm2
 
   Install iTerm2 from [here](https://iterm2.com/downloads.html)
-  You may want to install the test release for the curly underline feature.
+
+  You may want to install the __test release__ for the curly underline feature.
 
   #### iTerm2 color schemes
 
