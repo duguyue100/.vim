@@ -128,6 +128,7 @@ alias cslg="CHANGELOG_OK=1 SKIP=pytest,pytest_docs,mypy,nbqa-mypy,nbqa-flake8,my
 
 alias ls='lsd -X --group-directories-first -A'
 # alias tmux="TERM=xterm-256color tmux"
+alias btm="btm --dot_marker --enable_gpu_memory"
 
 eval "$(zoxide init zsh)"
 alias cd='z'

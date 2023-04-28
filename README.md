@@ -29,7 +29,7 @@ My VIM config --- actually my dotfiles
   ### Install software
 
   ```bash
-  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd
+  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom
   # SQLite
   brew install sqlite 
   brew install --cask db-browser-for-sqlite
@@ -111,6 +111,10 @@ My VIM config --- actually my dotfiles
   ### lsd - Make your terminal list prettier.
 
   [Installation instruction](https://github.com/Peltoche/lsd#installation).
+
+  ### bottom - System monitor
+
+  [Installation](https://github.com/ClementTsang/bottom#debianubuntu).
   
 </details>
 

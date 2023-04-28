@@ -124,6 +124,7 @@ alias clg="CHANGELOG_OK=1 lazygit"
 alias cslg="CHANGELOG_OK=1 SKIP=pytest,pytest_docs,mypy lazygit"
 alias ls='lsd -X --group-directories-first -A'
 alias tmux="TERM=xterm-256color tmux"
+alias btm="btm --dot_marker"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
