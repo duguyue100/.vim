@@ -37,9 +37,6 @@ Plug 'airblade/vim-rooter'
 " Smooth scroll
 Plug 'karb94/neoscroll.nvim'
 
-" Stablize
-Plug 'luukvbaal/stabilize.nvim'
-
 " Floating command line
 Plug 'folke/noice.nvim'
 Plug 'MunifTanjim/nui.nvim'
@@ -102,7 +99,6 @@ Plug 'sindrets/diffview.nvim'
 " Support Testing
 Plug 'vim-test/vim-test'
 Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'nvim-neotest/neotest'
 Plug 'nvim-neotest/neotest-python'
 Plug 'nvim-neotest/neotest-plenary'
@@ -128,9 +124,6 @@ Plug 'nvim-treesitter/nvim-treesitter-context'
 
 " Code scratchpad
 Plug 'Shougo/junkfile.vim'
-
-" Floating terminal
-Plug 'voldikss/vim-floaterm'
 
 call plug#end()
 
@@ -759,9 +752,6 @@ require("neotest").setup({
 -- TODOs
 require("todo-comments").setup()
 
--- Stablize split
-require("stabilize").setup()
-
 -- Code context
 require('treesitter-context').setup()
 
@@ -821,6 +811,8 @@ nmap <silent> <leader>w :w!<cr>
 nmap <leader>q :qall<cr>
 
 " === User Interface ===
+
+set splitkeep = "screen"
 
 "" Set 12 lines to the cursor - when moving vertically using j/k
 set so=12
