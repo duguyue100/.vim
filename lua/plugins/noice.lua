@@ -1,8 +1,14 @@
+-- For the first installation, you will also need to install the nvim-notify,
+-- Otherwise, the editor will just crash.
+
 return {
     {
         'folke/noice.nvim',
         lazy = false,
-        dependencies = 'MunifTanjim/nui.nvim',
+        dependencies = {
+            'MunifTanjim/nui.nvim',
+            -- "rcarriga/nvim-notify"
+        },
         config = function()
             require("noice").setup(
             {

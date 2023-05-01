@@ -6,7 +6,7 @@ return {
             { "<leader>vv", "<cmd>VimtexView<cr>", desc = "View LaTeX PDF" },
         },
         config = function()
-            if has("mac") then
+            if vim.fn.has("mac") == 1 then
                 vim.g.vimtex_view_general_viewer = '/Applications/Skim.app/Contents/SharedSupport/displayline'
             end
 

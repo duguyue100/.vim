@@ -1,4 +1,5 @@
 vim.g.mapleader = ","
+vim.g.maplocalleader = ","
 
 local opt = vim.opt
 
@@ -21,7 +22,6 @@ opt.hlsearch = true
 opt.ignorecase = true
 opt.incsearch = true
 opt.laststatus = 2
-opt.lazyredraw = true
 opt.lbr = true
 opt.magic = true
 opt.mat=2
