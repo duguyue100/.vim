@@ -8,7 +8,6 @@ return {
             'hrsh7th/cmp-path',
             'hrsh7th/cmp-cmdline',
             'neovim/nvim-lspconfig',
-            'hrsh7th/cmp-nvim-lsp-signature-help',
         },
         config = function()
             local cmp = require'cmp'
@@ -29,7 +28,7 @@ return {
                     { name = 'path' },
                     { name = 'nvim_lsp' },
                     { name = 'buffer' },
-                    { name = 'nvim_lsp_signature_help' }
+                    -- { name = 'nvim_lsp_signature_help' }
                 })
             })
 
