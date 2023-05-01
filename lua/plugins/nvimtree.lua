@@ -4,7 +4,7 @@ return {
         event = "VeryLazy",
         dependencies = {
             'nvim-tree/nvim-web-devicons',
-            'airblade/vim-rooter',
+            'notjedi/nvim-rooter.lua',
         },
         config = function()
             require("nvim-web-devicons").set_icon{
@@ -178,7 +178,13 @@ return {
                         watcher = false,
                     },
                 },
-            }) 
+            })
+
+            require('nvim-rooter').setup {
+                rooter_patterns = { '.git', '.hg', '.svn' },
+                trigger_patterns = { '*' },
+                manual = false,
+            }
 
             vim.cmd('NvimTreeOpen')
         end,
