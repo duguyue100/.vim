@@ -7,6 +7,15 @@ return {
             'airblade/vim-rooter',
         },
         config = function()
+            require("nvim-web-devicons").set_icon{
+                txt = {
+                    icon = "",
+                    color = "#7ebae4",
+                    name = "txt",
+                    cterm_color = "7ebae4",
+                },
+            }
+
             require('nvim-tree').setup({
                 auto_reload_on_write = true,
                 create_in_closed_folder = false,

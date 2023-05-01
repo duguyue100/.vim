@@ -18,6 +18,8 @@ return {
             require('lspconfig').jedi_language_server.setup {
               capabilities = capabilities
             }
+
+            require'lspconfig'.tsserver.setup {capabilities = capabilities}
         end
     },
 }
