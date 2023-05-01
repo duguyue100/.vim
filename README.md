@@ -115,6 +115,16 @@ My VIM config --- actually my dotfiles
   ### bottom - System monitor
 
   [Installation](https://github.com/ClementTsang/bottom#debianubuntu).
+
+  ### A prettier `nvidia-smi`
+
+  For a better NVIDIA GPU monitoring, use [`nvitop`](https://github.com/XuehaiPan/nvitop)
+
+  Install by
+
+  ```
+  pip install nvitop
+  ```
   
 </details>
 
