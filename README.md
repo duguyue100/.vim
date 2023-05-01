@@ -245,14 +245,18 @@ ln -s ~/.vim/.darglint ~/.darglint
 
 ## neovim
 
-+ If you are using `neovim` then you need to add two symlinks to get this configuration works:
+Run the following:
 
 ```bash
 ln -s ~/.vim ~/.config/nvim
-ln -s ~/.vim/vimrc ~/.vim/init.vim
 ```
 
-+ Install Vim Plugged, run the following:
+This repo use `lazy.nvim` for package management, after linking the `nvim` 
+configuration directory, running `nvim` in terminal will trigger the automatic 
+installation and configuration.
+
+
++ (Legacy) Install Vim Plugged, run the following:
 
 ```bash
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -264,7 +268,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 Install python tree-sitter via
 
 ```
-:TSInstall python
+:TSInstall python lua typescript javascript
 ```
 
 ### WakaTime
