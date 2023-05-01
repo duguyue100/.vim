@@ -12,3 +12,5 @@ init.vim
 
 # ignore plugins
 plugged/*
+
+lazy-lock.json
