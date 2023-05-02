@@ -29,7 +29,14 @@ return {
                     { name = 'nvim_lsp' },
                     { name = 'buffer' },
                     -- { name = 'nvim_lsp_signature_help' }
-                })
+                }),
+                enabled = function()
+                    if require"cmp.config.context".in_treesitter_capture("comment")==true or require"cmp.config.context".in_syntax_group("Comment") then
+                        return false
+                    else
+                        return true
+                    end
+                end
             })
 
             -- Set configuration for specific filetype.
