@@ -11,7 +11,7 @@ return {
         keys = {
             { "<leader>vO", function() require("nvim-navbuddy").open() end, desc = "Code Outline (navbuddy)", },
         },
-        opts = { 
+        opts = {
             lsp = { auto_attach = true },
             icons = {
                 File          = " ",
@@ -25,7 +25,7 @@ return {
                 Constructor   = " ",
                 Enum          = " ",
                 Interface     = " ",
-                Function      = "󰊕 ",
+                Function      = "𝑓 ",
                 Variable      = " ",
                 Constant      = " ",
                 String        = " ",
@@ -38,7 +38,7 @@ return {
                 EnumMember    = " ",
                 Struct        = " ",
                 Event         = " ",
-                Operator      = "󰆕 ",
+                Operator      = " ",
                 TypeParameter = " ",
             },
         },
