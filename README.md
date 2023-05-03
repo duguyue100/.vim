@@ -29,15 +29,7 @@ My VIM config --- actually my dotfiles
   ### Install software
 
   ```bash
-  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom
-  # SQLite
-  brew install sqlite 
-  brew install --cask db-browser-for-sqlite
-  # TeX
-  brew install texlive
-  brew install latexit
-  # node
-  npm install --global yarn
+  make mac_install
   ```
 
   ### Common App to install
@@ -63,23 +55,8 @@ My VIM config --- actually my dotfiles
   ## Install Software
 
   ```bash
-  # general software install
-  sudo apt-get update
-  sudo apt-get upgrade
-  sudo apt-get install build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep htop mc terminator clang-format ruby-full curl zoxide
-  # latest git
-  sudo apt-add-repository ppa:git-core/ppa
-  sudo apt-get update
-  sudo apt-get install git
-  # nvidia driver
-  sudo add-apt-repository ppa:graphics-drivers/ppa
-  sudo apt-get update
-  sudo apt-get install nvidia-driver-xxx  # select your version
-  sudo apt-get install nvidia-modprobe  # for nvidia-docker
-  # SQLite
-  sudo apt-get update
-  sudo apt install sqlite3
-  sudo apt-get install sqlitebrowser
+  make ubuntu_install
+  make NV_DRIVER_VERSION=xxx nvidia_driver
   ```
 
   ### Set terminator color schemes
@@ -123,7 +100,7 @@ My VIM config --- actually my dotfiles
   Install by
 
   ```
-  pip install nvitop
+  make py_nvitop
   ```
   
 </details>
@@ -179,9 +156,7 @@ For CPU version, use `pip`.
 Some of these maybe installed previously with PyTorch.
 
 ```bash
-pip install matplotlib seaborn
-pip install numpy scipy scikit-learn scikit-image opencv-python
-pip install pandas h5py tqdm
+make py_commons
 ```
 
 To install TensorFlow in Apple M1, follow the instructions [here](https://developer.apple.com/metal/tensorflow-plugin/).
@@ -191,24 +166,7 @@ To install TensorFlow in Apple M1, follow the instructions [here](https://develo
 __Version might be sensitive between projects, make sure you install the correct version.__
 
 ```bash
-pip install pynvim -U
-pip install neovim - U
-pip install jedi-language-server -U
-pip install pre-commit -U
-pip install mypy==0.961 types-setuptools -U
-pip install flake8 -U
-pip install black==22.3.0 -U
-pip install reorder-python-imports -U
-pip install pyupgrade -U
-pip install docformatter -U
-pip install darglint -U
-# if use a higher version of black, this might not be a problem
-pip install click==8.0.4
-pip install cpplint - U
-# python profiler
-pip install pyinstrument -U
-# Jupyter
-pip install jupyter-nbextensions-configurator
+make py_coding
 ```
 
 Darglint docstring linter support:
