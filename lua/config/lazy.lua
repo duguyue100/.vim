@@ -33,7 +33,8 @@ require("lazy").setup({
         },
     },
     checker = {
-        enabled = true 
+        enabled = true,
+        notify = false
     }, -- automatically check for plugin updates
     performance = {
         cache = {
