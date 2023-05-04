@@ -22,7 +22,7 @@ require("lazy").setup({
         },
     },
     defaults = {
-        lazy = true, 
+        lazy = true,
         version = nil,
     },
     install = {
@@ -44,7 +44,7 @@ require("lazy").setup({
             disabled_plugins = {
                 "gzip",
                 "matchit",
-                "matchparen",
+                -- "matchparen",
                 "netrwPlugin",
                 "tarPlugin",
                 "tohtml",
