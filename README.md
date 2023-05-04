@@ -1,6 +1,10 @@
 # .vim
 My VIM config --- actually my dotfiles
 
+## Makefile
+
+I use Makefile to manage command line software installations.
+
 ## System Configuration
 
 <details>
@@ -23,21 +27,13 @@ My VIM config --- actually my dotfiles
 
   ### Install [homebrew](https://brew.sh/)
   ```bash
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  make install_homebrew
   ```
 
   ### Install software
 
   ```bash
-  brew install automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget zeromq ripgrep lazygit htop midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom
-  # SQLite
-  brew install sqlite 
-  brew install --cask db-browser-for-sqlite
-  # TeX
-  brew install texlive
-  brew install latexit
-  # node
-  npm install --global yarn
+  make mac_install
   ```
 
   ### Common App to install
@@ -63,23 +59,8 @@ My VIM config --- actually my dotfiles
   ## Install Software
 
   ```bash
-  # general software install
-  sudo apt-get update
-  sudo apt-get upgrade
-  sudo apt-get install build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep htop mc terminator clang-format ruby-full curl zoxide
-  # latest git
-  sudo apt-add-repository ppa:git-core/ppa
-  sudo apt-get update
-  sudo apt-get install git
-  # nvidia driver
-  sudo add-apt-repository ppa:graphics-drivers/ppa
-  sudo apt-get update
-  sudo apt-get install nvidia-driver-xxx  # select your version
-  sudo apt-get install nvidia-modprobe  # for nvidia-docker
-  # SQLite
-  sudo apt-get update
-  sudo apt install sqlite3
-  sudo apt-get install sqlitebrowser
+  make ubuntu_install
+  make NV_DRIVER_VERSION=xxx nvidia_driver
   ```
 
   ### Set terminator color schemes
@@ -93,14 +74,10 @@ My VIM config --- actually my dotfiles
   + Install package using `sudo dpkg -i installer.deb`.
 
   ### AppImage
-  + Download AppImage and make it executable
-    ```bash
-    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-    chmod u+x nvim.appimage
-    mv nvim.appimage nvim
-    ```
 
-  + Move it into `$HOME/bin` folder which is reserved for AppImage. If you don't have this folder, create one.
+  ```bash
+  make neovim_linux
+  ```
 
   ### LazyGit
   ```bash
@@ -123,7 +100,7 @@ My VIM config --- actually my dotfiles
   Install by
 
   ```
-  pip install nvitop
+  make py_nvitop
   ```
   
 </details>
@@ -136,31 +113,17 @@ Do you have dot folders and `pip.conf` to set?
 
 1. Change default bash to zsh:
     ```bash
-    chsh -s $(which zsh)
+    make switch_to_zsh
     ```
 
 2. Install [`oh-my-zsh`](https://ohmyz.sh/#install):
     ```bash
-    sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    make omz_install
     ```
 
-3. Make symbolic link for zshrc:
+3. Install plugins
     ```bash
-    # For mac
-    ln -s ~/.vim/zshrc_mac ~/.zshrc
-    # For linux
-    ln -s ~/.vim/zshrc_linux ~/.zshrc
-    ```
-4. Install p10k
-    ```bash
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-    ```
-5. Install plugins
-    ```bash
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-    git clone https://github.com/jeffreytse/zsh-vi-mode ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-vi-mode
-    git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-history-substring-search
+    make omz_plugins
     ```
 
 ## Python + Common Dependencies
@@ -179,9 +142,7 @@ For CPU version, use `pip`.
 Some of these maybe installed previously with PyTorch.
 
 ```bash
-pip install matplotlib seaborn
-pip install numpy scipy scikit-learn scikit-image opencv-python
-pip install pandas h5py tqdm
+make py_commons
 ```
 
 To install TensorFlow in Apple M1, follow the instructions [here](https://developer.apple.com/metal/tensorflow-plugin/).
@@ -191,58 +152,14 @@ To install TensorFlow in Apple M1, follow the instructions [here](https://develo
 __Version might be sensitive between projects, make sure you install the correct version.__
 
 ```bash
-pip install pynvim -U
-pip install neovim - U
-pip install jedi-language-server -U
-pip install pre-commit -U
-pip install mypy==0.961 types-setuptools -U
-pip install flake8 -U
-pip install black==22.3.0 -U
-pip install reorder-python-imports -U
-pip install pyupgrade -U
-pip install docformatter -U
-pip install darglint -U
-# if use a higher version of black, this might not be a problem
-pip install click==8.0.4
-pip install cpplint - U
-# python profiler
-pip install pyinstrument -U
-# Jupyter
-pip install jupyter-nbextensions-configurator
+make py_coding
 ```
 
-Darglint docstring linter support:
+## Terminal Configuration
 
 ```bash
-ln -s ~/.vim/.darglint ~/.darglint
+make terminal_config
 ```
-
-## vim-tmux binding
-
-1. Make symbolic link
-    ```bash
-    ln -s ~/.vim/tmux.conf ~/.tmux.conf
-    ```
-
-2. Get tmux plugin manage
-    ```bash
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-    ```
-
-3. Install Powerline
-    ```bash
-    pip install powerline-status
-    git clone https://github.com/powerline/fonts.git --depth=1
-    cd fonts
-    ./install.sh
-    cd ..
-    rm -rf fonts
-    ```
-
-4. Install tmux Plugins
-    ```bash
-    ~/.tmux/plugins/tpm/bin/install_plugins
-    ```
 
 ## Terminal
 
@@ -254,12 +171,6 @@ ln -s ~/.vim/.darglint ~/.darglint
     ```
 
 ## neovim
-
-Run the following:
-
-```bash
-ln -s ~/.vim ~/.config/nvim
-```
 
 This repo use `lazy.nvim` for package management, after linking the `nvim` 
 configuration directory, running `nvim` in terminal will trigger the automatic 
