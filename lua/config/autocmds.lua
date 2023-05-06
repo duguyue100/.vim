@@ -21,6 +21,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*",
 })
 
+-- Remove trailing whitespace on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  callback = function()
+    vim.fn.execute "%s/\\s\\+$//e"
+  end,
+  group = augroup "remove_trailing_whitespace",
+  pattern = "*",
+})
+
 -- Go to last location when opening a buffer
 vim.api.nvim_create_autocmd("BufReadPost", {
   group = augroup "last_loc",
