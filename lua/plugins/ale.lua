@@ -16,10 +16,14 @@ return {
                 python = {'black'},
                 cpp = {'clang-format'},
                 rust = {'rustfmt'},
+                go = {"gopls"},
+                typescript = {"eslint"},
             }
             vim.g.ale_linters = {
                 python = {'mypy', "jedils", "flake8"},
                 rust = {'analyzer', 'rustc'},
+                go = {"gopls"},
+                typescript = {"eslint"},
             }
             if vim.fn.has("mac") == 1 then
                 vim.g.ale_cpp_cc_executable = "/usr/local/bin/g++-12"
