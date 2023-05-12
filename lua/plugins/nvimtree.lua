@@ -14,6 +14,36 @@ return {
                     name = "txt",
                     cterm_color = "7ebae4",
                 },
+                ["containerfile"] = {
+                    icon = "",
+                    color = "#458ee6",
+                    cterm_color = "68",
+                    name = "Dockerfile",
+                },
+                ["docker-compose.yml"] = {
+                    icon = "",
+                    color = "#458ee6",
+                    cterm_color = "68",
+                    name = "Dockerfile",
+                },
+                ["docker-compose.yaml"] = {
+                    icon = "",
+                    color = "#458ee6",
+                    cterm_color = "68",
+                    name = "Dockerfile",
+                },
+                [".dockerignore"] = {
+                    icon = "",
+                    color = "#458ee6",
+                    cterm_color = "68",
+                    name = "Dockerfile",
+                },
+                ["dockerfile"] = {
+                    icon = "",
+                    color = "#458ee6",
+                    cterm_color = "68",
+                    name = "Dockerfile",
+                },
             }
 
             require('nvim-tree').setup({
