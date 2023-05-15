@@ -120,11 +120,12 @@ alias towork="cd $HOME/workspace"
 alias todown="cd $HOME/Downloads"
 alias tocore="cd $HOME/workspace/slicing/latticeflow/core"
 alias toslice="cd $HOME/workspace/slicing"
+alias tocloud="cd $HOME/workspace/cloud"
 alias tozoo="cd $HOME/workspace/models_zoo"
 alias open="xdg-open"
 alias lg="lazygit"
 alias clg="CHANGELOG_OK=1 lazygit"
-alias cslg="CHANGELOG_OK=1 SKIP=pytest,pytest_docs,mypy,nbqa-mypy,nbqa-flake8,mypy_nbqa_runner lazygit"
+alias cslg="CHANGELOG_OK=1 SKIP=pytest,pytest_docs,mypy,nbqa-mypy,mypy_cloud,mypy_dto,mypy_sdk,nbqa-flake8,mypy_nbqa_runner lazygit"
 
 alias ls='lsd -X --group-directories-first -A'
 # alias tmux="TERM=xterm-256color tmux"
