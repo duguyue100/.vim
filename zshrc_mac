@@ -118,10 +118,10 @@ alias n=nvim
 alias towork="cd $HOME/workspace"
 alias todown="cd $HOME/Downloads"
 alias toslice="cd $HOME/workspace/slicing"
-alias tocore="cd $HOME/workspace/slicing/latticeflow/core"
+alias tocloud="cd $HOME/workspace/cloud"
 alias lg="lazygit"
 alias clg="CHANGELOG_OK=1 lazygit"
-alias cslg="CHANGELOG_OK=1 SKIP=pytest,pytest_docs,mypy lazygit"
+alias cslg="CHANGELOG_OK=1 SKIP=pytest,pytest_docs,mypy,nbqa-mypy,mypy_cloud,mypy_dto,mypy_sdk,nbqa-flake8,mypy_nbqa_runner lazygit"
 alias ls='lsd -X --group-directories-first -A'
 alias tmux="TERM=xterm-256color tmux"
 alias btm="btm --dot_marker"
@@ -133,7 +133,7 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 
 eval "$(zoxide init zsh)"
-alias cd='z'
+# alias cd='z'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

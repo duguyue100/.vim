@@ -118,7 +118,6 @@ alias n=nvim
 
 alias towork="cd $HOME/workspace"
 alias todown="cd $HOME/Downloads"
-alias tocore="cd $HOME/workspace/slicing/latticeflow/core"
 alias toslice="cd $HOME/workspace/slicing"
 alias tocloud="cd $HOME/workspace/cloud"
 alias tozoo="cd $HOME/workspace/models_zoo"
