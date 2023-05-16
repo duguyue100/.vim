@@ -133,7 +133,7 @@ alias btm="btm --dot_marker --enable_gpu_memory"
 alias nvidia-smi="nvitop --colorful"
 
 eval "$(zoxide init zsh)"
-alias cd='z'
+# alias cd='z'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
