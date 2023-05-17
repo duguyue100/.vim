@@ -10,7 +10,8 @@ return {
             vim.g.ale_warn_about_trailing_whitespace = 0
             vim.g.ale_fix_on_save = 1
             vim.g.ale_echo_cursor = 0
-            vim.g.ale_python_flake8_options = '--max-line-length=88 --ignore=E203,E501,W503'
+            -- vim.g.ale_python_flake8_options = '--max-line-length=88 --ignore=E203,E501,W503'
+            vim.g.ale_python_ruff_options = '--ignore E501'
             vim.g.ale_python_autoimport_options = '--config-file ~/.vim/autoimport-config.toml'
             vim.g.ale_fixers = {
                 python = {'black'},
@@ -20,7 +21,7 @@ return {
                 typescript = {"eslint"},
             }
             vim.g.ale_linters = {
-                python = {'mypy', "jedils", "flake8"},
+                python = {'mypy', "ruff"},
                 rust = {'analyzer', 'rustc'},
                 go = {"gopls"},
                 typescript = {"eslint"},
