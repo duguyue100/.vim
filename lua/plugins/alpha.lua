@@ -29,6 +29,14 @@ return {
             [[          ~~                                                            ]],
             }
 
+            dashboard.section.buttons.val = {
+                dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+                dashboard.button("SPC f f", "  Find file", ":Telescope find_files<CR>"),
+                dashboard.button("SPC f h", "  Recently opened files", ":Telescope oldfiles<CR>"),
+                dashboard.button("SPC f g", "  Find word", ":Telescope oldfiles<CR>"),
+                dashboard.button("SPC f r", "  Frecency/MRU"),
+            }
+
             require'alpha'.setup(dashboard.config)
         end,
     },
