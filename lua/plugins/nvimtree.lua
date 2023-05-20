@@ -6,6 +6,9 @@ return {
             'nvim-tree/nvim-web-devicons',
             'notjedi/nvim-rooter.lua',
         },
+        keys = {
+            { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc="Toggle NvimTree" },
+        },
         config = function()
             require("nvim-web-devicons").set_icon{
                 txt = {
@@ -59,20 +62,24 @@ return {
                 reload_on_bufenter = false,
                 respect_buf_cwd = true,
                 view = {
-                    adaptive_size = false,
+                    adaptive_size = true,
                     centralize_selection = false,
                     width = 30,
                     hide_root_folder = false,
                     side = "left",
                     preserve_window_proportions = false,
                     number = false,
-                    relativenumber = false,
+                    relativenumber = true,
                     signcolumn = "yes",
                     mappings = {
                         custom_only = false,
                         list = {
                             -- user mappings go here
                         },
+                    },
+                    float = {
+                        enable = true,
+                        open_win_config = { height = 60 },
                     },
                 },
                 renderer = {
