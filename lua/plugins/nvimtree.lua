@@ -223,7 +223,9 @@ return {
                 manual = false,
             }
 
-            vim.cmd('NvimTreeOpen')
+            if vim.fn.argc() > 0 and vim.fn.isdirectory(vim.fn.expand(vim.fn.argv()[1])) == 1 then
+                vim.cmd('NvimTreeOpen')
+            end
         end,
     },
 }
