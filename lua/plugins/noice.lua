@@ -12,7 +12,7 @@ return {
         config = function()
             require("noice").setup(
             {
-                lsp = { 
+                lsp = {
                     signature = { enabled = false }
                 },
                 routes = {
