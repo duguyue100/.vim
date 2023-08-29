@@ -71,12 +71,6 @@ return {
                     number = false,
                     relativenumber = true,
                     signcolumn = "yes",
-                    mappings = {
-                        custom_only = false,
-                        list = {
-                            -- user mappings go here
-                        },
-                    },
                     float = {
                         enable = true,
                         open_win_config = { height = 60 },
