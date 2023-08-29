@@ -126,6 +126,12 @@ alias ls='lsd -X --group-directories-first -A'
 alias tmux="TERM=xterm-256color tmux"
 alias btm="btm --dot_marker"
 
+if which glocate > /dev/null; then
+  alias locate="glocate -d $HOME/locatedb"
+  [[ -f "$HOME/locatedb" ]] && export LOCATE_PATH="$HOME/locatedb"
+fi
+alias loaddb="gupdatedb --localpaths=$HOME --prunepaths=/Volumes --output=$HOME/locatedb"
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
