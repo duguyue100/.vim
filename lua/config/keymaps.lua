@@ -20,7 +20,7 @@ map("i", "<C-b>", "<Plug>(copilot-previous)", { desc="Copilot previous suggestio
 -- Telescope keymaps
 
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find files", silent = true })
-map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Live grep", silent = true })
+map("n", "<leader>fg", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<cr>", { desc = "Live grep", silent = true })
 map("n", "<leader>fp", "<cmd>Telescope git_files<cr>", { desc = "Git files", silent = true })
 map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Buffers", silent = true })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Help tags", silent = true })

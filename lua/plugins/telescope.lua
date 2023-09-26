@@ -2,7 +2,13 @@ return {
     {
         'nvim-telescope/telescope.nvim',
         event = "VimEnter",
-        dependencies = 'nvim-lua/plenary.nvim',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            {
+                "nvim-telescope/telescope-live-grep-args.nvim",
+                version = "^1.0.0",
+            },
+        },
         config = function()
             local present, telescope = pcall(require, "telescope")
 
