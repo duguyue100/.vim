@@ -26,6 +26,7 @@ return {
                 go = {"gopls"},
                 typescript = {"eslint"},
             }
+            vim.g.ale_disable_lsp = 0
             if vim.fn.has("mac") == 1 then
                 vim.g.ale_cpp_cc_executable = "/usr/local/bin/g++-12"
             end
