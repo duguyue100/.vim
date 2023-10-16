@@ -27,6 +27,7 @@ map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Help tags", sil
 
 -- ALE
 map("n", "<leader>gd", "<cmd>ALEGoToDefinition<cr>", { desc = "Go to definition", silent = true })
+map("n", "<leader>gh", "<cmd>ALEHover<cr>", { desc = "Hover information", silent = true })
 
 -- BufferLine
 map("n", "<leader>bn", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer", silent = true })
