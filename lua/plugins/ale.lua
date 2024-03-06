@@ -14,7 +14,7 @@ return {
             vim.g.ale_python_ruff_options = '--ignore E501'
             vim.g.ale_python_autoimport_options = '--config-file ~/.vim/autoimport-config.toml'
             vim.g.ale_fixers = {
-                python = {'black'},
+                python = {'ruff', 'ruff_format'},
                 cpp = {'clang-format'},
                 rust = {'rustfmt'},
                 go = {"gopls"},
