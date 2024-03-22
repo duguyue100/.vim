@@ -129,6 +129,11 @@ alias ls='lsd -X --group-directories-first -A'
 alias btm="btm --dot_marker --enable_gpu_memory"
 alias nvidia-smi="nvitop --colorful"
 
+# Github copilot
+eval "$(gh copilot alias -- zsh)"
+alias cs="ghcs"
+alias ce="ghce"
+
 eval "$(zoxide init zsh)"
 # alias cd='z'
 
