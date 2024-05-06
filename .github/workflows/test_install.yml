@@ -10,4 +10,4 @@ jobs:
     - name: Install CLI
       run: |
         ./install install_homebrew
-        ./install macos_install
+        ./install mac_install
