@@ -42,7 +42,7 @@ case $option in
 
     pytorch)
         if [[ $(uname) != "Darwin" ]]; then
-            conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+            conda install -y pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
         else
             pip install torch torchvision torchaudio
         fi

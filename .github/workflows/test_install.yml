@@ -40,13 +40,15 @@ jobs:
         ./install ubuntu_essentials
     - name: Install Conda
       run: |
+        rm -rf /usr/share/miniconda
         ./install conda
     - name: Install omz
       run: |
+        ./install switch_to_zsh
         ./install omz
     - name: Install Python
       run: |
-        source $HOME/.bashrc
+        source $HOME/.zsh
         which python
         ./install python_commons
         ./install pytorch
