@@ -5,13 +5,13 @@ on: [push]
 jobs:
   macos-install:
     runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: dotfiles
     steps:
-    - uses: actions/checkout@v3
-      with:
-        path: ${{ env. HOME }}/.vim
+    - uses: actions/checkout@v2
     - name: Install Homebrew
       run: |
-        echo $0
         NONINTERACTIVE=1 ./install homebrew
     - name: Install CLI tools
       run: |
@@ -36,9 +36,7 @@ jobs:
   ubuntu-install:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        path: ${{ env. HOME }}/.vim
+    - uses: actions/checkout@v2
     - name: Install CLI tools
       run: |
         ./install ubuntu_essentials
