@@ -1,0 +1,13 @@
+name: Test CLI Installation
+
+on: [push]
+
+jobs:
+  macos-install:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install CLI
+      run: |
+        ./install install_homebrew
+        ./install macos_install
