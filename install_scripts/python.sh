@@ -15,10 +15,11 @@ case $option in
         else
             CONDA_URL=https://repo.anaconda.com/miniconda/Miniconda3-py310_24.3.0-0-Linux-x86_64.sh
         fi
-        wget $CONDA_URL -O miniconda.sh
+        wget $CONDA_URL -O "${HOME}"/miniconda.sh
 
         # Install miniconda
-        bash miniconda.sh -b -p $HOME/miniconda3
+        bash "${HOME}"/miniconda.sh -b -p "${HOME}"/miniconda3
+        rm "${HOME}"/miniconda.sh
         ;;
 
     python_commons)
