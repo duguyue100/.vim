@@ -31,8 +31,10 @@ case $option in
         # If it's linux, use zshrc_linux, otherwise use zshrc_mac
         if [[ $(uname) != "Darwin" ]]; then
             ln -s ~/.vim/zshrc_linux ~/.zshrc
+            ln -s ~/.vim/p10k_linux ~/.p10k.zsh
         else
             ln -s ~/.vim/zshrc_mac ~/.zshrc
+            ln -s ~/.vim/p10k_mac ~/.p10k.zsh
         fi
 
         git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
