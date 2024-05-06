@@ -28,6 +28,11 @@ case $option in
         # Install oh-my-zsh
         sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
+        # If .zshrc exists, remove it
+        if [[ -f ~/.zshrc ]]; then
+            rm ~/.zshrc
+        fi
+
         # If it's linux, use zshrc_linux, otherwise use zshrc_mac
         if [[ $(uname) != "Darwin" ]]; then
             ln -s ~/.vim/zshrc_linux ~/.zshrc

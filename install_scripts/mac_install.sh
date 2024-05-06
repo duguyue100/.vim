@@ -34,7 +34,7 @@ case $option in
         brew install \
             automake bison cmake ffmpeg gcc git libuv neovim tmux wget \
             zeromq ripgrep lazygit midnight-commander clang-format ruby lsd \
-            zoxide shellcheck node cairo pango fd bottom
+            zoxide shellcheck node cairo pango fd bottom md5sha1sum
 
         npm install --global yarn
         ;;
