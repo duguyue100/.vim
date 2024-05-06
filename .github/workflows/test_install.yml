@@ -7,7 +7,9 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Install CLI
+    - name: Install Homebrew
       run: |
         ./install install_homebrew
+    - name: Install CLI tools
+      run: |
         ./install mac_install
