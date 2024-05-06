@@ -11,9 +11,9 @@ case $option in
         echo "🧚 Installing Conda..."
         # Download miniconda installer through wget
         if [[ $(uname) != "Darwin" ]]; then
-            CONDA_URL=https://repo.anaconda.com/miniconda/Miniconda3-py310_24.3.0-0-MacOSX-arm64.sh
-        else
             CONDA_URL=https://repo.anaconda.com/miniconda/Miniconda3-py310_24.3.0-0-Linux-x86_64.sh
+        else
+            CONDA_URL=https://repo.anaconda.com/miniconda/Miniconda3-py310_24.3.0-0-MacOSX-arm64.sh
         fi
         wget $CONDA_URL -O "${HOME}"/miniconda.sh
 
