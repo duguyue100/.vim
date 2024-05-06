@@ -1,10 +1,6 @@
 # .vim
 My VIM config --- actually my dotfiles
 
-## Makefile
-
-I use Makefile to manage command line software installations.
-
 ## System Configuration
 
 <details>
@@ -75,14 +71,7 @@ I use Makefile to manage command line software installations.
   ### bottom - System monitor
 
   [Installation](https://github.com/ClementTsang/bottom#debianubuntu).
-
-  ```
-
 </details>
-
-### Post Configuration
-
-Do you have dot folders and `pip.conf` to set?
 
 ## zsh
 
