@@ -12,7 +12,7 @@ jobs:
         NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)" --force --quiet
     - name: Install Homebrew
       run: |
-        ./install install_homebrew
+        NONINTERACTIVE=1 ./install install_homebrew
     - name: Install CLI tools
       run: |
         ./install mac_install
