@@ -7,9 +7,6 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Uninstall Homebrew
-      run: |
-        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)" --force --quiet
     - name: Install Homebrew
       run: |
         NONINTERACTIVE=1 ./install homebrew
@@ -19,3 +16,10 @@ jobs:
     - name: Run list
       run: |
         brew list
+    - name: Install Conda
+      run: |
+        ./install conda
+    - name: Switch to zsh
+      run: |
+        ./install switch_to_zsh
+        ./install omz
