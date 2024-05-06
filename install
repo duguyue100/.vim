@@ -11,3 +11,4 @@ export option
 "$ROOT_DIR/install_scripts/ubuntu_install.sh"
 "$ROOT_DIR/install_scripts/python.sh"
 "$ROOT_DIR/install_scripts/zsh.sh"
+"$ROOT_DIR/install_scripts/terminal_tools.sh"
