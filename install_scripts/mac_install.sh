@@ -15,8 +15,8 @@ case $option in
         fi
 
         brew install \
-            automake bison cmake ffmpeg gcc git libuv neovim pdf2htmlex tmux wget \
-            zeromq ripgrep lazygit htop midnight-commander clang-format ruby lsd \
+            automake bison cmake ffmpeg gcc git libuv neovim tmux wget \
+            zeromq ripgrep lazygit midnight-commander clang-format ruby lsd \
             zoxide shellcheck node cairo pango fd bottom\
             texlive latexit
 
