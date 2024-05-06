@@ -23,3 +23,10 @@ jobs:
     - name: Install omz
       run: |
         ./install omz
+    - name: Install Python
+      run: |
+        source $HOME/.zshrc
+        which python
+        ./install python_commons
+        ./install pytorch
+        ./install python_dev
