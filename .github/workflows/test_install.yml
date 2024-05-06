@@ -30,3 +30,24 @@ jobs:
         ./install python_commons
         ./install pytorch
         ./install python_dev
+
+  ubuntu-install:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install CLI tools
+      run: |
+        ./install ubuntu_essentials
+    - name: Install Conda
+      run: |
+        ./install conda
+    - name: Install omz
+      run: |
+        ./install omz
+    - name: Install Python
+      run: |
+        source $HOME/.bashrc
+        which python
+        ./install python_commons
+        ./install pytorch
+        ./install python_dev
