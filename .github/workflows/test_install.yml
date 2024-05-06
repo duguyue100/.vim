@@ -5,27 +5,32 @@ on: [push]
 jobs:
   macos-install:
     runs-on: macos-latest
-    defaults:
-      run:
-        working-directory: dotfiles
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+      with:
+        path: ${{ env.HOME }}/.vim
     - name: Install Homebrew
+      working-directory: ${{ env.HOME }}/.vim
       run: |
         NONINTERACTIVE=1 ./install homebrew
     - name: Install CLI tools
+      working-directory: ${{ env.HOME }}/.vim
       run: |
         ./install mac_essentials
     - name: Run list
+      working-directory: ${{ env.HOME }}/.vim
       run: |
         brew list
     - name: Install Conda
+      working-directory: ${{ env.HOME }}/.vim
       run: |
         ./install conda
     - name: Install omz
+      working-directory: ${{ env.HOME }}/.vim
       run: |
         ./install omz
     - name: Install Python
+      working-directory: ${{ env.HOME }}/.vim
       run: |
         source $HOME/.zshrc
         which python
@@ -36,19 +41,25 @@ jobs:
   ubuntu-install:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+      with:
+        path: ${{ env.HOME }}/.vim
     - name: Install CLI tools
+      working-directory: ${{ env.HOME }}/.vim
       run: |
         ./install ubuntu_essentials
     - name: Install Conda
+      working-directory: ${{ env.HOME }}/.vim
       run: |
         rm -rf /usr/share/miniconda
         ./install conda
     - name: Install omz
+      working-directory: ${{ env.HOME }}/.vim
       run: |
         ./install switch_to_zsh
         ./install omz
     - name: Install Python
+      working-directory: ${{ env.HOME }}/.vim
       run: |
         source $HOME/.zsh
         which python
