@@ -8,3 +8,4 @@ export ROOT_DIR
 export option
 
 "$ROOT_DIR/install_scripts/install_homebrew.sh"
+"$ROOT_DIR/install_scripts/mac_install.sh"
