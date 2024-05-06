@@ -18,12 +18,20 @@ case $option in
         sudo apt install -y \
             build-essential binutils cmake curl tmux unzip openssh-server xclip zsh \
             ripgrep mc terminator clang-format ruby-full curl zoxide git
-        ;;
 
         # if conda is installed, install lazygit
         if command -v conda &> /dev/null; then
             conda install -c conda-forge lazygit
         fi
+
+        # Install bottom
+        curl -LO https://github.com/ClementTsang/bottom/releases/download/0.9.6/bottom_0.9.6_amd64.deb
+        sudo dpkg -i bottom_0.9.6_amd64.deb
+
+        # Install lsd
+        curl -LO https://github.com/lsd-rs/lsd/releases/download/v1.1.2/lsd_1.1.2_amd64.deb
+        sudo dpkg -i lsd_1.1.2_amd64.deb
+        ;;
 
     nvidia_driver)
         # Check if the platform is ubuntu

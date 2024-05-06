@@ -27,7 +27,7 @@ My VIM config --- actually my dotfiles
   ./install mac_essentials
   ```
 
-  ### Common App to install
+  ### Common Apps to install
 
   + [Slack](https://slack.com/downloads/mac)
   + [InkScape](https://inkscape.org/release/)
@@ -63,14 +63,6 @@ My VIM config --- actually my dotfiles
   ```bash
   ./install neovim
   ```
-
-  ### lsd - Make your terminal list prettier.
-
-  [Installation instruction](https://github.com/Peltoche/lsd#installation).
-
-  ### bottom - System monitor
-
-  [Installation](https://github.com/ClementTsang/bottom#debianubuntu).
 </details>
 
 ## zsh
@@ -116,14 +108,6 @@ To install TensorFlow in Apple M1, follow the instructions [here](https://develo
 This repo use `lazy.nvim` for package management, after linking the `nvim`
 configuration directory, running `nvim` in terminal will trigger the automatic
 installation and configuration.
-
-
-+ (Legacy) Install Vim Plugged, run the following:
-
-```bash
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-```
 
 ### neovim tree-sitter
 
