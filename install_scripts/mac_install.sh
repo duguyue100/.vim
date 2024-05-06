@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 case $option in
-    install_homebrew)
+    homebrew)
         # Check if homebrew is installed
         if command -v brew &> /dev/null; then
             echo "🧚 Homebrew is already installed."
@@ -18,7 +18,7 @@ case $option in
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         ;;
 
-    mac_install)
+    mac_essentials)
         # Check if the platform is macOS
         if [[ $(uname) != "Darwin" ]]; then
             echo "🧚 This script is only available on macOS."

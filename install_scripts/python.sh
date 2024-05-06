@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 case $option in
-    install_conda)
+    conda)
         # Check if conda is installed
         if command -v conda &> /dev/null; then
             echo "🧚 Conda is already installed."

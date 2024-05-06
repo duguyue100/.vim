@@ -18,7 +18,7 @@ case $option in
         chsh -s "$(which zsh)"
         ;;
 
-    install_omz)
+    omz)
         # Check if oh-my-zsh is installed
         if [[ -d "$HOME/.oh-my-zsh" ]]; then
             echo "🧚 Oh-my-zsh is already installed."
