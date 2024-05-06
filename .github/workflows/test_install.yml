@@ -7,9 +7,15 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Uninstall Homebrew
+      run: |
+        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/uninstall.sh)" --force --quiet
     - name: Install Homebrew
       run: |
         ./install install_homebrew
     - name: Install CLI tools
       run: |
         ./install mac_install
+    - name: Run list
+      run: |
+        brew list
