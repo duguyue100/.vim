@@ -7,6 +7,9 @@ jobs:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Create symblink
+      run: |
+        ln -s ${{ github.repository }} $HOME/.vim
     - name: Install CLI tools
       run: |
         ./install mac_essentials
@@ -19,6 +22,7 @@ jobs:
     - name: Install omz
       run: |
         ./install omz
+        source $HOME/.zshrc
 
   ubuntu-install:
     runs-on: ubuntu-latest
