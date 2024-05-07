@@ -27,6 +27,7 @@ jobs:
       run: |
         export PATH="$HOME/miniconda3/bin:$PATH"
         conda create -n test python=3.10
+        conda init
         conda activate test
         which python
         ./install python_commons
@@ -54,6 +55,7 @@ jobs:
       run: |
         export PATH="$HOME/miniconda3/bin:$PATH"
         conda create -n test python=3.10
+        conda init
         conda activate test
         which python
         ./install python_commons
