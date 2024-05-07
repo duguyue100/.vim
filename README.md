@@ -26,6 +26,12 @@ My VIM config --- actually my dotfiles
     ./install mac_essentials
     ```
 
+    ### Install MacTex
+
+    ```bash
+    ./install mactex
+    ```
+
     ### Common Apps to install
 
     + [Slack](https://slack.com/downloads/mac)
