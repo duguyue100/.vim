@@ -11,7 +11,7 @@ case $option in
         # Check if the platform is macOS
         if [[ $(uname) == "Darwin" ]]; then
             brew install neovim
-        elif [[ $(uname) == "Linux" ]]; then
+        else
             mkdir -p "${HOME}"/bin
             cd "${HOME}"/bin || exit
             curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
