@@ -19,16 +19,13 @@ jobs:
     - name: Install Conda
       run: |
         ./install conda
-    - name: Install and switch zsh
-      run: |
-        brew install zsh
-        exec zsh
     - name: Install omz
       run: |
         ./install omz
-        source $HOME/.zshrc
+        ls -l $HOME
     - name: Install Python packages
       run: |
+        export PATH="$HOME/miniconda3/bin:$PATH"
         which python
         ./install python_commons
 
