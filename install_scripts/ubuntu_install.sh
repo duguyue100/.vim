@@ -39,6 +39,7 @@ case $option in
         wget https://github.com/PaulJuliusMartinez/jless/releases/download/v0.9.0/jless-v0.9.0-x86_64-unknown-linux-gnu.zip -O jless.zip
         # Unzip the file
         unzip jless.zip
+        mkdir -p "${HOME}"/bin
         mv jless "${HOME}"/bin
         rm jless.zip
         ;;
