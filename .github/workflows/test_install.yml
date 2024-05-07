@@ -19,6 +19,8 @@ jobs:
     - name: Install Conda
       run: |
         ./install conda
+        export PATH="$HOME/miniconda3/bin:$PATH"
+        which python
     - name: Install omz
       run: |
         ./install omz
@@ -28,8 +30,6 @@ jobs:
         ./install terminal_config
     - name: Install Python packages
       run: |
-        export PATH="$HOME/miniconda3/bin:$PATH"
-        which python
         ./install python_commons
         ./install python_dev
 
@@ -47,6 +47,8 @@ jobs:
       run: |
         rm -rf /usr/share/miniconda
         ./install conda
+        export PATH="$HOME/miniconda3/bin:$PATH"
+        which python
     - name: Install omz
       run: |
         ./install omz
@@ -54,12 +56,11 @@ jobs:
     - name: Install neovim
       run: |
         ./install neovim
+        ls -la $HOME/bin
     - name: Terminal config
       run: |
         ./install terminal_config
     - name: Install Python packages
       run: |
-        export PATH="$HOME/miniconda3/bin:$PATH"
-        which python
         ./install python_commons
         ./install python_dev
