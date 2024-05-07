@@ -1,68 +1,67 @@
 # .vim
 My VIM config --- actually my dotfiles
 
-## System Configuration
+## OS Configuration
 
 <details>
-  <summary>macOS</summary>
+    <summary>macOS</summary>
 
-  ### iTerm2
+    ### iTerm2
 
-  Install iTerm2 from [here](https://iterm2.com/downloads.html)
+    Install iTerm2 from [here](https://iterm2.com/downloads.html). You may want to
+    install the __test release__ for the curly underline feature.
 
-  You may want to install the __test release__ for the curly underline feature.
+    #### iTerm2 color schemes
 
-  #### iTerm2 color schemes
+    + Color schemes are in `iterm-colors` folder.
+    + Type `cmd+i`.
+    + Navigate to Colors tab.
+    + Click on Load Presets.
+    + Click on Import.
+    + Set the color scheme in Settings (`cmd+,`) -> Profiles -> Colors.
 
-  + Color schemes are in `iterm-colors` folder.
-  + Type `cmd+i`.
-  + Navigate to Colors tab.
-  + Click on Load Presets.
-  + Click on Import.
-  + Set the color scheme in Settings (`cmd+,`) -> Profiles -> Colors.
+    ### Install [homebrew](https://brew.sh/) and software
+    ```bash
+    ./install homebrew
+    ./install mac_essentials
+    ```
 
-  ### Install [homebrew](https://brew.sh/) and software
-  ```bash
-  ./install homebrew
-  ./install mac_essentials
-  ```
+    ### Common Apps to install
 
-  ### Common Apps to install
-
-  + [Slack](https://slack.com/downloads/mac)
-  + [InkScape](https://inkscape.org/release/)
-  + [VLC](https://www.videolan.org/vlc/download-macosx.html): Download based on your chipset.
-  + Gifski: from AppStore
-  + Color Picker: from AppStore
-  + [Skim](https://skim-app.sourceforge.io/)
-  + KataGo
-    + Install `katago` through `brew`
-      ```bash
-      brew install katago
-      ```
-    + Install KaTrain from [here](https://github.com/sanderland/katrain/releases)
+    + [Slack](https://slack.com/downloads/mac)
+    + [InkScape](https://inkscape.org/release/)
+    + [VLC](https://www.videolan.org/vlc/download-macosx.html): Download based on your chipset.
+    + Gifski: from AppStore
+    + Color Picker: from AppStore
+    + [Skim](https://skim-app.sourceforge.io/)
+    + KataGo
+        + Install `katago` through `brew`
+            ```bash
+            brew install katago
+            ```
+        + Install KaTrain from [here](https://github.com/sanderland/katrain/releases)
 
 </details>
 
 <details>
-  <summary>Ubuntu</summary>
+    <summary>Ubuntu</summary>
 
-  ## Install Software
+    ## Install Software
 
-  ```bash
-  ./install ubuntu_essentials
-  ./install nvidia_driver
-  ```
+    ```bash
+    ./install ubuntu_essentials
+    ./install nvidia_driver
+    ```
 
-  ### Set terminator color schemes
+    ### Set terminator color schemes
 
-  Follow the instructions in [`terminator-themes`](https://github.com/EliverLara/terminator-themes).
+    Follow the instructions in [`terminator-themes`](https://github.com/EliverLara/terminator-themes).
 
-  ### Install neovim
+    ### Install neovim
 
-  ```bash
-  ./install neovim
-  ```
+    ```bash
+    ./install neovim
+    ```
 </details>
 
 ## zsh
