@@ -26,9 +26,6 @@ jobs:
     - name: Install Python packages
       run: |
         export PATH="$HOME/miniconda3/bin:$PATH"
-        conda create -n test python=3.10
-        conda init
-        conda activate test
         which python
         ./install python_commons
         ./install python_dev
@@ -54,9 +51,6 @@ jobs:
     - name: Install Python packages
       run: |
         export PATH="$HOME/miniconda3/bin:$PATH"
-        conda create -n test python=3.10
-        conda init
-        conda activate test
         which python
         ./install python_commons
         ./install python_dev
