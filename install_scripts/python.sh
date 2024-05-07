@@ -35,9 +35,9 @@ case $option in
 
     python_dev)
         pip install \
-            pynvim neovim jedi-language-server pre-commit mypy==0.961 types-setuptools \
-            pyupgrade docformatter darglint ruff pyinstrument \
-            jupyter-nbextensions-configurator
+            pynvim neovim jedi-language-server pre-commit mypy==1.7.0 types-setuptools \
+            pyupgrade docformatter darglint ruff typos==1.19.0 pandas-stubs \
+            pyinstrument types-dataclasses==0.1.7 jupyter-nbextensions-configurator
         ;;
 
     pytorch)
