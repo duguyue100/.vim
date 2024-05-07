@@ -24,6 +24,9 @@ case $option in
             conda install -c conda-forge lazygit
         fi
 
+        # Install my linuxman
+        git clone https://github.com/duguyue100/linuxman "${HOME}"/linuxman
+
         # Install bottom
         curl -LO https://github.com/ClementTsang/bottom/releases/download/0.9.6/bottom_0.9.6_amd64.deb
         sudo dpkg -i bottom_0.9.6_amd64.deb
@@ -31,6 +34,13 @@ case $option in
         # Install lsd
         curl -LO https://github.com/lsd-rs/lsd/releases/download/v1.1.2/lsd_1.1.2_amd64.deb
         sudo dpkg -i lsd_1.1.2_amd64.deb
+
+        # Install jless for JSON and YAML files
+        wget https://github.com/PaulJuliusMartinez/jless/releases/download/v0.9.0/jless-v0.9.0-x86_64-unknown-linux-gnu.zip -O jless.zip
+        # Unzip the file
+        unzip jless.zip
+        mv jless "${HOME}"/bin
+        rm jless.zip
         ;;
 
     nvidia_driver)

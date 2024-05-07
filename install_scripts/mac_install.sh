@@ -34,9 +34,12 @@ case $option in
         brew install \
             automake bison cmake ffmpeg gcc git libuv neovim tmux wget \
             zeromq ripgrep lazygit midnight-commander clang-format ruby lsd \
-            zoxide shellcheck node cairo pango fd bottom md5sha1sum
+            zoxide shellcheck node cairo pango fd bottom md5sha1sum jless
 
         npm install --global yarn
+
+        # Install my macman
+        git clone https://github.com/duguyue100/macman "${HOME}"/macman
         ;;
 
     mactex)
