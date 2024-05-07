@@ -21,6 +21,8 @@ jobs:
         ./install conda
     - name: Install omz
       run: |
+        brew install zsh
+        exec zsh
         ./install omz
         source $HOME/.zshrc
 
@@ -28,6 +30,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Create symblink
+      run: |
+        ln -s ${{ github.workspace }} $HOME/.vim
     - name: Install CLI tools
       run: |
         ./install ubuntu_essentials
