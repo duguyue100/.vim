@@ -33,7 +33,12 @@ My VIM config --- actually my dotfiles
     + [VLC](https://www.videolan.org/vlc/download-macosx.html): Download based on your chipset.
     + Gifski: from AppStore
     + Color Picker: from AppStore
+    + [Stats](https://github.com/exelban/stats)
+    + [Scroll Reverser](https://github.com/pilotmoon/Scroll-Reverser)
+    + [Rectangle](https://rectangleapp.com/)
+    + [MonitorControl](https://github.com/MonitorControl/MonitorControl)
     + [Skim](https://skim-app.sourceforge.io/)
+    + [Typora](https://typora.io/)
     + KataGo
         + Install `katago` through `brew`
             ```bash
