@@ -23,6 +23,9 @@ jobs:
       run: |
         ./install omz
         ls -la $HOME
+    - name: Terminal config
+      run: |
+        ./install terminal_config
     - name: Install Python packages
       run: |
         export PATH="$HOME/miniconda3/bin:$PATH"
@@ -48,6 +51,12 @@ jobs:
       run: |
         ./install omz
         ls -la $HOME
+    - name: Install neovim
+      run: |
+        ./install neovim
+    - name: Terminal config
+      run: |
+        ./install terminal_config
     - name: Install Python packages
       run: |
         export PATH="$HOME/miniconda3/bin:$PATH"

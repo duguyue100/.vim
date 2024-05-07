@@ -17,17 +17,17 @@ case $option in
             curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
             chmod u+x nvim.appimage
             mv nvim.appimage nvim
-            ln -s ~/.vim ~/.config/nvim
+            ln -s "${HOME}"/.vim "${HOME}"/.config/nvim
         fi
         ;;
 
     terminal_config)
         # Darglint docstring linter support:
-        ln -s ~/.vim/.darglint ~/.darglint
+        ln -s "${HOME}"/.vim/.darglint "${HOME}"/.darglint
 
         # tmux config
-        ln -s ~/.vim/tmux.conf ~/.tmux.conf
-        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+        ln -s "${HOME}"/.vim/tmux.conf "${HOME}"/.tmux.conf
+        git clone https://github.com/tmux-plugins/tpm "${HOME}"/.tmux/plugins/tpm
 
         # Install Powerline
         pip install powerline-status
@@ -38,6 +38,6 @@ case $option in
         rm -rf fonts
 
         # Install tmux plugins
-        ~/.tmux/plugins/tpm/bin/install_plugins
+        "${HOME}"/.tmux/plugins/tpm/bin/install_plugins
         ;;
     esac
