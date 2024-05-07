@@ -19,12 +19,18 @@ jobs:
     - name: Install Conda
       run: |
         ./install conda
-    - name: Install omz
+    - name: Install and switch zsh
       run: |
         brew install zsh
         exec zsh
+    - name: Install omz
+      run: |
         ./install omz
         source $HOME/.zshrc
+    - name: Install Python packages
+      run: |
+        which python
+        ./install python_commons
 
   ubuntu-install:
     runs-on: ubuntu-latest
