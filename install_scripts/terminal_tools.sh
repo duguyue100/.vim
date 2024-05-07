@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 case $option in
-    install_neovim)
+    neovim)
         # Check if neovim is installed
         if command -v nvim &> /dev/null; then
             echo "🧚 Neovim is already installed."
