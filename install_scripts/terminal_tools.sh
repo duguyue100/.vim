@@ -12,7 +12,7 @@ case $option in
         if [[ $(uname) == "Darwin" ]]; then
             brew install neovim
         else
-            mkdir -p "${HOME}"/bin
+            mkdir -p "${HOME}"/bin || true
             cd "${HOME}"/bin || exit
             curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
             chmod u+x nvim.appimage
