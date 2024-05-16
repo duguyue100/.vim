@@ -10,7 +10,8 @@ case $option in
 
         # Check if the platform is macOS
         if [[ $(uname) == "Darwin" ]]; then
-            brew install neovim
+            brew install bob
+            bob use stable
         else
             mkdir -p "${HOME}"/bin || true
             cd "${HOME}"/bin || exit
