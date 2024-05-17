@@ -43,6 +43,6 @@ map("n", "<cr>", "o<Esc>", { desc = "New line below", silent = true })
 map("n", "<space>", "/", { desc = "Search", silent = true })
 
 -- Persistence keymaps
-map("n", "<leader>s", "<cmd>lua require('persistence').load()<cr>", { desc = "Load session", silent = true })
-map("n", "<leader>l", "<cmd>lua require('persistence').load({ last = true })<cr>", { desc = "Load last session", silent = true })
+map("n", "<leader>ss", "<cmd>lua require('persistence').load()<cr>", { desc = "Load session", silent = true })
+map("n", "<leader>sl", "<cmd>lua require('persistence').load({ last = true })<cr>", { desc = "Load last session", silent = true })
 map("n", "<leader>ss", "<cmd>lua require('persistence').stop()<cr>", { desc = "Stop saving on exit", silent = true })
