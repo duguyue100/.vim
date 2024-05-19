@@ -161,3 +161,8 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 conda activate latticeflow
+
+# if there is fzf installed, source it
+if command -v fzf > /dev/null; then
+    source <(fzf --zsh)
+fi
