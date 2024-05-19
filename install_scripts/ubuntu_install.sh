@@ -22,6 +22,7 @@ case $option in
         # if conda is installed, install lazygit
         if command -v conda &> /dev/null; then
             conda install -c conda-forge lazygit
+            conda install -c conda-forge fzf
         fi
 
         # Install my linuxman
