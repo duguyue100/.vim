@@ -42,6 +42,7 @@ My VIM config --- actually my dotfiles
     + [Stats](https://github.com/exelban/stats)
     + [Scroll Reverser](https://github.com/pilotmoon/Scroll-Reverser)
     + [Rectangle](https://rectangleapp.com/)
+        + In settings, repeated commands, set cycle 1/2, 2/3 and 1/3 on half actions
     + [MonitorControl](https://github.com/MonitorControl/MonitorControl)
     + [Skim](https://skim-app.sourceforge.io/)
     + [Typora](https://typora.io/)
