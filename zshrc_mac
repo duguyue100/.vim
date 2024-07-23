@@ -127,11 +127,6 @@ alias ls='lsd -X --group-directories-first -A'
 alias tmux="TERM=xterm-256color tmux"
 alias btm="btm --dot_marker"
 
-# Github copilot
-eval "$(gh copilot alias -- zsh)"
-alias cs="ghcs"
-alias ce="ghce"
-
 if which glocate > /dev/null; then
   alias locate="glocate -d $HOME/locatedb"
   [[ -f "$HOME/locatedb" ]] && export LOCATE_PATH="$HOME/locatedb"
