@@ -11,5 +11,5 @@
 
 I'm setting up
 
-- [Ubuntu](./core_packages.md#Ubuntu)
-- [macOS](./core_packages.md#macOS)
+- [Ubuntu](./core_packages.md#ubuntu)
+- [macOS](./core_packages.md#macos)
