@@ -57,3 +57,6 @@ Install tree-sitters in neovim
 
 Go to the [Docker Desktop](https://docs.docker.com/desktop/install/mac-install/) page
 to download the installer and install.
+
+---
+After installing all above packages, please proceed to [Final steps](./final_steps.md).

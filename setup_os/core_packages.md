@@ -79,5 +79,6 @@
     npm install --global yarn
     ```
 
+---
 At this point, you've installed all necessary packages, and you can proceed to the
 [Terminal Setup](./terminal_setup.md#macos).
