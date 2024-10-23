@@ -1,6 +1,4 @@
-# Ubuntu
-
-# macOS
+# Common packages
 
 1. Essentials
     ```bash
@@ -17,7 +15,18 @@
         pyinstrument types-dataclasses==0.1.7 jupyter-nbextensions-configurator
     ```
 
-3. PyTorch
+# Ubuntu
+
+1. If you have NVIDIA GPU, install this package for a better visualization
+    ```bash
+    pip install nvitop
+    ```
+
+2. PyTorch
+
+# macOS
+
+1. PyTorch
     ```bash
     pip install torch torchvision torchaudio
     ```

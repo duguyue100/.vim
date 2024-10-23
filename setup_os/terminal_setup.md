@@ -105,4 +105,4 @@
 
 
 Restart the terminal, at this point, you should have a beautiful terminal setup.
-Now, you can proceed to install the [Python packages](./python.md#macos).
+Now, you can proceed to install the [Python packages](./python.md).
