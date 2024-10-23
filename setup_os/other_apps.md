@@ -3,7 +3,6 @@
 
 # macOS
 
-- `neovim`
 - LaTeX: `brew install texlive latexit`
 - [Slack](https://slack.com/intl/en-gb/downloads/mac): You can use the browser
     version as well, there is nothing wrong wit it.
@@ -31,3 +30,19 @@ Expose configure
 ```bash
 ln -s "${HOME}"/.vim "${HOME}"/.config/nvim
 ```
+
+Open `nvim`, the packages are going to be installed automatically.
+
+Install tree-sitters in neovim
+```bash
+:TSInstall python lua typescript javascript
+```
+
+# Docker
+
+## Ubuntu
+
+## macOS
+
+Go to the [Docker Desktop](https://docs.docker.com/desktop/install/mac-install/) page
+to download the installer and install.

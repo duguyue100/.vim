@@ -30,3 +30,6 @@
     ```bash
     pip install torch torchvision torchaudio
     ```
+
+After installing all the packages, please proceed to [Other Apps](./other_apps.md)
+to finish the final steps of installation.
