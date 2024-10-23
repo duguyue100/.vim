@@ -40,5 +40,6 @@ Note that if you want to push to this repo, you need to change the remote URL fr
 `https` to `ssh`. You can do this by running the following command:
 
 ```bash
+cd ~/.vim
 git remote set-url origin git@github.com:duguyue100/.vim.git
 ```
