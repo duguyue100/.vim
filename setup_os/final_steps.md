@@ -43,3 +43,7 @@ Note that if you want to push to this repo, you need to change the remote URL fr
 cd ~/.vim
 git remote set-url origin git@github.com:duguyue100/.vim.git
 ```
+
+---
+At this moment, you've finished the setup of the machine. Go back to the
+[README](../README.md) to setup another!
