@@ -53,13 +53,25 @@
     ```bash
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     ```
+    During the installation, you will be asked to install the Command Line Tools. Click
+    `Install` and wait for the download.
+    You will be asked to supply your password in the middle as well, do so and wait
+    for the installation to finish.
+
+    At this moment, you haven't cloned this repo yet, meaning you are not configuring
+    `zsh` and the rest of the dotfiles. So right after the installation, `brew` will
+    not work out of the box yet. Temporarily, run the following command to make it work.
+    ```bash
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    ```
+    And verify that the shell can find `brew` by `which brew`.
 
 4. Install essential packages
     ```bash
     brew install \
         automake bison cmake ffmpeg gcc git libuv neovim tmux wget \
         zeromq ripgrep lazygit midnight-commander clang-format ruby lsd \
-        zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf
+        zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats
     ```
 
     ```bash
@@ -69,5 +81,10 @@
 5. If you need LaTeX.
     ```bash
     brew install texlive latexit
+    ```
+
+6. Install Applications
+    ```bash
+    brew install --cask slack vlc stats
     ```
 
