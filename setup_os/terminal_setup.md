@@ -102,3 +102,7 @@
     # install tmux plugins
     "${HOME}"/.tmux/plugins/tpm/bin/install_plugins
     ```
+
+
+Restart the terminal, at this point, you should have a beautiful terminal setup.
+Now, you can proceed to install the [Python packages](./python.md#macos).
