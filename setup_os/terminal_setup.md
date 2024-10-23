@@ -73,6 +73,11 @@
     rm -rf fonts
     ```
 
+    Download the Jetbrains Nerdfont, extract and install all of them
+    ```bash
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
+    ```
+
 3. Run the following command sequentially
     ```bash
     # Darglint docstring linter support
