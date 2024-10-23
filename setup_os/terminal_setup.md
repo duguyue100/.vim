@@ -76,7 +76,18 @@
     Download the Jetbrains Nerdfont, extract and install all of them
     ```bash
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
+
+    rm JetbrainsMono.zip
+    rm -rf JetBrainsMono
     ```
+
+6. Configure iTerms
+    - Open preferences and go to "Profiles"
+    - Under "Text", change the font to "JetBrainsMonoNL Nerd Font Mono"
+    - Under "Colors" -> "Color Presets" -> Click "Import"
+    - In the file chooser, press `Shift+Cmd+.` to show hidden files, and navigate to
+        `~/.vim/iterms2-colors` and import the color schemes in the folder.
+    - Choose `material-palenight` as the color scheme.
 
 3. Run the following command sequentially
     ```bash
