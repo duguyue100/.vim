@@ -101,6 +101,9 @@
 
     # install tmux plugins
     "${HOME}"/.tmux/plugins/tpm/bin/install_plugins
+
+    # For NPM
+    npm install --global yarn
     ```
 
 ---
