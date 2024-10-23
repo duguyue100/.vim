@@ -55,6 +55,23 @@
     rm "${HOME}"/miniconda.sh
     ```
 
+    Create an environment right after (choose your environment's name)
+    ```bash
+    conda create -n latticeflow python=3.10
+    ```
+
+    Restart the terminal.
+
+5. Configure the fonts
+    ```bash
+    pip install powerline-status
+
+    git clone https://github.com/powerline/fonts.git --depth=1
+    cd fonts
+    ./install.sh
+    cd ..
+    rm -rf fonts
+    ```
 
 3. Run the following command sequentially
     ```bash
