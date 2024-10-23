@@ -44,13 +44,17 @@
 1. (Optional) Download Chrome using Safari and install it. Set chrome as the default
     browser, and sign in to your Google account.
 
+2. Install iTerm2 from [here](https://iterm2.com/downloads.html). Decompress the ZIP
+    file and move the app to the Applications folder. From now on, use iTerm2 instead of
+    the default Terminal app.
 
-1. Install Homebrew
+
+3. Install Homebrew
     ```bash
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     ```
 
-2. Install essential packages
+4. Install essential packages
     ```bash
     brew install \
         automake bison cmake ffmpeg gcc git libuv neovim tmux wget \
@@ -62,7 +66,7 @@
     npm install --global yarn
     ```
 
-3. If you need LaTeX.
+5. If you need LaTeX.
     ```bash
     brew install texlive latexit
     ```
