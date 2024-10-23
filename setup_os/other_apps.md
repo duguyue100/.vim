@@ -36,8 +36,16 @@ Install tree-sitters in neovim
 - [Scroll Reverser](https://pilotmoon.com/scrollreverser/): I happen to be one of
     those people who prefer natural scrolling on the trackpad and reverse
     scrolling on the mouse.
+    - You will need to manually move the app to the Applications folder.
+    - When you open the app the first time, you will need to grant permissions in the settings.
+    - Make sure in the App tab, the app is set to start at login.
 - [Rectangle](https://rectangleapp.com/)
     - In settings, repeated commands, set cycle 1/2, 2/3 and 1/3 on half actions.
+    - During setup, you will need to grant permissions in the settings.
+    - In the app settings, please import the profile `RetangleConfig.json` from this repo.
+- Stats: this has been installed as part of the core package.
+    - After the initial setup, import the profile `stats_settings.plist` from this
+        repo.
 
 # Docker
 
