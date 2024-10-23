@@ -89,7 +89,8 @@
         `~/.vim/iterms2-colors` and import the color schemes in the folder.
     - Choose `material-palenight` as the color scheme.
 
-3. Run the following command sequentially
+
+7. Run the following command sequentially
     ```bash
     # Darglint docstring linter support
     ln -s "${HOME}"/.vim/.darglint "${HOME}"/.darglint
@@ -97,4 +98,7 @@
     # tmux config
     ln -s "${HOME}"/.vim/tmux.conf "${HOME}"/.tmux.conf
     git clone https://github.com/tmux-plugins/tpm "${HOME}"/.tmux/plugins/tpm
+
+    # install tmux plugins
+    "${HOME}"/.tmux/plugins/tpm/bin/install_plugins
     ```
