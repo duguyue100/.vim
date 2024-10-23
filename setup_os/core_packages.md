@@ -41,6 +41,8 @@
 
 # macOS
 
+**If there is any OS updates, please install them first before proceeding.**
+
 1. (Optional) Download Chrome using Safari and install it. Set chrome as the default
     browser, and sign in to your Google account.
 

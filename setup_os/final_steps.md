@@ -9,6 +9,8 @@ Create new SSH key using the following command:
 ```bash
 ssh-keygen -t ed25519 -C "<your-email>"
 ```
+You can add your new SSH key to the Github account.
+
 
 The SSH config file can be a nice way to improve your experience:
 ```bash
@@ -30,3 +32,13 @@ Host some_alias
     LocalForward <port> localhost:<port>
     LocalForward <port> localhost:<port>
     LocalForward <port> localhost:<port>
+```
+
+# Git-related
+
+Note that if you want to push to this repo, you need to change the remote URL from
+`https` to `ssh`. You can do this by running the following command:
+
+```bash
+git remote set-url origin git@github.com:duguyue100/.vim.git
+```
