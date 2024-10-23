@@ -41,6 +41,10 @@
 
 # macOS
 
+1. (Optional) Download Chrome using Safari and install it. Set chrome as the default
+    browser, and sign in to your Google account.
+
+
 1. Install Homebrew
     ```bash
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
