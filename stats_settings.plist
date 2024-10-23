@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Battery_battery_additional</key>
+	<string>innerPercentage</string>
+	<key>Battery_battery_color</key>
+	<false/>
+	<key>Battery_state</key>
+	<true/>
+	<key>Bluetooth_state</key>
+	<false/>
+	<key>CPU_barChart_position</key>
+	<integer>3</integer>
+	<key>CPU_label_position</key>
+	<integer>2</integer>
+	<key>CPU_lineChart_position</key>
+	<integer>0</integer>
+	<key>CPU_line_chart_historyCount</key>
+	<integer>30</integer>
+	<key>CPU_mini_color</key>
+	<string>monochrome</string>
+	<key>CPU_mini_position</key>
+	<integer>1</integer>
+	<key>CPU_pieChart_position</key>
+	<integer>4</integer>
+	<key>CPU_state</key>
+	<true/>
+	<key>CPU_tachometer_position</key>
+	<integer>5</integer>
+	<key>CPU_widget</key>
+	<string>line_chart</string>
+	<key>Clock_state</key>
+	<false/>
+	<key>CombinedModules</key>
+	<false/>
+	<key>Disk_barChart_position</key>
+	<integer>0</integer>
+	<key>Disk_label_position</key>
+	<integer>5</integer>
+	<key>Disk_memory_position</key>
+	<integer>2</integer>
+	<key>Disk_mini_position</key>
+	<integer>4</integer>
+	<key>Disk_networkChart_position</key>
+	<integer>6</integer>
+	<key>Disk_pieChart_position</key>
+	<integer>1</integer>
+	<key>Disk_speed_position</key>
+	<integer>3</integer>
+	<key>Disk_state</key>
+	<true/>
+	<key>Disk_widget</key>
+	<string>bar_chart</string>
+	<key>LaunchAtLoginNext</key>
+	<true/>
+	<key>NSStatusItem Preferred Position Battery</key>
+	<real>235</real>
+	<key>NSStatusItem Preferred Position CPU</key>
+	<real>444</real>
+	<key>NSStatusItem Preferred Position Disk</key>
+	<real>548</real>
+	<key>NSStatusItem Preferred Position Network</key>
+	<real>579</real>
+	<key>NSStatusItem Preferred Position Sensors</key>
+	<real>654</real>
+	<key>NSStatusItem Restore Position RAM</key>
+	<integer>496</integer>
+	<key>NSToolbar Configuration eu.exelban.Stats.Settings.Toolbar</key>
+	<dict>
+		<key>TB Display Mode</key>
+		<integer>1</integer>
+		<key>TB Icon Size Mode</key>
+		<integer>1</integer>
+		<key>TB Is Shown</key>
+		<true/>
+		<key>TB Size Mode</key>
+		<integer>1</integer>
+	</dict>
+	<key>NSWindow Frame NSNavPanelAutosaveName</key>
+	<string>1505 939 430 163 0 0 3440 1415 </string>
+	<key>Network_state</key>
+	<true/>
+	<key>RAM_barChart_position</key>
+	<integer>3</integer>
+	<key>RAM_label_position</key>
+	<integer>2</integer>
+	<key>RAM_lineChart_position</key>
+	<integer>0</integer>
+	<key>RAM_line_chart_color</key>
+	<string>secondRed</string>
+	<key>RAM_line_chart_historyCount</key>
+	<integer>30</integer>
+	<key>RAM_line_chart_valueColor</key>
+	<false/>
+	<key>RAM_memory_position</key>
+	<integer>5</integer>
+	<key>RAM_mini_position</key>
+	<integer>1</integer>
+	<key>RAM_pieChart_position</key>
+	<integer>4</integer>
+	<key>RAM_state</key>
+	<false/>
+	<key>RAM_tachometer_position</key>
+	<integer>6</integer>
+	<key>RAM_widget</key>
+	<string>line_chart</string>
+	<key>SSD_bar_chart_color</key>
+	<string>secondOrange</string>
+	<key>Sensors_barChart_position</key>
+	<integer>1</integer>
+	<key>Sensors_label_position</key>
+	<integer>2</integer>
+	<key>Sensors_sensors_mode</key>
+	<string>automatic</string>
+	<key>Sensors_sensors_monospacedFont</key>
+	<false/>
+	<key>Sensors_sensors_size</key>
+	<false/>
+	<key>Sensors_stack_position</key>
+	<integer>0</integer>
+	<key>Sensors_state</key>
+	<true/>
+	<key>Sensors_widget</key>
+	<string>sensors</string>
+	<key>dockIcon</key>
+	<false/>
+	<key>fan_0_mode</key>
+	<integer>0</integer>
+	<key>fan_0_speed</key>
+	<integer>5779</integer>
+	<key>pause</key>
+	<false/>
+	<key>runAtLoginInitialized</key>
+	<true/>
+	<key>sensor_Average CPU</key>
+	<true/>
+	<key>sensor_Average CPU_notification</key>
+	<string></string>
+	<key>sensor_Hottest CPU</key>
+	<true/>
+	<key>sensor_Hottest CPU_notification</key>
+	<string></string>
+	<key>setupProcess</key>
+	<true/>
+	<key>telemetry</key>
+	<false/>
+	<key>telemetry_id</key>
+	<string>017B65B6-2E94-4458-9430-E8BF7A132640</string>
+	<key>temperature_units</key>
+	<string>system</string>
+	<key>update-interval</key>
+	<string>Silent</string>
+	<key>updater_check_ts</key>
+	<integer>1717311274</integer>
+	<key>version</key>
+	<string>2.10.15</string>
+</dict>
+</plist>
