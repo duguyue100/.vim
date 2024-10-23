@@ -24,6 +24,10 @@
 
     - Link profile
         ```bash
+        # Remove the default .zshrc if there is any
+        rm "${HOME}"/.zshrc
+
+        # Setup symlink
         ln -s "${HOME}"/.vim/zshrc_mac "${HOME}"/.zshrc
         ln -s "${HOME}"/.vim/p10k_mac "${HOME}"/.p10k.zsh
         ```
@@ -42,7 +46,15 @@
             "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"/plugins/zsh-history-substring-search
         ```
 
-4. Install Python
+    - Restart the terminal, you will notice that the font and `conda` are not there yet.
+
+4. Install miniconda
+    ```bash
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh -O "${HOME}"/miniconda.sh
+    bash "${HOME}"/miniconda.sh -b -p "${HOME}"/miniconda3
+    rm "${HOME}"/miniconda.sh
+    ```
+
 
 3. Run the following command sequentially
     ```bash
