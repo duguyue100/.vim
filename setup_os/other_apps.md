@@ -46,6 +46,8 @@ Install tree-sitters in neovim
 - Stats: this has been installed as part of the core package.
     - After the initial setup, import the profile `stats_settings.plist` from this
         repo.
+- MonitorControl: this has been installed as part of the core package.
+    - During the app setup, you will need to grant permissions in the settings.
 
 # Docker
 
