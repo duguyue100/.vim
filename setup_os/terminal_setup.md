@@ -9,7 +9,8 @@
     cd
     ```
 
-1. Clone this repository
+2. Clone the following repos
     ```bash
-    git clone git@github.com:duguyue100/.vim.git
+    git clone https://github.com/duguyue100/.vim.git
+    git clone https://github.com/duguyue100/macman "${HOME}"/macman
     ```
