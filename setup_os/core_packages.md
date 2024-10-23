@@ -72,7 +72,7 @@
         automake bison cmake ffmpeg gcc git libuv neovim tmux wget \
         zeromq ripgrep lazygit midnight-commander clang-format ruby lsd \
         zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf \
-        stats MonitorControl
+        stats MonitorControl bob
     ```
 
     ```bash
