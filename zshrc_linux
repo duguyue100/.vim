@@ -126,7 +126,7 @@ alias slg="SKIP=pytest,pytest_docs,mypy,nbqa-mypy,mypy_cloud,mypy_dto,mypy_sdk,n
 
 alias ls='lsd -X --group-directories-first -A'
 # alias tmux="TERM=xterm-256color tmux"
-alias btm="btm --dot_marker --enable_gpu_memory"
+alias btm="btm --dot_marker --enable_gpu"
 alias nvidia-smi="nvitop --colorful"
 
 eval "$(zoxide init zsh)"
