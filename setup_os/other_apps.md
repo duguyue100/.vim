@@ -62,6 +62,8 @@ Install tree-sitters in neovim
 
 ## Ubuntu
 
+Follow the official document [here](https://docs.docker.com/engine/install/ubuntu/).
+
 ## macOS
 
 Go to the [Docker Desktop](https://docs.docker.com/desktop/install/mac-install/) page
