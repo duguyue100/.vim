@@ -1,9 +1,18 @@
 # Ubuntu
 
-1. Update and upgrade
+1. (Optional) Download Chrome using Firefox and install it. Set chrome as the default
+    browser, and sign in to your Google account. After downloading the installer:
+    ```bash
+    cd Downloads
+    sudo dpkg -i google-chrome-stable_current_amd64.deb
+    ```
+
+2. Update and upgrade
     ```bash
     sudo apt-add-repository -y ppa:git-core/ppa
     sudo apt update && sudo apt upgrade -y
+    # Restart the machine
+    sudo reboot
     ```
     If you have NVIDIA GPUs, also add this
     ```bash
@@ -11,7 +20,7 @@
     sudo apt update
     ```
 
-2. Install essential packages
+3. Install essential packages
     ```bash
     sudo apt install -y \
         build-essential binutils cmake curl tmux unzip openssh-server xclip zsh \
@@ -21,14 +30,14 @@
 3. Install `bottom`. If you want, please check the latest version
    [here](https://github.com/ClementTsang/bottom/releases/latest).
     ```bash
-    curl -LO https://github.com/ClementTsang/bottom/releases/download/0.10.2/bottom_0.10.2-1_amd64.deb
+    wget https://github.com/ClementTsang/bottom/releases/download/0.10.2/bottom_0.10.2-1_amd64.deb
     sudo dpkg -i bottom_0.10.2-1_amd64.deb
     rm bottom_0.10.2-1_amd64.deb
     ```
 
 4. Install `lsd`. If you want, please check the latest version [here](https://github.com/lsd-rs/lsd/releases/latest).
     ```bash
-    curl -LO https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd_1.1.5_amd64.deb
+    wget https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd_1.1.5_amd64.deb
     sudo dpkg -i lsd_1.1.5_amd64.deb
     rm lsd_1.1.5_amd64.deb
     ```
