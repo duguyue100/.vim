@@ -52,6 +52,39 @@
 
     - Restart the terminal, you will notice that the font and `conda` are not there yet.
 
+4. Install miniconda
+    ```bash
+    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O "${HOME}"/miniconda.sh
+    bash "${HOME}"/miniconda.sh -b -p "${HOME}"/miniconda3
+    rm "${HOME}"/miniconda.sh
+    ```
+
+    Create an environment right after (choose your environment's name)
+    ```bash
+    conda create -n lf-work python=3.10
+    ```
+
+    Restart the terminal.
+
+5. Configure the fonts
+    ```bash
+    pip install powerline-status
+
+    git clone https://github.com/powerline/fonts.git --depth=1
+    cd fonts
+    ./install.sh
+    cd ..
+    rm -rf fonts
+    ```
+
+    Download the Jetbrains Nerdfont, extract and install all of them
+    ```bash
+    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
+
+    rm JetbrainsMono.zip
+    rm -rf JetBrainsMono
+    ```
+
 # macOS
 
 1. Setup Git config and go to the home directory
