@@ -34,5 +34,8 @@
     pip install torch torchvision torchaudio
     ```
 
+2. To install TensorFlow in Apple M1, follow the instructions
+    [here](https://developer.apple.com/metal/tensorflow-plugin/).
+
 ---
 After installing all the packages, please proceed to [Other Apps](./other_apps.md).
