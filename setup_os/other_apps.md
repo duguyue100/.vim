@@ -2,6 +2,11 @@
 
 ## Ubuntu
 
+```bash
+wget https://github.com/MordechaiHadad/bob/releases/download/v4.0.2/bob-linux-x86_64.zip
+unzip bob-linux-x86_64.zip
+```
+
 ## macOS
 
 Use `bob` to install
