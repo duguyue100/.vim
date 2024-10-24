@@ -48,6 +48,15 @@
     sudo apt install nvidia-modprobe
     ```
 
+6. Reboot the machine after installing all the packages.
+    ```bash
+    sudo reboot
+    ```
+
+---
+At this point, you've installed all necessary packages, and you can proceed to the
+[Terminal Setup](./terminal_setup.md#ubuntu).
+
 # macOS
 
 **If there is any OS updates, please install them first before proceeding.**
