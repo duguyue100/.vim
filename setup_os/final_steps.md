@@ -48,12 +48,22 @@ git remote set-url origin git@github.com:duguyue100/.vim.git
 
 ## Ubuntu
 
+- I like a clean Dock, so I unpin all icons from the sidebar but keep the files
+    manager and trash can.
+    - Right-click on the icon -> Unpin from Favorites
+    - I also pin Chrome to the dock.
+    - In Settings -> Ubuntu Desktop -> Dekstop Icons, turn off "Show Home Folder".
+    - In Settings -> Ubuntu Desktop -> Dock, turn on "Auto-hide the Dock".
+
+- If you like dark theme, go to Settings -> Appearance -> Style -> Dark.
+- In Settings -> Power -> Power Saving, I usually configure it to "Never".
+- If you would like Night Shift, go to Settings -> Displays -> Night Light and enable it.
+
 ## macOS
 
 - I like a clean Dock, so I remove all the icons from the sidebar.
     - Right-click on the icon -> Options -> Remove from Dock
     - In System Preferences -> Desktop & Dock, I turn on "Automatically hide and show the Dock".
-
 
 - In System Preferences -> Appearance, I choose "Auto" for the theme.
 
