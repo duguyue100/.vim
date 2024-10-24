@@ -32,8 +32,8 @@
         rm "${HOME}"/.zshrc
 
         # Setup symlink
-        ln -s "${HOME}"/.vim/zshrc_mac "${HOME}"/.zshrc
-        ln -s "${HOME}"/.vim/p10k_mac "${HOME}"/.p10k.zsh
+        ln -s "${HOME}"/.vim/zshrc_linux "${HOME}"/.zshrc
+        ln -s "${HOME}"/.vim/p10k_linux "${HOME}"/.p10k.zsh
         ```
 
     - Install plugins
