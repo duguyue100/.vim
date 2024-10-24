@@ -3,8 +3,12 @@
 ## Ubuntu
 
 ```bash
-wget https://github.com/MordechaiHadad/bob/releases/download/v4.0.2/bob-linux-x86_64.zip
-unzip bob-linux-x86_64.zip
+mkdir -p "${HOME}"/bin
+cd "${HOME}"/bin
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+chmod u+x nvim.appimage
+mv nvim.appimage nvim
+ln -s "${HOME}"/.vim "${HOME}"/.config/nvim
 ```
 
 ## macOS
