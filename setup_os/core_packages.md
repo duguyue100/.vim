@@ -24,7 +24,8 @@
     ```bash
     sudo apt install -y \
         build-essential binutils cmake curl tmux unzip openssh-server xclip zsh \
-        ripgrep mc terminator clang-format ruby-full curl zoxide git vlc
+        ripgrep mc terminator clang-format ruby-full curl zoxide git vlc libfuse2 \
+        plocate
     ```
 
 3. Install `bottom`. If you want, please check the latest version
@@ -40,6 +41,13 @@
     wget https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd_1.1.5_amd64.deb
     sudo dpkg -i lsd_1.1.5_amd64.deb
     rm lsd_1.1.5_amd64.deb
+    ```
+
+5. Install `fd`
+    ```bash
+    wget https://github.com/sharkdp/fd/releases/download/v10.2.0/fd-musl_10.2.0_amd64.deb
+    sudo dpkg -i fd-musl_10.2.0_amd64.deb
+    rm fd-musl_10.2.0_amd64.deb
     ```
 
 5. Install `nvm`
