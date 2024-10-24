@@ -24,7 +24,7 @@
     ```bash
     sudo apt install -y \
         build-essential binutils cmake curl tmux unzip openssh-server xclip zsh \
-        ripgrep mc terminator clang-format ruby-full curl zoxide git
+        ripgrep mc terminator clang-format ruby-full curl zoxide git vlc
     ```
 
 3. Install `bottom`. If you want, please check the latest version
@@ -40,6 +40,11 @@
     wget https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd_1.1.5_amd64.deb
     sudo dpkg -i lsd_1.1.5_amd64.deb
     rm lsd_1.1.5_amd64.deb
+    ```
+
+5. Install `nvm`
+    ```bash
+    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
     ```
 
 5. NVIDIA Driver. Tips: you can hit `Tab` to see the available versions, install a more recent version.
