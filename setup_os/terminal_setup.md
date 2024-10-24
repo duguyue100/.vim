@@ -81,8 +81,43 @@
     ```bash
     wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
 
-    rm JetbrainsMono.zip
-    rm -rf JetBrainsMono
+    # Extract and install all of them
+    mkdir -p ~/.local/share/fonts
+    mv JetBrainsMono.zip ~/.local/share/fonts
+    cd ~/.local/share/fonts
+    unzip JetBrainsMono.zip
+    rm JetBrainsMono.zip
+    ```
+
+6. Configure Terminator
+    - Follow the instructions in
+        [`terminator-themes`](https://github.com/EliverLara/terminator-themes),
+        you will need to close and restart the terminal to see `TerminatorThemes`
+        option under `plugins`.
+    - Right-click on the terminal and choose `Themes` -> `tokyonight (dark)` -> `Install`.
+    - Go to `Preferences` -> `Layouts` -> choose `tokyonight` as the default layout.
+    - Additionally, go to `Preferences` -> `Global` -> check "Re-use profiles for new terminals".
+    - Go to `Preferences` -> `Profiles` -> `tokyonight` -> `General` -> uncheck `Show titlebar`.
+    - Keybindings
+        - Disable `cycle_next` and `cycle_prev`
+        - Change `new_tab` to `Ctrl+T`
+        - Change `next_tab` to `Ctrl+Tab`
+        - Change `prev_tab` to `Ctrl+Shift+Tab`
+
+7. Run the following command sequentially
+    ```bash
+    # Darglint docstring linter support
+    ln -s "${HOME}"/.vim/.darglint "${HOME}"/.darglint
+
+    # tmux config
+    ln -s "${HOME}"/.vim/tmux.conf "${HOME}"/.tmux.conf
+    git clone https://github.com/tmux-plugins/tpm "${HOME}"/.tmux/plugins/tpm
+
+    # install tmux plugins
+    "${HOME}"/.tmux/plugins/tpm/bin/install_plugins
+
+    # For NPM
+    npm install --global yarn
     ```
 
 # macOS

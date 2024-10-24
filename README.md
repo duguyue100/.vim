@@ -11,13 +11,6 @@ Go to [setup_os](./setup_os) directory and follow the instructions for your OS.
 <details>
     <summary>Ubuntu</summary>
 
-    ## Install Software
-
-    ```bash
-    ./install ubuntu_essentials
-    ./install nvidia_driver
-    ```
-
     ### Set terminator color schemes
 
     Follow the instructions in [`terminator-themes`](https://github.com/EliverLara/terminator-themes).
