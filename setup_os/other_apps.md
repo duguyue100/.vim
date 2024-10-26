@@ -3,12 +3,9 @@
 ## Ubuntu
 
 ```bash
-mkdir -p "${HOME}"/bin
-cd "${HOME}"/bin
-wget https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
-chmod u+x nvim.appimage
-mv nvim.appimage nvim
-ln -s "${HOME}"/.vim "${HOME}"/.config/nvim
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+sudo rm -rf /opt/nvim
+sudo tar -C /opt -xzf nvim-linux64.tar.gz
 ```
 
 ## macOS
