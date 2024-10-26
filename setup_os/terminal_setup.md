@@ -1,4 +1,4 @@
-# Ubuntu
+# Ubuntu {#ubuntu-terminal}
 
 1. Setup Git config and go to the home directory
     ```bash
@@ -125,7 +125,7 @@
 Restart the terminal, at this point, you should have a beautiful terminal setup.
 Now, you can proceed to install the [Python packages](./python.md).
 
-# macOSN
+# macOS {#macos-terminal}
 
 1. Setup Git config and go to the home directory
     ```bash
