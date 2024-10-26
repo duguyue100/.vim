@@ -111,7 +111,7 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Mainly for neovim and other AppImage
-export PATH="$HOME/bin:$PATH"
+export PATH="/opt/nvim-linux64/bin:$PATH"
 
 alias m=$HOME/linuxman/linuxman
 alias n=nvim
