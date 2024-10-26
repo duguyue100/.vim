@@ -121,7 +121,7 @@
     nvm use 20
     npm install --global yarn
     ```
----
+
 Restart the terminal, at this point, you should have a beautiful terminal setup.
 Now, you can proceed to install the [Python packages](./python.md).
 
@@ -231,6 +231,5 @@ Now, you can proceed to install the [Python packages](./python.md).
     npm install --global yarn
     ```
 
----
 Restart the terminal, at this point, you should have a beautiful terminal setup.
 Now, you can proceed to install the [Python packages](./python.md).
