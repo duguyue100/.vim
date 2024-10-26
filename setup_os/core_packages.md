@@ -68,7 +68,7 @@
 
 ---
 At this point, you've installed all necessary packages, and you can proceed to the
-[Terminal Setup](./terminal_setup.md#ubuntu).
+[Terminal Setup](https://github.com/duguyue100/.vim/blob/lua/setup_os/terminal_setup.md#ubuntu).
 
 # macOS
 
@@ -110,4 +110,4 @@ At this point, you've installed all necessary packages, and you can proceed to t
 
 ---
 At this point, you've installed all necessary packages, and you can proceed to the
-[Terminal Setup](./terminal_setup.md#macos).
+[Terminal Setup](https://github.com/duguyue100/.vim/blob/lua/setup_os/terminal_setup.md#macos).
