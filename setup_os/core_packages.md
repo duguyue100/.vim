@@ -16,7 +16,7 @@
     ```
     If you have NVIDIA GPUs, also add this
     ```bash
-    sudo apt-add-repository -y ppa:git-core/ppa
+    sudo add-apt-repository ppa:graphics-drivers/ppa
     sudo apt update
     ```
 
@@ -43,9 +43,9 @@
     rm lsd_1.1.5_amd64.deb
     ```
 
-5. Install `fd`
+5. Install `fd`. If you want, please check the latest version [here](https://github.com/sharkdp/fd/releases/latest).
     ```bash
-    wget https://github.com/sharkdp/fd/releases/download/v10.2.0/fd-musl_10.2.0_amd64.deb
+    wget https://github.com/sharkdp/fd/releases/download/v10.2.0/fd_10.2.0_amd64.deb
     sudo dpkg -i fd-musl_10.2.0_amd64.deb
     rm fd-musl_10.2.0_amd64.deb
     ```
