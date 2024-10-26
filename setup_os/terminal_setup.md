@@ -125,7 +125,7 @@
 Restart the terminal, at this point, you should have a beautiful terminal setup.
 Now, you can proceed to install the [Python packages](./python.md).
 
-# macOS
+# macOSN
 
 1. Setup Git config and go to the home directory
     ```bash
