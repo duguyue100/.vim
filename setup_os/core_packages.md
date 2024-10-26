@@ -68,7 +68,7 @@
 
 ---
 At this point, you've installed all necessary packages, and you can proceed to the
-[Terminal Setup](./terminal_setup.md#ubuntu-terminal).
+[Terminal Setup](./terminal_setup.md#ubuntu-terminal-setup).
 
 # macOS
 
@@ -110,4 +110,4 @@ At this point, you've installed all necessary packages, and you can proceed to t
 
 ---
 At this point, you've installed all necessary packages, and you can proceed to the
-[Terminal Setup](./terminal_setup.md#macos-terminal).
+[Terminal Setup](./terminal_setup.md#macos-terminal-setup).
