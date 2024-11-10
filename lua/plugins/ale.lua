@@ -21,7 +21,7 @@ return {
             }
             vim.g.ale_linters = {
                 python = {'mypy', "jedils", "ruff"},
-                rust = {'analyzer', 'rustc'},
+                rust = {'analyzer'},
                 go = {"gopls"},
                 typescript = {"eslint"},
             }
