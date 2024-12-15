@@ -17,7 +17,7 @@ return {
                 capabilities = capabilities
             }
 
-            require'lspconfig'.tsserver.setup {capabilities = capabilities}
+            require'lspconfig'.ts_ls.setup {capabilities = capabilities}
 
             require'lspconfig'.gopls.setup{}
 

@@ -13,10 +13,12 @@ return {
             },
             toggle = { enable = true },
             zen = { enabled = true },
+            notifier = { enabled = true },
         },
         keys = {
             { "<leader>gb", function() Snacks.gitbrowse() end, desc = "Git Browse" },
-            { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
+            { "<leader>z",  function() Snacks.zen.zen() end, desc = "Toggle Zen Mode" },
+            { "<leader>lg",  function() Snacks.lazygit() end, desc = "LazyGit" },
         },
     },
 }
