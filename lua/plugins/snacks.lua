@@ -9,7 +9,10 @@ return {
             gitbranch = { enabled = true },
             indent = {
                 enabled = true,
-                only_scope = true,
+                scope = {
+                    underline = true,
+                    only_current = true,
+                },
             },
             toggle = { enable = true },
             zen = { enabled = true },
