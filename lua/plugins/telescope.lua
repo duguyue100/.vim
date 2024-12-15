@@ -67,7 +67,7 @@ return {
                     },
                 },
 
-                extensions_list = { "themes", "terms" },
+                extensions_list = { "repo", "import" },
             }
 
             -- check for any override
