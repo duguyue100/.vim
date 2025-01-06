@@ -77,18 +77,6 @@
     rm -rf fonts
     ```
 
-    Download the Jetbrains Nerdfont, extract and install all of them
-    ```bash
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
-
-    # Extract and install all of them
-    mkdir -p ~/.local/share/fonts
-    mv JetBrainsMono.zip ~/.local/share/fonts
-    cd ~/.local/share/fonts
-    unzip JetBrainsMono.zip
-    rm JetBrainsMono.zip
-    ```
-
 6. Configure Terminator
     - Follow the instructions in
         [`terminator-themes`](https://github.com/EliverLara/terminator-themes),
@@ -193,7 +181,7 @@ Now, you can proceed to install the [Python packages](./python.md).
 
     Restart the terminal.
 
-6. Configure the fonts
+6. Configure the fonts (Do I still need this if I have Ghostty?)
     ```bash
     pip install powerline-status
 
@@ -204,24 +192,7 @@ Now, you can proceed to install the [Python packages](./python.md).
     rm -rf fonts
     ```
 
-    Download the Jetbrains Nerdfont, extract and install all of them
-    ```bash
-    wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
-
-    rm JetbrainsMono.zip
-    rm -rf JetBrainsMono
-    ```
-
-7. Configure iTerms
-    - Open preferences and go to "Profiles"
-    - Under "Text", change the font to "JetBrainsMonoNL Nerd Font Mono"
-    - Under "Colors" -> "Color Presets" -> Click "Import"
-    - In the file chooser, press `Shift+Cmd+.` to show hidden files, and navigate to
-        `~/.vim/iterms2-colors` and import the color schemes in the folder.
-    - Choose `material-palenight` as the color scheme.
-
-
-8. Run the following command sequentially
+7. Run the following command sequentially
     ```bash
     # Darglint docstring linter support
     ln -s "${HOME}"/.vim/.darglint "${HOME}"/.darglint
