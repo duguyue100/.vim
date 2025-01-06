@@ -3,5 +3,10 @@ font-family = 'JetBrainsMonoNL Nerd Font Mono'
 font-size = 15
 mouse-hide-while-typing = true
 macos-titlebar-style = tabs
-background-opacity = 0.8
+background-opacity = 0.9
 background-blur-radius = 20
+
+# keybinds
+keybind = alt+t=new_tab
+keybind = alt+w=close_surface
+keybind = f11=toggle_fullscreen
