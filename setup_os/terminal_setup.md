@@ -140,7 +140,13 @@ Now, you can proceed to install the [Python packages](./python.md).
     git clone https://github.com/duguyue100/macman "${HOME}"/macman
     ```
 
-3. Setup ZSH
+3. Apply Ghostty config
+    ```bash
+    mkdir -p "${HOME}"/.config/ghostty
+    ln -s "${HOME}"/.vim/ghostty-config "${HOME}"/.config/ghostty/config
+    ```
+
+4. Setup ZSH
 
     - Install Oh-my-zsh
         ```bash
@@ -173,7 +179,7 @@ Now, you can proceed to install the [Python packages](./python.md).
 
     - Restart the terminal, you will notice that the font and `conda` are not there yet.
 
-4. Install miniconda
+5. Install miniconda
     ```bash
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh -O "${HOME}"/miniconda.sh
     bash "${HOME}"/miniconda.sh -b -p "${HOME}"/miniconda3
@@ -187,7 +193,7 @@ Now, you can proceed to install the [Python packages](./python.md).
 
     Restart the terminal.
 
-5. Configure the fonts
+6. Configure the fonts
     ```bash
     pip install powerline-status
 
@@ -206,7 +212,7 @@ Now, you can proceed to install the [Python packages](./python.md).
     rm -rf JetBrainsMono
     ```
 
-6. Configure iTerms
+7. Configure iTerms
     - Open preferences and go to "Profiles"
     - Under "Text", change the font to "JetBrainsMonoNL Nerd Font Mono"
     - Under "Colors" -> "Color Presets" -> Click "Import"
@@ -215,7 +221,7 @@ Now, you can proceed to install the [Python packages](./python.md).
     - Choose `material-palenight` as the color scheme.
 
 
-7. Run the following command sequentially
+8. Run the following command sequentially
     ```bash
     # Darglint docstring linter support
     ln -s "${HOME}"/.vim/.darglint "${HOME}"/.darglint

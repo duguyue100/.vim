@@ -77,12 +77,7 @@ At this point, you've installed all necessary packages, and you can proceed to t
 1. (Optional) Download Chrome using Safari and install it. Set chrome as the default
     browser, and sign in to your Google account.
 
-2. Install iTerm2 from [here](https://iterm2.com/downloads.html). Decompress the ZIP
-    file and move the app to the Applications folder. From now on, use iTerm2 instead of
-    the default Terminal app.
-
-
-3. Install Homebrew
+2. Install Homebrew
     ```bash
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     ```
@@ -98,6 +93,11 @@ At this point, you've installed all necessary packages, and you can proceed to t
     eval "$(/opt/homebrew/bin/brew shellenv)"
     ```
     And verify that the shell can find `brew` by `which brew`.
+
+3. Install Ghostty terminal
+    ```bash
+    brew install --cask ghostty
+    ```
 
 4. Install essential packages
     ```bash
