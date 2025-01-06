@@ -41,6 +41,11 @@
     rm "$GHOSTTY_DEB_FILE"
     ```
 
+    Set Ghostty as the default terminal emulator
+    ```bash
+    sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/ghostty 60
+    ```
+
 3. Install `bottom`. If you want, please check the latest version
    [here](https://github.com/ClementTsang/bottom/releases/latest).
     ```bash
