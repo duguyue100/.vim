@@ -13,7 +13,12 @@
     git clone https://github.com/duguyue100/macman "${HOME}"/macman
     ```
 
-3. Setup ZSH
+3. Apply Ghostty config
+    ```bash
+    mkdir -p "${HOME}"/.config/ghostty
+    ln -s "${HOME}"/.vim/ghostty-config "${HOME}"/.config/ghostty/config
+
+4. Setup ZSH
 
     - Switch to ZSH
         ```bash
@@ -52,7 +57,7 @@
 
     - Restart the terminal, you will notice that the font and `conda` are not there yet.
 
-4. Install miniconda
+5. Install miniconda
     ```bash
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O "${HOME}"/miniconda.sh
     bash "${HOME}"/miniconda.sh -b -p "${HOME}"/miniconda3
@@ -66,7 +71,7 @@
 
     Restart the terminal.
 
-5. Configure the fonts
+6. Configure the fonts
     ```bash
     pip install powerline-status
 
@@ -76,21 +81,6 @@
     cd ..
     rm -rf fonts
     ```
-
-6. Configure Terminator
-    - Follow the instructions in
-        [`terminator-themes`](https://github.com/EliverLara/terminator-themes),
-        you will need to close and restart the terminal to see `TerminatorThemes`
-        option under `plugins`.
-    - Right-click on the terminal and choose `Themes` -> `tokyonight (dark)` -> `Install`.
-    - Go to `Preferences` -> `Layouts` -> choose `tokyonight` as the default layout.
-    - Additionally, go to `Preferences` -> `Global` -> check "Re-use profiles for new terminals".
-    - Go to `Preferences` -> `Profiles` -> `tokyonight` -> `General` -> uncheck `Show titlebar`.
-    - Keybindings
-        - Disable `cycle_next` and `cycle_prev`
-        - Change `new_tab` to `Ctrl+T`
-        - Change `next_tab` to `Ctrl+Tab`
-        - Change `prev_tab` to `Ctrl+Shift+Tab`
 
 7. Run the following command sequentially
     ```bash

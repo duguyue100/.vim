@@ -24,8 +24,21 @@
     ```bash
     sudo apt install -y \
         build-essential binutils cmake curl tmux unzip openssh-server xclip zsh \
-        ripgrep mc terminator clang-format ruby-full curl zoxide git vlc libfuse2 \
+        ripgrep mc clang-format ruby-full curl zoxide git vlc libfuse2 \
         plocate
+    ```
+
+    Install Ghostty
+    ```bash
+    source /etc/os-release
+    GHOSTTY_DEB_URL=$(
+       curl -s https://api.github.com/repos/mkasberg/ghostty-ubuntu/releases/latest | \
+       grep -oP "https://github.com/mkasberg/ghostty-ubuntu/releases/download/[^\s/]+/ghostty_[^\s/_]+_amd64_${VERSION_ID}.deb"
+    )
+    GHOSTTY_DEB_FILE=$(basename "$GHOSTTY_DEB_URL")
+    curl -LO "$GHOSTTY_DEB_URL"
+    sudo dpkg -i "$GHOSTTY_DEB_FILE"
+    rm "$GHOSTTY_DEB_FILE"
     ```
 
 3. Install `bottom`. If you want, please check the latest version
