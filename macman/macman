@@ -1,0 +1,86 @@
+#!/usr/bin/env python
+
+import sys
+import subprocess
+
+from typing import Any
+from typing import Callable
+
+_REGISTERD_COMMANDS: dict[str, Any] = {}
+
+
+def register_command(command: str, description: str) -> Callable[[Callable], Callable]:
+    def decorator(func: Callable) -> Callable:
+        _REGISTERD_COMMANDS[command] = {
+            "description": description,
+            "command": func().split(" "),
+        }
+        return func
+
+    return decorator
+
+
+# General functions
+@register_command("info", "Get OS info")
+def system_info() -> str:
+    return "sw_vers"
+
+
+@register_command("lock", "Lock screen")
+def lock_screen() -> str:
+    return """osascript -e 'tell application "System Events" to keystroke "q" using {control down, command down}'"""
+
+
+@register_command("ports", "Get list of used ports")
+def ports() -> str:
+    return "sudo lsof -iTCP -sTCP:LISTEN -P"
+
+
+@register_command("uptime", "Get uptime")
+def get_uptime() -> str:
+    return "uptime"
+
+
+@register_command("weather", "Get weather")
+def get_weather_info() -> str:
+    return "curl wttr.in"
+
+
+# TMUX related
+@register_command("t.div.h", "Split tmux pane horizontally")
+def tmux_split_horizontal() -> str:
+    return "tmux split-window -h"
+
+
+@register_command("t.div.v", "Split tmux pane vertically")
+def tmux_split_vertical() -> str:
+    return "tmux split-window -v"
+
+
+def run_command(command: str) -> None:
+    results = subprocess.run(
+        _REGISTERD_COMMANDS[command]["command"], capture_output=True
+    )
+
+    stdout = results.stdout.decode("utf-8")
+    if stdout:
+        print(stdout)
+
+
+def get_commands() -> dict[str, str]:
+    return {
+        command: data["description"] for command, data in _REGISTERD_COMMANDS.items()
+    }
+
+
+def main():
+    command = sys.argv[1]
+
+    if command in _REGISTERD_COMMANDS:
+        run_command(command)
+    else:
+        print(f"Command {command} not found")
+
+
+if __name__ == "__main__":
+    main()
