@@ -70,6 +70,11 @@ def git_clone(args: list[str]) -> str:
     return f"git clone {' '.join(args)}"
 
 
+@register_command("g.pull", "git", "Pull git repository")
+def git_pull(args: None) -> str:
+    return "git pull"
+
+
 @register_command("g.th.bh", "git", "Create git branch")
 def git_create_branch(args: list[str]) -> str:
     return f"git checkout -b {args[0]}"
@@ -88,6 +93,16 @@ def git_add(args: list[str]) -> str:
 @register_command("g.add.all", "git", "Add all files")
 def git_add_all(args: None) -> str:
     return "git add -A"
+
+
+@register_command("g.commit", "git", "Commit changes")
+def git_commit(args: list[str]) -> str:
+    return f'git commit -m "{args[0]}" -q'
+
+
+@register_command("g.conf", "git", "Commit changes")
+def git_config(args: None) -> str:
+    return "git config --list"
 
 
 # TMUX related
