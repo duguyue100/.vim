@@ -54,6 +54,37 @@ def get_weather_info(args: list[str] | None) -> str:
     return "curl wttr.in"
 
 
+# Git related
+@register_command("g.stat", "git", "Get git status")
+def git_status(args: None) -> str:
+    return "git status"
+
+
+@register_command("g.clone", "git", "Clone git repository")
+def git_clone(args: list[str]) -> str:
+    return f"git clone {' '.join(args)}"
+
+
+@register_command("g.th.bh", "git", "Create git branch")
+def git_create_branch(args: list[str]) -> str:
+    return f"git checkout -b {args[0]}"
+
+
+@register_command("g.co.bh", "git", "Checkout git branch")
+def git_checkout_branch(args: list[str]) -> str:
+    return f"git checkout {args[0]}"
+
+
+@register_command("g.add", "git", "Add files")
+def git_add(args: list[str]) -> str:
+    return f"git add {' '.join(args)}"
+
+
+@register_command("g.add.all", "git", "Add all files")
+def git_add_all(args: None) -> str:
+    return "git add -A"
+
+
 # TMUX related
 @register_command("t.div.h", "multiplexer", "Split tmux pane horizontally")
 def tmux_split_horizontal(args: None) -> str:
@@ -65,18 +96,30 @@ def tmux_split_vertical(args: None) -> str:
     return "tmux split-window -v"
 
 
-# TODO: not working
 @register_command("t.at", "multiplexer", "Create new tmux session")
 def attach_session(args: list[str]) -> str:
-    return f"tmux new -s '{args[0]} \; split-window -v -l 20% \; select-pane -t 0"
+    return f"tmux new -s {args[0]} \; split-window -v -l 20% \; select-pane -t 0"
+
+
+@register_command("t.re", "multiplexer", "Re-attach new tmux session")
+def reattach_session(args: list[str]) -> str:
+    return f"tmux attach -t {args[0]}"
+
+
+@register_command("t.ls", "multiplexer", "list tmux sessions")
+def list_session(args: None) -> str:
+    return "tmux list-sessions"
+
+
+@register_command("t.rm", "multiplexer", "Remove tmux session")
+def remove_session(args: list[str]) -> str:
+    return f"tmux kill-session -t {args[0]}"
 
 
 def run_command(command: str, args: list[str] | None) -> None:
     final_command = _REGISTERD_COMMANDS[command]["command"](args)
-    if isinstance(final_command, str):
-        final_command = final_command.split(" ")
 
-    results = subprocess.run(final_command, capture_output=True)
+    results = subprocess.run(final_command, capture_output=True, shell=True)
 
     stdout = results.stdout.decode("utf-8")
     if stdout:
