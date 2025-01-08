@@ -54,6 +54,11 @@ def get_weather_info(args: list[str] | None) -> str:
     return "curl wttr.in"
 
 
+@register_command("waka", "general", "Open wakatime dashboard")
+def open_waka(args: list[str] | None) -> str:
+    return "open https://wakatime.com/dashboard"
+
+
 # Git related
 @register_command("g.stat", "git", "Get git status")
 def git_status(args: None) -> str:
