@@ -4,16 +4,21 @@ import sys
 import subprocess
 
 from typing import Any
+from typing import Literal
 from typing import Callable
 
 _REGISTERD_COMMANDS: dict[str, Any] = {}
 
+Group = Literal["general", "multiplexer", "git"]
 
-def register_command(command: str, description: str) -> Callable[[Callable], Callable]:
+
+def register_command(
+    command: str, command_group: Group, description: str
+) -> Callable[[Callable], Callable]:
     def decorator(func: Callable) -> Callable:
         _REGISTERD_COMMANDS[command] = {
             "description": description,
-            "command": func().split(" "),
+            "command": func,
         }
         return func
 
@@ -21,46 +26,45 @@ def register_command(command: str, description: str) -> Callable[[Callable], Cal
 
 
 # General functions
-@register_command("info", "Get OS info")
-def system_info() -> str:
+@register_command("info", "general", "Get OS info")
+def system_info(args: None) -> str:
     return "sw_vers"
 
 
-@register_command("lock", "Lock screen")
-def lock_screen() -> str:
+@register_command("lock", "general", "Lock screen")
+def lock_screen(args: None) -> str:
     return """osascript -e 'tell application "System Events" to keystroke "q" using {control down, command down}'"""
 
 
-@register_command("ports", "Get list of used ports")
-def ports() -> str:
+@register_command("ports", "general", "Get list of used ports")
+def ports(args: None) -> str:
     return "sudo lsof -iTCP -sTCP:LISTEN -P"
 
 
-@register_command("uptime", "Get uptime")
-def get_uptime() -> str:
+@register_command("uptime", "general", "Get uptime")
+def get_uptime(args: None) -> str:
     return "uptime"
 
 
-@register_command("weather", "Get weather")
-def get_weather_info() -> str:
+@register_command("weather", "general", "Get weather")
+def get_weather_info(args: list[str] | None) -> str:
     return "curl wttr.in"
 
 
 # TMUX related
-@register_command("t.div.h", "Split tmux pane horizontally")
-def tmux_split_horizontal() -> str:
+@register_command("t.div.h", "multiplexer", "Split tmux pane horizontally")
+def tmux_split_horizontal(args: None) -> str:
     return "tmux split-window -h"
 
 
-@register_command("t.div.v", "Split tmux pane vertically")
-def tmux_split_vertical() -> str:
+@register_command("t.div.v", "multiplexer", "Split tmux pane vertically")
+def tmux_split_vertical(args: None) -> str:
     return "tmux split-window -v"
 
 
-def run_command(command: str) -> None:
-    results = subprocess.run(
-        _REGISTERD_COMMANDS[command]["command"], capture_output=True
-    )
+def run_command(command: str, args: list[str] | None) -> None:
+    final_command = _REGISTERD_COMMANDS[command](args)
+    results = subprocess.run(final_command, capture_output=True)
 
     stdout = results.stdout.decode("utf-8")
     if stdout:
@@ -73,8 +77,33 @@ def get_commands() -> dict[str, str]:
     }
 
 
+def print_help(command: str | None) -> None:
+    print("Available commands:")
+    if command:
+        print(f"{command}: {_REGISTERD_COMMANDS[command]['description']}")
+    else:
+        for command, description in get_commands().items():
+            print(f"{command}: {description}")
+
+
+def process_args() -> tuple[str, list[str]]:
+    if len(sys.argv) == 1:
+        # No argument supplied, print help
+        return "help", []
+    elif len(sys.argv) == 2:
+        return sys.argv[1], []
+    else:
+        return sys.argv[1], sys.argv[2:]
+
+
 def main():
-    command = sys.argv[1]
+    command, command_args = process_args()
+
+    if command == "help":
+        if len(command_args) == 0:
+            print_help()
+        else:
+            print_help(command_args[0])
 
     if command in _REGISTERD_COMMANDS:
         run_command(command)
