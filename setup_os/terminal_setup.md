@@ -7,10 +7,9 @@
     cd
     ```
 
-2. Clone the following repos
+2. Clone the following repo
     ```bash
     git clone https://github.com/duguyue100/.vim.git
-    git clone https://github.com/duguyue100/macman "${HOME}"/macman
     ```
 
 3. Apply Ghostty config
@@ -115,7 +114,6 @@ Now, you can proceed to install the [Python packages](./python.md).
 2. Clone the following repos
     ```bash
     git clone https://github.com/duguyue100/.vim.git
-    git clone https://github.com/duguyue100/macman "${HOME}"/macman
     ```
 
 3. Apply Ghostty config
