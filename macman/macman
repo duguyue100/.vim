@@ -7,7 +7,7 @@ from typing import Callable
 from typing import Literal
 
 
-Group = Literal["general", "multiplexer", "git"]
+Group = Literal["general", "multiplexer", "git", "functions"]
 
 _REGISTERD_COMMANDS: dict[str, Any] = {}
 _REGISTERED_GROUP: set[Group] = set()
@@ -57,6 +57,14 @@ def get_weather_info(args: list[str] | None) -> str:
 @register_command("waka", "general", "Open wakatime dashboard")
 def open_waka(args: list[str] | None) -> str:
     return "open https://wakatime.com/dashboard"
+
+
+@register_command("jpy2html", "functions", "Render jupyter notebook as html")
+def render_jupyter_notebook(args: list[str]) -> str:
+    file = args[0]
+    outfile = file.replace(".ipynb", ".html")
+    print(f"The rendered file is saved as {outfile}.")
+    return f"jupyter nbconvert --to html {file}"
 
 
 # Git related
