@@ -25,7 +25,7 @@
     sudo apt install -y \
         build-essential binutils cmake curl tmux unzip openssh-server xclip zsh \
         ripgrep mc clang-format ruby-full curl zoxide git vlc libfuse2 \
-        plocate
+        plocate shellcheck
     ```
 
     Install Ghostty
