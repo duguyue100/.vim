@@ -12,7 +12,8 @@
     pip install \
         pynvim jedi-language-server pre-commit mypy==1.7.0 types-setuptools \
         pyupgrade docformatter darglint ruff typos==1.19.0 pandas-stubs \
-        pyinstrument types-dataclasses==0.1.7 jupyter-nbextensions-configurator
+        pyinstrument types-dataclasses==0.1.7 jupyter-nbextensions-configurator \
+        yamllint
     ```
 
 # Ubuntu
