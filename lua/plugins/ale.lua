@@ -11,19 +11,22 @@ return {
             vim.g.ale_fix_on_save = 1
             vim.g.ale_echo_cursor = 0
             -- vim.g.ale_python_flake8_options = '--max-line-length=88 --ignore=E203,E501,W503'
-            vim.g.ale_python_autoimport_options = '--config-file ~/.vim/autoimport-config.toml'
+            vim.g.ale_yaml_yamllint_options = '-d "{extends: relaxed, rules: {line-length: {max: 88}}}"'
+            vim.g.ale_yaml_yamlfix_options = '-c ~/.vim/yamlfix-config.toml'
             vim.g.ale_fixers = {
                 python = {'ruff', 'ruff_format'},
                 cpp = {'clang-format'},
                 rust = {'rustfmt'},
                 go = {"gopls"},
                 typescript = {"eslint"},
+                yaml = {"yamlfix"}
             }
             vim.g.ale_linters = {
                 python = {'mypy', "jedils", "ruff"},
                 rust = {'analyzer'},
                 go = {"gopls"},
                 typescript = {"eslint"},
+                yaml = {"yamllint"},
             }
             vim.g.ale_disable_lsp = 0
             if vim.fn.has("mac") == 1 then
