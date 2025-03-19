@@ -144,6 +144,11 @@ def remove_session(args: list[str]) -> str:
     return f"tmux kill-session -t {args[0]}"
 
 
+@register_command("tpx", "multiplexer", "Remove tmux pane")
+def remove_pane(args: list[str]) -> str:
+    return "tmux kill-pane"
+
+
 def run_command(command: str, args: list[str] | None) -> None:
     final_command = _REGISTERD_COMMANDS[command]["command"](args)
 
