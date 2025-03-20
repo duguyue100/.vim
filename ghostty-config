@@ -6,6 +6,9 @@ macos-titlebar-style = tabs
 gtk-titlebar = false
 background-opacity = 0.9
 background-blur-radius = 20
+clipboard-read = allow
+clipboard-write = allow
+copy-on-select = clipboard
 
 # keybinds
 keybind = alt+t=new_tab
