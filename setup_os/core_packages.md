@@ -123,7 +123,7 @@ At this point, you've installed all necessary packages, and you can proceed to t
         automake bison cmake ffmpeg gcc git libuv tmux wget findutils \
         zeromq ripgrep lazygit midnight-commander clang-format ruby lsd \
         zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf \
-        stats MonitorControl bob
+        stats MonitorControl bob bash
     ```
 
 ---
