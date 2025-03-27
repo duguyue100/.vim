@@ -18,6 +18,7 @@ return {
                 rust = {'rustfmt'},
                 go = {"gopls"},
                 typescript = {"eslint"},
+                yaml = {"yamlfmt"}
             }
             vim.g.ale_linters = {
                 python = {'mypy', "jedils", "ruff"},
