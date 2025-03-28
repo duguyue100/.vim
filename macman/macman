@@ -18,17 +18,19 @@ def pprint_table(column_names: list[str], rows: list[tuple[Any, ...]]) -> None:
     col_widths = [
         max(len(str(item)) for item in col) for col in zip(*rows, column_names)
     ]
-    format_string = " | ".join(f"{{:<{width}}}" for width in col_widths)
+    format_string = " │ ".join(f"{{:<{width}}}" for width in col_widths)
     title_line = format_string.format(*column_names)
     # Print header
-    header_line = "-" * len(title_line)
+    header_line = "┌" + "─" * len(title_line) + "┐"
+    middle_line = "├" + "─" * len(title_line) + "┤"
+    footer_line = "└" + "─" * len(title_line) + "┘"
     print(header_line)
     # Removing the trailing empty spaces to make tests comparison easier.
-    print(title_line.rstrip())
-    print(header_line)
+    print("│" + title_line + "│")
+    print(middle_line)
     for row in rows:
-        print(format_string.format(*row).rstrip())
-    print(header_line)
+        print("│" + format_string.format(*row) + "│")
+    print(footer_line)
 
 
 def register_command(
