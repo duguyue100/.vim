@@ -68,7 +68,7 @@ def folder_size(args: list[str]) -> str:
 @register_command("disk", "general", "Print disk usage")
 def disk_usage(args: None) -> str:
     if shutil.which("duf"):
-        return "duf"
+        return "CLICOLOR_FORCE=1 duf -width 120"
     return "df -h"
 
 
