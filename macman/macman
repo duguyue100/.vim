@@ -14,6 +14,23 @@ _REGISTERD_COMMANDS: dict[str, Any] = {}
 _REGISTERED_GROUP: set[Group] = set()
 
 
+def pprint_table(column_names: list[str], rows: list[tuple[Any, ...]]) -> None:
+    col_widths = [
+        max(len(str(item)) for item in col) for col in zip(*rows, column_names)
+    ]
+    format_string = " | ".join(f"{{:<{width}}}" for width in col_widths)
+    title_line = format_string.format(*column_names)
+    # Print header
+    header_line = "-" * len(title_line)
+    print(header_line)
+    # Removing the trailing empty spaces to make tests comparison easier.
+    print(title_line.rstrip())
+    print(header_line)
+    for row in rows:
+        print(format_string.format(*row).rstrip())
+    print(header_line)
+
+
 def register_command(
     command: str, command_group: Group, description: str
 ) -> Callable[[Callable], Callable]:
@@ -190,24 +207,32 @@ def get_commands(group: Group | None = None) -> dict[str, str]:
 
 
 def print_help(command: str | Group | None = None) -> None:
-    print("Available commands:")
-    if command in _REGISTERED_GROUP:
-        print("-" * 20)
-        print(f"{command.capitalize()}")
-        print("-" * 20)
-        for command, description in get_commands(command).items():  # type: ignore
-            print(f"{command}: {description}")
-        print("-" * 20)
+    if (
+        command not in _REGISTERED_GROUP
+        and command not in _REGISTERD_COMMANDS
+        and command is not None
+    ):
+        print(f"'{command}' cannot not found as a command group or individual command.")
+
+    if command is None:
+        groups = _REGISTERED_GROUP
+    elif command in _REGISTERED_GROUP:
+        groups = [command]  # type: ignore
+    else:
+        groups = None
+
+    if groups:
+        print("Available commands:")
+        for group in sorted(groups):
+            pprint_table(
+                [f"{group.capitalize()}", "Description"],
+                [
+                    (cmd, description)
+                    for cmd, description in get_commands(group).items()
+                ],
+            )
     elif command:
         print(f"{command}: {_REGISTERD_COMMANDS[command]['description']}")
-    else:
-        for group in sorted(_REGISTERED_GROUP):
-            print("-" * 20)
-            print(f"{group.capitalize()}")
-            print("-" * 20)
-            for command, description in get_commands(group).items():
-                print(f"{command}: {description}")
-            print("-" * 20)
 
 
 def process_args() -> tuple[str, list[str]]:
