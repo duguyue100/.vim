@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import shutil
 import subprocess
 import sys
 from typing import Any
@@ -62,6 +63,13 @@ def open_waka(args: list[str] | None) -> str:
 @register_command("fd.size", "general", "Get folder size")
 def folder_size(args: list[str]) -> str:
     return f"du -sch {' '.join(args)}"
+
+
+@register_command("disk", "general", "Print disk usage")
+def disk_usage(args: None) -> str:
+    if shutil.which("duf"):
+        return "duf"
+    return "df -h"
 
 
 @register_command("jpy2html", "functions", "Render jupyter notebook as html")
