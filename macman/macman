@@ -59,6 +59,11 @@ def open_waka(args: list[str] | None) -> str:
     return "open https://wakatime.com/dashboard"
 
 
+@register_command("fd.size", "general", "Get folder size")
+def folder_size(args: list[str]) -> str:
+    return f"du -sch {' '.join(args)}"
+
+
 @register_command("jpy2html", "functions", "Render jupyter notebook as html")
 def render_jupyter_notebook(args: list[str]) -> str:
     file = args[0]
@@ -111,6 +116,11 @@ def git_commit(args: list[str]) -> str:
 @register_command("g.conf", "git", "Commit changes")
 def git_config(args: None) -> str:
     return "git config --list"
+
+
+@register_command("go", "git", "Open git repository in browser")
+def open_git_repo(args: None) -> str:
+    return "open `git remote -v | awk '/fetch/{print $2}' | sed -Ee 's#(git@|git://)#http://#' -e 's@com:@com/@'`| head -n1"
 
 
 # TMUX related
