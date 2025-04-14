@@ -203,6 +203,11 @@ def remove_window(args: list[str]) -> str:
     return f"tmux kill-window -t {args[0]}"
 
 
+@register_command("t.rename", "multiplexer", "Rename a tmux window.")
+def rename_window(args: list[str]) -> str:
+    return f"tmux rename-window {args[0]}"
+
+
 def run_command(command: str, args: list[str] | None) -> None:
     final_command = _REGISTERD_COMMANDS[command]["command"](args)
 
