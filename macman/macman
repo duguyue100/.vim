@@ -196,14 +196,14 @@ def cerate_new_window(args: list[str]) -> str:
     return f"{new_window_str} \; split-window -v -l 20% \; select-pane -t 0"
 
 
-@register_command("twx", "multiplexer", "Remove a tmux window.")
+@register_command("twx", "multiplexer", "Remove a tmux window")
 def remove_window(args: list[str]) -> str:
     if len(args) == 0:
         return "tmux kill-window"
     return f"tmux kill-window -t {args[0]}"
 
 
-@register_command("t.rename", "multiplexer", "Rename a tmux window.")
+@register_command("t.rename", "multiplexer", "Rename a tmux window")
 def rename_window(args: list[str]) -> str:
     return f"tmux rename-window {args[0]}"
 
