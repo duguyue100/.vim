@@ -186,6 +186,23 @@ def remove_pane(args: list[str]) -> str:
     return "tmux kill-pane"
 
 
+@register_command("t.new", "multiplexer", "Create new tmux window")
+def cerate_new_window(args: list[str]) -> str:
+    if len(args) == 0:
+        new_window_str = "tmux new-window"
+    else:
+        new_window_str = f"tmux new-window -n {args[0]}"
+
+    return f"{new_window_str} \; split-window -v -l 20% \; select-pane -t 0"
+
+
+@register_command("twx", "multiplexer", "Remove a tmux window.")
+def remove_window(args: list[str]) -> str:
+    if len(args) == 0:
+        return "tmux kill-window"
+    return f"tmux kill-window -t {args[0]}"
+
+
 def run_command(command: str, args: list[str] | None) -> None:
     final_command = _REGISTERD_COMMANDS[command]["command"](args)
 
