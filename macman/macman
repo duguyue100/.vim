@@ -161,9 +161,26 @@ def tmux_split_vertical(args: None) -> str:
     return "tmux split-window -v"
 
 
+@register_command("t.de", "multiplexer", "Detach tmux session")
+def tmux_detach_session(args: None) -> str:
+    return "tmux detach-client"
+
+
 @register_command("t.at", "multiplexer", "Create new tmux session")
 def attach_session(args: list[str]) -> str:
     return f"tmux new -s {args[0]} \; split-window -v -l 20% \; select-pane -t 0"
+
+
+@register_command("t", "multiplexer", "Create new main tmux setup")
+def attach_main_session(args: list[str]) -> str:
+    session_name = "main" if len(args) == 0 else args[0]
+    return (
+        f"tmux new -s {session_name} -n 🧠 \; split-window -v -l 20% \; select-pane -t 0 \; "
+        "new-window -n 🧾 \; split-window -v -l 20% \; select-pane -t 0 \; "
+        "new-window -n 🌐 \; split-window -v -l 20% \; select-pane -t 0 \; "
+        "new-window -n 🎮 \; split-window -v -l 20% \; select-pane -t 0 \; "
+        "select-window -t 🧠 \; "
+    )
 
 
 @register_command("t.re", "multiplexer", "Re-attach new tmux session")
