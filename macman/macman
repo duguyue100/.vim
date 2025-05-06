@@ -99,6 +99,12 @@ def render_jupyter_notebook(args: list[str]) -> str:
     return f"jupyter nbconvert --to html {file}"
 
 
+@register_command("jupyter", "functions", "Start jupyter server")
+def start_jupyter_notebook(args: list[str]) -> str:
+    port = 9000 if len(args) == 0 else args[0]
+    return f"jupyter notebook --port={port} --NotebookApp.token='lfyuhuang'"
+
+
 # Git related
 @register_command("g.stat", "git", "Get git status")
 def git_status(args: None) -> str:
