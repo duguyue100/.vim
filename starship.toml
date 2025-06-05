@@ -66,7 +66,7 @@ format = '[$user@]($style)'
 
 style = "bg:sky fg:crust"
 fish_style_pwd_dir_length=2
-format = "[](sky)[  ](bg:sky fg:crust)(sky)[$path ]($style)[](sky)"
+format = "[](sky)[  ](bg:sky fg:crust)(sky)[$path ]($style)[](sky)"
 truncation_length = 3
 
 [git_branch]
