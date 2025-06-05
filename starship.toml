@@ -5,26 +5,26 @@ add_newline = false
 format = """
 [](silver)\
 $os\
-[](bg:sky fg:silver)\
-[ ](bg:sky fg:crust)\
+[](silver)\
+[](pink)\
+$username\
+$hostname\
+[](pink)\
 $directory\
-[](bg:green fg:sky)\
 $git_branch\
 $git_status\
-[ ](fg:green)\
-$line_break\
-$character"""
-
-right_format = """
-[](sky)\
+[](lavender)\
 $c\
 $rust\
 $golang\
 $nodejs\
 $python\
 $conda\
-$username\
-$hostname"""
+[](lavender)\
+$cmd_duration\
+$line_break\
+$character"""
+
 
 palette = 'catppuccin_mocha'
 
@@ -55,45 +55,38 @@ RedHatEnterprise = "󱄛"
 
 [hostname]
 ssh_only = false
-format = '[$hostname ](bg:pink fg:bold crust) '
+format = '[$hostname](bg:pink fg:bold crust)'
 disabled = false
 
 [username]
 show_always = true
 style_user = "bg:pink fg:crust"
 style_root = "bg:pink fg:crust"
-format = '[ $user@]($style)'
+format = '[$user@]($style)'
 
 [directory]
-style = "bg:sky fg:crust"
-format = "[ $path ]($style)"
-truncation_length = 3
-truncation_symbol = "../"
 
-[directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = "󰝚 "
-"Pictures" = " "
-"Developer" = "󰲋 "
+style = "bg:sky fg:crust"
+fish_style_pwd_dir_length=2
+format = "[](sky)[  ](bg:sky fg:crust)(sky)[$path ]($style)[](sky)"
+truncation_length = 3
 
 [git_branch]
 symbol = ""
 style = "bg:green"
-format = '[[ $symbol $branch ](fg:crust bg:green)]($style)'
+format = '[[](green)[ $symbol $branch ](fg:crust bg:green)[](green)]($style)'
 
 [git_status]
-style = "bg:green"
-format = '[[($all_status$ahead_behind )](fg:bold crust bg:green)]($style)'
+style = "bg:yellow"
+format = '[[](yellow)[(($conflicted )($deleted )($modified )($staged )($untracked )$ahead_behind)](fg:bold crust bg:yellow)[](yellow)]($style)'
+up_to_date='✓'
 conflicted = '🏳'
-ahead = '🏎💨'
-behind = '😰'
-diverged = '😵'
-untracked = '?'
-stashed = '📦'
-modified = '📝'
-staged = '[++\($count\)](green)'
-deleted = '🗑'
+untracked = '?$count'
+modified = '!$count'
+staged = '[🟆 $count](fg:bold crust bg:yellow)'
+deleted = '🗑 $count'
+ahead="⇡$count"
+behind="⇣$count"
 
 [nodejs]
 symbol = ""
@@ -117,8 +110,8 @@ format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 
 [python]
 symbol = ""
-style = "bg:sky"
-format = '[[ $symbol(\(#$virtualenv\)) ](fg:crust bg:sky)]($style)'
+style = "bg:lavender"
+format = '[[ $symbol $virtualenv ](fg:crust bg:lavender)]($style)'
 
 [docker_context]
 symbol = ""
@@ -126,9 +119,9 @@ style = "bg:sapphire"
 format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
 
 [conda]
-symbol = "  "
-style = "fg:crust bg:sky"
-format = '[ $environment ]($style)'
+symbol = "◈ "
+style = "fg:crust bg:lavender"
+format = '[$symbol$environment ]($style)'
 ignore_base = false
 
 [time]
@@ -138,37 +131,37 @@ style = "bg:lavender"
 format = '[[  $time ](fg:crust bg:lavender)]($style)'
 
 [line_break]
-disabled = true
+disabled = false
 
 [character]
-disabled = true
-success_symbol = '[❯](bold fg:green)'
-error_symbol = '[❯](bold fg:red)'
-vimcmd_symbol = '[❮](bold fg:green)'
-vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'
-vimcmd_replace_symbol = '[❮](bold fg:lavender)'
-vimcmd_visual_symbol = '[❮](bold fg:yellow)'
+disabled = false
+success_symbol = '[🢩 ](bold fg:green)'
+error_symbol = '[🢩 ](bold fg:red)'
+vimcmd_symbol = '[🢨 ](bold fg:green)'
+vimcmd_replace_one_symbol = '[🢨 ](bold fg:lavender)'
+vimcmd_replace_symbol = '[🢨 ](bold fg:lavender)'
+vimcmd_visual_symbol = '[🢨 ](bold fg:yellow)'
 
 [cmd_duration]
 show_milliseconds = true
-format = " in $duration "
-style = "bg:lavender"
+format = "[](teal)[ in $duration]($style)[](teal)"
+style = "fg:crust bg:teal"
 disabled = false
 show_notifications = true
-min_time_to_notify = 45000
+min_time_to_notify = 20000
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
 flamingo = "#f2cdcd"
-pink = "#f5c2e7"
+pink = "#B481BB"
 mauve = "#cba6f7"
 red = "#f38ba8"
 maroon = "#eba0ac"
 peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
+yellow = "#E8B647"
+green = "#5DAC81"
+teal = "#EB7A77"
+sky = "#58B2DC"
 sapphire = "#74c7ec"
 blue = "#89b4fa"
 lavender = "#b4befe"
@@ -184,7 +177,7 @@ surface0 = "#313244"
 base = "#1e1e2e"
 mantle = "#181825"
 crust = "#11111b"
-silver = "#a3aed2"
+silver = "#91989F"
 
 [palettes.catppuccin_frappe]
 rosewater = "#f2d5cf"
