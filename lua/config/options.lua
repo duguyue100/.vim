@@ -52,7 +52,7 @@ opt.wildignore = "*.o,*~,*.pyc,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store"
 opt.wildmenu = true
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.wrap = true
-opt.shell="/usr/bin/bash"
+opt.shell="bash"
 
 if vim.fn.has("nvim-0.9.0") == 1 then
   opt.splitkeep = "screen"
