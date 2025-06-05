@@ -24,10 +24,10 @@ alias slg="SKIP=pytest,pytest_docs,mypy,nbqa-mypy,mypy_cloud,mypy_dto,mypy_sdk,n
 alias ls='lsd -X --group-directories-first -A'
 # alias tmux="TERM=xterm-256color tmux"
 alias btm="btm --dot_marker --enable_gpu"
+alias mc="mc -u"
 
 switch (uname)
     case Darwin
-        alias mc="mc -u"
     case Linux
         alias open="xdg-open"
         alias nvidia-smi="nvitop --colorful"
