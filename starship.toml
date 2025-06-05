@@ -6,10 +6,7 @@ format = """
 [](silver)\
 $os\
 [](silver)\
-[](pink)\
-$username\
 $hostname\
-[](pink)\
 $directory\
 $git_branch\
 $git_status\
@@ -55,8 +52,8 @@ Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
 
 [hostname]
-ssh_only = false
-format = '[$hostname](bg:pink fg:bold crust)'
+ssh_only = true
+format = '[](pink)[$hostname](bg:pink fg:bold crust)[](pink)'
 disabled = false
 
 [username]
