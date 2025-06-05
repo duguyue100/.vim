@@ -1,5 +1,13 @@
 # Common packages
 
+For development related packages, I'm switching to use `uv`, therefore, you only need
+to install `uv` by
+``bash
+pip install uv
+```
+
+**TODO**: The following packages can be refactored to a `pyproject.toml` file for better management.
+
 1. Essentials
     ```bash
     pip install \
@@ -23,20 +31,9 @@
     pip install nvitop
     ```
 
-2. PyTorch
-    ```bash
-    conda install pytorch torchvision torchaudio pytorch-cuda=12.4 -c pytorch -c nvidia
-    ```
-
 # macOS
 
-1. PyTorch
-    ```bash
-    pip install torch torchvision torchaudio
-    ```
-
-2. To install TensorFlow in Apple M1, follow the instructions
-    [here](https://developer.apple.com/metal/tensorflow-plugin/).
+No more packages to install
 
 ---
 After installing all the packages, please proceed to [Other Apps](./other_apps.md).

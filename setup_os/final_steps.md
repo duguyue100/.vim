@@ -44,6 +44,14 @@ cd ~/.vim
 git remote set-url origin git@github.com:duguyue100/.vim.git
 ```
 
+# Fish-related
+
+To migrate from Zsh to Fish, you can use the following command:
+```bash
+pip install zsh-history-to-fish
+zsh-history-to-fish
+```
+
 # OS Preferences
 
 ## Ubuntu

@@ -10,9 +10,9 @@ sudo tar -C /opt -xzf nvim-linux64.tar.gz
 
 ## macOS
 
-Use `bob` to install
+Use Homebrew to install
 ```bash
-bob use stable
+brew install neovim
 ```
 
 ## Configure

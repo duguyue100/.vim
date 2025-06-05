@@ -10,6 +10,7 @@
 2. Update and upgrade
     ```bash
     sudo apt-add-repository -y ppa:git-core/ppa
+    sudo add-apt-repository ppa:fish-shell/release-4
     sudo apt update && sudo apt upgrade -y
     # Restart the machine
     sudo reboot
@@ -25,7 +26,7 @@
     sudo apt install -y \
         build-essential binutils cmake curl tmux unzip openssh-server xclip zsh \
         ripgrep mc clang-format ruby-full curl zoxide git vlc libfuse2 \
-        plocate shellcheck duf
+        plocate shellcheck duf fish
     ```
 
     Install Ghostty
@@ -44,6 +45,11 @@
     Set Ghostty as the default terminal emulator
     ```bash
     sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/ghostty 60
+    ```
+
+    For fish prompt, install starship
+    ```
+    curl -sS https://starship.rs/install.sh | sh
     ```
 
 3. Install `bottom`. If you want, please check the latest version
@@ -68,9 +74,9 @@
     rm fd-musl_10.2.0_amd64.deb
     ```
 
-5. Install `nvm`
+5. Install `fnm`
     ```bash
-    wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+    curl -fsSL https://fnm.vercel.app/install | bash
     ```
 
 5. NVIDIA Driver. Tips: you can hit `Tab` to see the available versions, install a more recent version.
@@ -104,9 +110,9 @@ At this point, you've installed all necessary packages, and you can proceed to t
     You will be asked to supply your password in the middle as well, do so and wait
     for the installation to finish.
 
-    At this moment, you haven't cloned this repo yet, meaning you are not configuring
-    `zsh` and the rest of the dotfiles. So right after the installation, `brew` will
-    not work out of the box yet. Temporarily, run the following command to make it work.
+    At this moment, you haven't cloned this repo yet. So right after the installation,
+    `brew` will not work out of the box yet. Temporarily, run the following command to
+    make it work.
     ```bash
     eval "$(/opt/homebrew/bin/brew shellenv)"
     ```
@@ -123,7 +129,7 @@ At this point, you've installed all necessary packages, and you can proceed to t
         automake bison cmake ffmpeg gcc git libuv tmux wget findutils \
         zeromq ripgrep lazygit midnight-commander clang-format ruby lsd \
         zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf \
-        stats MonitorControl bob bash duf
+        stats MonitorControl bob bash duf fish starship
     ```
 
 ---
