@@ -31,6 +31,7 @@ palette = 'catppuccin_mocha'
 [os]
 disabled = false
 style = "bg:silver fg:crust"
+format = '[ $symbol ]($style)'
 
 [os.symbols]
 Windows = ""
@@ -80,11 +81,11 @@ format = '[[](green)[ $symbol $branch ](fg:crust bg:green)[](green)]($styl
 style = "bg:yellow"
 format = '[[](yellow)[(($conflicted )($deleted )($modified )($staged )($untracked )$ahead_behind)](fg:bold crust bg:yellow)[](yellow)]($style)'
 up_to_date='✓'
-conflicted = '🏳'
+conflicted = '='
 untracked = '?$count'
 modified = '!$count'
-staged = '[🟆 $count](fg:bold crust bg:yellow)'
-deleted = '🗑 $count'
+staged = '[+ $count](fg:bold crust bg:yellow)'
+deleted = '✘ $count'
 ahead="⇡$count"
 behind="⇣$count"
 
@@ -135,12 +136,12 @@ disabled = false
 
 [character]
 disabled = false
-success_symbol = '[🢩 ](bold fg:green)'
-error_symbol = '[🢩 ](bold fg:red)'
-vimcmd_symbol = '[🢨 ](bold fg:green)'
-vimcmd_replace_one_symbol = '[🢨 ](bold fg:lavender)'
-vimcmd_replace_symbol = '[🢨 ](bold fg:lavender)'
-vimcmd_visual_symbol = '[🢨 ](bold fg:yellow)'
+success_symbol = '[Σ](bold fg:green)'
+error_symbol = '[Σ](bold fg:red)'
+vimcmd_symbol = '[∫](bold fg:green)'
+vimcmd_replace_one_symbol = '[∫](bold fg:lavender)'
+vimcmd_replace_symbol = '[∫](bold fg:lavender)'
+vimcmd_visual_symbol = '[∫](bold fg:yellow)'
 
 [cmd_duration]
 show_milliseconds = true
