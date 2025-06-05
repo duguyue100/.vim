@@ -15,3 +15,5 @@ plugged/*
 
 lazy-lock.json
 .luarc.json
+
+conda.fish

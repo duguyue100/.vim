@@ -25,22 +25,8 @@ alias ls='lsd -X --group-directories-first -A'
 alias btm="btm --dot_marker --enable_gpu"
 alias nvidia-smi="nvitop --colorful"
 
+source $HOME/.vim/conda.fish
+
 starship init fish | source
 zoxide init fish | source
 fzf --fish | source
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-if test -f $HOME/miniconda3/bin/conda
-    eval $HOME/miniconda3/bin/conda "shell.fish" hook $argv | source
-else
-    if test -f "$HOME/miniconda3/etc/fish/conf.d/conda.fish"
-        . "$HOME/miniconda3/etc/fish/conf.d/conda.fish"
-    else
-        set -x PATH $HOME/miniconda3/bin $PATH
-    end
-end
-conda config --set changeps1 false
-# <<< conda initialize <<<
-
-conda activate lf-work

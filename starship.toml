@@ -148,7 +148,7 @@ show_milliseconds = true
 format = "[](teal)[ in $duration]($style)[](teal)"
 style = "fg:crust bg:teal"
 disabled = false
-show_notifications = true
+show_notifications = false
 min_time_to_notify = 20000
 
 [palettes.catppuccin_mocha]
