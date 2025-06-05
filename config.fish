@@ -15,19 +15,23 @@ export PATH="/opt/nvim-linux64/bin:$PATH"
 
 alias m=$HOME/.vim/macman/macman
 alias n=nvim
-
 alias towork="cd $HOME/workspace"
 alias todown="cd $HOME/Downloads"
 alias tocore="cd $HOME/workspace/latticeflow-core"
-alias tozoo="cd $HOME/workspace/models_zoo"
-alias open="xdg-open"
 alias lg="lazygit"
 alias slg="SKIP=pytest,pytest_docs,mypy,nbqa-mypy,mypy_cloud,mypy_dto,mypy_sdk,nbqa-flake8,mypy_nbqa_runner,shellcheck lazygit"
 
 alias ls='lsd -X --group-directories-first -A'
 # alias tmux="TERM=xterm-256color tmux"
 alias btm="btm --dot_marker --enable_gpu"
-alias nvidia-smi="nvitop --colorful"
+
+switch (uname)
+    case Darwin
+        alias mc="mc -u"
+    case Linux
+        alias open="xdg-open"
+        alias nvidia-smi="nvitop --colorful"
+end
 
 source $HOME/.vim/conda.fish
 
