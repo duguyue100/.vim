@@ -10,14 +10,7 @@ $hostname\
 $directory\
 $git_branch\
 $git_status\
-[](lavender)\
-$c\
-$rust\
-$golang\
-$nodejs\
 $python\
-$conda\
-[](lavender)\
 $cmd_duration\
 $line_break\
 $character"""
@@ -67,7 +60,7 @@ format = '[$user@]($style)'
 style = "bg:sky fg:crust"
 fish_style_pwd_dir_length=2
 format = "[](sky)[  ](bg:sky fg:crust)(sky)[$path ]($style)[](sky)"
-truncation_length = 3
+truncation_length = 2
 
 [git_branch]
 symbol = ""
@@ -109,7 +102,7 @@ format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
 [python]
 symbol = ""
 style = "bg:lavender"
-format = '[[ $symbol $virtualenv ](fg:crust bg:lavender)]($style)'
+format = '[[](lavender)[$symbol $virtualenv](fg:crust bg:lavender)[](lavender)]($style)'
 
 [docker_context]
 symbol = ""
@@ -121,6 +114,7 @@ symbol = "◈ "
 style = "fg:crust bg:lavender"
 format = '[$symbol$environment ]($style)'
 ignore_base = false
+disabled=true
 
 [time]
 disabled = false
