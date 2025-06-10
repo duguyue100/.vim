@@ -31,6 +31,11 @@ switch (uname)
     case Linux
         alias open="xdg-open"
         alias nvidia-smi="nvitop --colorful"
+        set FNM_PATH "$HOME/.local/share/fnm"
+        if [ -d "$FNM_PATH" ]
+            set PATH "$FNM_PATH" $PATH
+            fnm env | source
+        end
 end
 
 source $HOME/.vim/conda.fish
