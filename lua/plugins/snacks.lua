@@ -17,6 +17,7 @@ return {
             toggle = { enable = true },
             zen = { enabled = true },
             notifier = { enabled = true },
+            image = { enabled = true },
         },
         keys = {
             { "<leader>gb", function() Snacks.gitbrowse() end, desc = "Git Browse" },
