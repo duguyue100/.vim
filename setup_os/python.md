@@ -2,7 +2,7 @@
 
 For development related packages, I'm switching to use `uv`, therefore, you only need
 to install `uv` by
-``bash
+```bash
 pip install uv
 ```
 
