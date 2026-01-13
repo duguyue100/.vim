@@ -23,6 +23,8 @@ alias togo="cd $HOME/workspace/latticeflow-core/assessment"
 alias lg="lazygit"
 alias slg="SKIP=pytest,pytest_docs,mypy,nbqa-mypy,mypy_cloud,mypy_dto,mypy_sdk,nbqa-flake8,mypy_nbqa_runner,shellcheck lazygit"
 alias reload="source $HOME/.config/fish/config.fish"
+# shortcut to activate venv faster
+alias uvact="source .venv/bin/activate.fish"
 
 alias ls='lsd -X --group-directories-first -A'
 # alias tmux="TERM=xterm-256color tmux"
