@@ -1,0 +1,6 @@
+customCommands:
+  - key: "I"
+    description: "Ignore file locally (.git/info/exclude)"
+    context: "files"
+    command: >
+      sh -c 'echo "{{.SelectedFile.Name}}" >> .git/info/exclude'
