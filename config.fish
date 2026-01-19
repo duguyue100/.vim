@@ -21,7 +21,7 @@ alias todown="cd $HOME/Downloads"
 alias tocore="cd $HOME/workspace/latticeflow-core"
 alias togo="cd $HOME/workspace/latticeflow-core/assessment"
 alias lg="lazygit"
-alias slg="SKIP=pytest,pytest_docs,mypy,nbqa-mypy,nbqa-flake8,mypy_nbqa_runner,shellcheck lazygit"
+alias slg="SKIP=pytest,pytest_docs,mypy,nbqa-mypy,nbqa-flake8,mypy_nbqa_runner,shellcheck,actionlint lazygit"
 alias reload="source $HOME/.config/fish/config.fish"
 # shortcut to activate venv faster
 alias uvact="source .venv/bin/activate.fish"
