@@ -46,3 +46,9 @@ map("n", "<space>", "/", { desc = "Search", silent = true })
 map("n", "<leader>ss", "<cmd>lua require('persistence').load()<cr>", { desc = "Load session", silent = true })
 map("n", "<leader>sl", "<cmd>lua require('persistence').load({ last = true })<cr>", { desc = "Load last session", silent = true })
 map("n", "<leader>sd", "<cmd>lua require('persistence').stop()<cr>", { desc = "Stop saving on exit", silent = true })
+
+-- OpenCode keymap
+map({ "n", "x" }, "<leader>oa", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask opencode…" })
+map({ "n", "x" }, "<leader>os", function() require("opencode").select() end, { desc = "Execute opencode action…" })
+map({ "n", "t" }, "<leader>ot", function() require("opencode").toggle() end, { desc = "Toggle opencode" })
+
