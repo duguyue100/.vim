@@ -25,6 +25,9 @@ alias slg="SKIP=pytest,pytest_docs,mypy,nbqa-mypy,nbqa-flake8,mypy_nbqa_runner,s
 alias reload="source $HOME/.config/fish/config.fish"
 # shortcut to activate venv faster
 alias uvact="source .venv/bin/activate.fish"
+function ocweb
+    bash -c 'exec -a ocweb opencode web --mdns --mdns-domain yuhuangoc.local'
+end
 
 alias ls='lsd -X --group-directories-first -A'
 # alias tmux="TERM=xterm-256color tmux"
