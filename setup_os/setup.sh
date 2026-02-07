@@ -612,7 +612,10 @@ macos_step_10_fish_setup() {
         "Open ${HOME}/.vim/conda.fish and change 'env_name' to your conda environment name."
 
     if confirm_step "Switch Default Shell to Fish" \
+        "echo $(which fish) | sudo tee -a /etc/shells" \
         "chsh -s \$(which fish)"; then
+        run_cmd 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+        run_cmd "echo $(which fish) | sudo tee -a /etc/shells"
         run_cmd "chsh -s \$(which fish)"
         warn "You may need to log out and log back in for this to take effect."
     fi
