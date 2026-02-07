@@ -491,9 +491,19 @@ ubuntu_step_25_os_preferences() {
 # =============================================================================
 
 macos_step_1_chrome() {
-    manual_step "Step 1: Install Google Chrome (Optional)" \
-        "Download Google Chrome from https://www.google.com/chrome/ using Safari." \
-        "Set Chrome as the default browser and sign in to your Google account."
+    if confirm_step "Step 1: Install Google Chrome (Optional)" \
+        "curl -L -o /tmp/googlechrome.dmg https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg" \
+        "hdiutil attach /tmp/googlechrome.dmg -nobrowse" \
+        "cp -R /Volumes/Google\\ Chrome/Google\\ Chrome.app /Applications/" \
+        "hdiutil detach /Volumes/Google\\ Chrome" \
+        "rm /tmp/googlechrome.dmg"; then
+        run_cmd "curl -L -o /tmp/googlechrome.dmg https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg"
+        run_cmd "hdiutil attach /tmp/googlechrome.dmg -nobrowse"
+        run_cmd "cp -R /Volumes/Google\\ Chrome/Google\\ Chrome.app /Applications/"
+        run_cmd "hdiutil detach /Volumes/Google\\ Chrome"
+        run_cmd "rm /tmp/googlechrome.dmg"
+        info "Google Chrome installed successfully."
+    fi
 }
 
 macos_step_2_os_updates() {
@@ -521,8 +531,8 @@ macos_step_4_ghostty() {
 
 macos_step_5_essential_packages() {
     if confirm_step "Step 5: Install Essential Packages via Homebrew" \
-        "brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship"; then
-        run_cmd "eval \"\$(/opt/homebrew/bin/brew shellenv)\" && brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship"
+        "brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship anomalyco/tap/opencode"; then
+        run_cmd "eval \"\$(/opt/homebrew/bin/brew shellenv)\" && brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship anomalyco/tap/opencode"
     fi
 }
 
@@ -544,7 +554,7 @@ macos_step_6_git_config() {
 
 macos_step_7_clone_repo() {
     if [[ -d "${HOME}/.vim" ]]; then
-        info "~/.vim already exists, skipping clone."
+        info "$HOME/.vim already exists, skipping clone."
     else
         if confirm_step "Step 7: Clone .vim Repo" \
             "git clone https://github.com/duguyue100/.vim.git ~/.vim"; then
@@ -576,7 +586,7 @@ macos_step_9_miniconda() {
     read -rp "Enter conda environment name (e.g., dev): " env_name
     if [[ -n "$env_name" ]]; then
         if confirm_step "Create Conda Env: $env_name" \
-            "${HOME}/miniconda3/bin/conda create -n $env_name python=3.10 -y"; then
+            "${HOME}/miniconda3/bin/conda create -n $env_name python=3.12 -y"; then
             run_cmd "\"${HOME}/miniconda3/bin/conda\" create -n \"$env_name\" python=3.10 -y"
         fi
     else
@@ -633,12 +643,10 @@ macos_step_11_symlinks_and_tools() {
 
 macos_step_12_python_packages() {
     if confirm_step "Step 12: Install Python Packages (uv, essentials, dev tools)" \
-        "pip install uv" \
-        "pip install matplotlib seaborn numpy scipy scikit-learn scikit-image opencv-python pandas h5py tqdm" \
-        "pip install pynvim jedi-language-server pre-commit mypy==1.7.0 types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 pandas-stubs pyinstrument types-dataclasses==0.1.7 jupyter-nbextensions-configurator yamllint"; then
-        run_cmd "pip install uv"
-        run_cmd "pip install matplotlib seaborn numpy scipy scikit-learn scikit-image opencv-python pandas h5py tqdm"
-        run_cmd "pip install pynvim jedi-language-server pre-commit mypy==1.7.0 types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 pandas-stubs pyinstrument types-dataclasses==0.1.7 jupyter-nbextensions-configurator yamllint"
+        "curl -LsSf https://astral.sh/uv/install.sh | sh" \
+        "pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"; then
+        run_cmd "curl -LsSf https://astral.sh/uv/install.sh | sh"
+        run_cmd "pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"
     fi
 }
 
@@ -723,17 +731,8 @@ macos_step_18_git_remote() {
     fi
 }
 
-macos_step_19_fish_history() {
-    if confirm_step "Step 19: Migrate Zsh History to Fish" \
-        "pip install zsh-history-to-fish" \
-        "zsh-history-to-fish"; then
-        run_cmd "pip install zsh-history-to-fish"
-        run_cmd "zsh-history-to-fish"
-    fi
-}
-
-macos_step_20_os_preferences() {
-    manual_step "Step 20: macOS Preferences" \
+macos_step_19_os_preferences() {
+    manual_step "Step 19: macOS Preferences" \
         "Clean up Dock: Right-click icons -> Options -> Remove from Dock." \
         "System Preferences -> Desktop & Dock: turn on 'Automatically hide and show the Dock'." \
         "System Preferences -> Appearance: choose 'Auto'." \
@@ -794,8 +793,7 @@ MACOS_STEPS=(
     macos_step_16_docker
     macos_step_17_ssh
     macos_step_18_git_remote
-    macos_step_19_fish_history
-    macos_step_20_os_preferences
+    macos_step_19_os_preferences
 )
 
 # =============================================================================
