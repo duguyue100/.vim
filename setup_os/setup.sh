@@ -577,6 +577,7 @@ macos_step_9_miniconda() {
         "wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Darwin-arm64.sh -O ~/miniconda.sh" \
         "bash ~/miniconda.sh -b -p ~/miniconda3" \
         "rm ~/miniconda.sh"; then
+        run_cmd 'eval "$(/opt/homebrew/bin/brew shellenv)"'
         run_cmd "wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Darwin-arm64.sh -O \"${HOME}/miniconda.sh\""
         run_cmd "bash \"${HOME}/miniconda.sh\" -b -p \"${HOME}/miniconda3\""
         run_cmd "rm \"${HOME}/miniconda.sh\""
