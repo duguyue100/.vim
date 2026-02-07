@@ -22,7 +22,7 @@ set -euo pipefail
 # ── Paths & State ────────────────────────────────────────────────────────────
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
-STATE_FILE="${REPO_DIR}/.setup_os_state"
+STATE_FILE="${HOME}/.setup_os_state"
 
 # ── Colors ───────────────────────────────────────────────────────────────────
 RED='\033[0;31m'
@@ -574,10 +574,10 @@ macos_step_8_ghostty_config() {
 
 macos_step_9_miniconda() {
     if confirm_step "Step 9: Install Miniconda" \
-        "wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh -O ~/miniconda.sh" \
+        "wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Darwin-arm64.sh -O ~/miniconda.sh" \
         "bash ~/miniconda.sh -b -p ~/miniconda3" \
         "rm ~/miniconda.sh"; then
-        run_cmd "wget https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-arm64.sh -O \"${HOME}/miniconda.sh\""
+        run_cmd "wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Darwin-arm64.sh -O \"${HOME}/miniconda.sh\""
         run_cmd "bash \"${HOME}/miniconda.sh\" -b -p \"${HOME}/miniconda3\""
         run_cmd "rm \"${HOME}/miniconda.sh\""
     fi
