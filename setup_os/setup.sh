@@ -291,7 +291,7 @@ ubuntu_step_12_ghostty_config() {
 
 ubuntu_step_13_fish_setup() {
     if confirm_step "Step 13: Configure Fish Shell" \
-        "uv venv --python 3.12 --directory \${HOME}"
+        "uv venv --python 3.12 --directory \${HOME}" \
         "mkdir -p \${HOME}/.config/fish" \
         "ln -sf \${HOME}/.vim/config.fish \${HOME}/.config/fish/config.fish" \
         "ln -sf \${HOME}/.vim/starship.toml \${HOME}/.config/starship.toml" \
@@ -513,11 +513,12 @@ macos_step_8_ghostty_config() {
 
 macos_step_9_fish_setup() {
     if confirm_step "Step 9: Configure Fish Shell" \
-        "uv venv --python 3.12 --directory \${HOME}"
+        "uv venv --python 3.12 --directory \${HOME}" \
         "mkdir -p \${HOME}/.config/fish" \
         "ln -sf \${HOME}/.vim/config.fish \${HOME}/.config/fish/config.fish" \
         "ln -sf \${HOME}/.vim/starship.toml \${HOME}/.config/starship.toml" \
         "cp \${HOME}/.vim/conda.fish.template \${HOME}/.vim/conda.fish"; then
+        run_cmd 'eval "$(/opt/homebrew/bin/brew shellenv)"'
         run_cmd "uv venv --python 3.12 --directory \"${HOME}\""
         run_cmd "mkdir -p \"${HOME}/.config/fish\""
         run_cmd "rm -f \"${HOME}/.config/fish/config.fish\""
