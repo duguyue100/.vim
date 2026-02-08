@@ -21,7 +21,6 @@ set -euo pipefail
 
 # ── Paths & State ────────────────────────────────────────────────────────────
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_DIR="$(dirname "$SCRIPT_DIR")"
 STATE_FILE="${HOME}/.setup_os_state"
 
 # ── Colors ───────────────────────────────────────────────────────────────────
@@ -226,8 +225,8 @@ ubuntu_step_5_starship() {
 
 ubuntu_step_6_linuxbrew() {
     if confirm_step "Step 6: Install Linuxbrew" \
-        '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'; then
-        run_cmd '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+        "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""; then
+        run_cmd "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
         info "Linuxbrew installed successfully."
     fi
 }
@@ -294,18 +293,14 @@ ubuntu_step_13_fish_setup() {
         "uv venv --python 3.12 --directory \${HOME}" \
         "mkdir -p \${HOME}/.config/fish" \
         "ln -sf \${HOME}/.vim/config.fish \${HOME}/.config/fish/config.fish" \
-        "ln -sf \${HOME}/.vim/starship.toml \${HOME}/.config/starship.toml" \
-        "cp \${HOME}/.vim/conda.fish.template \${HOME}/.vim/conda.fish"; then
+        "ln -sf \${HOME}/.vim/starship.toml \${HOME}/.config/starship.toml"; then
+        run_cmd "eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\""
         run_cmd "uv venv --python 3.12 --directory \"${HOME}\""
         run_cmd "mkdir -p \"${HOME}/.config/fish\""
         run_cmd "rm -f \"${HOME}/.config/fish/config.fish\""
         run_cmd "ln -s \"${HOME}/.vim/config.fish\" \"${HOME}/.config/fish/config.fish\""
         run_cmd "ln -sf \"${HOME}/.vim/starship.toml\" \"${HOME}/.config/starship.toml\""
-        run_cmd "cd \"${HOME}/.vim\" && cp conda.fish.template conda.fish"
     fi
-
-    manual_step "Edit conda.fish" \
-        "Open ${HOME}/.vim/conda.fish and change 'env_name' to your conda environment name."
 
     if confirm_step "Switch Default Shell to Fish" \
         "chsh -s \$(which fish)"; then
@@ -453,9 +448,9 @@ macos_step_2_os_updates() {
 
 macos_step_3_homebrew() {
     if confirm_step "Step 3: Install Homebrew" \
-        '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'; then
-        run_cmd '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
-        run_cmd 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+        "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""; then
+        run_cmd "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+        run_cmd "eval \"$(/opt/homebrew/bin/brew shellenv)\""
         info "Verifying brew installation..."
         run_cmd "which brew"
     fi
@@ -516,21 +511,19 @@ macos_step_9_fish_setup() {
         "uv venv --python 3.12 --directory \${HOME}" \
         "mkdir -p \${HOME}/.config/fish" \
         "ln -sf \${HOME}/.vim/config.fish \${HOME}/.config/fish/config.fish" \
-        "ln -sf \${HOME}/.vim/starship.toml \${HOME}/.config/starship.toml" \
-        "cp \${HOME}/.vim/conda.fish.template \${HOME}/.vim/conda.fish"; then
-        run_cmd 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+        "ln -sf \${HOME}/.vim/starship.toml \${HOME}/.config/starship.toml"; then
+        run_cmd "eval \"$(/opt/homebrew/bin/brew shellenv)\""
         run_cmd "uv venv --python 3.12 --directory \"${HOME}\""
         run_cmd "mkdir -p \"${HOME}/.config/fish\""
         run_cmd "rm -f \"${HOME}/.config/fish/config.fish\""
         run_cmd "ln -s \"${HOME}/.vim/config.fish\" \"${HOME}/.config/fish/config.fish\""
         run_cmd "ln -sf \"${HOME}/.vim/starship.toml\" \"${HOME}/.config/starship.toml\""
-        run_cmd "cd \"${HOME}/.vim\" && cp conda.fish.template conda.fish"
     fi
 
     if confirm_step "Switch Default Shell to Fish" \
         "echo \$(which fish) | sudo tee -a /etc/shells" \
         "chsh -s \$(which fish)"; then
-        run_cmd 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+        run_cmd "eval \"$(/opt/homebrew/bin/brew shellenv)\""
         run_cmd "echo \$(which fish) | sudo tee -a /etc/shells"
         run_cmd "chsh -s \$(which fish)"
         warn "You may need to log out and log back in for this to take effect."
