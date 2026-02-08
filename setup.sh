@@ -290,7 +290,7 @@ ubuntu_step_12_fish_setup() {
         "mkdir -p \${HOME}/.config/fish" \
         "ln -sf \${HOME}/.vim/config.fish \${HOME}/.config/fish/config.fish" \
         "ln -sf \${HOME}/.vim/starship.toml \${HOME}/.config/starship.toml"; then
-        run_cmd "eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\""
+        run_cmd 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
         run_cmd "uv venv --python 3.12 --directory \"${HOME}\""
         run_cmd "mkdir -p \"${HOME}/.config/fish\""
         run_cmd "rm -f \"${HOME}/.config/fish/config.fish\""
