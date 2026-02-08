@@ -197,8 +197,8 @@ ubuntu_step_2_update() {
 
 ubuntu_step_3_essential_packages() {
     if confirm_step "Step 3: Install Essential Packages" \
-        "sudo apt install -y build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep mc clang-format ruby-full curl zoxide git vlc libfuse2 plocate shellcheck duf fish"; then
-        run_cmd "sudo apt install -y build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep mc clang-format ruby-full curl zoxide git vlc libfuse2 plocate shellcheck duf fish"
+        "sudo apt install -y build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep mc clang-format ruby-full curl zoxide git vlc libfuse2 plocate shellcheck duf fish procps"; then
+        run_cmd "sudo apt install -y build-essential binutils cmake curl tmux unzip openssh-server xclip zsh ripgrep mc clang-format ruby-full curl zoxide git vlc libfuse2 plocate shellcheck duf fish procps"
     fi
 }
 
@@ -224,59 +224,37 @@ ubuntu_step_5_starship() {
     fi
 }
 
-ubuntu_step_6_bottom() {
-    if confirm_step "Step 6: Install bottom (btm)" \
-        "wget https://github.com/ClementTsang/bottom/releases/download/0.10.2/bottom_0.10.2-1_amd64.deb" \
-        "sudo dpkg -i bottom_0.10.2-1_amd64.deb"; then
-        run_cmd "wget https://github.com/ClementTsang/bottom/releases/download/0.10.2/bottom_0.10.2-1_amd64.deb"
-        run_cmd "sudo dpkg -i bottom_0.10.2-1_amd64.deb"
-        run_cmd "rm -f bottom_0.10.2-1_amd64.deb"
+ubuntu_step_6_linuxbrew() {
+    if confirm_step "Step 6: Install Linuxbrew" \
+        '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'; then
+        run_cmd '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
+        info "Linuxbrew installed successfully."
     fi
 }
 
-ubuntu_step_7_lsd() {
-    if confirm_step "Step 7: Install lsd" \
-        "wget https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd_1.1.5_amd64.deb" \
-        "sudo dpkg -i lsd_1.1.5_amd64.deb"; then
-        run_cmd "wget https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd_1.1.5_amd64.deb"
-        run_cmd "sudo dpkg -i lsd_1.1.5_amd64.deb"
-        run_cmd "rm -f lsd_1.1.5_amd64.deb"
+ubuntu_step_7_brew_packages() {
+    if confirm_step "Step 7: Install Packages via Linuxbrew" \
+        "brew install bottom lsd fd fnm lazygit uv neovim"; then
+        run_cmd "eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\" && brew install bottom lsd fd fnm lazygit uv neovim"
     fi
 }
 
-ubuntu_step_8_fd() {
-    if confirm_step "Step 8: Install fd" \
-        "wget https://github.com/sharkdp/fd/releases/download/v10.2.0/fd_10.2.0_amd64.deb" \
-        "sudo dpkg -i fd_10.2.0_amd64.deb"; then
-        run_cmd "wget https://github.com/sharkdp/fd/releases/download/v10.2.0/fd_10.2.0_amd64.deb"
-        run_cmd "sudo dpkg -i fd_10.2.0_amd64.deb"
-        run_cmd "rm -f fd_10.2.0_amd64.deb"
-    fi
-}
-
-ubuntu_step_9_fnm() {
-    if confirm_step "Step 9: Install fnm (Fast Node Manager)" \
-        "curl -fsSL https://fnm.vercel.app/install | bash"; then
-        run_cmd "curl -fsSL https://fnm.vercel.app/install | bash"
-    fi
-}
-
-ubuntu_step_10_nvidia_driver() {
+ubuntu_step_8_nvidia_driver() {
     read -rp "$(echo -e "${BOLD}Do you have NVIDIA GPUs and want to install drivers? [y/n]: ${NC}")" has_nvidia
     if [[ "$has_nvidia" == "y" || "$has_nvidia" == "Y" ]]; then
-        manual_step "Step 10: Install NVIDIA Driver" \
+        manual_step "Step 8: Install NVIDIA Driver" \
             "Run: sudo apt install nvidia-driver-<version>" \
             "Tip: press Tab to see available versions, pick a recent one." \
             "Then: sudo apt install nvidia-modprobe"
     fi
 }
 
-ubuntu_step_11_reboot_after_packages() {
-    prompt_reboot 12
+ubuntu_step_9_reboot_after_packages() {
+    prompt_reboot 9
 }
 
-ubuntu_step_12_git_config() {
-    header "Step 12: Setup Git Config"
+ubuntu_step_10_git_config() {
+    header "Step 10: Setup Git Config"
     read -rp "Enter your Git user.name: " git_name
     read -rp "Enter your Git user.email: " git_email
     if [[ -n "$git_name" && -n "$git_email" ]]; then
@@ -291,19 +269,19 @@ ubuntu_step_12_git_config() {
     fi
 }
 
-ubuntu_step_13_clone_repo() {
+ubuntu_step_11_clone_repo() {
     if [[ -d "${HOME}/.vim" ]]; then
         info "~/.vim already exists, skipping clone."
     else
-        if confirm_step "Step 13: Clone .vim Repo" \
+        if confirm_step "Step 11: Clone .vim Repo" \
             "git clone https://github.com/duguyue100/.vim.git ~/.vim"; then
             run_cmd "git clone https://github.com/duguyue100/.vim.git \"${HOME}/.vim\""
         fi
     fi
 }
 
-ubuntu_step_14_ghostty_config() {
-    if confirm_step "Step 14: Apply Ghostty Config" \
+ubuntu_step_12_ghostty_config() {
+    if confirm_step "Step 12: Apply Ghostty Config" \
         "mkdir -p \${HOME}/.config/ghostty" \
         "ln -s \${HOME}/.vim/ghostty-config \${HOME}/.config/ghostty/config"; then
         run_cmd "mkdir -p \"${HOME}/.config/ghostty\""
@@ -311,34 +289,14 @@ ubuntu_step_14_ghostty_config() {
     fi
 }
 
-ubuntu_step_15_miniconda() {
-    if confirm_step "Step 15: Install Miniconda" \
-        "wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh" \
-        "bash ~/miniconda.sh -b -p ~/miniconda3" \
-        "rm ~/miniconda.sh"; then
-        run_cmd "wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O \"${HOME}/miniconda.sh\""
-        run_cmd "bash \"${HOME}/miniconda.sh\" -b -p \"${HOME}/miniconda3\""
-        run_cmd "rm \"${HOME}/miniconda.sh\""
-    fi
-
-    header "Create Conda Environment"
-    read -rp "Enter conda environment name (e.g., dev): " env_name
-    if [[ -n "$env_name" ]]; then
-        if confirm_step "Create Conda Env: $env_name" \
-            "${HOME}/miniconda3/bin/conda create -n $env_name python=3.10 -y"; then
-            run_cmd "\"${HOME}/miniconda3/bin/conda\" create -n \"$env_name\" python=3.10 -y"
-        fi
-    else
-        warn "Skipping conda environment creation."
-    fi
-}
-
-ubuntu_step_16_fish_setup() {
-    if confirm_step "Step 16: Configure Fish Shell" \
+ubuntu_step_13_fish_setup() {
+    if confirm_step "Step 13: Configure Fish Shell" \
+        "uv venv --python 3.12 --directory \${HOME}"
         "mkdir -p \${HOME}/.config/fish" \
         "ln -sf \${HOME}/.vim/config.fish \${HOME}/.config/fish/config.fish" \
         "ln -sf \${HOME}/.vim/starship.toml \${HOME}/.config/starship.toml" \
         "cp \${HOME}/.vim/conda.fish.template \${HOME}/.vim/conda.fish"; then
+        run_cmd "uv venv --python 3.12 --directory \"${HOME}\""
         run_cmd "mkdir -p \"${HOME}/.config/fish\""
         run_cmd "rm -f \"${HOME}/.config/fish/config.fish\""
         run_cmd "ln -s \"${HOME}/.vim/config.fish\" \"${HOME}/.config/fish/config.fish\""
@@ -356,8 +314,8 @@ ubuntu_step_16_fish_setup() {
     fi
 }
 
-ubuntu_step_17_symlinks_and_tools() {
-    if confirm_step "Step 17: Symlinks & Tools (darglint, tmux, mc, npm)" \
+ubuntu_step_14_symlinks_and_tools() {
+    if confirm_step "Step 14: Symlinks & Tools (darglint, tmux, mc, npm)" \
         "ln -sf \${HOME}/.vim/.darglint \${HOME}/.darglint" \
         "ln -sf \${HOME}/.vim/tmux.conf \${HOME}/.tmux.conf" \
         "git clone https://github.com/tmux-plugins/tpm \${HOME}/.tmux/plugins/tpm" \
@@ -376,45 +334,26 @@ ubuntu_step_17_symlinks_and_tools() {
         run_cmd "mkdir -p \"${HOME}/.config/mc\""
         run_cmd "rm -f \"${HOME}/.config/mc/mc.keymap\""
         run_cmd "ln -s \"${HOME}/.vim/mc.keymap\" \"${HOME}/.config/mc/mc.keymap\""
-        # fnm may need shell reload; try sourcing if available
-        run_cmd "export PATH=\"${HOME}/.local/share/fnm:\$PATH\" && eval \"\$(fnm env)\" && fnm install 20 && fnm use 20 && npm install --global yarn"
+        info "You can now use Ghostty as your terminal."
     fi
 }
 
-ubuntu_step_18_python_packages() {
-    if confirm_step "Step 18: Install Python Packages (uv, essentials, dev tools)" \
-        "pip install uv" \
-        "pip install matplotlib seaborn numpy scipy scikit-learn scikit-image opencv-python pandas h5py tqdm" \
-        "pip install pynvim jedi-language-server pre-commit mypy==1.7.0 types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 pandas-stubs pyinstrument types-dataclasses==0.1.7 jupyter-nbextensions-configurator yamllint"; then
-        run_cmd "pip install uv"
-        run_cmd "pip install matplotlib seaborn numpy scipy scikit-learn scikit-image opencv-python pandas h5py tqdm"
-        run_cmd "pip install pynvim jedi-language-server pre-commit mypy==1.7.0 types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 pandas-stubs pyinstrument types-dataclasses==0.1.7 jupyter-nbextensions-configurator yamllint"
+ubuntu_step_15_python_packages() {
+    if confirm_step "Step 15: Install Python Packages (essentials, dev tools)" \
+        "uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"; then
+        run_cmd "uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"
     fi
 
     read -rp "$(echo -e "${BOLD}Do you have NVIDIA GPUs? Install nvitop? [y/n]: ${NC}")" has_nvidia
     if [[ "$has_nvidia" == "y" || "$has_nvidia" == "Y" ]]; then
         if confirm_step "Install nvitop" "pip install nvitop"; then
-            run_cmd "pip install nvitop"
+            run_cmd "uv pip install nvitop"
         fi
     fi
 }
 
-ubuntu_step_19_neovim() {
-    if confirm_step "Step 19: Install Neovim" \
-        "curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz" \
-        "sudo rm -rf /opt/nvim-linux64" \
-        "sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz" \
-        "sudo mv /opt/nvim-linux-x86_64 /opt/nvim-linux64"; then
-        run_cmd "curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
-        run_cmd "sudo rm -rf /opt/nvim-linux64"
-        run_cmd "sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz"
-        run_cmd "sudo mv /opt/nvim-linux-x86_64 /opt/nvim-linux64"
-        run_cmd "rm -f nvim-linux-x86_64.tar.gz"
-    fi
-}
-
-ubuntu_step_20_neovim_config() {
-    if confirm_step "Step 20: Configure Neovim" \
+ubuntu_step_16_neovim_config() {
+    if confirm_step "Step 16: Configure Neovim" \
         "ln -sf \${HOME}/.vim \${HOME}/.config/nvim"; then
         run_cmd "ln -sf \"${HOME}/.vim\" \"${HOME}/.config/nvim\""
     fi
@@ -424,14 +363,14 @@ ubuntu_step_20_neovim_config() {
         "Neovim packages will be installed automatically on first launch."
 }
 
-ubuntu_step_21_docker() {
-    manual_step "Step 21: Install Docker" \
+ubuntu_step_17_docker() {
+    manual_step "Step 17: Install Docker" \
         "Follow the official Docker installation guide for Ubuntu:" \
         "  https://docs.docker.com/engine/install/ubuntu/"
 }
 
-ubuntu_step_22_ssh() {
-    if confirm_step "Step 22: SSH Key Setup" \
+ubuntu_step_18_ssh() {
+    if confirm_step "Step 18: SSH Key Setup" \
         "mkdir -p ~/.ssh"; then
         run_cmd "mkdir -p ~/.ssh"
     fi
@@ -459,15 +398,15 @@ ubuntu_step_22_ssh() {
         "      IdentityFile ~/.ssh/<default-key>"
 }
 
-ubuntu_step_23_git_remote() {
-    if confirm_step "Step 23: Switch .vim Remote to SSH" \
+ubuntu_step_19_git_remote() {
+    if confirm_step "Step 19: Switch .vim Remote to SSH" \
         "cd ~/.vim && git remote set-url origin git@github.com:duguyue100/.vim.git"; then
         run_cmd "cd \"${HOME}/.vim\" && git remote set-url origin git@github.com:duguyue100/.vim.git"
     fi
 }
 
-ubuntu_step_24_fish_history() {
-    if confirm_step "Step 24: Migrate Zsh History to Fish" \
+ubuntu_step_20_fish_history() {
+    if confirm_step "Step 20: Migrate Zsh History to Fish" \
         "pip install zsh-history-to-fish" \
         "zsh-history-to-fish"; then
         run_cmd "pip install zsh-history-to-fish"
@@ -475,8 +414,8 @@ ubuntu_step_24_fish_history() {
     fi
 }
 
-ubuntu_step_25_os_preferences() {
-    manual_step "Step 25: Ubuntu OS Preferences" \
+ubuntu_step_21_os_preferences() {
+    manual_step "Step 21: Ubuntu OS Preferences" \
         "Clean up Dock: Right-click icons -> Unpin from Favorites (keep Files & Trash)." \
         "Pin Chrome to the dock." \
         "Settings -> Ubuntu Desktop -> Desktop Icons: turn off 'Show Home Folder'." \
@@ -731,26 +670,22 @@ UBUNTU_STEPS=(
     ubuntu_step_3_essential_packages
     ubuntu_step_4_ghostty
     ubuntu_step_5_starship
-    ubuntu_step_6_bottom
-    ubuntu_step_7_lsd
-    ubuntu_step_8_fd
-    ubuntu_step_9_fnm
-    ubuntu_step_10_nvidia_driver
-    ubuntu_step_11_reboot_after_packages
-    ubuntu_step_12_git_config
-    ubuntu_step_13_clone_repo
-    ubuntu_step_14_ghostty_config
-    ubuntu_step_15_miniconda
-    ubuntu_step_16_fish_setup
-    ubuntu_step_17_symlinks_and_tools
-    ubuntu_step_18_python_packages
-    ubuntu_step_19_neovim
-    ubuntu_step_20_neovim_config
-    ubuntu_step_21_docker
-    ubuntu_step_22_ssh
-    ubuntu_step_23_git_remote
-    ubuntu_step_24_fish_history
-    ubuntu_step_25_os_preferences
+    ubuntu_step_6_linuxbrew
+    ubuntu_step_7_brew_packages
+    ubuntu_step_8_nvidia_driver
+    ubuntu_step_9_reboot_after_packages
+    ubuntu_step_10_git_config
+    ubuntu_step_11_clone_repo
+    ubuntu_step_12_ghostty_config
+    ubuntu_step_13_fish_setup
+    ubuntu_step_14_symlinks_and_tools
+    ubuntu_step_15_python_packages
+    ubuntu_step_16_neovim_config
+    ubuntu_step_17_docker
+    ubuntu_step_18_ssh
+    ubuntu_step_19_git_remote
+    ubuntu_step_20_fish_history
+    ubuntu_step_21_os_preferences
 )
 
 MACOS_STEPS=(
