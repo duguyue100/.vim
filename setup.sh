@@ -325,6 +325,7 @@ ubuntu_step_13_symlinks_and_tools() {
         run_cmd "mkdir -p \"${HOME}/.config/mc\""
         run_cmd "rm -f \"${HOME}/.config/mc/mc.keymap\""
         run_cmd "ln -s \"${HOME}/.vim/mc.keymap\" \"${HOME}/.config/mc/mc.keymap\""
+        rum_cmd "mkdir -p \"${HOME}/.config/opencode\""
         run_cmd "ln -s \"${HOME}/.vim/opencode/opencode.jsonc\" \"${HOME}/.config/opencode/opencode.jsonc\""
         warn "You may need to log out and log back in for this to take effect."
         warn "You can now use Ghostty as your terminal."
@@ -526,6 +527,7 @@ macos_step_10_symlinks_and_tools() {
         "\${HOME}/.tmux/plugins/tpm/bin/install_plugins" \
         "mkdir -p \${HOME}/.config/mc" \
         "ln -sf \${HOME}/.vim/mc.keymap \${HOME}/.config/mc/mc.keymap" \
+        "ln -sf \${HOME}/.vim/opencode/opencode.jsonc \${HOME}/.config/opencode/opencode.jsonc" \
         "npm install --global yarn"; then
         run_cmd "ln -sf \"${HOME}/.vim/.darglint\" \"${HOME}/.darglint\""
         run_cmd "ln -sf \"${HOME}/.vim/tmux.conf\" \"${HOME}/.tmux.conf\""
@@ -538,6 +540,8 @@ macos_step_10_symlinks_and_tools() {
         run_cmd "mkdir -p \"${HOME}/.config/mc\""
         run_cmd "rm -f \"${HOME}/.config/mc/mc.keymap\""
         run_cmd "ln -s \"${HOME}/.vim/mc.keymap\" \"${HOME}/.config/mc/mc.keymap\""
+        rum_cmd "mkdir -p \"${HOME}/.config/opencode\""
+        run_cmd "ln -s \"${HOME}/.vim/opencode/opencode.jsonc\" \"${HOME}/.config/opencode/opencode.jsonc\""
         run_cmd "npm install --global yarn"
         warn "You may need to log out and log back in for this to take effect."
         warn "You can now use Ghostty as your terminal."
