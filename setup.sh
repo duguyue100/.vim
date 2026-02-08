@@ -327,13 +327,17 @@ ubuntu_step_13_symlinks_and_tools() {
         run_cmd "ln -s \"${HOME}/.vim/mc.keymap\" \"${HOME}/.config/mc/mc.keymap\""
         run_cmd "mkdir -p \"${HOME}/.config/opencode\""
         run_cmd "ln -s \"${HOME}/.vim/opencode/opencode.jsonc\" \"${HOME}/.config/opencode/opencode.jsonc\""
-        warn "You may need to log out and log back in for this to take effect."
-        warn "You can now use Ghostty as your terminal."
     fi
 }
 
-ubuntu_step_14_python_packages() {
-    if confirm_step "Step 14: Install Python Packages (essentials, dev tools)" \
+ubuntu_step_14_logout_reminder() {
+    manual_step "Step 14: Logout Reminder" \
+        "Please log out and log back in for all changes to take effect." \
+        "You can now use Ghostty as your terminal."
+}
+
+ubuntu_step_15_python_packages() {
+    if confirm_step "Step 15: Install Python Packages (essentials, dev tools)" \
         "uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"; then
         run_cmd "uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"
     fi
@@ -346,8 +350,8 @@ ubuntu_step_14_python_packages() {
     fi
 }
 
-ubuntu_step_15_neovim_config() {
-    if confirm_step "Step 15: Configure Neovim" \
+ubuntu_step_16_neovim_config() {
+    if confirm_step "Step 16: Configure Neovim" \
         "ln -sf \${HOME}/.vim \${HOME}/.config/nvim"; then
         run_cmd "ln -sf \"${HOME}/.vim\" \"${HOME}/.config/nvim\""
     fi
@@ -357,14 +361,14 @@ ubuntu_step_15_neovim_config() {
         "Neovim packages will be installed automatically on first launch."
 }
 
-ubuntu_step_16_docker() {
-    manual_step "Step 16: Install Docker" \
+ubuntu_step_17_docker() {
+    manual_step "Step 17: Install Docker" \
         "Follow the official Docker installation guide for Ubuntu:" \
         "  https://docs.docker.com/engine/install/ubuntu/"
 }
 
-ubuntu_step_17_ssh() {
-    if confirm_step "Step 17: SSH Key Setup" \
+ubuntu_step_18_ssh() {
+    if confirm_step "Step 18: SSH Key Setup" \
         "mkdir -p ~/.ssh"; then
         run_cmd "mkdir -p ~/.ssh"
     fi
@@ -392,15 +396,15 @@ ubuntu_step_17_ssh() {
         "      IdentityFile ~/.ssh/<default-key>"
 }
 
-ubuntu_step_18_git_remote() {
-    if confirm_step "Step 18: Switch .vim Remote to SSH" \
+ubuntu_step_19_git_remote() {
+    if confirm_step "Step 19: Switch .vim Remote to SSH" \
         "cd ~/.vim && git remote set-url origin git@github.com:duguyue100/.vim.git"; then
         run_cmd "cd \"${HOME}/.vim\" && git remote set-url origin git@github.com:duguyue100/.vim.git"
     fi
 }
 
-ubuntu_step_19_os_preferences() {
-    manual_step "Step 19: Ubuntu OS Preferences" \
+ubuntu_step_20_os_preferences() {
+    manual_step "Step 20: Ubuntu OS Preferences" \
         "Clean up Dock: Right-click icons -> Unpin from Favorites (keep Files & Trash)." \
         "Pin Chrome to the dock." \
         "Settings -> Ubuntu Desktop -> Desktop Icons: turn off 'Show Home Folder'." \
@@ -543,20 +547,24 @@ macos_step_10_symlinks_and_tools() {
         run_cmd "mkdir -p \"${HOME}/.config/opencode\""
         run_cmd "ln -s \"${HOME}/.vim/opencode/opencode.jsonc\" \"${HOME}/.config/opencode/opencode.jsonc\""
         run_cmd "npm install --global yarn"
-        warn "You may need to log out and log back in for this to take effect."
-        warn "You can now use Ghostty as your terminal."
     fi
 }
 
-macos_step_11_python_packages() {
-    if confirm_step "Step 11: Install Python Packages (essentials, dev tools)" \
+macos_step_11_logout_reminder() {
+    manual_step "Step 11: Logout Reminder" \
+        "Please log out and log back in for all changes to take effect." \
+        "You can now use Ghostty as your terminal."
+}
+
+macos_step_12_python_packages() {
+    if confirm_step "Step 12: Install Python Packages (essentials, dev tools)" \
         "uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"; then
         run_cmd "uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"
     fi
 }
 
-macos_step_12_neovim_config() {
-    if confirm_step "Step 12: Configure Neovim" \
+macos_step_13_neovim_config() {
+    if confirm_step "Step 13: Configure Neovim" \
         "ln -sf \${HOME}/.vim \${HOME}/.config/nvim"; then
         run_cmd "ln -sf \"${HOME}/.vim\" \"${HOME}/.config/nvim\""
     fi
@@ -566,8 +574,8 @@ macos_step_12_neovim_config() {
         "Neovim packages will be installed automatically on first launch."
 }
 
-macos_step_13_utilities() {
-    if confirm_step "Step 13: Install LaTeX" \
+macos_step_14_utilities() {
+    if confirm_step "Step 14: Install LaTeX" \
         "brew install texlive latexit"; then
         run_cmd "eval \"\$(/opt/homebrew/bin/brew shellenv)\" && brew install texlive latexit"
     fi
@@ -587,14 +595,14 @@ macos_step_13_utilities() {
         "MonitorControl: Already installed. Grant permissions during setup."
 }
 
-macos_step_14_docker() {
-    manual_step "Step 14: Install Docker Desktop" \
+macos_step_15_docker() {
+    manual_step "Step 15: Install Docker Desktop" \
         "Download Docker Desktop from https://docs.docker.com/desktop/install/mac-install/" \
         "Install the downloaded .dmg file."
 }
 
-macos_step_15_ssh() {
-    if confirm_step "Step 15: SSH Key Setup" \
+macos_step_16_ssh() {
+    if confirm_step "Step 16: SSH Key Setup" \
         "mkdir -p ~/.ssh"; then
         run_cmd "mkdir -p ~/.ssh"
     fi
@@ -622,15 +630,15 @@ macos_step_15_ssh() {
         "      IdentityFile ~/.ssh/<default-key>"
 }
 
-macos_step_16_git_remote() {
-    if confirm_step "Step 16: Switch .vim Remote to SSH" \
+macos_step_17_git_remote() {
+    if confirm_step "Step 17: Switch .vim Remote to SSH" \
         "cd ~/.vim && git remote set-url origin git@github.com:duguyue100/.vim.git"; then
         run_cmd "cd \"${HOME}/.vim\" && git remote set-url origin git@github.com:duguyue100/.vim.git"
     fi
 }
 
-macos_step_17_os_preferences() {
-    manual_step "Step 17: macOS Preferences" \
+macos_step_18_os_preferences() {
+    manual_step "Step 18: macOS Preferences" \
         "Clean up Dock: Right-click icons -> Options -> Remove from Dock." \
         "System Preferences -> Desktop & Dock: turn on 'Automatically hide and show the Dock'." \
         "System Preferences -> Appearance: choose 'Auto'." \
@@ -658,12 +666,13 @@ UBUNTU_STEPS=(
     ubuntu_step_11_ghostty_config
     ubuntu_step_12_fish_setup
     ubuntu_step_13_symlinks_and_tools
-    ubuntu_step_14_python_packages
-    ubuntu_step_15_neovim_config
-    ubuntu_step_16_docker
-    ubuntu_step_17_ssh
-    ubuntu_step_18_git_remote
-    ubuntu_step_19_os_preferences
+    ubuntu_step_14_logout_reminder
+    ubuntu_step_15_python_packages
+    ubuntu_step_16_neovim_config
+    ubuntu_step_17_docker
+    ubuntu_step_18_ssh
+    ubuntu_step_19_git_remote
+    ubuntu_step_20_os_preferences
 )
 
 MACOS_STEPS=(
@@ -677,13 +686,14 @@ MACOS_STEPS=(
     macos_step_8_ghostty_config
     macos_step_9_fish_setup
     macos_step_10_symlinks_and_tools
-    macos_step_11_python_packages
-    macos_step_12_neovim_config
-    macos_step_13_utilities
-    macos_step_14_docker
-    macos_step_15_ssh
-    macos_step_16_git_remote
-    macos_step_17_os_preferences
+    macos_step_11_logout_reminder
+    macos_step_12_python_packages
+    macos_step_13_neovim_config
+    macos_step_14_utilities
+    macos_step_15_docker
+    macos_step_16_ssh
+    macos_step_17_git_remote
+    macos_step_18_os_preferences
 )
 
 # =============================================================================
