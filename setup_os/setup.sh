@@ -400,17 +400,8 @@ ubuntu_step_19_git_remote() {
     fi
 }
 
-ubuntu_step_20_fish_history() {
-    if confirm_step "Step 20: Migrate Zsh History to Fish" \
-        "pip install zsh-history-to-fish" \
-        "zsh-history-to-fish"; then
-        run_cmd "pip install zsh-history-to-fish"
-        run_cmd "zsh-history-to-fish"
-    fi
-}
-
-ubuntu_step_21_os_preferences() {
-    manual_step "Step 21: Ubuntu OS Preferences" \
+ubuntu_step_20_os_preferences() {
+    manual_step "Step 20: Ubuntu OS Preferences" \
         "Clean up Dock: Right-click icons -> Unpin from Favorites (keep Files & Trash)." \
         "Pin Chrome to the dock." \
         "Settings -> Ubuntu Desktop -> Desktop Icons: turn off 'Show Home Folder'." \
@@ -671,8 +662,7 @@ UBUNTU_STEPS=(
     ubuntu_step_17_docker
     ubuntu_step_18_ssh
     ubuntu_step_19_git_remote
-    ubuntu_step_20_fish_history
-    ubuntu_step_21_os_preferences
+    ubuntu_step_20_os_preferences
 )
 
 MACOS_STEPS=(
