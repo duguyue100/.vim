@@ -40,7 +40,7 @@ warn()    { echo -e "${YELLOW}[WARN]${NC}  $*"; }
 error()   { echo -e "${RED}[ERROR]${NC} $*"; }
 header()  { echo -e "\n${BOLD}═══════════════════════════════════════════════════════${NC}"; \
             echo -e "${BOLD}  $*${NC}"; \
-            echo -e "${BOLD}════════════════════════════════════════════════════���══${NC}\n"; }
+            echo -e "${BOLD}═════════════════════════════════════════════════════════${NC}\n"; }
 
 # Detect OS: sets $OS to "macos" or "ubuntu"
 detect_os() {
