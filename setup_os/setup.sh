@@ -229,8 +229,8 @@ ubuntu_step_5_linuxbrew() {
 
 ubuntu_step_6_brew_packages() {
     if confirm_step "Step 6: Install Packages via Linuxbrew" \
-        "brew install bottom lsd fd fnm lazygit uv neovim"; then
-        run_cmd 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew install bottom lsd fd fnm lazygit uv neovim'
+        "brew install bottom lsd fd fnm lazygit uv neovim fzf"; then
+        run_cmd 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew install bottom lsd fd fnm lazygit uv neovim fzf'
     fi
 }
 
