@@ -46,7 +46,7 @@ switch (uname)
         end
 end
 
-source $HOME/.vim/conda.fish
+source $HOME/.venv/bin/activate.fish
 
 starship init fish | source
 zoxide init fish | source

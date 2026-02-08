@@ -572,44 +572,20 @@ macos_step_8_ghostty_config() {
     fi
 }
 
-macos_step_9_miniconda() {
-    if confirm_step "Step 9: Install Miniconda" \
-        "wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Darwin-arm64.sh -O ~/miniconda.sh" \
-        "bash ~/miniconda.sh -b -p ~/miniconda3" \
-        "rm ~/miniconda.sh"; then
-        run_cmd 'eval "$(/opt/homebrew/bin/brew shellenv)"'
-        run_cmd "wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Darwin-arm64.sh -O \"${HOME}/miniconda.sh\""
-        run_cmd "bash \"${HOME}/miniconda.sh\" -b -p \"${HOME}/miniconda3\""
-        run_cmd "rm \"${HOME}/miniconda.sh\""
-    fi
-
-    header "Create Conda Environment"
-    read -rp "Enter conda environment name (e.g., dev): " env_name
-    if [[ -n "$env_name" ]]; then
-        if confirm_step "Create Conda Env: $env_name" \
-            "${HOME}/miniconda3/bin/conda create -n $env_name python=3.12 -y"; then
-            run_cmd "\"${HOME}/miniconda3/bin/conda\" create -n \"$env_name\" python=3.10 -y"
-        fi
-    else
-        warn "Skipping conda environment creation."
-    fi
-}
-
-macos_step_10_fish_setup() {
-    if confirm_step "Step 10: Configure Fish Shell" \
+macos_step_9_fish_setup() {
+    if confirm_step "Step 9: Configure Fish Shell" \
+        "uv venv --python 3.12 --directory \${HOME}"
         "mkdir -p \${HOME}/.config/fish" \
         "ln -sf \${HOME}/.vim/config.fish \${HOME}/.config/fish/config.fish" \
         "ln -sf \${HOME}/.vim/starship.toml \${HOME}/.config/starship.toml" \
         "cp \${HOME}/.vim/conda.fish.template \${HOME}/.vim/conda.fish"; then
+        run_cmd "uv venv --python 3.12 --directory \"${HOME}\""
         run_cmd "mkdir -p \"${HOME}/.config/fish\""
         run_cmd "rm -f \"${HOME}/.config/fish/config.fish\""
         run_cmd "ln -s \"${HOME}/.vim/config.fish\" \"${HOME}/.config/fish/config.fish\""
         run_cmd "ln -sf \"${HOME}/.vim/starship.toml\" \"${HOME}/.config/starship.toml\""
         run_cmd "cd \"${HOME}/.vim\" && cp conda.fish.template conda.fish"
     fi
-
-    manual_step "Edit conda.fish" \
-        "Open ${HOME}/.vim/conda.fish and change 'env_name' to your conda environment name."
 
     if confirm_step "Switch Default Shell to Fish" \
         "echo \$(which fish) | sudo tee -a /etc/shells" \
@@ -621,8 +597,8 @@ macos_step_10_fish_setup() {
     fi
 }
 
-macos_step_11_symlinks_and_tools() {
-    if confirm_step "Step 11: Symlinks & Tools (darglint, tmux, mc, npm)" \
+macos_step_10_symlinks_and_tools() {
+    if confirm_step "Step 10: Symlinks & Tools (darglint, tmux, mc, npm)" \
         "ln -sf \${HOME}/.vim/.darglint \${HOME}/.darglint" \
         "ln -sf \${HOME}/.vim/tmux.conf \${HOME}/.tmux.conf" \
         "git clone https://github.com/tmux-plugins/tpm \${HOME}/.tmux/plugins/tpm" \
@@ -642,25 +618,26 @@ macos_step_11_symlinks_and_tools() {
         run_cmd "rm -f \"${HOME}/.config/mc/mc.keymap\""
         run_cmd "ln -s \"${HOME}/.vim/mc.keymap\" \"${HOME}/.config/mc/mc.keymap\""
         run_cmd "npm install --global yarn"
+        info "You can now use Ghostty as your terminal."
     fi
 }
 
-macos_step_12_python_packages() {
-    if confirm_step "Step 12: Install Python Packages (essentials, dev tools)" \
-        "pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"; then
-        run_cmd "pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"
+macos_step_11_python_packages() {
+    if confirm_step "Step 11: Install Python Packages (essentials, dev tools)" \
+        "uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"; then
+        run_cmd "uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"
     fi
 }
 
-macos_step_13_neovim() {
-    if confirm_step "Step 13: Install Neovim" \
+macos_step_12_neovim() {
+    if confirm_step "Step 12: Install Neovim" \
         "brew install neovim"; then
         run_cmd "eval \"\$(/opt/homebrew/bin/brew shellenv)\" && brew install neovim"
     fi
 }
 
-macos_step_14_neovim_config() {
-    if confirm_step "Step 14: Configure Neovim" \
+macos_step_13_neovim_config() {
+    if confirm_step "Step 13: Configure Neovim" \
         "ln -sf \${HOME}/.vim \${HOME}/.config/nvim"; then
         run_cmd "ln -sf \"${HOME}/.vim\" \"${HOME}/.config/nvim\""
     fi
@@ -670,8 +647,8 @@ macos_step_14_neovim_config() {
         "Neovim packages will be installed automatically on first launch."
 }
 
-macos_step_15_utilities() {
-    if confirm_step "Step 15: Install LaTeX" \
+macos_step_14_utilities() {
+    if confirm_step "Step 14: Install LaTeX" \
         "brew install texlive latexit"; then
         run_cmd "eval \"\$(/opt/homebrew/bin/brew shellenv)\" && brew install texlive latexit"
     fi
@@ -691,14 +668,14 @@ macos_step_15_utilities() {
         "MonitorControl: Already installed. Grant permissions during setup."
 }
 
-macos_step_16_docker() {
-    manual_step "Step 16: Install Docker Desktop" \
+macos_step_15_docker() {
+    manual_step "Step 15: Install Docker Desktop" \
         "Download Docker Desktop from https://docs.docker.com/desktop/install/mac-install/" \
         "Install the downloaded .dmg file."
 }
 
-macos_step_17_ssh() {
-    if confirm_step "Step 17: SSH Key Setup" \
+macos_step_16_ssh() {
+    if confirm_step "Step 16: SSH Key Setup" \
         "mkdir -p ~/.ssh"; then
         run_cmd "mkdir -p ~/.ssh"
     fi
@@ -726,15 +703,15 @@ macos_step_17_ssh() {
         "      IdentityFile ~/.ssh/<default-key>"
 }
 
-macos_step_18_git_remote() {
-    if confirm_step "Step 18: Switch .vim Remote to SSH" \
+macos_step_17_git_remote() {
+    if confirm_step "Step 17: Switch .vim Remote to SSH" \
         "cd ~/.vim && git remote set-url origin git@github.com:duguyue100/.vim.git"; then
         run_cmd "cd \"${HOME}/.vim\" && git remote set-url origin git@github.com:duguyue100/.vim.git"
     fi
 }
 
-macos_step_19_os_preferences() {
-    manual_step "Step 19: macOS Preferences" \
+macos_step_18_os_preferences() {
+    manual_step "Step 18: macOS Preferences" \
         "Clean up Dock: Right-click icons -> Options -> Remove from Dock." \
         "System Preferences -> Desktop & Dock: turn on 'Automatically hide and show the Dock'." \
         "System Preferences -> Appearance: choose 'Auto'." \
@@ -785,17 +762,16 @@ MACOS_STEPS=(
     macos_step_6_git_config
     macos_step_7_clone_repo
     macos_step_8_ghostty_config
-    macos_step_9_miniconda
-    macos_step_10_fish_setup
-    macos_step_11_symlinks_and_tools
-    macos_step_12_python_packages
-    macos_step_13_neovim
-    macos_step_14_neovim_config
-    macos_step_15_utilities
-    macos_step_16_docker
-    macos_step_17_ssh
-    macos_step_18_git_remote
-    macos_step_19_os_preferences
+    macos_step_9_fish_setup
+    macos_step_10_symlinks_and_tools
+    macos_step_11_python_packages
+    macos_step_12_neovim
+    macos_step_13_neovim_config
+    macos_step_14_utilities
+    macos_step_15_docker
+    macos_step_16_ssh
+    macos_step_17_git_remote
+    macos_step_18_os_preferences
 )
 
 # =============================================================================
