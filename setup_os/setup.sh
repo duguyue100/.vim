@@ -162,12 +162,15 @@ prompt_reboot() {
 # =============================================================================
 
 ubuntu_step_1_chrome() {
-    manual_step "Step 1: Install Google Chrome (Optional)" \
-        "Download Google Chrome .deb from https://www.google.com/chrome/ using Firefox." \
-        "After downloading, install it with:" \
-        "  cd ~/Downloads" \
-        "  sudo dpkg -i google-chrome-stable_current_amd64.deb" \
-        "Set Chrome as the default browser and sign in to your Google account."
+    if confirm_step "Step 1: Install Google Chrome (Optional)" \
+        "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb" \
+        "sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb" \
+        "rm /tmp/google-chrome-stable_current_amd64.deb"; then
+        run_cmd "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb"
+        run_cmd "sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb"
+        run_cmd "rm /tmp/google-chrome-stable_current_amd64.deb"
+        info "Google Chrome installed successfully."
+    fi
 }
 
 ubuntu_step_2_update() {
@@ -191,7 +194,7 @@ ubuntu_step_2_update() {
         fi
     fi
 
-    prompt_reboot 3
+    prompt_reboot 2
 }
 
 ubuntu_step_3_essential_packages() {
@@ -206,12 +209,12 @@ ubuntu_step_4_ghostty() {
         "source /etc/os-release && curl Ghostty .deb from GitHub releases" \
         "sudo dpkg -i <ghostty>.deb" \
         "sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/ghostty 60"; then
-        run_cmd "source /etc/os-release && \
-            GHOSTTY_DEB_URL=\$(curl -s https://api.github.com/repos/mkasberg/ghostty-ubuntu/releases/latest | grep -oP \"https://github.com/mkasberg/ghostty-ubuntu/releases/download/[^\s/]+/ghostty_[^\s/_]+_amd64_\${VERSION_ID}.deb\") && \
-            GHOSTTY_DEB_FILE=\$(basename \"\$GHOSTTY_DEB_URL\") && \
-            curl -LO \"\$GHOSTTY_DEB_URL\" && \
-            sudo dpkg -i \"\$GHOSTTY_DEB_FILE\" && \
-            rm \"\$GHOSTTY_DEB_FILE\""
+        source /etc/os-release
+        GHOSTTY_DEB_URL=$(curl -s https://api.github.com/repos/mkasberg/ghostty-ubuntu/releases/latest | grep -oP "https://github.com/mkasberg/ghostty-ubuntu/releases/download/[^\s/]+/ghostty_[^\s/_]+_amd64_${VERSION_ID}.deb")
+        GHOSTTY_DEB_FILE=$(basename "$GHOSTTY_DEB_URL")
+        run_cmd "curl -LO \"$GHOSTTY_DEB_URL\""
+        run_cmd "sudo dpkg -i \"$GHOSTTY_DEB_FILE\""
+        run_cmd "rm \"$GHOSTTY_DEB_FILE\""
         run_cmd "sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/ghostty 60"
     fi
 }
