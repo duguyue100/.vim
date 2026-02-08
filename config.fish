@@ -50,7 +50,7 @@ switch (uname)
         end
 end
 
-source $HOME/.venv/bin/activate.fish
+source $HOME/DGY/bin/activate.fish
 
 starship init fish | source
 zoxide init fish | source
