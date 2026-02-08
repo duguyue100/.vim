@@ -497,7 +497,7 @@ macos_step_8_ghostty_config() {
 
 macos_step_9_fish_setup() {
     if confirm_step "Step 9: Configure Fish Shell" \
-        "uv venv --python 3.12 --directory \${HOME}" \
+        "uv venv DGY --python 3.12 --directory \${HOME}" \
         "mkdir -p \${HOME}/.config/fish" \
         "ln -sf \${HOME}/.vim/config.fish \${HOME}/.config/fish/config.fish" \
         "ln -sf \${HOME}/.vim/starship.toml \${HOME}/.config/starship.toml"; then
