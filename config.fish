@@ -2,17 +2,12 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-set -l uname (uname)
-if test "$uname" = Darwin
-    # macOS
-    if test -d /opt/homebrew
-        eval (/opt/homebrew/bin/brew shellenv)
-    end
-else if test "$uname" = Linux
-    # Linux
-    if test -d /home/linuxbrew/.linuxbrew
-        eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-    end
+if test -d /opt/homebrew
+    eval (/opt/homebrew/bin/brew shellenv)
+end
+
+if test -d /home/linuxbrew/.linuxbrew
+    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 end
 
 set -U fish_color_command green
