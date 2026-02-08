@@ -531,8 +531,8 @@ macos_step_4_ghostty() {
 
 macos_step_5_essential_packages() {
     if confirm_step "Step 5: Install Essential Packages via Homebrew" \
-        "brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship anomalyco/tap/opencode"; then
-        run_cmd "eval \"\$(/opt/homebrew/bin/brew shellenv)\" && brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship anomalyco/tap/opencode"
+        "brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship uv anomalyco/tap/opencode"; then
+        run_cmd "eval \"\$(/opt/homebrew/bin/brew shellenv)\" && brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship uv anomalyco/tap/opencode"
     fi
 }
 
@@ -646,10 +646,8 @@ macos_step_11_symlinks_and_tools() {
 }
 
 macos_step_12_python_packages() {
-    if confirm_step "Step 12: Install Python Packages (uv, essentials, dev tools)" \
-        "curl -LsSf https://astral.sh/uv/install.sh | sh" \
+    if confirm_step "Step 12: Install Python Packages (essentials, dev tools)" \
         "pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"; then
-        run_cmd "curl -LsSf https://astral.sh/uv/install.sh | sh"
         run_cmd "pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"
     fi
 }
