@@ -219,44 +219,37 @@ ubuntu_step_4_ghostty() {
     fi
 }
 
-ubuntu_step_5_starship() {
-    if confirm_step "Step 5: Install Starship Prompt" \
-        "curl -sS https://starship.rs/install.sh | sh"; then
-        run_cmd "curl -sS https://starship.rs/install.sh | sh"
-    fi
-}
-
-ubuntu_step_6_linuxbrew() {
-    if confirm_step "Step 6: Install Linuxbrew" \
+ubuntu_step_5_linuxbrew() {
+    if confirm_step "Step 5: Install Linuxbrew" \
         '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'; then
         run_cmd '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
         info "Linuxbrew installed successfully."
     fi
 }
 
-ubuntu_step_7_brew_packages() {
-    if confirm_step "Step 7: Install Packages via Linuxbrew" \
+ubuntu_step_6_brew_packages() {
+    if confirm_step "Step 6: Install Packages via Linuxbrew" \
         "brew install bottom lsd fd fnm lazygit uv neovim"; then
-        run_cmd "eval \"$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)\" && brew install bottom lsd fd fnm lazygit uv neovim"
+        run_cmd 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew install bottom lsd fd fnm lazygit uv neovim'
     fi
 }
 
-ubuntu_step_8_nvidia_driver() {
+ubuntu_step_7_nvidia_driver() {
     read -rp "$(echo -e "${BOLD}Do you have NVIDIA GPUs and want to install drivers? [y/n]: ${NC}")" has_nvidia
     if [[ "$has_nvidia" == "y" || "$has_nvidia" == "Y" ]]; then
-        manual_step "Step 8: Install NVIDIA Driver" \
+        manual_step "Step 7: Install NVIDIA Driver" \
             "Run: sudo apt install nvidia-driver-<version>" \
             "Tip: press Tab to see available versions, pick a recent one." \
             "Then: sudo apt install nvidia-modprobe"
     fi
 }
 
-ubuntu_step_9_reboot_after_packages() {
-    prompt_reboot 9
+ubuntu_step_8_reboot_after_packages() {
+    prompt_reboot 8
 }
 
-ubuntu_step_10_git_config() {
-    header "Step 10: Setup Git Config"
+ubuntu_step_9_git_config() {
+    header "Step 9: Setup Git Config"
     read -rp "Enter your Git user.name: " git_name
     read -rp "Enter your Git user.email: " git_email
     if [[ -n "$git_name" && -n "$git_email" ]]; then
@@ -271,19 +264,19 @@ ubuntu_step_10_git_config() {
     fi
 }
 
-ubuntu_step_11_clone_repo() {
+ubuntu_step_10_clone_repo() {
     if [[ -d "${HOME}/.vim" ]]; then
         info "~/.vim already exists, skipping clone."
     else
-        if confirm_step "Step 11: Clone .vim Repo" \
+        if confirm_step "Step 10: Clone .vim Repo" \
             "git clone https://github.com/duguyue100/.vim.git ~/.vim"; then
             run_cmd "git clone https://github.com/duguyue100/.vim.git \"${HOME}/.vim\""
         fi
     fi
 }
 
-ubuntu_step_12_ghostty_config() {
-    if confirm_step "Step 12: Apply Ghostty Config" \
+ubuntu_step_11_ghostty_config() {
+    if confirm_step "Step 11: Apply Ghostty Config" \
         "mkdir -p \${HOME}/.config/ghostty" \
         "ln -s \${HOME}/.vim/ghostty-config \${HOME}/.config/ghostty/config"; then
         run_cmd "mkdir -p \"${HOME}/.config/ghostty\""
@@ -291,8 +284,8 @@ ubuntu_step_12_ghostty_config() {
     fi
 }
 
-ubuntu_step_13_fish_setup() {
-    if confirm_step "Step 13: Configure Fish Shell" \
+ubuntu_step_12_fish_setup() {
+    if confirm_step "Step 12: Configure Fish Shell" \
         "uv venv --python 3.12 --directory \${HOME}" \
         "mkdir -p \${HOME}/.config/fish" \
         "ln -sf \${HOME}/.vim/config.fish \${HOME}/.config/fish/config.fish" \
@@ -312,8 +305,8 @@ ubuntu_step_13_fish_setup() {
     fi
 }
 
-ubuntu_step_14_symlinks_and_tools() {
-    if confirm_step "Step 14: Symlinks & Tools (darglint, tmux, mc, npm)" \
+ubuntu_step_13_symlinks_and_tools() {
+    if confirm_step "Step 13: Symlinks & Tools (darglint, tmux, mc, npm)" \
         "ln -sf \${HOME}/.vim/.darglint \${HOME}/.darglint" \
         "ln -sf \${HOME}/.vim/tmux.conf \${HOME}/.tmux.conf" \
         "git clone https://github.com/tmux-plugins/tpm \${HOME}/.tmux/plugins/tpm" \
@@ -336,8 +329,8 @@ ubuntu_step_14_symlinks_and_tools() {
     fi
 }
 
-ubuntu_step_15_python_packages() {
-    if confirm_step "Step 15: Install Python Packages (essentials, dev tools)" \
+ubuntu_step_14_python_packages() {
+    if confirm_step "Step 14: Install Python Packages (essentials, dev tools)" \
         "uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"; then
         run_cmd "uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7"
     fi
@@ -350,8 +343,8 @@ ubuntu_step_15_python_packages() {
     fi
 }
 
-ubuntu_step_16_neovim_config() {
-    if confirm_step "Step 16: Configure Neovim" \
+ubuntu_step_15_neovim_config() {
+    if confirm_step "Step 15: Configure Neovim" \
         "ln -sf \${HOME}/.vim \${HOME}/.config/nvim"; then
         run_cmd "ln -sf \"${HOME}/.vim\" \"${HOME}/.config/nvim\""
     fi
@@ -361,14 +354,14 @@ ubuntu_step_16_neovim_config() {
         "Neovim packages will be installed automatically on first launch."
 }
 
-ubuntu_step_17_docker() {
-    manual_step "Step 17: Install Docker" \
+ubuntu_step_16_docker() {
+    manual_step "Step 16: Install Docker" \
         "Follow the official Docker installation guide for Ubuntu:" \
         "  https://docs.docker.com/engine/install/ubuntu/"
 }
 
-ubuntu_step_18_ssh() {
-    if confirm_step "Step 18: SSH Key Setup" \
+ubuntu_step_17_ssh() {
+    if confirm_step "Step 17: SSH Key Setup" \
         "mkdir -p ~/.ssh"; then
         run_cmd "mkdir -p ~/.ssh"
     fi
@@ -396,15 +389,15 @@ ubuntu_step_18_ssh() {
         "      IdentityFile ~/.ssh/<default-key>"
 }
 
-ubuntu_step_19_git_remote() {
-    if confirm_step "Step 19: Switch .vim Remote to SSH" \
+ubuntu_step_18_git_remote() {
+    if confirm_step "Step 18: Switch .vim Remote to SSH" \
         "cd ~/.vim && git remote set-url origin git@github.com:duguyue100/.vim.git"; then
         run_cmd "cd \"${HOME}/.vim\" && git remote set-url origin git@github.com:duguyue100/.vim.git"
     fi
 }
 
-ubuntu_step_20_os_preferences() {
-    manual_step "Step 20: Ubuntu OS Preferences" \
+ubuntu_step_19_os_preferences() {
+    manual_step "Step 19: Ubuntu OS Preferences" \
         "Clean up Dock: Right-click icons -> Unpin from Favorites (keep Files & Trash)." \
         "Pin Chrome to the dock." \
         "Settings -> Ubuntu Desktop -> Desktop Icons: turn off 'Show Home Folder'." \
@@ -650,22 +643,21 @@ UBUNTU_STEPS=(
     ubuntu_step_2_update
     ubuntu_step_3_essential_packages
     ubuntu_step_4_ghostty
-    ubuntu_step_5_starship
-    ubuntu_step_6_linuxbrew
-    ubuntu_step_7_brew_packages
-    ubuntu_step_8_nvidia_driver
-    ubuntu_step_9_reboot_after_packages
-    ubuntu_step_10_git_config
-    ubuntu_step_11_clone_repo
-    ubuntu_step_12_ghostty_config
-    ubuntu_step_13_fish_setup
-    ubuntu_step_14_symlinks_and_tools
-    ubuntu_step_15_python_packages
-    ubuntu_step_16_neovim_config
-    ubuntu_step_17_docker
-    ubuntu_step_18_ssh
-    ubuntu_step_19_git_remote
-    ubuntu_step_20_os_preferences
+    ubuntu_step_5_linuxbrew
+    ubuntu_step_6_brew_packages
+    ubuntu_step_7_nvidia_driver
+    ubuntu_step_8_reboot_after_packages
+    ubuntu_step_9_git_config
+    ubuntu_step_10_clone_repo
+    ubuntu_step_11_ghostty_config
+    ubuntu_step_12_fish_setup
+    ubuntu_step_13_symlinks_and_tools
+    ubuntu_step_14_python_packages
+    ubuntu_step_15_neovim_config
+    ubuntu_step_16_docker
+    ubuntu_step_17_ssh
+    ubuntu_step_18_git_remote
+    ubuntu_step_19_os_preferences
 )
 
 MACOS_STEPS=(
