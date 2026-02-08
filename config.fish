@@ -6,6 +6,10 @@ if test -d /opt/homebrew
     eval (/opt/homebrew/bin/brew shellenv)
 end
 
+if test -d /home/linuxbrew/.linuxbrew
+    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+end
+
 set -U fish_color_command green
 set -g fish_key_bindings fish_vi_key_bindings
 set -U fish_greeting ""
@@ -46,7 +50,7 @@ switch (uname)
         end
 end
 
-source $HOME/.vim/conda.fish
+source $HOME/.venv/bin/activate.fish
 
 starship init fish | source
 zoxide init fish | source
