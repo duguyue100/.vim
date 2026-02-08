@@ -225,8 +225,8 @@ ubuntu_step_5_starship() {
 
 ubuntu_step_6_linuxbrew() {
     if confirm_step "Step 6: Install Linuxbrew" \
-        "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""; then
-        run_cmd "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+        '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'; then
+        run_cmd '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
         info "Linuxbrew installed successfully."
     fi
 }
@@ -448,8 +448,8 @@ macos_step_2_os_updates() {
 
 macos_step_3_homebrew() {
     if confirm_step "Step 3: Install Homebrew" \
-        "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""; then
-        run_cmd "/bin/bash -c \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)\""
+        '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'; then
+        run_cmd '/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"'
         run_cmd "eval \"$(/opt/homebrew/bin/brew shellenv)\""
         info "Verifying brew installation..."
         run_cmd "which brew"
