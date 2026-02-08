@@ -229,8 +229,8 @@ ubuntu_step_5_linuxbrew() {
 
 ubuntu_step_6_brew_packages() {
     if confirm_step "Step 6: Install Packages via Linuxbrew" \
-        "brew install bottom lsd fd fnm lazygit uv neovim fzf"; then
-        run_cmd 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew install bottom lsd fd fnm lazygit uv neovim fzf'
+        "brew install bottom lsd fd fnm lazygit uv neovim fzf starship"; then
+        run_cmd 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew install bottom lsd fd fnm lazygit uv neovim fzf starship'
     fi
 }
 
@@ -301,7 +301,6 @@ ubuntu_step_12_fish_setup() {
     if confirm_step "Switch Default Shell to Fish" \
         "chsh -s \$(which fish)"; then
         run_cmd "chsh -s \$(which fish)"
-        warn "You may need to log out and log back in for this to take effect."
     fi
 }
 
@@ -325,7 +324,8 @@ ubuntu_step_13_symlinks_and_tools() {
         run_cmd "mkdir -p \"${HOME}/.config/mc\""
         run_cmd "rm -f \"${HOME}/.config/mc/mc.keymap\""
         run_cmd "ln -s \"${HOME}/.vim/mc.keymap\" \"${HOME}/.config/mc/mc.keymap\""
-        info "You can now use Ghostty as your terminal."
+        warn "You may need to log out and log back in for this to take effect."
+        warn "You can now use Ghostty as your terminal."
     fi
 }
 
@@ -513,7 +513,6 @@ macos_step_9_fish_setup() {
         run_cmd "eval \"$(/opt/homebrew/bin/brew shellenv)\""
         run_cmd "echo \$(which fish) | sudo tee -a /etc/shells"
         run_cmd "chsh -s \$(which fish)"
-        warn "You may need to log out and log back in for this to take effect."
     fi
 }
 
@@ -538,7 +537,8 @@ macos_step_10_symlinks_and_tools() {
         run_cmd "rm -f \"${HOME}/.config/mc/mc.keymap\""
         run_cmd "ln -s \"${HOME}/.vim/mc.keymap\" \"${HOME}/.config/mc/mc.keymap\""
         run_cmd "npm install --global yarn"
-        info "You can now use Ghostty as your terminal."
+        warn "You may need to log out and log back in for this to take effect."
+        warn "You can now use Ghostty as your terminal."
     fi
 }
 
