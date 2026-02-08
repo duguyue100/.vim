@@ -341,7 +341,7 @@ ubuntu_step_15_python_packages() {
 
     read -rp "$(echo -e "${BOLD}Do you have NVIDIA GPUs? Install nvitop? [y/n]: ${NC}")" has_nvidia
     if [[ "$has_nvidia" == "y" || "$has_nvidia" == "Y" ]]; then
-        if confirm_step "Install nvitop" "pip install nvitop"; then
+        if confirm_step "Install nvitop"; then
             run_cmd "uv pip install nvitop"
         fi
     fi
