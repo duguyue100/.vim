@@ -286,7 +286,7 @@ ubuntu_step_11_ghostty_config() {
 
 ubuntu_step_12_fish_setup() {
     if confirm_step "Step 12: Configure Fish Shell" \
-        "uv venv --python 3.12 --directory \${HOME}" \
+        "uv venv DGY --python 3.12 --directory \${HOME}" \
         "mkdir -p \${HOME}/.config/fish" \
         "ln -sf \${HOME}/.vim/config.fish \${HOME}/.config/fish/config.fish" \
         "ln -sf \${HOME}/.vim/starship.toml \${HOME}/.config/starship.toml"; then
@@ -312,6 +312,7 @@ ubuntu_step_13_symlinks_and_tools() {
         "\${HOME}/.tmux/plugins/tpm/bin/install_plugins" \
         "mkdir -p \${HOME}/.config/mc" \
         "ln -sf \${HOME}/.vim/mc.keymap \${HOME}/.config/mc/mc.keymap" \
+        "ln -sf \${HOME}/.vim/opencode/opencode.jsonc \${HOME}/.config/opencode/opencode.jsonc" \
         "fnm install 20 && fnm use 20 && npm install --global yarn"; then
         run_cmd "ln -sf \"${HOME}/.vim/.darglint\" \"${HOME}/.darglint\""
         run_cmd "ln -sf \"${HOME}/.vim/tmux.conf\" \"${HOME}/.tmux.conf\""
@@ -324,6 +325,7 @@ ubuntu_step_13_symlinks_and_tools() {
         run_cmd "mkdir -p \"${HOME}/.config/mc\""
         run_cmd "rm -f \"${HOME}/.config/mc/mc.keymap\""
         run_cmd "ln -s \"${HOME}/.vim/mc.keymap\" \"${HOME}/.config/mc/mc.keymap\""
+        run_cmd "ln -s \"${HOME}/.vim/opencode/opencode.jsonc\" \"${HOME}/.config/opencode/opencode.jsonc\""
         warn "You may need to log out and log back in for this to take effect."
         warn "You can now use Ghostty as your terminal."
     fi
