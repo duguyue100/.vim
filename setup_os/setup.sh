@@ -465,8 +465,8 @@ macos_step_4_ghostty() {
 
 macos_step_5_essential_packages() {
     if confirm_step "Step 5: Install Essential Packages via Homebrew" \
-        "brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship uv anomalyco/tap/opencode"; then
-        run_cmd "eval \"\$(/opt/homebrew/bin/brew shellenv)\" && brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship uv anomalyco/tap/opencode"
+        "brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship uv anomalyco/tap/opencode neovim"; then
+        run_cmd "eval \"\$(/opt/homebrew/bin/brew shellenv)\" && brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship uv anomalyco/tap/opencode neovim"
     fi
 }
 
@@ -562,15 +562,8 @@ macos_step_11_python_packages() {
     fi
 }
 
-macos_step_12_neovim() {
-    if confirm_step "Step 12: Install Neovim" \
-        "brew install neovim"; then
-        run_cmd "eval \"\$(/opt/homebrew/bin/brew shellenv)\" && brew install neovim"
-    fi
-}
-
-macos_step_13_neovim_config() {
-    if confirm_step "Step 13: Configure Neovim" \
+macos_step_12_neovim_config() {
+    if confirm_step "Step 12: Configure Neovim" \
         "ln -sf \${HOME}/.vim \${HOME}/.config/nvim"; then
         run_cmd "ln -sf \"${HOME}/.vim\" \"${HOME}/.config/nvim\""
     fi
@@ -580,8 +573,8 @@ macos_step_13_neovim_config() {
         "Neovim packages will be installed automatically on first launch."
 }
 
-macos_step_14_utilities() {
-    if confirm_step "Step 14: Install LaTeX" \
+macos_step_13_utilities() {
+    if confirm_step "Step 13: Install LaTeX" \
         "brew install texlive latexit"; then
         run_cmd "eval \"\$(/opt/homebrew/bin/brew shellenv)\" && brew install texlive latexit"
     fi
@@ -601,14 +594,14 @@ macos_step_14_utilities() {
         "MonitorControl: Already installed. Grant permissions during setup."
 }
 
-macos_step_15_docker() {
-    manual_step "Step 15: Install Docker Desktop" \
+macos_step_14_docker() {
+    manual_step "Step 14: Install Docker Desktop" \
         "Download Docker Desktop from https://docs.docker.com/desktop/install/mac-install/" \
         "Install the downloaded .dmg file."
 }
 
-macos_step_16_ssh() {
-    if confirm_step "Step 16: SSH Key Setup" \
+macos_step_15_ssh() {
+    if confirm_step "Step 15: SSH Key Setup" \
         "mkdir -p ~/.ssh"; then
         run_cmd "mkdir -p ~/.ssh"
     fi
@@ -636,15 +629,15 @@ macos_step_16_ssh() {
         "      IdentityFile ~/.ssh/<default-key>"
 }
 
-macos_step_17_git_remote() {
-    if confirm_step "Step 17: Switch .vim Remote to SSH" \
+macos_step_16_git_remote() {
+    if confirm_step "Step 16: Switch .vim Remote to SSH" \
         "cd ~/.vim && git remote set-url origin git@github.com:duguyue100/.vim.git"; then
         run_cmd "cd \"${HOME}/.vim\" && git remote set-url origin git@github.com:duguyue100/.vim.git"
     fi
 }
 
-macos_step_18_os_preferences() {
-    manual_step "Step 18: macOS Preferences" \
+macos_step_17_os_preferences() {
+    manual_step "Step 17: macOS Preferences" \
         "Clean up Dock: Right-click icons -> Options -> Remove from Dock." \
         "System Preferences -> Desktop & Dock: turn on 'Automatically hide and show the Dock'." \
         "System Preferences -> Appearance: choose 'Auto'." \
@@ -694,13 +687,12 @@ MACOS_STEPS=(
     macos_step_9_fish_setup
     macos_step_10_symlinks_and_tools
     macos_step_11_python_packages
-    macos_step_12_neovim
-    macos_step_13_neovim_config
-    macos_step_14_utilities
-    macos_step_15_docker
-    macos_step_16_ssh
-    macos_step_17_git_remote
-    macos_step_18_os_preferences
+    macos_step_12_neovim_config
+    macos_step_13_utilities
+    macos_step_14_docker
+    macos_step_15_ssh
+    macos_step_16_git_remote
+    macos_step_17_os_preferences
 )
 
 # =============================================================================
