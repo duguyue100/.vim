@@ -7,7 +7,7 @@ if test -d /opt/homebrew
 end
 
 if test -d /home/linuxbrew/.linuxbrew
-    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+    eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 end
 
 set -U fish_color_command green
