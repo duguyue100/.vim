@@ -28,7 +28,7 @@ alias lg="lazygit"
 alias slg="SKIP=pytest,pytest_docs,mypy,nbqa-mypy,nbqa-flake8,mypy_nbqa_runner,shellcheck,actionlint lazygit -ucf $HOME/.vim/lazygit-config.yaml"
 alias reload="source $HOME/.config/fish/config.fish"
 # shortcut to activate venv faster
-alias uvact="source .venv/bin/activate.fish"
+alias uvact="source .venv/bin/activate.fish; starship init fish | source"
 function ocweb
     bash -c 'exec -a ocweb opencode web --mdns --mdns-domain yuhuangoc.local'
 end
