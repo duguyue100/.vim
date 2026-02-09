@@ -174,18 +174,18 @@ def tmux_detach_session(args: None) -> str:
 
 @register_command("t.at", "multiplexer", "Create new tmux session")
 def attach_session(args: list[str]) -> str:
-    return f"tmux new -s {args[0]} \; split-window -v -l 20% \; select-pane -t 0"
+    return f"tmux new -s {args[0]} \\; split-window -v -l 20% \\; select-pane -t 0"
 
 
 @register_command("t", "multiplexer", "Create new main tmux setup")
 def attach_main_session(args: list[str]) -> str:
     session_name = "main" if len(args) == 0 else args[0]
     return (
-        f"tmux new -s {session_name} -n 🧠 \; split-window -v -l 20% \; select-pane -t 0 \; "
-        "new-window -n 🧾 \; split-window -v -l 20% \; select-pane -t 0 \; "
-        "new-window -n 🌐 \; split-window -v -l 20% \; select-pane -t 0 \; "
-        "new-window -n 🎮 \; split-window -v -l 20% \; select-pane -t 0 \; "
-        "select-window -t 🧠 \; "
+        f"tmux new -s {session_name} -n 🧠 \\; split-window -v -l 20% \\; select-pane -t 0 \\; "
+        "new-window -n 🧾 \\; split-window -v -l 20% \\; select-pane -t 0 \\; "
+        "new-window -n 🌐 \\; split-window -v -l 20% \\; select-pane -t 0 \\; "
+        "new-window -n 🎮 \\; split-window -v -l 20% \\; select-pane -t 0 \\; "
+        "select-window -t 🧠 \\; "
     )
 
 
@@ -216,7 +216,7 @@ def cerate_new_window(args: list[str]) -> str:
     else:
         new_window_str = f"tmux new-window -n {args[0]}"
 
-    return f"{new_window_str} \; split-window -v -l 20% \; select-pane -t 0"
+    return f"{new_window_str} \\; split-window -v -l 20% \\; select-pane -t 0"
 
 
 @register_command("twx", "multiplexer", "Remove a tmux window")
