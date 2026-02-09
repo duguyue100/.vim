@@ -199,8 +199,8 @@ ubuntu_step_2_update() {
 
 ubuntu_step_3_essential_packages() {
     if confirm_step "Step 3: Install Essential Packages" \
-        "sudo apt install -y build-essential binutils cmake curl unzip openssh-server xclip zsh ripgrep mc clang-format ruby-full curl zoxide git vlc libfuse2 plocate shellcheck duf fish procps"; then
-        run_cmd "sudo apt install -y build-essential binutils cmake curl unzip openssh-server xclip zsh ripgrep mc clang-format ruby-full curl zoxide git vlc libfuse2 plocate shellcheck duf fish procps"
+        "sudo apt install -y build-essential binutils cmake curl unzip openssh-server xclip zsh ripgrep mc clang-format ruby-full curl zoxide git vlc libfuse2 plocate duf fish procps"; then
+        run_cmd "sudo apt install -y build-essential binutils cmake curl unzip openssh-server xclip zsh ripgrep mc clang-format ruby-full curl zoxide git vlc libfuse2 plocate duf fish procps"
     fi
 }
 
@@ -229,8 +229,8 @@ ubuntu_step_5_linuxbrew() {
 
 ubuntu_step_6_brew_packages() {
     if confirm_step "Step 6: Install Packages via Linuxbrew" \
-        "brew install bottom lsd fd fnm lazygit uv neovim fzf starship anomalyco/tap/opencode tmux"; then
-        run_cmd 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew install bottom lsd fd fnm lazygit uv neovim fzf starship anomalyco/tap/opencode tmux'
+        "brew install bottom lsd fd fnm lazygit uv neovim fzf starship anomalyco/tap/opencode tmux shellcheck"; then
+        run_cmd 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew install bottom lsd fd fnm lazygit uv neovim fzf starship anomalyco/tap/opencode tmux shellcheck'
     fi
 }
 
