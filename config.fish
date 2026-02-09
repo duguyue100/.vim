@@ -49,7 +49,10 @@ switch (uname)
         end
 end
 
-source $HOME/DGY/bin/activate.fish
+# Only activate DGY if no virtual environment is already active
+if test -z "$VIRTUAL_ENV"
+    source $HOME/DGY/bin/activate.fish
+end
 
 starship init fish | source
 zoxide init fish | source
