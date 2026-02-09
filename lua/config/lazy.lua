@@ -36,6 +36,9 @@ require("lazy").setup({
         enabled = true,
         notify = false
     }, -- automatically check for plugin updates
+    rocks = {
+        enabled = false,
+    },
     performance = {
         cache = {
             enabled = true,
