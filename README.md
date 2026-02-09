@@ -3,8 +3,6 @@ My VIM config --- actually my dotfiles
 
 ## OS Configuration
 
-Go to [setup_os](./setup_os) directory and follow the instructions for your OS.
-
 1. Download the `setup.sh` script using `curl` or wget:
 
     ```bash
@@ -23,4 +21,3 @@ Go to [setup_os](./setup_os) directory and follow the instructions for your OS.
     ```bash
     ./setup.sh
     ```
-
