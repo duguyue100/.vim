@@ -6,4 +6,7 @@ customCommands:
       sh -c 'echo "{{.SelectedFile.Name}}" >> .git/info/exclude'
 
 git:
-  autoFetch: true
+  autoFetch: false
+
+gui:
+  showDivergenceFromBaseBranch: 'arrowAndNumber'
