@@ -6,4 +6,4 @@ customCommands:
       sh -c 'echo "{{.SelectedFile.Name}}" >> .git/info/exclude'
 
 git:
-  autoFetch: false
+  autoFetch: true
