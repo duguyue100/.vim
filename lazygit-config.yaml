@@ -12,6 +12,6 @@ gui:
   showDivergenceFromBaseBranch: 'arrowAndNumber'
 
   mainBranches:
+    - lua
     - master
     - main
-    - lua
