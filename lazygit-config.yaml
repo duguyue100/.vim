@@ -15,3 +15,6 @@ gui:
     - lua
     - master
     - main
+
+os:
+  editPreset: 'nvim'
