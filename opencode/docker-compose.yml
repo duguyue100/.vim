@@ -14,5 +14,9 @@ services:
       ]
     ports:
       - "4096:4096"
+    volumes:
+      - ./opencode-data/config:/root/.config/opencode
+      - ./opencode-data/share:/root/.local/share/opencode
+      - ./opencode-data/state:/root/.local/state/opencode
     stdin_open: true
     tty: true
