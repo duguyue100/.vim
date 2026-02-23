@@ -52,4 +52,3 @@ map({ "n", "x" }, "<leader>oa", function() require("opencode").ask("@this: ", { 
 map({ "n", "x" }, "<leader>os", function() require("opencode").select() end, { desc = "Execute opencode action…" })
 map("n", "<leader>oc", function() vim.fn.system({"fish", "-c", "tmux split-window -h -t 1 -d && tmux send-keys -t 2 'opencode --port 8192' Enter"}) end, { desc = "Open opencode in tmux" })
 map("n", "<leader>ok", function() vim.fn.system({"fish", "-c", "pkill -f 'opencode --port' && tmux kill-pane -t 2"}) end, { desc = "Kill opencode pane" })
-
