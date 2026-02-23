@@ -60,6 +60,6 @@ vim.on_key(toggle_hlsearch, ns)
 -- TODO: we can remove this if opencode.nvim merged the fix
 vim.api.nvim_create_autocmd("VimLeavePre", {
   callback = function()
-    vim.fn.jobstart({ "pkill", "-f", "opencode" }, { detach = true })
+    vim.fn.jobstart({ "pkill", "-f", "opencode --port" }, { detach = true })
   end,
 })
