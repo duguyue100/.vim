@@ -23,16 +23,13 @@ alias towork="cd $HOME/workspace"
 alias todown="cd $HOME/Downloads"
 alias tocore="cd $HOME/workspace/latticeflow-core"
 alias togo="cd $HOME/workspace/latticeflow-core/assessment"
+alias lfd="$HOME/workspace/latticeflow-core/assessment/tools/docker.py"
 alias lg="lazygit"
 alias slg="SKIP=pytest,pytest_docs,mypy,nbqa-mypy,nbqa-flake8,mypy_nbqa_runner,shellcheck,actionlint lazygit -ucf $HOME/.vim/lazygit-config.yaml"
 alias ldocker="lazydocker"
 alias reload="source $HOME/.config/fish/config.fish"
 # shortcut to activate venv faster
 alias uvact="source .venv/bin/activate.fish; starship init fish | source"
-function ocweb
-    bash -c 'exec -a ocweb opencode web --mdns --mdns-domain yuhuangoc.local'
-end
-
 alias ls='lsd -X --group-directories-first -A'
 # alias tmux="TERM=xterm-256color tmux"
 alias btm="btm --dot_marker --enable_gpu"
