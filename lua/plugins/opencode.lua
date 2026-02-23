@@ -9,17 +9,7 @@ return {
     },
     config = function()
         ---@type opencode.Opts
-        vim.g.opencode_opts = {
-            port = 8192,
-            -- Your configuration, if any — see `lua/opencode/config.lua`, or "goto definition" on the type or field.
-            provider = {
-                enabled = "tmux",
-                tmux = {
-                    options = "-h -t 1"
-              -- ...
-            }
-          }
-        }
+        vim.g.opencode_opts = {}
 
         -- Required for `opts.events.reload`.
         vim.o.autoread = true

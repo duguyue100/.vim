@@ -61,5 +61,6 @@ vim.on_key(toggle_hlsearch, ns)
 vim.api.nvim_create_autocmd("VimLeavePre", {
   callback = function()
     vim.fn.jobstart({ "pkill", "-f", "opencode --port" }, { detach = true })
+    vim.fn.jobstart({ "tmux", "kill-pane", "-t", "2" }, { detach = true })
   end,
 })
