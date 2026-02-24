@@ -51,4 +51,9 @@ map("n", "<leader>sd", "<cmd>lua require('persistence').stop()<cr>", { desc = "S
 map({ "n", "x" }, "<leader>oa", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask opencode…" })
 map({ "n", "x" }, "<leader>os", function() require("opencode").select() end, { desc = "Execute opencode action…" })
 map("n", "<leader>oc", function() vim.fn.system({"fish", "-c", "tmux split-window -h -t 1 -d && tmux send-keys -t 2 'opencode --port 8192' Enter"}) end, { desc = "Open opencode in tmux" })
-map("n", "<leader>ok", function() vim.fn.system({"fish", "-c", "pkill -f 'opencode --port' && tmux kill-pane -t 2"}) end, { desc = "Kill opencode pane" })
+local function kill_opencode()
+    vim.fn.jobstart({ "pkill", "-f", "opencode --port" }, { detach = true })
+    local cmd = "tmux list-panes -F '#P' | grep -q '^2$' && tmux kill-pane -t 2"
+    vim.fn.jobstart({ "bash", "-c", cmd }, { detach = true })
+end
+map("n", "<leader>ok", kill_opencode, { desc = "Kill opencode pane" })
