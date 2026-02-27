@@ -53,8 +53,13 @@ map({ "n", "x" }, "<leader>oa", function() require("opencode").ask_multiline("@t
 map({ "n", "x" }, "<leader>os", function() require("opencode").select() end, { desc = "Execute opencode action…" })
 map({ "n", "x" }, "<leader>oc", function() vim.fn.system({"fish", "-c", "tmux split-window -h -t 1 -d && tmux send-keys -t 2 'opencode --port 8192' Enter"}) end, { desc = "Open opencode in tmux" })
 local function kill_opencode()
-    vim.fn.jobstart({ "pkill", "-f", "opencode --port" }, { detach = true })
-    local cmd = "tmux list-panes -F '#P' | grep -q '^2$' && tmux kill-pane -t 2"
+    local cmd = table.concat({
+        "tmux list-panes -F '#{pane_index}' | grep -q '^2$'",
+        "&&",
+        "pane_pid=$(tmux display-message -p -t 2 '#{pane_pid}')",
+        '&& pkill -TERM -P "$pane_pid"',
+        "&& tmux kill-pane -t 2",
+    }, " ")
     vim.fn.jobstart({ "bash", "-c", cmd }, { detach = true })
 end
 map("n", "<leader>ok", kill_opencode, { desc = "Kill opencode pane" })
