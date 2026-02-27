@@ -1,5 +1,5 @@
 return {
-    "NickvanDyke/opencode.nvim",
+    "duguyue100/opencode.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
         -- Recommended for `ask()` and `select()`.
