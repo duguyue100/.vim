@@ -17,14 +17,14 @@ return {
                 cpp = {'clang-format'},
                 rust = {'rustfmt'},
                 go = {"gopls"},
-                typescript = {"eslint"},
+                typescript = {"biome"},
                 yaml = {"yamlfmt"}
             }
             vim.g.ale_linters = {
                 python = {'mypy', "jedils", "ruff"},
                 rust = {'analyzer'},
                 go = {"gopls"},
-                typescript = {"eslint"},
+                typescript = {"biome", "tsserver"},
                 yaml = {"yamllint"},
             }
             vim.g.ale_disable_lsp = 0
