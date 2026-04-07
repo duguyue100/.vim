@@ -11,16 +11,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
 })
 
-
--- Autoformat on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-    callback = function()
-        pcall(vim.cmd, "undojoin | Neoformat")
-    end,
-    group = augroup "neoformat",
-    pattern = "*",
-})
-
 -- Remove trailing whitespace on save
 vim.api.nvim_create_autocmd("BufWritePre", {
   callback = function()
