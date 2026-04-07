@@ -137,10 +137,6 @@ return {
                     update_cwd = true,
                     ignore_list = {},
                 },
-                system_open = {
-                    cmd = "",
-                    args = {},
-                },
                 diagnostics = {
                     enable = false,
                     show_on_dirs = false,
