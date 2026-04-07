@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Autoformat on save
 vim.api.nvim_create_autocmd("BufWritePre", {
     callback = function()
-        vim.fn.execute("undojoin | Neoformat")
+        pcall(vim.cmd, "undojoin | Neoformat")
     end,
     group = augroup "neoformat",
     pattern = "*",
