@@ -229,8 +229,8 @@ ubuntu_step_5_linuxbrew() {
 
 ubuntu_step_6_brew_packages() {
     if confirm_step "Step 6: Install Packages via Linuxbrew" \
-        "brew install bottom lsd fd fnm lazygit uv neovim fzf starship anomalyco/tap/opencode tmux shellcheck jesseduffield/lazydocker/lazydocker"; then
-        run_cmd 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew install bottom lsd fd fnm lazygit uv neovim fzf starship anomalyco/tap/opencode tmux shellcheck jesseduffield/lazydocker/lazydocker'
+        "brew install bottom lsd fd fnm lazygit uv neovim fzf starship anomalyco/tap/opencode tmux shellcheck jesseduffield/lazydocker/lazydocker tree-sitter-cli"; then
+        run_cmd 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew install bottom lsd fd fnm lazygit uv neovim fzf starship anomalyco/tap/opencode tmux shellcheck jesseduffield/lazydocker/lazydocker tree-sitter-cli'
     fi
 }
 
@@ -459,8 +459,8 @@ macos_step_4_ghostty() {
 
 macos_step_5_essential_packages() {
     if confirm_step "Step 5: Install Essential Packages via Homebrew" \
-        "brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship uv anomalyco/tap/opencode neovim jesseduffield/lazydocker/lazydocker"; then
-        run_cmd "eval \"\$(/opt/homebrew/bin/brew shellenv)\" && brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship uv anomalyco/tap/opencode neovim jesseduffield/lazydocker/lazydocker"
+        "brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship uv anomalyco/tap/opencode neovim jesseduffield/lazydocker/lazydocker tree-sitter-cli"; then
+        run_cmd "eval \"\$(/opt/homebrew/bin/brew shellenv)\" && brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship uv anomalyco/tap/opencode neovim jesseduffield/lazydocker/lazydocker tree-sitter-cli"
     fi
 }
 
