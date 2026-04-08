@@ -1,11 +1,14 @@
 return {
     {
-        'nvim-treesitter/nvim-treesitter',
-        lazy = false,
-    },
-
-    {
-        'nvim-treesitter/nvim-treesitter-context',
-        lazy = false,
-    },
+      "romus204/tree-sitter-manager.nvim",
+      dependencies = {}, -- tree-sitter CLI must be installed system-wide
+      lazy = false,
+      config = function()
+        require("tree-sitter-manager").setup({
+          -- Optional: custom paths
+          -- parser_dir = vim.fn.stdpath("data") .. "/site/parser",
+          -- query_dir = vim.fn.stdpath("data") .. "/site/queries",
+        })
+      end
+    }
 }
