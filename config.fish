@@ -33,10 +33,10 @@ alias uvact="source .venv/bin/activate.fish; starship init fish | source"
 alias ls='lsd -X --group-directories-first -A'
 # alias tmux="TERM=xterm-256color tmux"
 alias btm="btm --dot_marker --enable_gpu"
-alias mc="mc -u"
 
 switch (uname)
     case Darwin
+        export PATH="$HOME/.local/bin:$PATH"
     case Linux
         alias open="xdg-open"
         alias nvidia-smi="nvitop --colorful"
