@@ -38,6 +38,7 @@ switch (uname)
     case Darwin
         export PATH="$HOME/.local/bin:$PATH"
     case Linux
+        export PATH="$HOME/.local/bin:$PATH"
         alias open="xdg-open"
         alias nvidia-smi="nvitop --colorful"
         set FNM_PATH "$HOME/.local/share/fnm"
