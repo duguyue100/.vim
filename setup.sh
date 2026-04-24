@@ -97,7 +97,7 @@ prompt_and_run() {
     while true; do
         read -rp "$(echo -e "${BOLD}Proceed? [y]es / [s]kip / [q]uit: ${NC}")" choice
         case "$choice" in
-            y|Y|yes) 
+            y|Y|yes)
                 info "Running: $title"
                 if "$func_name"; then
                     success "Done."
@@ -411,13 +411,13 @@ macos_step_9_fish_setup() {
 macos_step_10_symlinks_and_tools() {
     ln -sf "${HOME}/.vim/.darglint" "${HOME}/.darglint"
     ln -sf "${HOME}/.vim/tmux.conf" "${HOME}/.tmux.conf"
-    
+
     if [[ ! -d "${HOME}/.tmux/plugins/tpm" ]]; then
         git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
     else
         echo "tpm already cloned, skipping."
     fi
-    
+
     "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
     mkdir -p "${HOME}/.config/mc"
     rm -f "${HOME}/.config/mc/mc.keymap"
@@ -593,10 +593,10 @@ main() {
         local func_name="${steps[$i]}"
         local title
         title=$(echo "$func_name" | tr '_' ' ' | awk '{for(j=1;j<=NF;j++) $j=toupper(substr($j,1,1)) substr($j,2)} 1')
-        
+
         info "Step $((i + 1)) / ${total}"
         save_state "$i"
-        
+
         prompt_and_run "$title" "$func_name"
         echo ""
     done
