@@ -41,7 +41,7 @@ header()  { echo -e "\n${BOLD}════════════════�
             echo -e "${BOLD}  $*${NC}"; \
             echo -e "${BOLD}══════════════════════════════════════════════════════${NC}\n"; }
 
-# Detect OS: sets $OS to "macos" or "ubuntu"
+# Detect OS and Architecture: sets $OS to "macos" or "ubuntu", and $ARCH to "amd64" or "arm64"
 detect_os() {
     case "$(uname -s)" in
         Darwin) OS="macos" ;;
@@ -59,6 +59,18 @@ detect_os() {
             ;;
     esac
     info "Detected OS: ${BOLD}${OS}${NC}"
+
+    local machine_arch
+    machine_arch=$(uname -m)
+    case "$machine_arch" in
+        x86_64) ARCH="amd64" ;;
+        aarch64|arm64) ARCH="arm64" ;;
+        *)
+            error "Unsupported architecture: $machine_arch"
+            exit 1
+            ;;
+    esac
+    info "Detected Architecture: ${BOLD}${ARCH}${NC}"
 }
 
 # ── State Management (resume after reboot) ───────────────────────────────────
@@ -179,7 +191,7 @@ ubuntu_step_3_essential_packages() {
 
 ubuntu_step_4_ghostty() {
     source /etc/os-release
-    GHOSTTY_DEB_URL=$(curl -s https://api.github.com/repos/mkasberg/ghostty-ubuntu/releases/latest | grep -oP "https://github.com/mkasberg/ghostty-ubuntu/releases/download/[^\s/]+/ghostty_[^\s/_]+_amd64_${VERSION_ID}.deb")
+    GHOSTTY_DEB_URL=$(curl -s https://api.github.com/repos/mkasberg/ghostty-ubuntu/releases/latest | grep -oP "https://github.com/mkasberg/ghostty-ubuntu/releases/download/[^\s/]+/ghostty_[^\s/_]+_${ARCH}_${VERSION_ID}.deb")
     GHOSTTY_DEB_FILE=$(basename "$GHOSTTY_DEB_URL")
     curl -LO "$GHOSTTY_DEB_URL"
     sudo dpkg -i "$GHOSTTY_DEB_FILE"
@@ -262,9 +274,9 @@ macos_step_18_os_preferences() {
 
 common_step_chrome() {
     if [[ "$OS" == "ubuntu" ]]; then
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb
-        sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb
-        rm /tmp/google-chrome-stable_current_amd64.deb
+        wget "https://dl.google.com/linux/direct/google-chrome-stable_current_${ARCH}.deb" -O "/tmp/google-chrome-stable_current_${ARCH}.deb"
+        sudo dpkg -i "/tmp/google-chrome-stable_current_${ARCH}.deb"
+        rm "/tmp/google-chrome-stable_current_${ARCH}.deb"
     else
         curl -L -o /tmp/googlechrome.dmg https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg
         hdiutil attach /tmp/googlechrome.dmg -nobrowse
