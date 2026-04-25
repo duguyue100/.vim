@@ -391,7 +391,7 @@ common_step_neovim_config() {
     ln -sf "${HOME}/.vim" "${HOME}/.config/nvim"
 
     manual_step "Install Neovim Tree-sitters" \
-        "Open nvim and run:  :TSInstall python lua typescript javascript" \
+        "Open nvim and run:  :TSManager python lua typescript javascript" \
         "Neovim packages will be installed automatically on first launch."
 }
 
