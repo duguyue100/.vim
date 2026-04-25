@@ -123,7 +123,7 @@ prompt_and_run() {
                 fi
                 return 0
                 ;;
-            s|S|skip) warn "Skipping: $title"; return 1 ;;
+            s|S|skip) warn "Skipping: $title"; return 0 ;;
             q|Q|quit) info "Exiting setup."; exit 0 ;;
             *) echo "Please enter y, s, or q." ;;
         esac
@@ -240,8 +240,6 @@ macos_step_4_ghostty() {
 }
 
 macos_step_14_utilities() {
-    eval "$(/opt/homebrew/bin/brew shellenv)" && brew install texlive latexit
-
     manual_step "Install macOS Utilities" \
         "Slack: Download from https://slack.com/intl/en-gb/downloads/mac (or use browser)." \
         "VLC: Download from https://www.videolan.org/vlc/" \
@@ -311,10 +309,13 @@ common_step_brew_packages() {
     if [[ "$OS" == "ubuntu" ]]; then
         OS_PACKAGES=(fnm)
     else
-        OS_PACKAGES=(automake bison cmake ffmpeg gcc git libuv wget findutils zeromq ripgrep midnight-commander clang-format ruby zoxide node cairo pango md5sha1sum jless stats MonitorControl bob bash duf fish)
+        OS_PACKAGES=(automake bison cmake ffmpeg gcc git libuv wget findutils zeromq ripgrep clang-format ruby zoxide node cairo pango md5sha1sum jless stats MonitorControl bob bash duf fish)
     fi
 
     brew install "${COMMON_PACKAGES[@]}" "${OS_PACKAGES[@]}"
+
+    # Install midnight captain
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/duguyue100/midnight-captain/main/install.sh)"
 }
 
 
