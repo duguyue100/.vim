@@ -128,7 +128,7 @@ manual_step() {
         echo -e "  ${CYAN}→${NC} $line"
     done
     echo ""
-    read -rp "$(echo -e "${BOLD}Press Enter when you have completed this step (or 's' to skip): ${NC}")" choice
+    read -rp "$(echo -e "${BOLD}Press Enter and exit from the script, complete this step, and return setup.sh (or 's' to skip): ${NC}")" choice
     if [[ "$choice" == "s" || "$choice" == "S" ]]; then
         warn "Skipping: $title"
     fi
