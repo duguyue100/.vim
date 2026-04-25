@@ -158,13 +158,6 @@ prompt_reboot() {
 # UBUNTU STEPS
 # =============================================================================
 
-ubuntu_step_1_chrome() {
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb
-    sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb
-    rm /tmp/google-chrome-stable_current_amd64.deb
-    info "Google Chrome installed successfully."
-}
-
 ubuntu_step_2_update() {
     sudo apt-add-repository -y ppa:git-core/ppa
     sudo add-apt-repository -y ppa:fish-shell/release-4
@@ -194,15 +187,6 @@ ubuntu_step_4_ghostty() {
     sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/ghostty 60
 }
 
-ubuntu_step_5_linuxbrew() {
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    info "Linuxbrew installed successfully."
-}
-
-ubuntu_step_6_brew_packages() {
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" && brew install bottom lsd fd fnm lazygit uv neovim fzf starship anomalyco/tap/opencode tmux shellcheck jesseduffield/lazydocker/lazydocker tree-sitter-cli
-}
-
 ubuntu_step_7_nvidia_driver() {
     read -rp "$(echo -e "${BOLD}Do you have NVIDIA GPUs and want to install drivers? [y/n]: ${NC}")" has_nvidia
     if [[ "$has_nvidia" == "y" || "$has_nvidia" == "Y" ]]; then
@@ -217,113 +201,6 @@ ubuntu_step_8_reboot_after_packages() {
     prompt_reboot 8
 }
 
-ubuntu_step_9_git_config() {
-    header "Step 9: Setup Git Config"
-    read -rp "Enter your Git user.name: " git_name
-    read -rp "Enter your Git user.email: " git_email
-    if [[ -n "$git_name" && -n "$git_email" ]]; then
-        git config --global user.name "$git_name"
-        git config --global user.email "$git_email"
-    else
-        warn "Skipping Git config (empty name or email)."
-    fi
-}
-
-ubuntu_step_10_clone_repo() {
-    if [[ -d "${HOME}/.vim" ]]; then
-        info "~/.vim already exists, skipping clone."
-    else
-        git clone https://github.com/duguyue100/.vim.git "${HOME}/.vim"
-    fi
-}
-
-ubuntu_step_11_ghostty_config() {
-    mkdir -p "${HOME}/.config/ghostty"
-    ln -sf "${HOME}/.vim/ghostty-config" "${HOME}/.config/ghostty/config"
-}
-
-ubuntu_step_12_fish_setup() {
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    uv venv DGY --python 3.12 --directory "${HOME}"
-    mkdir -p "${HOME}/.config/fish"
-    rm -f "${HOME}/.config/fish/config.fish"
-    ln -s "${HOME}/.vim/config.fish" "${HOME}/.config/fish/config.fish"
-    ln -sf "${HOME}/.vim/starship.toml" "${HOME}/.config/starship.toml"
-
-    chsh -s "$(which fish)"
-}
-
-ubuntu_step_13_symlinks_and_tools() {
-    ln -sf "${HOME}/.vim/.darglint" "${HOME}/.darglint"
-    ln -sf "${HOME}/.vim/tmux.conf" "${HOME}/.tmux.conf"
-    if [[ ! -d "${HOME}/.tmux/plugins/tpm" ]]; then
-        git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
-    else
-        info "tpm already cloned, skipping."
-    fi
-    "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
-    mkdir -p "${HOME}/.config/mc"
-    rm -f "${HOME}/.config/mc/mc.keymap"
-    ln -s "${HOME}/.vim/mc.keymap" "${HOME}/.config/mc/mc.keymap"
-    mkdir -p "${HOME}/.config/opencode"
-    ln -s "${HOME}/.vim/opencode/opencode.jsonc" "${HOME}/.config/opencode/opencode.jsonc"
-}
-
-ubuntu_step_14_logout_reminder() {
-    manual_step "Step 14: Logout Reminder" \
-        "Please log out and log back in for all changes to take effect." \
-        "You can now use Ghostty as your terminal."
-}
-
-ubuntu_step_15_python_packages() {
-    uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7
-
-    read -rp "$(echo -e "${BOLD}Do you have NVIDIA GPUs? Install nvitop? [y/n]: ${NC}")" has_nvidia
-    if [[ "$has_nvidia" == "y" || "$has_nvidia" == "Y" ]]; then
-        uv pip install nvitop
-    fi
-}
-
-ubuntu_step_16_neovim_config() {
-    ln -sf "${HOME}/.vim" "${HOME}/.config/nvim"
-
-    manual_step "Install Neovim Tree-sitters" \
-        "Open nvim and run:  :TSInstall python lua typescript javascript" \
-        "Neovim packages will be installed automatically on first launch."
-}
-
-ubuntu_step_17_docker() {
-    manual_step "Step 17: Install Docker" \
-        "Follow the official Docker installation guide for Ubuntu:" \
-        "  https://docs.docker.com/engine/install/ubuntu/"
-}
-
-ubuntu_step_18_ssh() {
-    mkdir -p ~/.ssh
-
-    header "Generate SSH Key"
-    read -rp "Enter your email for the SSH key: " ssh_email
-    if [[ -n "$ssh_email" ]]; then
-        ssh-keygen -t ed25519 -C "$ssh_email"
-    else
-        warn "Skipping SSH key generation (no email provided)."
-    fi
-
-    manual_step "Add SSH Key to GitHub" \
-        "Copy your public key:  cat ~/.ssh/id_ed25519.pub" \
-        "Add it to your GitHub account at https://github.com/settings/keys"
-
-    manual_step "Configure ~/.ssh/config" \
-        "Create or edit ~/.ssh/config with your preferred settings." \
-        "Example template:" \
-        "  Host *" \
-        "      AddKeysToAgent yes" \
-        "      IdentityFile ~/.ssh/<default-key>"
-}
-
-ubuntu_step_19_git_remote() {
-    cd "${HOME}/.vim" && git remote set-url origin git@github.com:duguyue100/.vim.git
-}
 
 ubuntu_step_20_os_preferences() {
     manual_step "Step 20: Ubuntu OS Preferences" \
@@ -340,110 +217,14 @@ ubuntu_step_20_os_preferences() {
 # macOS STEPS
 # =============================================================================
 
-macos_step_1_chrome() {
-    curl -L -o /tmp/googlechrome.dmg https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg
-    hdiutil attach /tmp/googlechrome.dmg -nobrowse
-    cp -R /Volumes/Google\ Chrome/Google\ Chrome.app /Applications/
-    hdiutil detach /Volumes/Google\ Chrome
-    rm /tmp/googlechrome.dmg
-    info "Google Chrome installed successfully."
-}
-
 macos_step_2_os_updates() {
     manual_step "Step 2: Install macOS Updates" \
         "Go to System Preferences -> Software Update and install any pending updates." \
         "Reboot if required before continuing."
 }
 
-macos_step_3_homebrew() {
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    info "Verifying brew installation..."
-    which brew
-}
-
 macos_step_4_ghostty() {
     eval "$(/opt/homebrew/bin/brew shellenv)" && brew install --cask ghostty
-}
-
-macos_step_5_essential_packages() {
-    eval "$(/opt/homebrew/bin/brew shellenv)" && brew install automake bison cmake ffmpeg gcc git libuv tmux wget findutils zeromq ripgrep lazygit midnight-commander clang-format ruby lsd zoxide shellcheck node cairo pango fd bottom md5sha1sum jless fzf stats MonitorControl bob bash duf fish starship uv anomalyco/tap/opencode neovim jesseduffield/lazydocker/lazydocker tree-sitter-cli
-}
-
-macos_step_6_git_config() {
-    header "Step 6: Setup Git Config"
-    read -rp "Enter your Git user.name: " git_name
-    read -rp "Enter your Git user.email: " git_email
-    if [[ -n "$git_name" && -n "$git_email" ]]; then
-        git config --global user.name "$git_name"
-        git config --global user.email "$git_email"
-    else
-        warn "Skipping Git config (empty name or email)."
-    fi
-}
-
-macos_step_7_clone_repo() {
-    if [[ -d "${HOME}/.vim" ]]; then
-        info "$HOME/.vim already exists, skipping clone."
-    else
-        git clone https://github.com/duguyue100/.vim.git "${HOME}/.vim"
-    fi
-}
-
-macos_step_8_ghostty_config() {
-    mkdir -p "${HOME}/.config/ghostty"
-    ln -sf "${HOME}/.vim/ghostty-config" "${HOME}/.config/ghostty/config"
-}
-
-macos_step_9_fish_setup() {
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    uv venv DGY --python 3.12 --directory "${HOME}"
-    mkdir -p "${HOME}/.config/fish"
-    rm -f "${HOME}/.config/fish/config.fish"
-    ln -s "${HOME}/.vim/config.fish" "${HOME}/.config/fish/config.fish"
-    ln -sf "${HOME}/.vim/starship.toml" "${HOME}/.config/starship.toml"
-
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    echo "$(which fish)" | sudo tee -a /etc/shells
-    chsh -s "$(which fish)"
-}
-
-macos_step_10_symlinks_and_tools() {
-    ln -sf "${HOME}/.vim/.darglint" "${HOME}/.darglint"
-    ln -sf "${HOME}/.vim/tmux.conf" "${HOME}/.tmux.conf"
-
-    if [[ ! -d "${HOME}/.tmux/plugins/tpm" ]]; then
-        git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
-    else
-        echo "tpm already cloned, skipping."
-    fi
-
-    "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
-    mkdir -p "${HOME}/.config/mc"
-    rm -f "${HOME}/.config/mc/mc.keymap"
-    ln -s "${HOME}/.vim/mc.keymap" "${HOME}/.config/mc/mc.keymap"
-    mkdir -p "${HOME}/.config/opencode"
-    ln -s "${HOME}/.vim/opencode/opencode.jsonc" "${HOME}/.config/opencode/opencode.jsonc"
-    npm install --global yarn
-}
-
-
-macos_step_11_logout_reminder() {
-    manual_step "Step 11: Logout Reminder" \
-        "Please log out and log back in for all changes to take effect." \
-        "You can now use Ghostty as your terminal."
-}
-
-macos_step_12_python_packages() {
-    uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7
-}
-
-macos_step_13_neovim_config() {
-    ln -sf "${HOME}/.vim" "${HOME}/.config/nvim"
-
-    manual_step "Install Neovim Tree-sitters" \
-        "Open nvim and run:  :TSInstall python lua typescript javascript" \
-        "Neovim packages will be installed automatically on first launch."
 }
 
 macos_step_14_utilities() {
@@ -464,13 +245,169 @@ macos_step_14_utilities() {
         "MonitorControl: Already installed. Grant permissions during setup."
 }
 
-macos_step_15_docker() {
-    manual_step "Step 15: Install Docker Desktop" \
-        "Download Docker Desktop from https://docs.docker.com/desktop/install/mac-install/" \
-        "Install the downloaded .dmg file."
+macos_step_18_os_preferences() {
+    manual_step "Step 18: macOS Preferences" \
+        "Clean up Dock: Right-click icons -> Options -> Remove from Dock." \
+        "System Preferences -> Desktop & Dock: turn on 'Automatically hide and show the Dock'." \
+        "System Preferences -> Appearance: choose 'Auto'." \
+        "System Preferences -> Wallpaper: set your preferred wallpaper." \
+        "System Preferences -> Lock Screen: configure as desired." \
+        "System Preferences -> Keyboard -> Keyboard Shortcuts -> Function Keys:" \
+        "  Turn on 'Use F1, F2, etc. keys as standard function keys'."
 }
 
-macos_step_16_ssh() {
+# =============================================================================
+# COMMON STEPS
+# =============================================================================
+
+common_step_chrome() {
+    if [[ "$OS" == "ubuntu" ]]; then
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O /tmp/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i /tmp/google-chrome-stable_current_amd64.deb
+        rm /tmp/google-chrome-stable_current_amd64.deb
+    else
+        curl -L -o /tmp/googlechrome.dmg https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg
+        hdiutil attach /tmp/googlechrome.dmg -nobrowse
+        cp -R /Volumes/Google\ Chrome/Google\ Chrome.app /Applications/
+        hdiutil detach /Volumes/Google\ Chrome
+        rm /tmp/googlechrome.dmg
+    fi
+    info "Google Chrome installed successfully."
+}
+
+common_step_homebrew() {
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    if [[ "$OS" == "ubuntu" ]]; then
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    else
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+    info "Verifying brew installation..."
+    which brew
+}
+
+common_step_brew_packages() {
+    if [[ "$OS" == "ubuntu" ]]; then
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    else
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+
+    local COMMON_PACKAGES=(bottom lsd fd lazygit uv neovim fzf starship anomalyco/tap/opencode tmux shellcheck jesseduffield/lazydocker/lazydocker tree-sitter-cli)
+    local OS_PACKAGES=()
+
+    if [[ "$OS" == "ubuntu" ]]; then
+        OS_PACKAGES=(fnm)
+    else
+        OS_PACKAGES=(automake bison cmake ffmpeg gcc git libuv wget findutils zeromq ripgrep midnight-commander clang-format ruby zoxide node cairo pango md5sha1sum jless stats MonitorControl bob bash duf fish)
+    fi
+
+    brew install "${COMMON_PACKAGES[@]}" "${OS_PACKAGES[@]}"
+}
+
+
+common_step_git_config() {
+    header "Setup Git Config"
+    read -rp "Enter your Git user.name: " git_name
+    read -rp "Enter your Git user.email: " git_email
+    if [[ -n "$git_name" && -n "$git_email" ]]; then
+        git config --global user.name "$git_name"
+        git config --global user.email "$git_email"
+    else
+        warn "Skipping Git config (empty name or email)."
+    fi
+}
+
+common_step_clone_repo() {
+    if [[ -d "${HOME}/.vim" ]]; then
+        info "~/.vim already exists, skipping clone."
+    else
+        git clone https://github.com/duguyue100/.vim.git "${HOME}/.vim"
+    fi
+}
+
+common_step_ghostty_config() {
+    mkdir -p "${HOME}/.config/ghostty"
+    ln -sf "${HOME}/.vim/ghostty-config" "${HOME}/.config/ghostty/config"
+}
+
+common_step_fish_setup() {
+    if [[ "$OS" == "ubuntu" ]]; then
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    else
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
+    uv venv DGY --python 3.12 --directory "${HOME}"
+    mkdir -p "${HOME}/.config/fish"
+    rm -f "${HOME}/.config/fish/config.fish"
+    ln -s "${HOME}/.vim/config.fish" "${HOME}/.config/fish/config.fish"
+    ln -sf "${HOME}/.vim/starship.toml" "${HOME}/.config/starship.toml"
+
+    if [[ "$OS" == "macos" ]]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        echo "$(which fish)" | sudo tee -a /etc/shells
+    fi
+    chsh -s "$(which fish)"
+}
+
+common_step_symlinks_and_tools() {
+    ln -sf "${HOME}/.vim/.darglint" "${HOME}/.darglint"
+    ln -sf "${HOME}/.vim/tmux.conf" "${HOME}/.tmux.conf"
+    if [[ ! -d "${HOME}/.tmux/plugins/tpm" ]]; then
+        git clone https://github.com/tmux-plugins/tpm "${HOME}/.tmux/plugins/tpm"
+    else
+        info "tpm already cloned, skipping."
+    fi
+    "${HOME}/.tmux/plugins/tpm/bin/install_plugins"
+    mkdir -p "${HOME}/.config/mc"
+    rm -f "${HOME}/.config/mc/mc.keymap"
+    ln -s "${HOME}/.vim/mc.keymap" "${HOME}/.config/mc/mc.keymap"
+    mkdir -p "${HOME}/.config/opencode"
+    ln -s "${HOME}/.vim/opencode/opencode.jsonc" "${HOME}/.config/opencode/opencode.jsonc"
+
+    if [[ "$OS" == "macos" ]]; then
+        npm install --global yarn
+    fi
+}
+
+common_step_logout_reminder() {
+    manual_step "Logout Reminder" \
+        "Please log out and log back in for all changes to take effect." \
+        "You can now use Ghostty as your terminal."
+}
+
+common_step_python_packages() {
+    uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7
+
+    if [[ "$OS" == "ubuntu" ]]; then
+        read -rp "$(echo -e "${BOLD}Do you have NVIDIA GPUs? Install nvitop? [y/n]: ${NC}")" has_nvidia
+        if [[ "$has_nvidia" == "y" || "$has_nvidia" == "Y" ]]; then
+            uv pip install nvitop
+        fi
+    fi
+}
+
+common_step_neovim_config() {
+    ln -sf "${HOME}/.vim" "${HOME}/.config/nvim"
+
+    manual_step "Install Neovim Tree-sitters" \
+        "Open nvim and run:  :TSInstall python lua typescript javascript" \
+        "Neovim packages will be installed automatically on first launch."
+}
+
+common_step_docker() {
+    if [[ "$OS" == "ubuntu" ]]; then
+        manual_step "Install Docker" \
+            "Follow the official Docker installation guide for Ubuntu:" \
+            "  https://docs.docker.com/engine/install/ubuntu/"
+    else
+        manual_step "Install Docker Desktop" \
+            "Download Docker Desktop from https://docs.docker.com/desktop/install/mac-install/" \
+            "Install the downloaded .dmg file."
+    fi
+}
+
+common_step_ssh() {
     mkdir -p ~/.ssh
 
     header "Generate SSH Key"
@@ -493,19 +430,8 @@ macos_step_16_ssh() {
         "      IdentityFile ~/.ssh/<default-key>"
 }
 
-macos_step_17_git_remote() {
+common_step_git_remote() {
     cd "${HOME}/.vim" && git remote set-url origin git@github.com:duguyue100/.vim.git
-}
-
-macos_step_18_os_preferences() {
-    manual_step "Step 18: macOS Preferences" \
-        "Clean up Dock: Right-click icons -> Options -> Remove from Dock." \
-        "System Preferences -> Desktop & Dock: turn on 'Automatically hide and show the Dock'." \
-        "System Preferences -> Appearance: choose 'Auto'." \
-        "System Preferences -> Wallpaper: set your preferred wallpaper." \
-        "System Preferences -> Lock Screen: configure as desired." \
-        "System Preferences -> Keyboard -> Keyboard Shortcuts -> Function Keys:" \
-        "  Turn on 'Use F1, F2, etc. keys as standard function keys'."
 }
 
 # =============================================================================
@@ -513,46 +439,46 @@ macos_step_18_os_preferences() {
 # =============================================================================
 
 UBUNTU_STEPS=(
-    ubuntu_step_1_chrome
+    common_step_chrome
     ubuntu_step_2_update
     ubuntu_step_3_essential_packages
     ubuntu_step_4_ghostty
-    ubuntu_step_5_linuxbrew
-    ubuntu_step_6_brew_packages
+    common_step_homebrew
+    common_step_brew_packages
     ubuntu_step_7_nvidia_driver
     ubuntu_step_8_reboot_after_packages
-    ubuntu_step_9_git_config
-    ubuntu_step_10_clone_repo
-    ubuntu_step_11_ghostty_config
-    ubuntu_step_12_fish_setup
-    ubuntu_step_13_symlinks_and_tools
-    ubuntu_step_14_logout_reminder
-    ubuntu_step_15_python_packages
-    ubuntu_step_16_neovim_config
-    ubuntu_step_17_docker
-    ubuntu_step_18_ssh
-    ubuntu_step_19_git_remote
+    common_step_git_config
+    common_step_clone_repo
+    common_step_ghostty_config
+    common_step_fish_setup
+    common_step_symlinks_and_tools
+    common_step_logout_reminder
+    common_step_python_packages
+    common_step_neovim_config
+    common_step_docker
+    common_step_ssh
+    common_step_git_remote
     ubuntu_step_20_os_preferences
 )
 
 MACOS_STEPS=(
-    macos_step_1_chrome
+    common_step_chrome
     macos_step_2_os_updates
-    macos_step_3_homebrew
+    common_step_homebrew
     macos_step_4_ghostty
-    macos_step_5_essential_packages
-    macos_step_6_git_config
-    macos_step_7_clone_repo
-    macos_step_8_ghostty_config
-    macos_step_9_fish_setup
-    macos_step_10_symlinks_and_tools
-    macos_step_11_logout_reminder
-    macos_step_12_python_packages
-    macos_step_13_neovim_config
+    common_step_brew_packages
+    common_step_git_config
+    common_step_clone_repo
+    common_step_ghostty_config
+    common_step_fish_setup
+    common_step_symlinks_and_tools
+    common_step_logout_reminder
+    common_step_python_packages
+    common_step_neovim_config
     macos_step_14_utilities
-    macos_step_15_docker
-    macos_step_16_ssh
-    macos_step_17_git_remote
+    common_step_docker
+    common_step_ssh
+    common_step_git_remote
     macos_step_18_os_preferences
 )
 
