@@ -173,6 +173,7 @@ prompt_reboot() {
 ubuntu_step_2_update() {
     sudo apt-add-repository -y ppa:git-core/ppa
     sudo add-apt-repository -y ppa:fish-shell/release-4
+    sudo add-apt-repository -y ppa:mkasberg/ghostty-ubuntu
     sudo apt update && sudo apt upgrade -y
 
     echo ""
@@ -186,16 +187,10 @@ ubuntu_step_2_update() {
 }
 
 ubuntu_step_3_essential_packages() {
-    sudo apt install -y build-essential binutils cmake curl unzip openssh-server xclip zsh ripgrep mc clang-format ruby-full curl zoxide git vlc libfuse2 plocate duf fish procps
+    sudo apt install -y build-essential binutils cmake curl unzip openssh-server xclip zsh ripgrep mc clang-format ruby-full curl zoxide git vlc libfuse2 plocate duf fish procps ghostty
 }
 
 ubuntu_step_4_ghostty() {
-    source /etc/os-release
-    GHOSTTY_DEB_URL=$(curl -s https://api.github.com/repos/mkasberg/ghostty-ubuntu/releases/latest | grep -oP "https://github.com/mkasberg/ghostty-ubuntu/releases/download/[^\s/]+/ghostty_[^\s/_]+_${ARCH}_${VERSION_ID}.deb")
-    GHOSTTY_DEB_FILE=$(basename "$GHOSTTY_DEB_URL")
-    curl -LO "$GHOSTTY_DEB_URL"
-    sudo dpkg -i "$GHOSTTY_DEB_FILE"
-    rm "$GHOSTTY_DEB_FILE"
     sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /usr/bin/ghostty 60
 }
 
