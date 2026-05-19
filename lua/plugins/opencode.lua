@@ -26,7 +26,7 @@ return {
             function M.ask_multiline(default, context)
                 local Promise = require("opencode.promise")
 
-                return require("opencode.server")
+                return require("opencode.server.discovery")
                     .get()
                     :next(function(server) ---@param server opencode.cli.server.Server
                         return Promise.new(function(resolve, reject)
