@@ -57,3 +57,22 @@ end
 starship init fish | source
 zoxide init fish | source
 fzf --fish | source
+
+function fgf
+    fzf --disabled --ansi --cycle --layout reverse \
+      --border --input-border --list-border \
+      --bind "change:reload:rg --column --line-number --no-heading --color=always --smart-case {q} || true" \
+      --bind "enter:execute(nvim {1} +{2}; tput rmcup; clear)+abort" \
+      --delimiter : \
+      --preview 'bat --color=always --highlight-line={2} {1} 2>/dev/null | awk -v str="{q}" "BEGIN {IGNORECASE=1} str != \"\" {gsub(str, \"\033[30;43m&\033[0m\")} 1"' \
+      --preview-window 'right,60%,+{2}-/2'
+end
+
+function fff
+    fd --type f --hidden --exclude .git --color=always | fzf \
+      --exact --ansi --cycle --layout reverse \
+      --border --input-border --list-border \
+      --bind "enter:execute(nvim {1}; tput rmcup; clear)+abort" \
+      --preview 'test -n "{1}" && bat --color=always {1}' \
+      --preview-window 'right,60%'
+end
