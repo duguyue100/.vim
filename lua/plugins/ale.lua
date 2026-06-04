@@ -26,10 +26,13 @@ return {
                 go = {"gopls"},
                 typescript = {"biome", "tsserver"},
                 yaml = {"yamllint"},
+                cpp = {"clangd"},
             }
             vim.g.ale_disable_lsp = 0
             if vim.fn.has("mac") == 1 then
-                vim.g.ale_cpp_cc_executable = "/usr/local/bin/g++-12"
+                vim.g.ale_cpp_cc_executable = "/opt/homebrew/bin/g++-15"
+                vim.g.ale_cpp_clangd_executable = '/opt/homebrew/opt/llvm/bin/clangd'
+                vim.g.ale_cpp_clangd_options = '--query-driver=/opt/homebrew/bin/g++-15'
             end
         end,
     },

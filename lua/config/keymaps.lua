@@ -79,3 +79,36 @@ end, { desc = "Insert CP Template" })
 map("n", "<leader>cr", "<cmd>CompetiTest run<cr>", { desc = "Run tests", silent = true })
 map("n", "<leader>cd", "<cmd>CompetiTest receive testcases<cr>", { desc = "Download test cases", silent = true })
 
+map("n", "<leader>cx", function()
+    -- 1. Get the full path and name details of the currently active buffer
+    local current_file = vim.api.nvim_buf_get_name(0)
+
+    -- Safety check: Ensure it's actually a C++ file
+    if current_file == "" or vim.bo.filetype ~= "cpp" then
+        vim.notify("Not a valid C++ buffer to clean!", vim.log.levels.WARN)
+        return
+    end
+
+    -- 2. Extract the base path and problem name (e.g., /path/to/faktor)
+    local base_path = current_file:sub(1, -5)
+    local problem_name = vim.fn.fnamemodify(current_file, ":t:r")
+    local directory = vim.fn.fnamemodify(current_file, ":h")
+
+    -- 3. Construct a shell command that targets ONLY this problem's clutter
+    -- It deletes the binary ('faktor') and any inputs/outputs ('faktor_input*.txt')
+    local cmd = string.format(
+        "rm -f '%s' '%s'_input*.txt '%s'_output*.txt",
+        base_path, base_path, base_path
+    )
+
+    -- 4. Execute asynchronously via Neovim's jobstart so it doesn't freeze your UI
+    vim.fn.jobstart(cmd, {
+        on_exit = function(_, exit_code)
+            if exit_code == 0 then
+                vim.notify("Cleaned up " .. problem_name .. " binaries and text files!", vim.log.levels.INFO)
+            else
+                vim.notify("Cleanup failed for " .. problem_name, vim.log.levels.ERROR)
+            end
+        end
+    })
+end, { desc = "Clean up current CP text files and binary" })
