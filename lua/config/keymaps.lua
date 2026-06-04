@@ -63,3 +63,19 @@ local function kill_opencode()
     vim.fn.jobstart({ "bash", "-c", cmd }, { detach = true })
 end
 map("n", "<leader>ok", kill_opencode, { desc = "Kill opencode pane" })
+
+-- Competitive Programming keymap
+map("n", "<leader>ct", function()
+    local path = vim.fn.expand("~/.vim/cp_templates/cpp.cpp")
+    if vim.fn.filereadable(path) == 1 then
+        local lines = vim.fn.readfile(path)
+        local row = vim.api.nvim_win_get_cursor(0)[1]
+        vim.api.nvim_buf_set_lines(0, row - 1, row, false, lines)
+    else
+        vim.notify("Template not found at: " .. path, vim.log.levels.ERROR)
+    end
+end, { desc = "Insert CP Template" })
+
+map("n", "<leader>cr", "<cmd>CompetiTest run<cr>", { desc = "Run tests", silent = true })
+map("n", "<leader>cd", "<cmd>CompetiTest receive testcases<cr>", { desc = "Download test cases", silent = true })
+
