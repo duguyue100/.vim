@@ -78,6 +78,7 @@ end, { desc = "Insert CP Template" })
 
 map("n", "<leader>cr", "<cmd>CompetiTest run<cr>", { desc = "Run tests", silent = true })
 map("n", "<leader>cd", "<cmd>CompetiTest receive testcases<cr>", { desc = "Download test cases", silent = true })
+map("n", "<leader>ca", "<cmd>CompetiTest add_testcase<cr>", { desc = "Download test cases", silent = true })
 
 map("n", "<leader>cx", function()
     -- 1. Get the full path and name details of the currently active buffer
