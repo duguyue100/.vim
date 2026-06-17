@@ -12,10 +12,7 @@ end
 -- Leader keymaps
 map("n", "<leader>w", "<cmd>w!<cr>", { desc = "Fast write", silent = true })
 map("n", "<leader>q", "<cmd>qall<cr>", { desc = "Fast quit" })
-
--- Copilot keymaps
-map("i", "<C-f>", "<Plug>(copilot-next)", { desc="Copilot next suggestion", silent = true })
-map("i", "<C-b>", "<Plug>(copilot-previous)", { desc="Copilot previous suggestion", silent = true })
+map({ "n", "x" }, "<leader>d", '"_d', { desc = "Actual delete" })
 
 -- Telescope keymaps
 
