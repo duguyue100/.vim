@@ -21,15 +21,13 @@ return {
             --- - `<Esc>` / `q` (normal): Cancel and close the window.
             ---
             ---@param default? string Text to pre-fill the input with.
-            ---@param context opencode.Context
+            ---@param server opencode.server.Server
+            ---@param context opencode.context.Context
             ---@return Promise<string> input
-            function M.ask_multiline(default, context)
+            function M.ask_multiline(default, server, context)
                 local Promise = require("opencode.promise")
 
-                return require("opencode.server.discovery")
-                    .get()
-                    :next(function(server) ---@param server opencode.cli.server.Server
-                        return Promise.new(function(resolve, reject)
+                return Promise.new(function(resolve, reject)
                             local config = require("opencode.config").opts.ask_multiline or {}
                             local win_width_frac  = config.width  or 0.5
                             local win_height_frac = config.height or 0.2
@@ -139,12 +137,10 @@ return {
                                     end
                                 end,
                             })
-                        end)
-                    end)
-                    :catch(function(err)
-                        context:resume()
-                        return Promise.reject(err)
-                    end)
+                end):catch(function(err)
+                    context:resume()
+                    return Promise.reject(err)
+                end)
             end
 
             return M
@@ -168,14 +164,20 @@ return {
         -- include this command; we inject it here so keymaps work unchanged).
         local opencode = require("opencode")
         opencode.ask_multiline = function(default, opts)
-            opts         = opts or {}
-            opts.context = opts.context or require("opencode.context").new()
+            opts = opts or {}
 
-            return require("opencode.ui.ask_multiline")
-                .ask_multiline(default, opts.context)
-                :next(function(input) ---@param input string
-                    opts.context:clear()
-                    return require("opencode.api.prompt").prompt(input, opts)
+            -- Mirror the upstream `opencode.ask()` flow: resolve the server
+            -- first, then thread `server` + `context` through the UI and the
+            -- prompt API (both now require the server argument).
+            return require("opencode.server.discovery")
+                .get()
+                :next(function(server) ---@param server opencode.server.Server
+                    local context = opts.context or require("opencode.context").new()
+                    return require("opencode.ui.ask_multiline")
+                        .ask_multiline(default, server, context)
+                        :next(function(input) ---@param input string
+                            return require("opencode.api.prompt").prompt(input, server, context)
+                        end)
                 end)
                 :catch(function(err)
                     if err then
