@@ -9,7 +9,11 @@ function m --description 'macman command dispatcher'
     set -l cmd $argv[1]
     set -e argv[1]
     set -l fn __m_(string replace -a '.' '_' -- $cmd)
-    functions -q $fn; and $fn $argv; or echo "Command '$cmd' not found. Try: m help"
+    if functions -q $fn
+        $fn $argv
+    else
+        echo "Command '$cmd' not found. Try: m help"
+    end
 end
 
 function __m_cap --description 'capitalize first letter'
@@ -41,7 +45,7 @@ function __m_render_group --description 'render one group table'
         case general
             set names info lock ports uptime weather waka fd.size disk
         case git
-            set names g.stat g.clone g.pull g.th.bh g.co.bh g.add g.add.all g.commit g.conf go
+            set names g.stat g.clone g.pull g.th.bh g.migrate g.switch gs g.co.bh g.add g.add.all g.commit g.conf go
         case multiplexer
             set names t.div.h t.div.v t.de t.at t t.re t.ls t.rm tpx t.new twx t.rename
         case functions
@@ -144,9 +148,61 @@ end
 
 function __m_g_th_bh --description 'Create branch in a new worktree and switch to it'
     set -l branch $argv[1]
-    set -l name (string split '/' -- $branch)[-1]
+    set -l name (string replace -r -a '[^A-Za-z0-9._-]' '-' -- $branch)
     git worktree add ../$name -b $branch
     cd ../$name
+end
+
+function __m_g_migrate --description 'Restructure a manually cloned repo into <name>/main worktree layout'
+    if not test -d .git
+        echo "Not at a git repository root. cd to the repo root first."
+        return 1
+    end
+    if test (basename (pwd)) = main
+        echo "Already inside a 'main' directory; nothing to migrate."
+        return 1
+    end
+    set -l name (basename (pwd))
+    cd ..
+    mv $name $name.__migrate_tmp
+    mkdir $name
+    mv $name.__migrate_tmp $name/main
+    cd $name/main
+    echo "Migrated $name → $name/main"
+end
+
+function __m_g_switch --description 'List worktrees and jump to selected (j/k Enter)'
+    set -l wt_lines
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1
+        set wt_lines (git worktree list)
+    else if test -d ./main/.git
+        set wt_lines (git -C ./main worktree list)
+    else
+        echo "No worktrees here. Run from a worktree or the <name>/ folder."
+        return 1
+    end
+    if test (count $wt_lines) -eq 0
+        echo "No worktrees."
+        return 1
+    end
+    set -l paths
+    set -l display
+    for line in $wt_lines
+        set -l p (string match -r '^[^ ]+' -- $line)
+        set -a paths $p
+        set -l branch (string match -r '\[[^]]*\]' -- $line)
+        set -l short (string split / -- $p)[-2..-1]
+        set -a display (string join / -- $short)"  $branch"
+    end
+    set -l choice (printf '%s\n' $display | fzf --reverse --bind j:down,k:up --header='j/k navigate, Enter jump')
+    if test -n "$choice"
+        set -l i (contains --index -- $choice $display)
+        cd $paths[$i]
+    end
+end
+
+function __m_gs --description 'Alias for g.switch'
+    __m_g_switch $argv
 end
 
 function __m_g_co_bh --description 'Checkout git branch'
