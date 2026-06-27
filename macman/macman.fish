@@ -232,8 +232,19 @@ function __m_g_run --description 'Run a top-level script from anywhere in the re
         echo "$script not found"
         return 1
     end
+    # ponytail: run from the current worktree root so the script sees the worktree's files; top-level invocation has no worktree root, just run from cwd
+    set -l run_cwd
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1
+        set run_cwd (git rev-parse --show-toplevel)
+    else
+        set run_cwd $PWD
+    end
     # ponytail: run whatever's there; if it's not executable or not a script the shell says so
+    pushd $run_cwd
     sh $script $argv
+    set -l rc $status
+    popd
+    return $rc
 end
 
 function __m_g_run_candidates
