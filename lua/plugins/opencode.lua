@@ -172,11 +172,11 @@ return {
             return require("opencode.server.discovery")
                 .get()
                 :next(function(server) ---@param server opencode.server.Server
-                    local context = opts.context or require("opencode.context").new()
+                    local context = opts.context or require("opencode.context").new(server)
                     return require("opencode.ui.ask_multiline")
                         .ask_multiline(default, server, context)
                         :next(function(input) ---@param input string
-                            return require("opencode.api.prompt").prompt(input, server, context)
+                            return require("opencode.api.prompt").prompt(input, context)
                         end)
                 end)
                 :catch(function(err)
