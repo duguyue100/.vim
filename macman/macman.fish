@@ -45,7 +45,7 @@ function __m_render_group --description 'render one group table'
         case general
             set names info lock ports uptime weather waka fd.size disk
         case git
-            set names g.stat g.clone g.pull g.th.bh g.migrate g.switch gs g.co.bh g.add g.add.all g.commit g.conf go
+            set names g.stat g.clone g.pull g.th.bh g.wt g.migrate g.switch gs g.co.bh g.add g.add.all g.commit g.conf go
         case multiplexer
             set names t.div.h t.div.v t.de t.at t t.re t.ls t.rm tpx t.new twx t.rename
         case functions
@@ -146,11 +146,51 @@ function __m_g_pull --description 'Pull git repository'
     git pull
 end
 
-function __m_g_th_bh --description 'Create branch in a new worktree and switch to it'
-    set -l branch $argv[1]
-    set -l name (string replace -r -a '[^A-Za-z0-9._-]' '-' -- $branch)
-    git worktree add ../$name -b $branch
-    cd ../$name
+function __m_g_th_bh --description 'Create branch and switch to it'
+    git checkout -b $argv[1]
+end
+
+function __m_g_wt --description 'Create worktree on default branch and switch to it'
+    if test (count $argv) -lt 1
+        echo "usage: m g.wt <name> [branch]"
+        return 1
+    end
+    set -l name (string replace -r -a '[^A-Za-z0-9._-]' '-' -- $argv[1])
+    # ponytail: detect context — inside a worktree (sibling) vs top-level <name>/ folder (child)
+    set -l target
+    set -l git_dir
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1
+        set target (dirname (git rev-parse --show-toplevel))/$name
+        set git_dir .
+    else if test -d ./main/.git
+        set target (realpath .)/$name
+        set git_dir ./main
+    else
+        echo "Run from a worktree or the <name>/ folder."
+        return 1
+    end
+    # ponytail: explicit branch arg wins; origin/HEAD resolves real default (covers trunk/develop); main/master fallback
+    set -l dbranch
+    if test (count $argv) -ge 2
+        set dbranch $argv[2]
+    else
+        set dbranch (git -C $git_dir symbolic-ref --short refs/remotes/origin/HEAD 2>/dev/null | string replace -r '^origin/' '')
+        if test -z "$dbranch"
+            for cand in main master
+                if git -C $git_dir show-ref --verify --quiet refs/heads/$cand; or git -C $git_dir show-ref --verify --quiet refs/remotes/origin/$cand
+                    set dbranch $cand
+                    break
+                end
+            end
+        end
+    end
+    if test -z "$dbranch"
+        echo "can't detect default branch; pass it explicitly: m g.wt <name> <branch>"
+        return 1
+    end
+    # ponytail: --detach checks out the default tip without locking the branch; main/ stays the sole default-branch worktree
+    git -C $git_dir worktree add --detach $target $dbranch
+    cd $target
 end
 
 function __m_g_migrate --description 'Restructure a manually cloned repo into <name>/main worktree layout'
@@ -173,7 +213,7 @@ function __m_g_migrate --description 'Restructure a manually cloned repo into <n
     echo "Migrated $name → $name/main"
 end
 
-function __m_g_switch --description 'List worktrees and jump to selected (j/k Enter)'
+function __m_g_switch --description 'List worktrees and jump to selected (number Enter)'
     set -l wt_lines
     if git rev-parse --is-inside-work-tree >/dev/null 2>&1
         set wt_lines (git worktree list)
@@ -188,24 +228,58 @@ function __m_g_switch --description 'List worktrees and jump to selected (j/k En
         return 1
     end
     set -l paths
-    set -l display
+    set -l shorts
     for line in $wt_lines
         set -l p (string match -r '^[^ ]+' -- $line)
         set -a paths $p
-        set -l branch (string match -r '\[[^]]*\]' -- $line)
-        set -l short (string split / -- $p)[-2..-1]
-        set -a display (string join / -- $short)"  $branch"
+        set -a shorts (string split / -- $p)[-1]
     end
-    set -l choice (printf '%s\n' $display | fzf --reverse --bind j:down,k:up --header='j/k navigate, Enter jump')
-    if test -n "$choice"
-        set -l i (contains --index -- $choice $display)
+    # ponytail: take an arg (tab-completed) or fall back to a numbered list
+    if test (count $argv) -ge 1; and test -n "$argv[1]"
+        for i in (seq (count $shorts))
+            if string match -qi -- "*$argv[1]*" $shorts[$i]
+                cd $paths[$i]
+                return
+            end
+        end
+        echo "no worktree matches '$argv[1]'"
+        return 1
+    end
+    for i in (seq (count $shorts))
+        printf '%2d  %s\n' $i $shorts[$i]
+    end
+    echo
+    read -l -P 'jump to # ' i
+    if string match -qr '^\d+$' -- $i; and test $i -ge 1 -a $i -le (count $paths)
         cd $paths[$i]
+    else
+        echo "invalid selection"
+        return 1
+    end
+end
+
+function __m_g_switch_candidates
+    set -l wt_lines
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1
+        set wt_lines (git worktree list)
+    else if test -d ./main/.git
+        set wt_lines (git -C ./main worktree list)
+    else
+        return
+    end
+    for line in $wt_lines
+        set -l p (string match -r '^[^ ]+' -- $line)
+        echo (string split / -- $p)[-1]
     end
 end
 
 function __m_gs --description 'Alias for g.switch'
     __m_g_switch $argv
 end
+
+complete -c m -f
+complete -c m -n '__fish_use_subcommand' -a gs -d 'Switch worktree'
+complete -c m -n '__fish_seen_subcommand_from gs' -f -a "(__m_g_switch_candidates)"
 
 function __m_g_co_bh --description 'Checkout git branch'
     git checkout $argv[1]
