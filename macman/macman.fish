@@ -154,15 +154,17 @@ function __m_g_th_bh --description 'Create branch in a new worktree and switch t
 end
 
 function __m_g_migrate --description 'Restructure a manually cloned repo into <name>/main worktree layout'
-    if not test -d .git
-        echo "Not at a git repository root. cd to the repo root first."
+    set -l root (git rev-parse --show-toplevel 2>/dev/null)
+    if test -z "$root"
+        echo "Not inside a git repository."
         return 1
     end
-    if test (basename (pwd)) = main
+    cd $root
+    if test (basename $root) = main
         echo "Already inside a 'main' directory; nothing to migrate."
         return 1
     end
-    set -l name (basename (pwd))
+    set -l name (basename $root)
     cd ..
     mv $name $name.__migrate_tmp
     mkdir $name
