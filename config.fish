@@ -23,7 +23,7 @@ alias towork="cd $HOME/workspace"
 alias todown="cd $HOME/Downloads"
 alias tocore="cd $HOME/workspace/latticeflow-core"
 alias togo="cd $HOME/workspace/latticeflow-core/assessment"
-alias lfd="$HOME/workspace/latticeflow-core/assessment/tools/docker.py"
+alias lfd="$HOME/workspace/latticeflow-core/main/assessment/tools/docker.py"
 alias lg="lazygit"
 function slg --description 'lazygit (config + skip hooks) with dir-change on exit'
     # ponytail: lazygit writes the cwd it landed in to LAZYGIT_NEW_DIR_FILE on q (not <shift-q>); cd there
