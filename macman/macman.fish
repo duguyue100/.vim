@@ -43,9 +43,9 @@ function __m_render_group --description 'render one group table'
     set -l names
     switch $g
         case general
-            set names info lock ports uptime weather waka fd.size disk
+            set names venv info lock ports uptime weather waka fd.size disk
         case git
-            set names g.stat g.clone g.pull g.th.bh g.wt g.migrate g.switch gs g.co.bh g.add g.add.all g.commit g.conf go
+            set names g.stat g.clone g.pull g.th.bh g.wt g.run g.migrate g.switch gs g.co.bh g.add g.add.all g.commit g.conf go
         case multiplexer
             set names t.div.h t.div.v t.de t.at t t.re t.ls t.rm tpx t.new twx t.rename
         case functions
@@ -125,6 +125,18 @@ function __m_jupyter --description 'Start jupyter server'
     jupyter notebook --port=$port --NotebookApp.token='lfyuhuang'
 end
 
+function __m_venv --description 'Create uv python venv (if absent)'
+    if test (count $argv) -lt 1
+        echo "usage: m venv <version>  (e.g. 3.11)"
+        return 1
+    end
+    if test -d .venv
+        echo ".venv exists, doing nothing"
+        return
+    end
+    uv venv --python $argv[1]
+end
+
 
 # Git
 function __m_g_stat --description 'Get git status'
@@ -191,6 +203,45 @@ function __m_g_wt --description 'Create worktree on default branch and switch to
     # ponytail: --detach checks out the default tip without locking the branch; main/ stays the sole default-branch worktree
     git -C $git_dir worktree add --detach $target $dbranch
     cd $target
+end
+
+function __m_g_run_toplevel
+    if git rev-parse --is-inside-work-tree >/dev/null 2>&1
+        # ponytail: scripts live one level above the worktree toplevel (where main/, dev/, etc. sit)
+        dirname (git rev-parse --show-toplevel)
+    else if test -d ./main/.git
+        realpath .
+    else
+        return 1
+    end
+end
+
+function __m_g_run --description 'Run a top-level script from anywhere in the repo'
+    set -l top (__m_g_run_toplevel)
+    if test -z "$top"
+        echo "Run from a worktree or the <name>/ folder."
+        return 1
+    end
+    if test (count $argv) -lt 1
+        echo "usage: m g.run <script> [args...]"
+        return 1
+    end
+    set -l script $top/$argv[1]
+    set -e argv[1]
+    if test ! -e "$script"
+        echo "$script not found"
+        return 1
+    end
+    # ponytail: run whatever's there; if it's not executable or not a script the shell says so
+    sh $script $argv
+end
+
+function __m_g_run_candidates
+    set -l top (__m_g_run_toplevel)
+    test -z "$top"; and return
+    for f in $top/*
+        test -f "$f"; and echo (string split / -- $f)[-1]
+    end
 end
 
 function __m_g_migrate --description 'Restructure a manually cloned repo into <name>/main worktree layout'
@@ -280,6 +331,8 @@ end
 complete -c m -f
 complete -c m -n '__fish_use_subcommand' -a gs -d 'Switch worktree'
 complete -c m -n '__fish_seen_subcommand_from gs' -f -a "(__m_g_switch_candidates)"
+complete -c m -n '__fish_use_subcommand' -a g.run -d 'Run top-level script'
+complete -c m -n '__fish_seen_subcommand_from g.run' -f -a "(__m_g_run_candidates)"
 
 function __m_g_co_bh --description 'Checkout git branch'
     git checkout $argv[1]
