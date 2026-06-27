@@ -11,6 +11,8 @@ git:
 gui:
   showDivergenceFromBaseBranch: 'arrowAndNumber'
 
+  skipSwitchWorktreeOnCheckoutWarning: true
+
   mainBranches:
     - lua
     - master
