@@ -32,7 +32,7 @@ alias reload="source $HOME/.config/fish/config.fish"
 alias uvact="source .venv/bin/activate.fish; starship init fish | source"
 alias ls='lsd -X --group-directories-first -A'
 # alias tmux="TERM=xterm-256color tmux"
-alias btm="btm --dot_marker --enable_gpu"
+alias btm="btm --dot_marker"
 export EDITOR="nvim"
 
 switch (uname)
