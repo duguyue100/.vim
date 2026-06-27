@@ -17,7 +17,7 @@ set -Ux FZF_DEFAULT_OPTS "--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#
 
 export PATH="$HOME/.cargo/bin:$PATH"
 
-alias m=$HOME/.vim/macman/macman
+source $HOME/.vim/macman/macman.fish
 alias n=nvim
 alias towork="cd $HOME/workspace"
 alias todown="cd $HOME/Downloads"
