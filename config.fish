@@ -25,7 +25,16 @@ alias tocore="cd $HOME/workspace/latticeflow-core"
 alias togo="cd $HOME/workspace/latticeflow-core/assessment"
 alias lfd="$HOME/workspace/latticeflow-core/assessment/tools/docker.py"
 alias lg="lazygit"
-alias slg="SKIP=pytest,pytest_docs,mypy,nbqa-mypy,nbqa-flake8,mypy_nbqa_runner,shellcheck,actionlint lazygit -ucf $HOME/.vim/lazygit-config.yaml"
+function slg --description 'lazygit (config + skip hooks) with dir-change on exit'
+    # ponytail: lazygit writes the cwd it landed in to LAZYGIT_NEW_DIR_FILE on q (not <shift-q>); cd there
+    set -lx LAZYGIT_NEW_DIR_FILE (mktemp)
+    set -lx SKIP pytest,pytest_docs,mypy,nbqa-mypy,nbqa-flake8,mypy_nbqa_runner,shellcheck,actionlint
+    lazygit -ucf $HOME/.vim/lazygit-config.yaml $argv
+    if test -f $LAZYGIT_NEW_DIR_FILE
+        cd (cat $LAZYGIT_NEW_DIR_FILE)
+    end
+    rm -f $LAZYGIT_NEW_DIR_FILE
+end
 alias ldocker="lazydocker"
 alias reload="source $HOME/.config/fish/config.fish"
 # shortcut to activate venv faster
