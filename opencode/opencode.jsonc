@@ -3,4 +3,13 @@
   // Theme configuration
   "theme": "tokyonight",
   "autoupdate": true,
+  "mcp": {
+    "cocoindex-code": {
+      "type": "local",
+      "command": [
+        "ccc",
+        "mcp"
+      ]
+    }
+  },
 }
