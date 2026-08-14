@@ -14,7 +14,7 @@ return {
                 vim.lsp.protocol.make_client_capabilities()
             )
             vim.lsp.config(
-                'jedi_language_server',
+                'ty',
                 {
                     capabilities = capabilities
                 }

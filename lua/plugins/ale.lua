@@ -21,7 +21,7 @@ return {
                 yaml = {"yamlfmt"}
             }
             vim.g.ale_linters = {
-                python = {'mypy', "jedils", "ruff"},
+                python = {'mypy', "ty", "ruff"},
                 rust = {'analyzer'},
                 go = {"gopls"},
                 typescript = {"biome", "tsserver"},
