@@ -55,8 +55,8 @@
   # Desktop environment — needed for the Ghostty terminal to have a display.
   # If you prefer another desktop, swap `gnome` for e.g. `plasma5` / `xfce`.
   services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.displayManager.gdm.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   # Hyprland remains selectable alongside GNOME from GDM's session menu.
   programs.hyprland = {

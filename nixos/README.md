@@ -175,7 +175,7 @@ The starter config uses `Super` (the Windows/Command key) as the main modifier:
 | Shortcut | Action |
 |---|---|
 | `Super + Enter` | Open Ghostty |
-| `Super + Space` | Open application launcher |
+| `Super + Space` | Open the application grid |
 | `Super + Tab` | Cycle to the next window |
 | `Super + Shift + Tab` | Cycle to the previous window |
 | `Super + H/J/K/L` | Focus left/down/up/right |

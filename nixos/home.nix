@@ -9,6 +9,15 @@ in
   home.homeDirectory = "/home/dgynix";
   home.stateVersion = "24.11";
 
+  home.pointerCursor = {
+    enable = true;
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
+  };
+
   # All brew install / apt install packages from setup.sh, now in nixpkgs.
   home.packages = with pkgs; [
     # common CLI tools
@@ -32,7 +41,7 @@ in
     fish
     ghostty
     waybar
-    wofi
+    nwg-drawer
     mako
     wl-clipboard
     grim
@@ -65,7 +74,7 @@ in
     ".config/hypr/hyprland.lua".source = link "${vim}/hyprland.lua";
     ".config/waybar/config".source = link "${vim}/waybar-config";
     ".config/waybar/style.css".source = link "${vim}/waybar-style.css";
-    ".config/wofi/style.css".source = link "${vim}/wofi-style.css";
+    ".config/nwg-drawer/drawer.css".source = link "${vim}/nwg-drawer.css";
     ".config/starship.toml".source = link "${vim}/starship.toml";
     ".tmux.conf".source = link "${vim}/tmux.conf";
     ".darglint".source = link "${vim}/.darglint";

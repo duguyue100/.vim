@@ -1,7 +1,7 @@
 -- Hyprland 0.55+ Lua configuration.
 
 local terminal = "ghostty"
-local launcher = "wofi --show drun --allow-images"
+local launcher = "nwg-drawer -c 5 -is 56 -spacing 12 -wm hyprland -term ghostty"
 local mainMod = "SUPER"
 
 hl.monitor({
@@ -18,6 +18,7 @@ end)
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
+hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
 
 hl.config({
     general = {
