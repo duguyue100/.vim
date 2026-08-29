@@ -88,7 +88,7 @@ ssh-keygen -t ed25519 -C "you@example.com"
 
 # Python environment. config.fish sources ~/DGY/bin/activate.fish on startup,
 # so this venv must exist or fish will error on that line.
-uv venv DGY --python 3.12 --directory ~
+uv venv DGY --python python3.12 --directory ~
 uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools \
     pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7
 

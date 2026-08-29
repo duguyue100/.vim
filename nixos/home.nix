@@ -17,6 +17,7 @@ in
     fd
     lazygit
     uv
+    python312
     neovim
     fzf
     starship
