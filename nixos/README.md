@@ -24,6 +24,11 @@ symlinked straight out of `~/.vim` — same as `setup.sh` did.
 Run these commands inside the NixOS VM after installing:
 
 ```bash
+# 0. Enable flakes/nix-command (NixOS disables them by default, but `nix shell`
+#    and `nixos-rebuild --flake` below need them). One-time bootstrap; the
+#    config declares this too, so it becomes permanent after step 2.
+sudo bash -c 'echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf'
+
 # 1. Get the dotfiles repo (it contains this NixOS config too).
 #    A fresh NixOS has no git yet, so run git in a transient nix shell.
 #    (git + curl become permanent after step 2.)
@@ -122,9 +127,10 @@ sudo nixos-rebuild switch --flake .#nixos
 - **Wrong architecture error**: flakes evaluate in pure mode, so the arch can't
   be auto-detected — the flake defines both (`.#x86_64-linux.nixos` and
   `.#aarch64-linux.nixos`). Make sure the flag matches `uname -m` in the VM.
-- **`nix shell` says flakes/nix-command are disabled:** very old NixOS versions
-  need them enabled. Modern NixOS (24.11+) enables flakes by default; if yours
-  doesn't, fall back to the classic shell: `nix-shell -p git --run 'git clone -b nixos https://github.com/duguyue100/.vim.git ~/.vim'`.
+- **`nix shell` / `nixos-rebuild` say "experimental feature disabled":** you
+  skipped step 0. Run the `echo ... >> /etc/nix/nix.conf` line, or use the
+  classic shell instead of the flake commands:
+  `nix-shell -p git --run 'git clone -b nixos https://github.com/duguyue100/.vim.git ~/.vim'`.
 - **Ghostty won't open:** no display server. Install a desktop environment
   (uncomment the GNOME lines in `configuration.nix`, or use the graphical ISO).
 - **`builtins.fetchGit` fails (network):** it only fetches the tiny `tpm` repo;

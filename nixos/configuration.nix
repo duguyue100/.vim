@@ -5,6 +5,11 @@
   # Allow unfree packages (google-chrome is in home.nix).
   nixpkgs.config.allowUnfree = true;
 
+  # Flakes + nix-command are needed for `nix shell` and `nixos-rebuild --flake`.
+  # A fresh NixOS disables them by default; the README bootstraps them once
+  # before the first rebuild (see Quick start), after which this takes over.
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   networking.hostName = "nixos";
 
   # The setup.sh script's interactive steps, translated into declarative NixOS modules.
