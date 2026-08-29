@@ -190,4 +190,9 @@ The starter config uses `Super` (the Windows/Command key) as the main modifier:
 | `Super + Shift + Q` | Close the active window |
 | `Super + Shift + E` | Exit Hyprland |
 
+HyDE-inspired wallpapers can be placed in `~/Pictures/Wallpapers`. The first
+supported image found there is loaded automatically when Hyprland starts. The
+lock screen activates after five minutes of inactivity; `Super + Ctrl + L` locks
+it manually.
+
 *(tpm is fetched via a locked `builtins.fetchGit` rev, so no manual step needed.)*

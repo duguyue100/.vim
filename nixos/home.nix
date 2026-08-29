@@ -1,6 +1,12 @@
 { config, pkgs, ... }:
 let
   vim = "${config.home.homeDirectory}/.vim";
+  catppuccinGtk = pkgs.catppuccin-gtk.override {
+    accents = [ "flamingo" ];
+    size = "standard";
+    tweaks = [ ];
+    variant = "latte";
+  };
   # Symlink a file from the ~/.vim repo into ~/.config (like setup.sh's ln -sf).
   link = target: config.lib.file.mkOutOfStoreSymlink target;
 in
@@ -16,6 +22,19 @@ in
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
     size = 24;
+  };
+
+  gtk = {
+    enable = true;
+    gtk4.theme = config.gtk.theme;
+    theme = {
+      package = catppuccinGtk;
+      name = "Catppuccin-Latte-Standard-Flamingo-Light";
+    };
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "Papirus";
+    };
   };
 
   # All brew install / apt install packages from setup.sh, now in nixpkgs.
@@ -43,6 +62,9 @@ in
     waybar
     nwg-drawer
     mako
+    awww
+    hyprlock
+    hypridle
     wl-clipboard
     grim
     slurp
@@ -75,6 +97,12 @@ in
     ".config/waybar/config".source = link "${vim}/waybar-config";
     ".config/waybar/style.css".source = link "${vim}/waybar-style.css";
     ".config/nwg-drawer/drawer.css".source = link "${vim}/nwg-drawer.css";
+    ".config/hypr/hypridle.conf".source = link "${vim}/hypridle.conf";
+    ".config/hypr/hyprlock.conf".source = link "${vim}/hyprlock.conf";
+    ".local/bin/set-wallpaper" = {
+      source = ../set-wallpaper;
+      executable = true;
+    };
     ".config/starship.toml".source = link "${vim}/starship.toml";
     ".tmux.conf".source = link "${vim}/tmux.conf";
     ".darglint".source = link "${vim}/.darglint";

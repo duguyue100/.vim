@@ -3,9 +3,14 @@
     "position": "top",
     "height": 32,
     "spacing": 6,
-    "modules-left": ["hyprland/workspaces"],
+    "modules-left": ["custom/launcher", "hyprland/workspaces"],
     "modules-center": ["hyprland/window"],
-    "modules-right": ["pulseaudio", "network", "clock", "tray"],
+    "modules-right": ["pulseaudio", "network", "battery", "clock", "tray"],
+    "custom/launcher": {
+        "format": "󰣇",
+        "tooltip": false,
+        "on-click": "nwg-drawer -c 5 -is 56 -spacing 12 -wm hyprland -term ghostty"
+    },
     "hyprland/workspaces": {
         "format": "{name}",
         "on-click": "activate"
@@ -27,6 +32,14 @@
         "format": "{icon} {volume}%",
         "format-muted": "󰝟 muted",
         "format-icons": ["󰕿", "󰖀", "󰕾"]
+    },
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"]
     },
     "tray": {
         "spacing": 8

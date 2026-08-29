@@ -1,11 +1,11 @@
-theme = TokyoNight
+theme = Catppuccin Latte
 font-family = 'JetBrainsMonoNL Nerd Font Mono'
 font-size = 15
 mouse-hide-while-typing = true
 macos-titlebar-style = tabs
 gtk-titlebar = false
-background-opacity = 0.9
-background-blur-radius = 20
+background-opacity = 1
+background-blur-radius = 12
 clipboard-read = allow
 clipboard-write = allow
 copy-on-select = clipboard

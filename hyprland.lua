@@ -14,6 +14,8 @@ hl.monitor({
 hl.on("hyprland.start", function()
     hl.exec_cmd("waybar")
     hl.exec_cmd("mako")
+    hl.exec_cmd("hypridle")
+    hl.exec_cmd("~/.local/bin/set-wallpaper")
 end)
 
 hl.env("XCURSOR_SIZE", "24")
@@ -22,12 +24,12 @@ hl.env("XCURSOR_THEME", "Bibata-Modern-Classic")
 
 hl.config({
     general = {
-        gaps_in = 5,
-        gaps_out = 12,
+        gaps_in = 3,
+        gaps_out = 8,
         border_size = 2,
         col = {
-            active_border = "rgba(7aa2f7ee)",
-            inactive_border = "rgba(414868ee)",
+            active_border = { colors = { "rgba(dc8a78ff)", "rgba(8839efff)" }, angle = 45 },
+            inactive_border = { colors = { "rgba(7287fdcc)", "rgba(179299cc)" }, angle = 45 },
         },
         layout = "dwindle",
     },
@@ -37,8 +39,8 @@ hl.config({
         inactive_opacity = 0.90,
         blur = {
             enabled = true,
-            size = 5,
-            passes = 2,
+            size = 8,
+            passes = 3,
         },
     },
     animations = {
@@ -65,6 +67,7 @@ hl.animation({ leaf = "workspaces", enabled = true, speed = 5, bezier = "ease" }
 
 hl.bind(mainMod .. " + RETURN", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + SPACE", hl.dsp.exec_cmd(launcher))
+hl.bind(mainMod .. " + CTRL + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + TAB", hl.dsp.window.cycle_next())
 hl.bind(mainMod .. " + SHIFT + TAB", hl.dsp.window.cycle_next({ next = false }))
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close())

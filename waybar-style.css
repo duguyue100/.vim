@@ -7,23 +7,52 @@
 }
 
 window#waybar {
-    background: rgba(26, 27, 38, 0.92);
-    color: #c0caf5;
+    background: transparent;
+    color: #4c4f69;
+}
+
+#custom-launcher {
+    padding: 0 15px;
+    color: #8839ef;
+    font-size: 17px;
 }
 
 #workspaces button {
-    padding: 0 8px;
-    color: #565f89;
+    margin: 5px 2px;
+    padding: 0 10px;
+    color: #9ca0b0;
+    background: transparent;
+    border-radius: 8px;
 }
 
 #workspaces button.active {
-    color: #7aa2f7;
+    color: #eff1f5;
+    background: #dd7878;
 }
 
 #clock, #network, #pulseaudio, #battery, #tray {
-    padding: 0 10px;
+    margin: 5px 2px;
+    padding: 0 11px;
+    border-radius: 8px;
+    background: #eff1f5;
+    color: #4c4f69;
 }
 
 #clock {
-    color: #bb9af7;
+    color: #8839ef;
+}
+
+#custom-launcher:hover,
+#workspaces button:hover,
+#clock:hover, #network:hover, #pulseaudio:hover, #battery:hover, #tray:hover {
+    background: #dc8a78;
+    color: #eff1f5;
+}
+
+#battery.warning {
+    color: #e0af68;
+}
+
+#battery.critical {
+    color: #f7768e;
 }
