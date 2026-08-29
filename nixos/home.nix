@@ -15,6 +15,21 @@ in
   home.homeDirectory = "/home/dgynix";
   home.stateVersion = "24.11";
 
+  dconf.settings = {
+    "org/gnome/shell" = {
+      enabled-extensions = [ "dash-to-dock@micxgx.gmail.com" ];
+    };
+    "org/gnome/shell/extensions/dash-to-dock" = {
+      dock-position = "LEFT";
+      dock-fixed = false;
+      autohide = true;
+      intellihide = true;
+      require-pressure-to-show = false;
+      show-delay = 0.1;
+      hide-delay = 0.2;
+    };
+  };
+
   home.pointerCursor = {
     enable = true;
     gtk.enable = true;
@@ -39,6 +54,7 @@ in
 
   # All brew install / apt install packages from setup.sh, now in nixpkgs.
   home.packages = with pkgs; [
+    gnomeExtensions.dash-to-dock
     # common CLI tools
     bottom
     lsd
@@ -59,16 +75,8 @@ in
     duf
     fish
     ghostty
-    waybar
-    rofi
-    mako
-    awww
-    hyprlock
-    hypridle
-    wl-clipboard
-    grim
-    slurp
     google-chrome
+    networkmanagerapplet
     nodejs
     yarn
     fnm
@@ -93,21 +101,6 @@ in
   home.file = {
     ".config/fish/config.fish".source = link "${vim}/config.fish";
     ".config/ghostty/config".source = link "${vim}/ghostty-config";
-    ".config/hypr/hyprland.lua".source = link "${vim}/hyprland.lua";
-    ".config/waybar/config".source = link "${vim}/waybar-config";
-    ".config/waybar/style.css".source = link "${vim}/waybar-style.css";
-    ".config/nwg-drawer/drawer.css".source = link "${vim}/nwg-drawer.css";
-    ".config/rofi/style.rasi".source = link "${vim}/rofi-style.rasi";
-    ".config/hypr/hypridle.conf".source = link "${vim}/hypridle.conf";
-    ".config/hypr/hyprlock.conf".source = link "${vim}/hyprlock.conf";
-    ".local/bin/set-wallpaper" = {
-      source = ../set-wallpaper;
-      executable = true;
-    };
-    ".local/bin/power-menu" = {
-      source = ../power-menu;
-      executable = true;
-    };
     ".config/starship.toml".source = link "${vim}/starship.toml";
     ".tmux.conf".source = link "${vim}/tmux.conf";
     ".darglint".source = link "${vim}/.darglint";

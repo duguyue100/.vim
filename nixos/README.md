@@ -163,36 +163,4 @@ sudo nixos-rebuild switch --flake .#nixos-aarch64-linux
   step 2 (this config declares the same option, so it stays enabled after that).
 - **Ghostty won't open:** no display server. Install a desktop environment
   (uncomment the GNOME lines in `configuration.nix`, or use the graphical ISO).
-- **Trying Hyprland:** Hyprland is enabled alongside GNOME. Rebuild, log out,
-  choose `Hyprland` from GDM's session menu, then log in. If the VM renders
-  poorly or shows a blank session, select GNOME again; enable 3D acceleration
-  and a virtio GPU in the VM settings before troubleshooting further.
-
-### Hyprland shortcuts
-
-The starter config uses `Super` (the Windows/Command key) as the main modifier:
-
-| Shortcut | Action |
-|---|---|
-| `Super + Enter` | Open Ghostty |
-| `Super + Space` | Open the application grid |
-| `Super + Tab` | Cycle to the next window |
-| `Super + Shift + Tab` | Cycle to the previous window |
-| `Super + H/J/K/L` | Focus left/down/up/right |
-| `Super + Shift + H/J/K/L` | Move window left/down/up/right |
-| `Super + 1-5` | Switch to workspace 1-5 |
-| `Super + Shift + 1-5` | Move window to workspace 1-5 |
-| `Super + F` | Toggle fullscreen |
-| `Super + V` | Toggle floating |
-| `Super + P` | Toggle pseudotiling |
-| `Super + T` | Toggle split direction |
-| `Super + S` | Select an area and copy a screenshot to the clipboard |
-| `Super + Shift + Q` | Close the active window |
-| `Super + Shift + E` | Exit Hyprland |
-
-HyDE-inspired wallpapers can be placed in `~/Pictures/Wallpapers`. The first
-supported image found there is loaded automatically when Hyprland starts. The
-lock screen activates after five minutes of inactivity; `Super + Ctrl + L` locks
-it manually.
-
 *(tpm is fetched via a locked `builtins.fetchGit` rev, so no manual step needed.)*
