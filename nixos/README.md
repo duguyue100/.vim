@@ -35,10 +35,10 @@ nix-shell -p git --run 'git clone -b nixos https://github.com/duguyue100/.vim.gi
 #    the rebuild inside a nix-shell and let sudo keep that PATH. This brings in
 #    git and also enables flakes on a fresh system.
 #    Pick the arch matching your VM. Check it with:  uname -m
-#      x86_64  →  .#x86_64-linux.nixos
-#      aarch64 →  .#aarch64-linux.nixos
+#      x86_64  →  .#nixos-x86_64-linux
+#      aarch64 →  .#nixos-aarch64-linux
 cd ~/.vim/nixos
-nix-shell -p git --run 'sudo env "PATH=$PATH" nixos-rebuild switch --flake .#aarch64-linux.nixos'
+nix-shell -p git --run 'sudo env "PATH=$PATH" nixos-rebuild switch --flake .#nixos-aarch64-linux'
 
 # 3. Set (or reset) your user password.
 passwd
@@ -100,13 +100,13 @@ Edit the files in this directory, then re-apply:
 
 ```bash
 cd ~/.vim/nixos
-sudo nixos-rebuild switch --flake .#x86_64-linux.nixos
+sudo nixos-rebuild switch --flake .#nixos-x86_64-linux
 ```
 
 - **Add a package:** put it in `home.packages` in `home.nix`.
 - **Change dotfiles:** edit them in `~/.vim` — the symlinks are live, no rebuild needed.
 - **Rename the hostname:** this config pins `networking.hostName = "nixos"`, so
-  the rebuild flag is always `.#<arch>-linux.nixos` (see Quick start). If you
+  the rebuild flag is always `.#nixos-<arch>-linux` (see Quick start). If you
   want a different hostname, change it in `configuration.nix` and the attribute
   names in `flake.nix` together.
 
@@ -123,8 +123,8 @@ sudo nixos-rebuild switch --flake .#nixos
 - **"flake attribute 'nixosConfigurations.nixos' missing"** or a username error:
   your user/hostname don't match. Rename `dgy`/`nixos` as described above.
 - **Wrong architecture error**: flakes evaluate in pure mode, so the arch can't
-  be auto-detected — the flake defines both (`.#x86_64-linux.nixos` and
-  `.#aarch64-linux.nixos`). Make sure the flag matches `uname -m` in the VM.
+  be auto-detected — the flake defines both (`.#nixos-x86_64-linux` and
+  `.#nixos-aarch64-linux`). Make sure the flag matches `uname -m` in the VM.
 - **`nixos-rebuild --flake` says "experimental feature disabled":** enable
   flakes first with a classic rebuild — add
   `nix.settings.experimental-features = [ "nix-command" "flakes" ];` to
