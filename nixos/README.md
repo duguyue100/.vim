@@ -163,5 +163,9 @@ sudo nixos-rebuild switch --flake .#nixos-aarch64-linux
   step 2 (this config declares the same option, so it stays enabled after that).
 - **Ghostty won't open:** no display server. Install a desktop environment
   (uncomment the GNOME lines in `configuration.nix`, or use the graphical ISO).
+- **Trying Hyprland:** Hyprland is enabled alongside GNOME. Rebuild, log out,
+  choose `Hyprland` from GDM's session menu, then log in. If the VM renders
+  poorly or shows a blank session, select GNOME again; enable 3D acceleration
+  and a virtio GPU in the VM settings before troubleshooting further.
 
 *(tpm is fetched via a locked `builtins.fetchGit` rev, so no manual step needed.)*

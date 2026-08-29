@@ -57,4 +57,14 @@
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
+
+  # Hyprland remains selectable alongside GNOME from GDM's session menu.
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
 }

@@ -31,6 +31,12 @@ in
     duf
     fish
     ghostty
+    waybar
+    wofi
+    mako
+    wl-clipboard
+    grim
+    slurp
     google-chrome
     nodejs
     yarn
@@ -56,6 +62,9 @@ in
   home.file = {
     ".config/fish/config.fish".source = link "${vim}/config.fish";
     ".config/ghostty/config".source = link "${vim}/ghostty-config";
+    ".config/hypr/hyprland.conf".source = link "${vim}/hyprland.conf";
+    ".config/waybar/config".source = link "${vim}/waybar-config";
+    ".config/waybar/style.css".source = link "${vim}/waybar-style.css";
     ".config/starship.toml".source = link "${vim}/starship.toml";
     ".tmux.conf".source = link "${vim}/tmux.conf";
     ".darglint".source = link "${vim}/.darglint";
