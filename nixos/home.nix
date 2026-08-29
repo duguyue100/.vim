@@ -62,9 +62,12 @@ in
     ".config/mc/mc.keymap".source = link "${vim}/mc.keymap";
     ".config/opencode/opencode.jsonc".source = link "${vim}/opencode/opencode.jsonc";
     ".config/nvim".source = link vim; # same as setup.sh's ln -sf ~/.vim ~/.config/nvim
-    # ponytail: unpinned fetchGit; tpm auto-installs the @plugin entries on first tmux start
+    # tpm. The rev must be pinned — pure flake eval rejects unlocked fetchGit.
     ".tmux/plugins/tpm" = {
-      source = builtins.fetchGit { url = "https://github.com/tmux-plugins/tpm"; };
+      source = builtins.fetchGit {
+        url = "https://github.com/tmux-plugins/tpm";
+        rev = "e261deb1b47614eed3400089ce7197dc68acc4eb";
+      };
       recursive = true;
     };
   };

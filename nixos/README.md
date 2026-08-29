@@ -163,5 +163,5 @@ sudo nixos-rebuild switch --flake .#nixos-aarch64-linux
   step 2 (this config declares the same option, so it stays enabled after that).
 - **Ghostty won't open:** no display server. Install a desktop environment
   (uncomment the GNOME lines in `configuration.nix`, or use the graphical ISO).
-- **`builtins.fetchGit` fails (network):** it only fetches the tiny `tpm` repo;
-  check your connection and re-run.
+
+*(tpm is fetched via a locked `builtins.fetchGit` rev, so no manual step needed.)*
