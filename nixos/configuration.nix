@@ -1,8 +1,16 @@
 { config, pkgs, ... }:
 {
-  # Machine-specific hardware: fileSystems, boot loader, kernel modules.
-  # Generated at install time; copy it into this repo (see README quick start).
+  # Machine-specific hardware: fileSystems, kernel modules. Generated at
+  # install time; copy it into this repo (see README quick start). It does NOT
+  # contain the boot loader — that's set below.
   imports = [ ./hardware-configuration.nix ];
+
+  # Boot loader. This aarch64 (UEFI) VM boots with systemd-boot. If you ever
+  # use a BIOS/legacy machine instead, comment these two lines and enable:
+  #   boot.loader.grub.enable = true;
+  #   boot.loader.grub.device = "/dev/sda";   # your disk
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
   system.stateVersion = "24.11";
 

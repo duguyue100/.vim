@@ -30,9 +30,10 @@ Run these commands inside the NixOS VM after installing:
 #    Use -b nixos: the repo's default branch (lua) does not contain this config.
 nix-shell -p git --run 'git clone -b nixos https://github.com/duguyue100/.vim.git ~/.vim'
 
-# 2. Bring in this machine's hardware config (fileSystems + boot loader) that
-#    NixOS generated at install. Flakes only read *git-staged* files, so it MUST
-#    be added — just copying it is not enough.
+# 2. Bring in this machine's hardware config (fileSystems + kernel modules) that
+#    NixOS generated at install. It is machine-specific and does NOT contain the
+#    boot loader (that's in configuration.nix). Flakes only read *git-staged*
+#    files, so it MUST be added — copying alone isn't enough.
 cp /etc/nixos/hardware-configuration.nix ~/.vim/nixos/
 cd ~/.vim && git add nixos/hardware-configuration.nix
 git status   # confirm "new file: nixos/hardware-configuration.nix" appears in green
@@ -55,6 +56,25 @@ passwd
 ```
 
 That's it. The manual one-time steps that can't be declarative are below.
+
+## About `hardware-configuration.nix`
+
+This file is **machine-specific** (its disk UUIDs, swap, kernel modules). It's a
+normal part of a NixOS flake and should be **committed** — do *not* gitignore
+it. Flakes can only read files that are tracked, so ignoring it makes every
+build fail.
+
+Why committing it is fine:
+- NixOS flakes work per-host. This file describes *this* VM, just like
+  `/etc/nixos/hardware-configuration.nix` did for your old setup.
+- It's tied to this machine's disk/firmware. If you set up another machine, you
+  run `sudo nixos-generate-config` there and commit *that* one (or keep each
+  host's copy in its own directory).
+- Your `.vim` dotfiles repo doubling as this machine's NixOS config is fine. If
+  you'd rather keep machines separate, you can move `nixos/` into its own repo.
+
+You never need to think about it again once it's committed — it changes only if
+you repartition the disk.
 
 ## Manual one-time steps
 
