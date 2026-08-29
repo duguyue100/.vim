@@ -30,11 +30,12 @@ Run these commands inside the NixOS VM after installing:
 #    Use -b nixos: the repo's default branch (lua) does not contain this config.
 nix-shell -p git --run 'git clone -b nixos https://github.com/duguyue100/.vim.git ~/.vim'
 
-# 2. Bring in the machine's hardware config (fileSystems + boot loader) that
-#    NixOS generated at install. Copy it into the repo and git-add it, or the
-#    flake won't see it (flakes only read tracked files).
-sudo cp /etc/nixos/hardware-configuration.nix ~/.vim/nixos/
+# 2. Bring in this machine's hardware config (fileSystems + boot loader) that
+#    NixOS generated at install. Flakes only read *git-staged* files, so it MUST
+#    be added — just copying it is not enough.
+cp /etc/nixos/hardware-configuration.nix ~/.vim/nixos/
 cd ~/.vim && git add nixos/hardware-configuration.nix
+git status   # confirm "new file: nixos/hardware-configuration.nix" appears in green
 
 # 3. Apply the system config. First run downloads/builds a lot — be patient.
 #    Flakes run `git` to read this repo, but git isn't installed yet, so run
@@ -121,11 +122,15 @@ sudo nixos-rebuild switch --flake .#nixos-x86_64-linux
 ```bash
 cd ~/.vim/nixos
 nix flake update   # bump nixpkgs + home-manager to latest
-sudo nixos-rebuild switch --flake .#nixos
+sudo nixos-rebuild switch --flake .#nixos-aarch64-linux
 ```
 
 ## Troubleshooting
 
+- **"Path 'nixos/hardware-configuration.nix' does not exist in Git repository":**
+  the file isn't staged. Run `git -C ~/.vim add nixos/hardware-configuration.nix`,
+  confirm with `git -C ~/.vim status`, then re-run step 3. Flakes only read
+  staged files, so copying without `git add` is not enough.
 - **"flake attribute 'nixosConfigurations.nixos' missing"** or a username error:
   your user/hostname don't match. Rename `dgynix`/`nixos` as described above.
 - **Wrong architecture error**: flakes evaluate in pure mode, so the arch can't
