@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, user, ... }:
 {
   # Machine-specific hardware: fileSystems, kernel modules. Generated at
   # install time; copy it into this repo (see README quick start). It does NOT
@@ -34,9 +34,8 @@
   # Register fish as a shell in /etc/shells and set up its completions.
   programs.fish.enable = true;
 
-  # User. Change the name if you created a different user during install
-  # (and update home.nix + flake.nix to match).
-  users.users.dgynix = {
+  # User. The name is defined once in flake.nix.
+  users.users.${user} = {
     isNormalUser = true;
     description = "dgynix";
     extraGroups = [ "wheel" "networkmanager" "docker" ];

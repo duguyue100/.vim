@@ -11,13 +11,16 @@
 
   outputs = { nixpkgs, home-manager, ... }:
     let
+      # Change this one value when deploying the configuration for another user.
+      user = "dgynix";
       modules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.dgynix = import ./home.nix;
+          home-manager.extraSpecialArgs = { inherit user; };
+          home-manager.users.${user} = import ./home.nix;
         }
       ];
     in {
@@ -30,10 +33,12 @@
       # Check inside the VM with: uname -m
       nixosConfigurations.nixos-x86_64-linux = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+        specialArgs = { inherit user; };
         inherit modules;
       };
       nixosConfigurations.nixos-aarch64-linux = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
+        specialArgs = { inherit user; };
         inherit modules;
       };
     };

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, user, ... }:
 let
   vim = "${config.home.homeDirectory}/.vim";
   catppuccinGtk = pkgs.catppuccin-gtk.override {
@@ -11,8 +11,8 @@ let
   link = target: config.lib.file.mkOutOfStoreSymlink target;
 in
 {
-  home.username = "dgynix";
-  home.homeDirectory = "/home/dgynix";
+  home.username = user;
+  home.homeDirectory = "/home/${user}";
   home.stateVersion = "24.11";
 
   dconf.settings = {

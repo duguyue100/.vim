@@ -14,9 +14,9 @@ symlinked straight out of `~/.vim` — same as `setup.sh` did.
 - A NixOS VM. Download the **graphical ISO** (it includes a desktop so the
   Ghostty terminal can run) from https://nixos.org/download/ and install it in
   your VM software (UTM, VMware, QEMU, ...).
-- During install you will be asked for a username. **This config assumes the
-  user is named `dgynix`.** If you pick something else, you must rename `dgynix`
-  everywhere: `configuration.nix`, `home.nix`, and `flake.nix`.
+- During install you will be asked for a username. The default is `dgynix`; if
+  you pick something else, change the single `user` value near the top of
+  `flake.nix` before rebuilding.
 - Internet access from the VM (it downloads a lot on the first rebuild).
 
 ## Quick start
@@ -86,11 +86,9 @@ git config --global user.email "you@example.com"
 # SSH key, then add ~/.ssh/id_ed25519.pub at https://github.com/settings/keys
 ssh-keygen -t ed25519 -C "you@example.com"
 
-# Python environment. config.fish sources ~/DGY/bin/activate.fish on startup,
-# so this venv must exist or fish will error on that line.
-uv venv DGY --python python3.12 --directory ~
-uv pip install pynvim jedi-language-server pre-commit mypy types-setuptools \
-    pyupgrade docformatter darglint ruff typos==1.19.0 types-dataclasses==0.1.7
+# Python environment and uv tools. This creates ~/DGY and installs the Python
+# tooling used by Neovim and development commands.
+~/.vim/post-setup.sh
 
 # Neovim: launch it once (plugins install automatically), then add tree-sitters:
 #   :TSManager python lua typescript javascript
@@ -116,7 +114,7 @@ Optional: create the directories your fish aliases `cd` into —
 | `opencode` (brew tap) | `opencode` package (it's in nixpkgs now) |
 
 Not translated (still manual, in the checklist above, or skipped):
-git identity, SSH keys, the `~/DGY` Python venv, Neovim tree-sitters.
+git identity, SSH keys, Neovim tree-sitters.
 macOS-only GUI apps (Rectangle, Stats, Scroll Reverser, MonitorControl) don't
 exist on Linux and are dropped. `midnight-captain` (a `curl | bash` installer)
 is not packaged for Nix — install it manually only if you actually use it.
