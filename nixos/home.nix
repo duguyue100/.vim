@@ -48,7 +48,6 @@ in
     bison
     gcc
     ruby
-    bob-nvim # neovim version manager (was bob in the brew list)
     opencode # coding agent (was the anomalyco/tap brew formula)
   ];
 
