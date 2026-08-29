@@ -30,7 +30,7 @@ window#waybar {
     background: #dd7878;
 }
 
-#clock, #network, #pulseaudio, #battery, #tray {
+#clock, #network, #pulseaudio, #battery, #custom-settings, #custom-power, #tray {
     margin: 5px 2px;
     padding: 0 11px;
     border-radius: 8px;
@@ -44,9 +44,18 @@ window#waybar {
 
 #custom-launcher:hover,
 #workspaces button:hover,
-#clock:hover, #network:hover, #pulseaudio:hover, #battery:hover, #tray:hover {
+#clock:hover, #network:hover, #pulseaudio:hover, #battery:hover,
+#custom-settings:hover, #custom-power:hover, #tray:hover {
     background: #dc8a78;
     color: #eff1f5;
+}
+
+#custom-settings {
+    color: #8839ef;
+}
+
+#custom-power {
+    color: #dd7878;
 }
 
 #battery.warning {

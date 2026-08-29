@@ -104,6 +104,10 @@ in
       source = ../set-wallpaper;
       executable = true;
     };
+    ".local/bin/power-menu" = {
+      source = ../power-menu;
+      executable = true;
+    };
     ".config/starship.toml".source = link "${vim}/starship.toml";
     ".tmux.conf".source = link "${vim}/tmux.conf";
     ".darglint".source = link "${vim}/.darglint";

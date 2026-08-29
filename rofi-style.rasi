@@ -61,9 +61,10 @@ prompt {
 }
 
 entry {
+    background-color: @bg-alt;
+    text-color: @fg;
     placeholder: "Search applications";
     placeholder-color: @muted;
-    text-color: @fg;
 }
 
 listview {
@@ -89,7 +90,7 @@ element {
 
 element selected.normal {
     background-color: @accent-strong;
-    text-color: #fff7f8;
+    text-color: #30263d;
 }
 
 element-icon {
@@ -101,7 +102,7 @@ element-icon {
 element-text {
     horizontal-align: 0.5;
     vertical-align: 0.5;
-    ellipsize: end;
+    background-color: @transparent;
     text-color: inherit;
 }
 

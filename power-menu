@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+theme="$HOME/.config/rofi/style.rasi"
+choice=$(printf '%s\n' \
+  "Lock" \
+  "Sleep" \
+  "Logout" \
+  "Restart" \
+  "Shutdown" | rofi -dmenu -i -p "Power" -theme "$theme")
+
+confirm() {
+  [ "$(printf 'Cancel\nConfirm' | rofi -dmenu -i -p "$1" -theme "$theme")" = "Confirm" ]
+}
+
+case "$choice" in
+  Lock)
+    hyprlock
+    ;;
+  Sleep)
+    systemctl suspend
+    ;;
+  Logout)
+    hyprctl dispatch 'hl.dsp.exit()'
+    ;;
+  Restart)
+    confirm "Restart computer?" && systemctl reboot
+    ;;
+  Shutdown)
+    confirm "Shut down computer?" && systemctl poweroff
+    ;;
+esac
