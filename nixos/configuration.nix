@@ -15,6 +15,10 @@
 
   # The setup.sh script's interactive steps, translated into declarative NixOS modules.
 
+  # git goes system-wide so nix (which runs as root during rebuilds) can find it
+  # when reading the flake repo. It's the same package home.nix installs.
+  environment.systemPackages = with pkgs; [ git ];
+
   # Register fish as a shell in /etc/shells and set up its completions.
   programs.fish.enable = true;
 

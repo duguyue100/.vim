@@ -31,11 +31,14 @@ Run these commands inside the NixOS VM after installing:
 nix-shell -p git --run 'git clone -b nixos https://github.com/duguyue100/.vim.git ~/.vim'
 
 # 2. Apply the system config. First run downloads/builds a lot — be patient.
+#    Flakes run `git` to read this repo, but git isn't installed yet, so run
+#    the rebuild inside a nix-shell and let sudo keep that PATH. This brings in
+#    git and also enables flakes on a fresh system.
 #    Pick the arch matching your VM. Check it with:  uname -m
 #      x86_64  →  .#x86_64-linux.nixos
 #      aarch64 →  .#aarch64-linux.nixos
 cd ~/.vim/nixos
-sudo nixos-rebuild switch --flake .#x86_64-linux.nixos
+nix-shell -p git --run 'sudo env "PATH=$PATH" nixos-rebuild switch --flake .#aarch64-linux.nixos'
 
 # 3. Set (or reset) your user password.
 passwd
