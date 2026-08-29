@@ -62,7 +62,7 @@ in
   home.file = {
     ".config/fish/config.fish".source = link "${vim}/config.fish";
     ".config/ghostty/config".source = link "${vim}/ghostty-config";
-    ".config/hypr/hyprland.conf".source = link "${vim}/hyprland.conf";
+    ".config/hypr/hyprland.lua".source = link "${vim}/hyprland.lua";
     ".config/waybar/config".source = link "${vim}/waybar-config";
     ".config/waybar/style.css".source = link "${vim}/waybar-style.css";
     ".config/wofi/style.css".source = link "${vim}/wofi-style.css";
