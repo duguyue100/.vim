@@ -60,7 +60,7 @@ in
     fish
     ghostty
     waybar
-    nwg-drawer
+    rofi
     mako
     awww
     hyprlock
@@ -97,6 +97,7 @@ in
     ".config/waybar/config".source = link "${vim}/waybar-config";
     ".config/waybar/style.css".source = link "${vim}/waybar-style.css";
     ".config/nwg-drawer/drawer.css".source = link "${vim}/nwg-drawer.css";
+    ".config/rofi/style.rasi".source = link "${vim}/rofi-style.rasi";
     ".config/hypr/hypridle.conf".source = link "${vim}/hypridle.conf";
     ".config/hypr/hyprlock.conf".source = link "${vim}/hyprlock.conf";
     ".local/bin/set-wallpaper" = {

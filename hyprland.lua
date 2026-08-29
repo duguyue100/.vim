@@ -1,8 +1,9 @@
 -- Hyprland 0.55+ Lua configuration.
 
 local terminal = "ghostty"
-local launcher = "nwg-drawer -c 5 -is 56 -spacing 12 -wm hyprland -term ghostty"
+local launcher = "rofi -show drun -theme ~/.config/rofi/style.rasi"
 local mainMod = "SUPER"
+local resizeMod = mainMod .. " + ALT"
 
 hl.monitor({
     output = "",
@@ -78,6 +79,14 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + T", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("grim -g \"$(slurp)\" - | wl-copy"))
 
+-- Resize floating windows with the keyboard or mouse.
+hl.bind(resizeMod .. " + LEFT", hl.dsp.window.resize({ x = -30, y = 0, relative = true }), { repeating = true })
+hl.bind(resizeMod .. " + RIGHT", hl.dsp.window.resize({ x = 30, y = 0, relative = true }), { repeating = true })
+hl.bind(resizeMod .. " + UP", hl.dsp.window.resize({ x = 0, y = -30, relative = true }), { repeating = true })
+hl.bind(resizeMod .. " + DOWN", hl.dsp.window.resize({ x = 0, y = 30, relative = true }), { repeating = true })
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true })
+hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
@@ -101,5 +110,11 @@ hl.window_rule({
 hl.window_rule({
     name = "pavucontrol-float",
     match = { class = "^(pavucontrol)$" },
+    float = true,
+})
+
+hl.window_rule({
+    name = "all-windows-float",
+    match = { class = ".*" },
     float = true,
 })

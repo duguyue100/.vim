@@ -9,7 +9,7 @@
     "custom/launcher": {
         "format": "󰣇",
         "tooltip": false,
-        "on-click": "nwg-drawer -c 5 -is 56 -spacing 12 -wm hyprland -term ghostty"
+        "on-click": "rofi -show drun -theme ~/.config/rofi/style.rasi"
     },
     "hyprland/workspaces": {
         "format": "{name}",
