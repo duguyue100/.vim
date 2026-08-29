@@ -52,9 +52,9 @@
   # JetBrainsMono Nerd Font, required by ghostty-config and starship
   fonts.packages = with pkgs; [ nerd-fonts.jetbrains-mono ];
 
-  # If you installed the minimal ISO and want a desktop so Ghostty can run,
-  # uncomment the three lines below (the graphical ISO already includes GNOME):
-  # services.xserver.enable = true;
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
+  # Desktop environment — needed for the Ghostty terminal to have a display.
+  # If you prefer another desktop, swap `gnome` for e.g. `plasma5` / `xfce`.
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 }
