@@ -168,4 +168,24 @@ sudo nixos-rebuild switch --flake .#nixos-aarch64-linux
   poorly or shows a blank session, select GNOME again; enable 3D acceleration
   and a virtio GPU in the VM settings before troubleshooting further.
 
+### Hyprland shortcuts
+
+The starter config uses `Super` (the Windows/Command key) as the main modifier:
+
+| Shortcut | Action |
+|---|---|
+| `Super + Enter` | Open Ghostty |
+| `Super + Space` | Open application launcher |
+| `Super + H/J/K/L` | Focus left/down/up/right |
+| `Super + Shift + H/J/K/L` | Move window left/down/up/right |
+| `Super + 1-5` | Switch to workspace 1-5 |
+| `Super + Shift + 1-5` | Move window to workspace 1-5 |
+| `Super + F` | Toggle fullscreen |
+| `Super + V` | Toggle floating |
+| `Super + P` | Toggle pseudotiling |
+| `Super + J` | Toggle split direction |
+| `Super + S` | Select an area and copy a screenshot to the clipboard |
+| `Super + Shift + Q` | Close the active window |
+| `Super + Shift + E` | Exit Hyprland |
+
 *(tpm is fetched via a locked `builtins.fetchGit` rev, so no manual step needed.)*
