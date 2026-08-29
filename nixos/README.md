@@ -24,16 +24,11 @@ symlinked straight out of `~/.vim` — same as `setup.sh` did.
 Run these commands inside the NixOS VM after installing:
 
 ```bash
-# 0. Enable flakes/nix-command (NixOS disables them by default, but `nix shell`
-#    and `nixos-rebuild --flake` below need them). One-time bootstrap; the
-#    config declares this too, so it becomes permanent after step 2.
-sudo bash -c 'echo "experimental-features = nix-command flakes" >> /etc/nix/nix.conf'
-
 # 1. Get the dotfiles repo (it contains this NixOS config too).
-#    A fresh NixOS has no git yet, so run git in a transient nix shell.
+#    A fresh NixOS has no git yet, so use the classic nix-shell (no flakes needed).
 #    (git + curl become permanent after step 2.)
 #    Use -b nixos: the repo's default branch (lua) does not contain this config.
-nix shell nixpkgs#git -c git clone -b nixos https://github.com/duguyue100/.vim.git ~/.vim
+nix-shell -p git --run 'git clone -b nixos https://github.com/duguyue100/.vim.git ~/.vim'
 
 # 2. Apply the system config. First run downloads/builds a lot — be patient.
 #    Pick the arch matching your VM. Check it with:  uname -m
@@ -127,10 +122,11 @@ sudo nixos-rebuild switch --flake .#nixos
 - **Wrong architecture error**: flakes evaluate in pure mode, so the arch can't
   be auto-detected — the flake defines both (`.#x86_64-linux.nixos` and
   `.#aarch64-linux.nixos`). Make sure the flag matches `uname -m` in the VM.
-- **`nix shell` / `nixos-rebuild` say "experimental feature disabled":** you
-  skipped step 0. Run the `echo ... >> /etc/nix/nix.conf` line, or use the
-  classic shell instead of the flake commands:
-  `nix-shell -p git --run 'git clone -b nixos https://github.com/duguyue100/.vim.git ~/.vim'`.
+- **`nixos-rebuild --flake` says "experimental feature disabled":** enable
+  flakes first with a classic rebuild — add
+  `nix.settings.experimental-features = [ "nix-command" "flakes" ];` to
+  `/etc/nixos/configuration.nix`, run `sudo nixos-rebuild switch`, then retry
+  step 2 (this config declares the same option, so it stays enabled after that).
 - **Ghostty won't open:** no display server. Install a desktop environment
   (uncomment the GNOME lines in `configuration.nix`, or use the graphical ISO).
 - **`builtins.fetchGit` fails (network):** it only fetches the tiny `tpm` repo;
