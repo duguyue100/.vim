@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 {
+  # Machine-specific hardware: fileSystems, boot loader, kernel modules.
+  # Generated at install time; copy it into this repo (see README quick start).
+  imports = [ ./hardware-configuration.nix ];
+
   system.stateVersion = "24.11";
 
   # Allow unfree packages (google-chrome is in home.nix).
@@ -24,9 +28,9 @@
 
   # User. Change the name if you created a different user during install
   # (and update home.nix + flake.nix to match).
-  users.users.dgy = {
+  users.users.dgynix = {
     isNormalUser = true;
-    description = "dgy";
+    description = "dgynix";
     extraGroups = [ "wheel" "networkmanager" "docker" ];
     shell = pkgs.fish; # fish becomes the default login shell (was chsh in setup.sh)
   };

@@ -15,7 +15,7 @@ symlinked straight out of `~/.vim` — same as `setup.sh` did.
   Ghostty terminal can run) from https://nixos.org/download/ and install it in
   your VM software (UTM, VMware, QEMU, ...).
 - During install you will be asked for a username. **This config assumes the
-  user is named `dgy`.** If you pick something else, you must rename `dgy`
+  user is named `dgynix`.** If you pick something else, you must rename `dgynix`
   everywhere: `configuration.nix`, `home.nix`, and `flake.nix`.
 - Internet access from the VM (it downloads a lot on the first rebuild).
 
@@ -30,7 +30,13 @@ Run these commands inside the NixOS VM after installing:
 #    Use -b nixos: the repo's default branch (lua) does not contain this config.
 nix-shell -p git --run 'git clone -b nixos https://github.com/duguyue100/.vim.git ~/.vim'
 
-# 2. Apply the system config. First run downloads/builds a lot — be patient.
+# 2. Bring in the machine's hardware config (fileSystems + boot loader) that
+#    NixOS generated at install. Copy it into the repo and git-add it, or the
+#    flake won't see it (flakes only read tracked files).
+sudo cp /etc/nixos/hardware-configuration.nix ~/.vim/nixos/
+cd ~/.vim && git add nixos/hardware-configuration.nix
+
+# 3. Apply the system config. First run downloads/builds a lot — be patient.
 #    Flakes run `git` to read this repo, but git isn't installed yet, so run
 #    the rebuild inside a nix-shell and let sudo keep that PATH. This brings in
 #    git and also enables flakes on a fresh system.
@@ -40,10 +46,10 @@ nix-shell -p git --run 'git clone -b nixos https://github.com/duguyue100/.vim.gi
 cd ~/.vim/nixos
 nix-shell -p git --run 'sudo env "PATH=$PATH" nixos-rebuild switch --flake .#nixos-aarch64-linux'
 
-# 3. Set (or reset) your user password.
+# 4. Set (or reset) your user password.
 passwd
 
-# 4. Log out and back in (or reboot). Your default shell is now fish,
+# 5. Log out and back in (or reboot). Your default shell is now fish,
 #    and all the tools below are installed.
 ```
 
@@ -80,7 +86,7 @@ Optional: create the directories your fish aliases `cd` into —
 | setup.sh | NixOS equivalent |
 |---|---|
 | `brew install` / `apt install` lists | `home.packages` in `home.nix` |
-| fish as default shell (`chsh`) | `users.users.dgy.shell = pkgs.fish` in `configuration.nix` |
+| fish as default shell (`chsh`) | `users.users.dgynix.shell = pkgs.fish` in `configuration.nix` |
 | `ln -sf` dotfiles | `home.file` symlinks in `home.nix` |
 | tmux + tpm plugins | `~/.tmux.conf` symlink + tpm linked to `~/.tmux/plugins` |
 | Docker Desktop | `virtualisation.docker.enable = true` |
@@ -121,7 +127,7 @@ sudo nixos-rebuild switch --flake .#nixos
 ## Troubleshooting
 
 - **"flake attribute 'nixosConfigurations.nixos' missing"** or a username error:
-  your user/hostname don't match. Rename `dgy`/`nixos` as described above.
+  your user/hostname don't match. Rename `dgynix`/`nixos` as described above.
 - **Wrong architecture error**: flakes evaluate in pure mode, so the arch can't
   be auto-detected — the flake defines both (`.#nixos-x86_64-linux` and
   `.#nixos-aarch64-linux`). Make sure the flag matches `uname -m` in the VM.

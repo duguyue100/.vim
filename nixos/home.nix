@@ -5,8 +5,8 @@ let
   link = target: config.lib.file.mkOutOfStoreSymlink target;
 in
 {
-  home.username = "dgy";
-  home.homeDirectory = "/home/dgy";
+  home.username = "dgynix";
+  home.homeDirectory = "/home/dgynix";
   home.stateVersion = "24.11";
 
   # All brew install / apt install packages from setup.sh, now in nixpkgs.

@@ -17,7 +17,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.dgy = import ./home.nix;
+          home-manager.users.dgynix = import ./home.nix;
         }
       ];
     in {
