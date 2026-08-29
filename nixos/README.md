@@ -176,6 +176,8 @@ The starter config uses `Super` (the Windows/Command key) as the main modifier:
 |---|---|
 | `Super + Enter` | Open Ghostty |
 | `Super + Space` | Open application launcher |
+| `Super + Tab` | Cycle to the next window |
+| `Super + Shift + Tab` | Cycle to the previous window |
 | `Super + H/J/K/L` | Focus left/down/up/right |
 | `Super + Shift + H/J/K/L` | Move window left/down/up/right |
 | `Super + 1-5` | Switch to workspace 1-5 |
@@ -183,7 +185,7 @@ The starter config uses `Super` (the Windows/Command key) as the main modifier:
 | `Super + F` | Toggle fullscreen |
 | `Super + V` | Toggle floating |
 | `Super + P` | Toggle pseudotiling |
-| `Super + J` | Toggle split direction |
+| `Super + T` | Toggle split direction |
 | `Super + S` | Select an area and copy a screenshot to the clipboard |
 | `Super + Shift + Q` | Close the active window |
 | `Super + Shift + E` | Exit Hyprland |

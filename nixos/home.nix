@@ -65,6 +65,7 @@ in
     ".config/hypr/hyprland.conf".source = link "${vim}/hyprland.conf";
     ".config/waybar/config".source = link "${vim}/waybar-config";
     ".config/waybar/style.css".source = link "${vim}/waybar-style.css";
+    ".config/wofi/style.css".source = link "${vim}/wofi-style.css";
     ".config/starship.toml".source = link "${vim}/starship.toml";
     ".tmux.conf".source = link "${vim}/tmux.conf";
     ".darglint".source = link "${vim}/.darglint";
