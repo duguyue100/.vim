@@ -87,7 +87,7 @@ ssh-keygen -t ed25519 -C "you@example.com"
 
 # Python environment and uv tools. This creates ~/DGY and installs the Python
 # tooling used by Neovim and development commands.
-~/.vim/post-setup.sh
+~/.vim/nixos/post-setup.sh
 
 # Neovim plugins and the Python/Lua/TypeScript/JavaScript tree-sitters are
 # installed by post-setup.sh.
