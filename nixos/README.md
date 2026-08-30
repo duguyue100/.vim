@@ -160,6 +160,30 @@ switch back to the previous one:
 sudo nixos-rebuild switch --rollback
 ```
 
+## Clean up old generations
+
+List installed system generations:
+
+```bash
+sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
+```
+
+Keep only the five newest system generations, then collect unused store paths:
+
+```bash
+sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +5
+sudo nix-collect-garbage
+```
+
+Alternatively, delete generations older than 30 days and collect garbage:
+
+```bash
+sudo nix-collect-garbage --delete-older-than 30d
+```
+
+Deleting generations removes those rollback options permanently. Keep at least
+one known-good older generation until the new configuration has been tested.
+
 ## Hardware and hosts
 
 `hardware-configuration.nix` belongs to one machine. For another machine, run
