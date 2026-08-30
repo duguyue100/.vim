@@ -89,8 +89,8 @@ ssh-keygen -t ed25519 -C "you@example.com"
 # tooling used by Neovim and development commands.
 ~/.vim/post-setup.sh
 
-# Neovim: launch it once (plugins install automatically), then add tree-sitters:
-#   :TSManager python lua typescript javascript
+# Neovim plugins and the Python/Lua/TypeScript/JavaScript tree-sitters are
+# installed by post-setup.sh.
 
 # tmux plugins are linked declaratively into ~/.tmux/plugins; start tmux or
 # reload the config after rebuilding.

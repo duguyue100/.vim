@@ -30,6 +30,12 @@ else
   echo "ty is already installed; keeping it."
 fi
 
+echo "Installing Neovim plugins..."
+nvim --headless "+Lazy! sync" +qa
+
+echo "Installing Neovim Tree-sitter parsers..."
+nvim --headless "+TSInstallSync python lua typescript javascript" +qa
+
 echo "Installing Midnight Captain..."
 curl -fsSL https://raw.githubusercontent.com/duguyue100/midnight-captain/main/install.sh | bash
 
