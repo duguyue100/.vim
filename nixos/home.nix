@@ -29,8 +29,8 @@ in
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "blur-my-shell@aunetx"
         "Vitals@CoreCoding.com"
-        "start-overlay-in-application-view@Hex_cz"
         "auto-theme-switcher@amritashan.github.io"
+        "speedinator@liam.moe"
       ];
       favorite-apps = [
         "google-chrome.desktop"
@@ -50,6 +50,9 @@ in
       custom-light-time = "07:00";
       custom-dark-time = "19:00";
       manual-mode-active = false;
+    };
+    "org/gnome/shell/extensions/moe/liam/speedinator" = {
+      speed = 1.5;
     };
     "org/gnome/shell/extensions/dash2dock-lite" = {
       animate-icons = true;
@@ -130,8 +133,8 @@ in
     gnomeExtensions.user-themes
     gnomeExtensions.blur-my-shell
     gnomeExtensions.vitals
-    gnomeExtensions.start-overlay-in-application-view
     gnomeExtensions.automatic-theme-switcher
+    gnomeExtensions.speedinator
     # common CLI tools
     bottom
     lsd
@@ -173,7 +176,7 @@ in
     gcc
     ruby
     opencode # coding agent (was the anomalyco/tap brew formula)
-  ];
+  ] ++ pkgs.lib.optional (pkgs.stdenv.hostPlatform.system == "x86_64-linux") pkgs.slack;
 
   # Dotfiles. Source of truth is the ~/.vim repo; these are live symlinks.
   home.file = {
