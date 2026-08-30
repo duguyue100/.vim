@@ -80,6 +80,7 @@ you repartition the disk.
 # Git identity (setup.sh asked for these interactively)
 git config --global user.name "Your Name"
 git config --global user.email "you@example.com"
+git remote set-url origin git@github.com:duguyue100/.vim.git
 
 # SSH key, then add ~/.ssh/id_ed25519.pub at https://github.com/settings/keys
 ssh-keygen -t ed25519 -C "you@example.com"
