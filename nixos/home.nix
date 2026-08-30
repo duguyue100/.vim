@@ -14,19 +14,80 @@ in
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
+      enable-animations = true;
+      font-name = "Inter 11";
+      icon-theme = "Tela";
       gtk-theme = "Orchis-Light";
     };
-    "org/gnome/shell" = {
-      enabled-extensions = [ "dash-to-dock@micxgx.gmail.com" ];
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = ":maximize,minimize,close";
     };
-    "org/gnome/shell/extensions/dash-to-dock" = {
-      dock-position = "LEFT";
-      dock-fixed = false;
-      autohide = true;
-      intellihide = true;
-      require-pressure-to-show = false;
-      show-delay = 0.1;
-      hide-delay = 0.2;
+    "org/gnome/shell" = {
+      always-show-log-out = true;
+      enabled-extensions = [
+        "dash2dock-lite@icedman.github.com"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
+        "blur-my-shell@aunetx"
+        "Vitals@CoreCoding.com"
+        "start-overlay-in-application-view@Hex_cz"
+      ];
+      favorite-apps = [
+        "google-chrome.desktop"
+        "org.gnome.Nautilus.desktop"
+        "com.mitchellh.ghostty.desktop"
+      ];
+    };
+    "org/gnome/shell/extensions/user-theme" = {
+      name = "Orchis-Light";
+    };
+    "org/gnome/shell/extensions/dash2dock-lite" = {
+      animate-icons = true;
+      open-app-animation = true;
+      autohide-dash = true;
+      autohide-dodge = true;
+      autohide-speed = 0.35;
+      background-color = [ 0.0 0.0 0.0 0.85 ];
+      hide-labels = true;
+      apps-icon = false;
+      trash-icon = true;
+      downloads-icon = false;
+      dock-location = 0;
+      favorites-only = false;
+      pressure-sense = false;
+    };
+    "org/gnome/shell/extensions/blur-my-shell/panel" = {
+      blur = false;
+    };
+    "org/gnome/shell/extensions/vitals" = {
+      hot-sensors = [
+        "_memory_usage_"
+        "_system_load_1m_"
+        "__network-rx_max__"
+        "__network-tx_max__"
+      ];
+      update-time = 2;
+    };
+    "org/gnome/desktop/default-applications/terminal" = {
+      exec = "ghostty";
+      exec-arg = "-e";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ghostty/"
+      ];
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ghostty" = {
+      name = "Open Ghostty";
+      command = "ghostty";
+      binding = "<Super><Control>t";
+    };
+  };
+
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      GNOME = [ "com.mitchellh.ghostty.desktop" ];
+      default = [ "com.mitchellh.ghostty.desktop" ];
     };
   };
 
@@ -47,14 +108,18 @@ in
       name = "Orchis-Light";
     };
     iconTheme = {
-      package = pkgs.papirus-icon-theme;
-      name = "Papirus";
+      package = pkgs.tela-icon-theme;
+      name = "Tela";
     };
   };
 
   # All brew install / apt install packages from setup.sh, now in nixpkgs.
   home.packages = with pkgs; [
-    gnomeExtensions.dash-to-dock
+    gnomeExtensions.dash2dock-lite
+    gnomeExtensions.user-themes
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.vitals
+    gnomeExtensions.start-overlay-in-application-view
     # common CLI tools
     bottom
     lsd

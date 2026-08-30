@@ -49,7 +49,10 @@
   services.openssh.enable = true;
 
   # JetBrainsMono Nerd Font, required by ghostty-config and starship
-  fonts.packages = with pkgs; [ nerd-fonts.jetbrains-mono ];
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
+    inter
+  ];
 
   # Desktop environment — needed for the Ghostty terminal to have a display.
   # If you prefer another desktop, swap `gnome` for e.g. `plasma5` / `xfce`.
