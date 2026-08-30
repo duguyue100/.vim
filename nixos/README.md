@@ -112,10 +112,23 @@ sudo nixos-rebuild switch --flake .#nixos-x86_64-linux
 Dotfiles linked from `~/.vim` update immediately. Changes to Nix files require
 another rebuild.
 
-## Update software
+## Update the system
 
-The flake lock file pins the exact nixpkgs and Home Manager revisions. Update
-those revisions, then rebuild:
+Pull configuration changes and rebuild without changing the pinned package
+versions:
+
+```bash
+cd ~/.vim
+git pull --ff-only
+cd ~/.vim/nixos
+sudo nixos-rebuild switch --flake .#nixos-x86_64-linux
+```
+
+Use `.#nixos-aarch64-linux` instead on an ARM system. If you changed `home.nix`
+or another Nix file locally, commit or stash that work before pulling.
+
+To update the software available from the 26.05 release branch, refresh the
+flake lock file before rebuilding:
 
 ```bash
 cd ~/.vim/nixos
@@ -123,9 +136,9 @@ nix flake update
 sudo nixos-rebuild switch --flake .#nixos-x86_64-linux
 ```
 
-Use `.#nixos-aarch64-linux` instead on an ARM system. `nix flake update` does
-not change the release branch. It moves the lock file to newer commits on the
-26.05 branches.
+`nix flake update` keeps the `nixos-26.05` and `release-26.05` branches. It
+only moves `flake.lock` to newer commits on those branches. Commit the updated
+lock file if other machines should use the same package revisions.
 
 To update only nixpkgs:
 
@@ -133,8 +146,12 @@ To update only nixpkgs:
 nix flake lock --update-input nixpkgs
 ```
 
-Rebuild after changing the lock file. Keep `flake.lock` committed so another
-machine gets the same package revisions.
+Rebuild after changing the lock file. If a new generation causes problems,
+switch back to the previous one:
+
+```bash
+sudo nixos-rebuild switch --rollback
+```
 
 ## Hardware and hosts
 
