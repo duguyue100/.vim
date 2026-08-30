@@ -1,11 +1,8 @@
 { config, pkgs, user, ... }:
 let
   vim = "${config.home.homeDirectory}/.vim";
-  catppuccinGtk = pkgs.catppuccin-gtk.override {
-    accents = [ "flamingo" ];
-    size = "standard";
-    tweaks = [ ];
-    variant = "latte";
+  orchisGtk = pkgs.orchis-theme.override {
+    tweaks = [ "macos" ];
   };
   # Symlink a file from the ~/.vim repo into ~/.config (like setup.sh's ln -sf).
   link = target: config.lib.file.mkOutOfStoreSymlink target;
@@ -16,6 +13,9 @@ in
   home.stateVersion = "24.11";
 
   dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      gtk-theme = "Orchis-Light";
+    };
     "org/gnome/shell" = {
       enabled-extensions = [ "dash-to-dock@micxgx.gmail.com" ];
     };
@@ -43,8 +43,8 @@ in
     enable = true;
     gtk4.theme = config.gtk.theme;
     theme = {
-      package = catppuccinGtk;
-      name = "Catppuccin-Latte-Standard-Flamingo-Light";
+      package = orchisGtk;
+      name = "Orchis-Light";
     };
     iconTheme = {
       package = pkgs.papirus-icon-theme;
