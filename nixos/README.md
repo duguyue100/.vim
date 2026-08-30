@@ -1,165 +1,164 @@
-# NixOS setup (translated from `setup.sh`)
+# NixOS desktop configuration
 
-This directory is a NixOS configuration built with **flakes** + **home-manager**.
-It reproduces everything `setup.sh` did for macOS/Ubuntu, but declaratively:
-instead of running commands and answering prompts, you describe the end state
-and `nixos-rebuild` makes it true. There are no reboots, no Homebrew, no PPAs.
+This directory contains a complete NixOS configuration for a GNOME desktop.
+It uses the NixOS `26.05` release branch and Home Manager for user packages,
+desktop settings, and dotfile links.
 
-The config lives in the `.vim` repo, so the dotfiles (`config.fish`,
-`ghostty-config`, `starship.toml`, `tmux.conf`, the nvim config, ...) are
-symlinked straight out of `~/.vim` — same as `setup.sh` did.
+The configuration expects this repository at `~/.vim`. The Neovim, Fish,
+Ghostty, Starship, and tmux files stay in the repository and are linked into
+the locations where their programs expect them.
 
 ## Requirements
 
-- A NixOS VM. Download the **graphical ISO** (it includes a desktop so the
-  Ghostty terminal can run) from https://nixos.org/download/ and install it in
-  your VM software (UTM, VMware, QEMU, ...).
-- During install you will be asked for a username. The default is `dgynix`; if
-  you pick something else, change the single `user` value near the top of
-  `flake.nix` before rebuilding.
-- Internet access from the VM (it downloads a lot on the first rebuild).
+- A fresh NixOS installation, preferably the graphical ISO.
+- A VM or computer running either `x86_64` or `aarch64` Linux.
+- Internet access during the first build.
+- A username. The configuration currently uses `dgynix`; change `user` in
+  `flake.nix` if you use another name.
 
-## Quick start
+## Install
 
-Run these commands inside the NixOS VM after installing:
+Run these commands in the new NixOS system.
+
+### 1. Clone the repository
+
+The initial system may not have Git or flakes enabled, so use `nix-shell` for
+the first clone. The `nixos` branch contains this configuration.
 
 ```bash
-# 1. Get the dotfiles repo (it contains this NixOS config too).
-#    A fresh NixOS has no git yet, so use the classic nix-shell (no flakes needed).
-#    (git + curl become permanent after step 2.)
-#    Use -b nixos: the repo's default branch (lua) does not contain this config.
 nix-shell -p git --run 'git clone -b nixos https://github.com/duguyue100/.vim.git ~/.vim'
+```
 
-# 2. Bring in this machine's hardware config (fileSystems + kernel modules) that
-#    NixOS generated at install. It is machine-specific and does NOT contain the
-#    boot loader (that's in configuration.nix). Flakes only read *git-staged*
-#    files, so it MUST be added — copying alone isn't enough.
+### 2. Add the hardware configuration
+
+NixOS creates this file during installation. Copy it into the repository and
+stage it so the flake can read it.
+
+```bash
 cp /etc/nixos/hardware-configuration.nix ~/.vim/nixos/
 cd ~/.vim
-nix-shell -p git --run 'git add -A'
-nix-shell -p git --run 'git status' # confirm "new file: nixos/hardware-configuration.nix" appears in green
-
-# 3. Apply the system config. First run downloads/builds a lot — be patient.
-#    Flakes run `git` to read this repo, but git isn't installed yet, so run
-#    the rebuild inside a nix-shell and let sudo keep that PATH. This brings in
-#    git and also enables flakes on a fresh system.
-#    Pick the arch matching your VM. Check it with:  uname -m
-#      x86_64  →  .#nixos-x86_64-linux
-#      aarch64 →  .#nixos-aarch64-linux
-cd ~/.vim/nixos
-nix-shell -p git --run 'sudo env "PATH=$PATH" nixos-rebuild switch --flake .#nixos-aarch64-linux'
-
-# 4. Log out and back in (or reboot). Your default shell is now fish,
-#    and all the tools below are installed.
+nix-shell -p git --run 'git add nixos/hardware-configuration.nix'
+nix-shell -p git --run 'git status'
 ```
 
-That's it. The manual one-time steps that can't be declarative are below.
+Check that `nixos/hardware-configuration.nix` appears in the status output.
+This file contains the disk and hardware details for this machine and should
+be kept with its configuration.
 
-## About `hardware-configuration.nix`
+### 3. Apply the configuration
 
-This file is **machine-specific** (its disk UUIDs, swap, kernel modules). It's a
-normal part of a NixOS flake and should be **committed** — do *not* gitignore
-it. Flakes can only read files that are tracked, so ignoring it makes every
-build fail.
-
-Why committing it is fine:
-- NixOS flakes work per-host. This file describes *this* VM, just like
-  `/etc/nixos/hardware-configuration.nix` did for your old setup.
-- It's tied to this machine's disk/firmware. If you set up another machine, you
-  run `sudo nixos-generate-config` there and commit *that* one (or keep each
-  host's copy in its own directory).
-- Your `.vim` dotfiles repo doubling as this machine's NixOS config is fine. If
-  you'd rather keep machines separate, you can move `nixos/` into its own repo.
-
-You never need to think about it again once it's committed — it changes only if
-you repartition the disk.
-
-## Manual one-time steps
+Check the architecture first:
 
 ```bash
-# Git identity (setup.sh asked for these interactively)
-git config --global user.name "Your Name"
-git config --global user.email "you@example.com"
-git remote set-url origin git@github.com:duguyue100/.vim.git
-
-# SSH key, then add ~/.ssh/id_ed25519.pub at https://github.com/settings/keys
-ssh-keygen -t ed25519 -C "you@example.com"
-
-# Python environment and uv tools. This creates ~/DGY and installs the Python
-# tooling used by Neovim and development commands.
-~/.vim/nixos/post-setup.sh
-
-# Neovim plugins and the Python/Lua/TypeScript/JavaScript tree-sitters are
-# installed by post-setup.sh.
-
-# tmux plugins are linked declaratively into ~/.tmux/plugins; start tmux or
-# reload the config after rebuilding.
+uname -m
 ```
 
-Optional: create the directories your fish aliases `cd` into —
-`mkdir -p ~/workspace ~/Downloads`.
+Use the matching command. The first build downloads and compiles a large set
+of packages.
 
-## What's installed (mapped from setup.sh)
+For Intel or AMD:
 
-| setup.sh | NixOS equivalent |
-|---|---|
-| `brew install` / `apt install` lists | `home.packages` in `home.nix` |
-| fish as default shell (`chsh`) | `users.users.dgynix.shell = pkgs.fish` in `configuration.nix` |
-| `ln -sf` dotfiles | `home.file` symlinks in `home.nix` |
-| tmux + tpm plugins | `~/.tmux.conf` symlink + tpm linked to `~/.tmux/plugins` |
-| Docker Desktop | `virtualisation.docker.enable = true` |
-| openssh-server | `services.openssh.enable = true` |
-| JetBrainsMono Nerd Font | `fonts.packages = [ nerd-fonts.jetbrains-mono ]` |
-| `opencode` (brew tap) | `opencode` package (it's in nixpkgs now) |
+```bash
+cd ~/.vim/nixos
+nix-shell -p git --run 'sudo env "PATH=$PATH" nixos-rebuild switch --flake .#nixos-x86_64-linux'
+```
 
-Not translated (still manual, in the checklist above, or skipped):
-git identity, SSH keys, Neovim tree-sitters.
-macOS-only GUI apps (Rectangle, Stats, Scroll Reverser, MonitorControl) don't
-exist on Linux and are dropped. `midnight-captain` is installed by
-`post-setup.sh` because its official installer provides architecture-specific
-prebuilt binaries. It replaces the `mc` command from Midnight Commander.
-is not packaged for Nix — install it manually only if you actually use it.
+For ARM:
 
-## Making changes
+```bash
+cd ~/.vim/nixos
+nix-shell -p git --run 'sudo env "PATH=$PATH" nixos-rebuild switch --flake .#nixos-aarch64-linux'
+```
 
-Edit the files in this directory, then re-apply:
+Log out and back in after the first build. This starts the Fish shell and
+loads the GNOME, theme, panel, and user package settings.
+
+### 4. Finish user-level setup
+
+Run the post-setup script once:
+
+```bash
+~/.vim/nixos/post-setup.sh
+```
+
+It creates `~/DGY`, installs the Python tools used by the editor, installs the
+Lazy.nvim plugins, installs the Python, Lua, TypeScript, and JavaScript
+Tree-sitter parsers, and installs Midnight Captain.
+
+Set your Git identity and SSH key separately if you need them:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+ssh-keygen -t ed25519 -C "you@example.com"
+```
+
+## Make changes
+
+The main files are:
+
+- `configuration.nix` for system services, users, fonts, and GNOME.
+- `home.nix` for packages, dconf settings, themes, and links to dotfiles.
+- `flake.nix` for the NixOS and Home Manager inputs and host definitions.
+- `hardware-configuration.nix` for machine-specific hardware settings.
+
+After changing a Nix file, rebuild with the command for your architecture:
 
 ```bash
 cd ~/.vim/nixos
 sudo nixos-rebuild switch --flake .#nixos-x86_64-linux
 ```
 
-- **Add a package:** put it in `home.packages` in `home.nix`.
-- **Change dotfiles:** edit them in `~/.vim` — the symlinks are live, no rebuild needed.
-- **Rename the hostname:** this config pins `networking.hostName = "nixos"`, so
-  the rebuild flag is always `.#nixos-<arch>-linux` (see Quick start). If you
-  want a different hostname, change it in `configuration.nix` and the attribute
-  names in `flake.nix` together.
+Dotfiles linked from `~/.vim` update immediately. Changes to Nix files require
+another rebuild.
 
-## Updating everything
+## Update software
+
+The flake lock file pins the exact nixpkgs and Home Manager revisions. Update
+those revisions, then rebuild:
 
 ```bash
 cd ~/.vim/nixos
-nix flake update   # bump nixpkgs + home-manager to latest
-sudo nixos-rebuild switch --flake .#nixos-aarch64-linux
+nix flake update
+sudo nixos-rebuild switch --flake .#nixos-x86_64-linux
 ```
+
+Use `.#nixos-aarch64-linux` instead on an ARM system. `nix flake update` does
+not change the release branch. It moves the lock file to newer commits on the
+26.05 branches.
+
+To update only nixpkgs:
+
+```bash
+nix flake lock --update-input nixpkgs
+```
+
+Rebuild after changing the lock file. Keep `flake.lock` committed so another
+machine gets the same package revisions.
+
+## Hardware and hosts
+
+`hardware-configuration.nix` belongs to one machine. For another machine, run
+`sudo nixos-generate-config`, copy its generated hardware file here, and stage
+it before rebuilding. If you maintain multiple machines, give each host its
+own hardware file and NixOS configuration entry.
+
+The flake currently defines two host names that differ only by architecture:
+
+- `nixos-x86_64-linux`
+- `nixos-aarch64-linux`
+
+The hostname inside the system remains `nixos`.
 
 ## Troubleshooting
 
-- **"Path 'nixos/hardware-configuration.nix' does not exist in Git repository":**
-  the file isn't staged. Run `git -C ~/.vim add nixos/hardware-configuration.nix`,
-  confirm with `git -C ~/.vim status`, then re-run step 3. Flakes only read
-  staged files, so copying without `git add` is not enough.
-- **"flake attribute 'nixosConfigurations.nixos' missing"** or a username error:
-  your user/hostname don't match. Rename `dgynix`/`nixos` as described above.
-- **Wrong architecture error**: flakes evaluate in pure mode, so the arch can't
-  be auto-detected — the flake defines both (`.#nixos-x86_64-linux` and
-  `.#nixos-aarch64-linux`). Make sure the flag matches `uname -m` in the VM.
-- **`nixos-rebuild --flake` says "experimental feature disabled":** enable
-  flakes first with a classic rebuild — add
+- If Nix says `nixos/hardware-configuration.nix` is missing, stage the file with
+  `git -C ~/.vim add nixos/hardware-configuration.nix`.
+- If the rebuild selects the wrong system, compare the flake target with
+  `uname -m`.
+- If flakes are disabled on the fresh install, add
   `nix.settings.experimental-features = [ "nix-command" "flakes" ];` to
-  `/etc/nixos/configuration.nix`, run `sudo nixos-rebuild switch`, then retry
-  step 2 (this config declares the same option, so it stays enabled after that).
-- **Ghostty won't open:** no display server. Install a desktop environment
-  (uncomment the GNOME lines in `configuration.nix`, or use the graphical ISO).
-*(tpm is fetched via a locked `builtins.fetchGit` rev, so no manual step needed.)*
+  `/etc/nixos/configuration.nix`, run a regular `sudo nixos-rebuild switch`,
+  and retry the flake command.
+- If a desktop application does not open, make sure the graphical desktop and
+  display manager are enabled in `configuration.nix`.
