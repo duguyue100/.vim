@@ -60,14 +60,14 @@ For Intel or AMD:
 
 ```bash
 cd ~/.vim/nixos
-nix-shell -p git --run 'sudo env "PATH=$PATH" nixos-rebuild switch --flake .#nixos-x86_64-linux'
+nix-shell -p git --run 'sudo env "PATH=$PATH" nixos-rebuild switch --flake .#x86'
 ```
 
 For ARM:
 
 ```bash
 cd ~/.vim/nixos
-nix-shell -p git --run 'sudo env "PATH=$PATH" nixos-rebuild switch --flake .#nixos-aarch64-linux'
+nix-shell -p git --run 'sudo env "PATH=$PATH" nixos-rebuild switch --flake .#arm'
 ```
 
 Log out and back in after the first build. This starts the Fish shell and
@@ -101,12 +101,13 @@ The main files are:
 - `home.nix` for packages, dconf settings, themes, and links to dotfiles.
 - `flake.nix` for the NixOS and Home Manager inputs and host definitions.
 - `hardware-configuration.nix` for machine-specific hardware settings.
+- `nvidia.nix` for the optional NVIDIA desktop driver configuration.
 
 After changing a Nix file, rebuild with the command for your architecture:
 
 ```bash
 cd ~/.vim/nixos
-sudo nixos-rebuild switch --flake .#nixos-x86_64-linux
+sudo nixos-rebuild switch --flake .#x86
 ```
 
 Dotfiles linked from `~/.vim` update immediately. Changes to Nix files require
@@ -121,11 +122,17 @@ versions:
 cd ~/.vim
 git pull --ff-only
 cd ~/.vim/nixos
-sudo nixos-rebuild switch --flake .#nixos-x86_64-linux
+sudo nixos-rebuild switch --flake .#x86
 ```
 
-Use `.#nixos-aarch64-linux` instead on an ARM system. If you changed `home.nix`
+Use `.#arm` instead on an ARM system. If you changed `home.nix`
 or another Nix file locally, commit or stash that work before pulling.
+
+For an x86_64 machine with an NVIDIA GPU, use:
+
+```bash
+sudo nixos-rebuild switch --flake .#nvidia
+```
 
 To update the software available from the 26.05 release branch, refresh the
 flake lock file before rebuilding:
@@ -133,7 +140,7 @@ flake lock file before rebuilding:
 ```bash
 cd ~/.vim/nixos
 nix flake update
-sudo nixos-rebuild switch --flake .#nixos-x86_64-linux
+sudo nixos-rebuild switch --flake .#x86
 ```
 
 `nix flake update` keeps the `nixos-26.05` and `release-26.05` branches. It
@@ -160,10 +167,11 @@ sudo nixos-rebuild switch --rollback
 it before rebuilding. If you maintain multiple machines, give each host its
 own hardware file and NixOS configuration entry.
 
-The flake currently defines two host names that differ only by architecture:
+The flake currently defines these host names:
 
-- `nixos-x86_64-linux`
-- `nixos-aarch64-linux`
+- `x86`
+- `nvidia`
+- `arm`
 
 The hostname inside the system remains `nixos`.
 

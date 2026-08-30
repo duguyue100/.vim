@@ -28,15 +28,20 @@
       # auto-detected (builtins.currentSystem is disabled). Both are defined
       # here; pick at rebuild time. NOTE: nixos-rebuild treats everything after
       # `.#` as ONE config name, so these must not contain dots.
-      #   sudo nixos-rebuild switch --flake .#nixos-x86_64-linux   (Intel VM)
-      #   sudo nixos-rebuild switch --flake .#nixos-aarch64-linux  (Apple Silicon VM)
+      #   sudo nixos-rebuild switch --flake .#x86     (x86 VM)
+      #   sudo nixos-rebuild switch --flake .#arm     (Apple Silicon VM)
       # Check inside the VM with: uname -m
-      nixosConfigurations.nixos-x86_64-linux = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.x86 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit user; };
         inherit modules;
       };
-      nixosConfigurations.nixos-aarch64-linux = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.nvidia = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit user; };
+        modules = modules ++ [ ./nvidia.nix ];
+      };
+      nixosConfigurations.arm = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = { inherit user; };
         inherit modules;
