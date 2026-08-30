@@ -116,7 +116,9 @@ Optional: create the directories your fish aliases `cd` into —
 Not translated (still manual, in the checklist above, or skipped):
 git identity, SSH keys, Neovim tree-sitters.
 macOS-only GUI apps (Rectangle, Stats, Scroll Reverser, MonitorControl) don't
-exist on Linux and are dropped. `midnight-captain` (a `curl | bash` installer)
+exist on Linux and are dropped. `midnight-captain` is installed by
+`post-setup.sh` because its official installer provides architecture-specific
+prebuilt binaries. It replaces the `mc` command from Midnight Commander.
 is not packaged for Nix — install it manually only if you actually use it.
 
 ## Making changes

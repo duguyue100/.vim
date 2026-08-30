@@ -31,4 +31,7 @@ else
   echo "ty is already installed; keeping it."
 fi
 
+echo "Installing Midnight Captain..."
+curl -fsSL https://raw.githubusercontent.com/duguyue100/midnight-captain/main/install.sh | bash
+
 echo "Post-setup complete."

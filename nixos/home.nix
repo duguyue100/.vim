@@ -165,7 +165,6 @@ in
     ffmpeg
     jless
     vlc
-    mc
     # dev toolchain (build-essential + brew build deps)
     cmake
     curl
