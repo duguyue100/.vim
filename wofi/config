@@ -1,0 +1,12 @@
+show=drun
+allow_images=true
+insensitive=true
+matching=contains
+columns=6
+width=900
+height=600
+location=center
+prompt=Launch
+image_size=48
+hide_scroll=true
+no_actions=true

@@ -22,6 +22,10 @@ in
     "org/gnome/desktop/wm/preferences" = {
       button-layout = ":maximize,minimize,close";
     };
+    "org/gnome/desktop/wm/keybindings" = {
+      switch-input-source = [ "XF86Keyboard" ];
+      switch-input-source-backward = [ "<Shift>XF86Keyboard" ];
+    };
     "org/gnome/shell" = {
       always-show-log-out = true;
       enabled-extensions = [
@@ -88,12 +92,18 @@ in
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ghostty/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/wofi/"
       ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ghostty" = {
       name = "Open Ghostty";
       command = "ghostty";
       binding = "<Super><Control>t";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/wofi" = {
+      name = "Launch applications";
+      command = "wofi --show drun";
+      binding = "<Super>space";
     };
   };
 
@@ -156,6 +166,7 @@ in
     duf
     fish
     ghostty
+    wofi
     google-chrome
     networkmanagerapplet
     nodejs
@@ -187,6 +198,8 @@ in
     ".config/mc/mc.keymap".source = link "${vim}/mc.keymap";
     ".config/opencode/opencode.jsonc".source = link "${vim}/opencode/opencode.jsonc";
     ".config/opencode/skills".source = link "${vim}/opencode/skills";
+    ".config/wofi/config".source = link "${vim}/wofi/config";
+    ".config/wofi/style.css".source = link "${vim}/wofi/style.css";
     ".config/nvim".source = link vim; # same as setup.sh's ln -sf ~/.vim ~/.config/nvim
     # tpm. The rev must be pinned — pure flake eval rejects unlocked fetchGit.
     ".tmux/plugins/tpm" = {
