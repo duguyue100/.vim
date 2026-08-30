@@ -35,8 +35,9 @@ nix-shell -p git --run 'git clone -b nixos https://github.com/duguyue100/.vim.gi
 #    boot loader (that's in configuration.nix). Flakes only read *git-staged*
 #    files, so it MUST be added — copying alone isn't enough.
 cp /etc/nixos/hardware-configuration.nix ~/.vim/nixos/
-cd ~/.vim && git add nixos/hardware-configuration.nix
-git status   # confirm "new file: nixos/hardware-configuration.nix" appears in green
+cd ~/.vim
+nix-shell -p git --run 'git add -A'
+nix-shell -p git --run 'git status' # confirm "new file: nixos/hardware-configuration.nix" appears in green
 
 # 3. Apply the system config. First run downloads/builds a lot — be patient.
 #    Flakes run `git` to read this repo, but git isn't installed yet, so run
@@ -48,10 +49,7 @@ git status   # confirm "new file: nixos/hardware-configuration.nix" appears in g
 cd ~/.vim/nixos
 nix-shell -p git --run 'sudo env "PATH=$PATH" nixos-rebuild switch --flake .#nixos-aarch64-linux'
 
-# 4. Set (or reset) your user password.
-passwd
-
-# 5. Log out and back in (or reboot). Your default shell is now fish,
+# 4. Log out and back in (or reboot). Your default shell is now fish,
 #    and all the tools below are installed.
 ```
 
