@@ -14,7 +14,7 @@ in
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      enable-animations = true;
+      enable-animations = false;
       font-name = "Inter 11";
       icon-theme = "Tela";
       gtk-theme = "Orchis-Light";
@@ -29,12 +29,11 @@ in
     "org/gnome/shell" = {
       always-show-log-out = true;
       enabled-extensions = [
-        "dash2dock-lite@icedman.github.com"
+        "dash-in-panel@fthx"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
         "blur-my-shell@aunetx"
         "Vitals@CoreCoding.com"
         "auto-theme-switcher@amritashan.github.io"
-        "speedinator@liam.moe"
       ];
       favorite-apps = [
         "google-chrome.desktop"
@@ -55,23 +54,14 @@ in
       custom-dark-time = "19:00";
       manual-mode-active = false;
     };
-    "org/gnome/shell/extensions/moe/liam/speedinator" = {
-      speed = 1.5;
-    };
-    "org/gnome/shell/extensions/dash2dock-lite" = {
-      animate-icons = true;
-      open-app-animation = true;
-      autohide-dash = true;
-      autohide-dodge = true;
-      autohide-speed = 0.35;
-      background-color = [ 0.0 0.0 0.0 0.85 ];
-      hide-labels = true;
-      apps-icon = false;
-      trash-icon = true;
-      downloads-icon = false;
-      dock-location = 0;
-      favorites-only = false;
-      pressure-sense = false;
+    "org/gnome/shell/extensions/dash-in-panel" = {
+      center-dash = false;
+      show-activities = false;
+      show-apps = false;
+      show-dash = false;
+      panel-height = 32;
+      icon-size = 20;
+      button-margin = 2;
     };
     "org/gnome/shell/extensions/blur-my-shell/panel" = {
       blur = false;
@@ -139,12 +129,11 @@ in
 
   # All brew install / apt install packages from setup.sh, now in nixpkgs.
   home.packages = with pkgs; [
-    gnomeExtensions.dash2dock-lite
+    gnomeExtensions.dash-in-panel
     gnomeExtensions.user-themes
     gnomeExtensions.blur-my-shell
     gnomeExtensions.vitals
     gnomeExtensions.automatic-theme-switcher
-    gnomeExtensions.speedinator
     # common CLI tools
     bottom
     lsd
