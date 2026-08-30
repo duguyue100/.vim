@@ -93,8 +93,8 @@ ssh-keygen -t ed25519 -C "you@example.com"
 # Neovim: launch it once (plugins install automatically), then add tree-sitters:
 #   :TSManager python lua typescript javascript
 
-# tmux: start it once. tpm is already linked into ~/.tmux/plugins and will
-# auto-install the plugins from tmux.conf on first start.
+# tmux plugins are linked declaratively into ~/.tmux/plugins; start tmux or
+# reload the config after rebuilding.
 ```
 
 Optional: create the directories your fish aliases `cd` into —

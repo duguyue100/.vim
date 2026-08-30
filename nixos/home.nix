@@ -131,6 +131,7 @@ in
     fzf
     starship
     tmux
+    xclip
     shellcheck
     lazydocker
     tree-sitter
@@ -177,6 +178,15 @@ in
       source = builtins.fetchGit {
         url = "https://github.com/tmux-plugins/tpm";
         rev = "e261deb1b47614eed3400089ce7197dc68acc4eb";
+      };
+      recursive = true;
+    };
+    ".tmux/plugins/yank".source = "${pkgs.tmuxPlugins.yank}/share/tmux-plugins/yank";
+    ".tmux/plugins/tmux-which-key".source = "${pkgs.tmuxPlugins.tmux-which-key}/share/tmux-plugins/tmux-which-key";
+    ".tmux/plugins/tmux2k" = {
+      source = builtins.fetchGit {
+        url = "https://github.com/2kabhishek/tmux2k";
+        rev = "01fa86446cbf6f69690b63b0f6f30f9293423b68";
       };
       recursive = true;
     };
