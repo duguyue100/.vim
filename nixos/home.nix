@@ -30,6 +30,7 @@ in
         "blur-my-shell@aunetx"
         "Vitals@CoreCoding.com"
         "start-overlay-in-application-view@Hex_cz"
+        "auto-theme-switcher@amritashan.github.io"
       ];
       favorite-apps = [
         "google-chrome.desktop"
@@ -39,6 +40,16 @@ in
     };
     "org/gnome/shell/extensions/user-theme" = {
       name = "Orchis-Light";
+    };
+    "org/gnome/shell/extensions/auto-theme-switcher" = {
+      light-theme = "Orchis-Light";
+      dark-theme = "Orchis-Dark";
+      true-light-mode = true;
+      light-mode-trigger = "custom";
+      dark-mode-trigger = "custom";
+      custom-light-time = "07:00";
+      custom-dark-time = "19:00";
+      manual-mode-active = false;
     };
     "org/gnome/shell/extensions/dash2dock-lite" = {
       animate-icons = true;
@@ -120,6 +131,7 @@ in
     gnomeExtensions.blur-my-shell
     gnomeExtensions.vitals
     gnomeExtensions.start-overlay-in-application-view
+    gnomeExtensions.automatic-theme-switcher
     # common CLI tools
     bottom
     lsd
