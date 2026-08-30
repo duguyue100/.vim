@@ -26,6 +26,7 @@ if ! uv tool list | grep -q '^ty\b'; then
   echo "Installing ty as a uv tool..."
   uv tool install ty
   uv tool install ruff
+  uv tool install --upgrade 'cocoindex-code[full]'
 else
   echo "ty is already installed; keeping it."
 fi
