@@ -22,6 +22,7 @@
   # complains, enable them via a classic rebuild first (see README
   # troubleshooting). After this config is active they stay on permanently.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  programs.nix-ld.enable = true;
 
   networking.hostName = "LF";
 
