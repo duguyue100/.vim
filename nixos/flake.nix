@@ -12,7 +12,7 @@
   outputs = { nixpkgs, home-manager, ... }:
     let
       # Change this one value when deploying the configuration for another user.
-      user = "dgynix";
+      user = "yuhuang";
       modules = [
         ./configuration.nix
         home-manager.nixosModules.home-manager
