@@ -134,7 +134,8 @@ function __m_venv --description 'Create uv python venv (if absent)'
         echo ".venv exists, doing nothing"
         return
     end
-    uv venv --python $argv[1]
+    set -l nix_python (string replace -a '.' '' -- $argv[1])
+    nix shell nixpkgs#python$nix_python --command uv venv --python python$argv[1]
 end
 
 

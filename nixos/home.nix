@@ -201,6 +201,10 @@ in
     curl
     zip
     unzip
+    autoconf
+    gettext
+    libtool
+    libpq
     clang-tools # clang-format
     automake
     bison
