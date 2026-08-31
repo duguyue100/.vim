@@ -12,7 +12,30 @@ in
   home.homeDirectory = "/home/${user}";
   home.stateVersion = "24.11";
 
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "application/bzip2" = "org.gnome.FileRoller.desktop";
+      "application/gzip" = "org.gnome.FileRoller.desktop";
+      "application/vnd.rar" = "org.gnome.FileRoller.desktop";
+      "application/x-7z-compressed" = "org.gnome.FileRoller.desktop";
+      "application/x-bzip-compressed-tar" = "org.gnome.FileRoller.desktop";
+      "application/x-compressed-tar" = "org.gnome.FileRoller.desktop";
+      "application/x-rar" = "org.gnome.FileRoller.desktop";
+      "application/x-rar-compressed" = "org.gnome.FileRoller.desktop";
+      "application/x-tar" = "org.gnome.FileRoller.desktop";
+      "application/x-xz-compressed-tar" = "org.gnome.FileRoller.desktop";
+      "application/x-zip-compressed" = "org.gnome.FileRoller.desktop";
+      "application/zip" = "org.gnome.FileRoller.desktop";
+      "application/zstd" = "org.gnome.FileRoller.desktop";
+    };
+  };
+
   dconf.settings = {
+    "org/gnome/desktop/background" = {
+      picture-uri = "file://${vim}/wallpapers/lake-overlook.jpg";
+      picture-uri-dark = "file://${vim}/wallpapers/lake-overlook.jpg";
+    };
     "org/gnome/desktop/interface" = {
       enable-animations = false;
       font-name = "Inter 11";
@@ -88,12 +111,12 @@ in
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ghostty" = {
       name = "Open Ghostty";
       command = "ghostty";
-      binding = "<Super><Control>t";
+      binding = "<Control><Alt>t";
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/wofi" = {
       name = "Launch applications";
       command = "wofi --show drun";
-      binding = "<Super>space";
+      binding = "<Alt>space";
     };
   };
 
