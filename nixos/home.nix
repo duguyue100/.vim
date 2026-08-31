@@ -123,7 +123,7 @@ in
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/wofi" = {
       name = "Launch applications";
       command = "wofi --show drun";
-      binding = "<Alt>space";
+      binding = "<Super>space";
     };
   };
 
@@ -211,6 +211,7 @@ in
 
   # Dotfiles. Source of truth is the ~/.vim repo; these are live symlinks.
   home.file = {
+    "Templates/Blank File".text = "";
     ".config/fish/config.fish".source = link "${vim}/config.fish";
     ".config/ghostty/config".source = link "${vim}/ghostty-config";
     ".config/starship.toml".source = link "${vim}/starship.toml";
