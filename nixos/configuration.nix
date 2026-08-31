@@ -37,7 +37,7 @@
   # User. The name is defined once in flake.nix.
   users.users.${user} = {
     isNormalUser = true;
-    description = "dgynix";
+    description = user;
     extraGroups = [ "wheel" "networkmanager" "docker" ];
     shell = pkgs.fish; # fish becomes the default login shell (was chsh in setup.sh)
   };

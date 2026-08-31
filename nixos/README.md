@@ -13,7 +13,7 @@ the locations where their programs expect them.
 - A fresh NixOS installation, preferably the graphical ISO.
 - A VM or computer running either `x86_64` or `aarch64` Linux.
 - Internet access during the first build.
-- A username. The configuration currently uses `dgynix`; change `user` in
+- A username. The configuration currently uses `yuhuang`; change `user` in
   `flake.nix` if you use another name.
 
 ## Install
