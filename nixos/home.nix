@@ -15,6 +15,11 @@ in
   xdg.mimeApps = {
     enable = true;
     defaultApplications = {
+      "text/html" = "google-chrome.desktop";
+      "x-scheme-handler/about" = "google-chrome.desktop";
+      "x-scheme-handler/http" = "google-chrome.desktop";
+      "x-scheme-handler/https" = "google-chrome.desktop";
+      "x-scheme-handler/unknown" = "google-chrome.desktop";
       "application/bzip2" = "org.gnome.FileRoller.desktop";
       "application/gzip" = "org.gnome.FileRoller.desktop";
       "application/vnd.rar" = "org.gnome.FileRoller.desktop";
@@ -30,6 +35,8 @@ in
       "application/zstd" = "org.gnome.FileRoller.desktop";
     };
   };
+  xdg.configFile."mimeapps.list".force = true;
+  xdg.dataFile."applications/mimeapps.list".force = true;
 
   dconf.settings = {
     "org/gnome/desktop/background" = {
