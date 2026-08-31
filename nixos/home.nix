@@ -165,9 +165,11 @@ in
     ffmpeg
     jless
     vlc
+    file-roller
     # dev toolchain (build-essential + brew build deps)
     cmake
     curl
+    zip
     unzip
     clang-tools # clang-format
     automake
