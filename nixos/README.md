@@ -197,7 +197,7 @@ The flake currently defines these host names:
 - `nvidia`
 - `arm`
 
-The hostname inside the system remains `nixos`.
+The hostname inside the system is `LF`.
 
 ## Troubleshooting
 

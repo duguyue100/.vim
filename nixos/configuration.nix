@@ -23,7 +23,7 @@
   # troubleshooting). After this config is active they stay on permanently.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  networking.hostName = "nixos";
+  networking.hostName = "LF";
 
   # The setup.sh script's interactive steps, translated into declarative NixOS modules.
 
