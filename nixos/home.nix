@@ -1,4 +1,4 @@
-{ config, pkgs, user, ... }:
+{ config, lib, pkgs, user, ... }:
 let
   vim = "${config.home.homeDirectory}/.vim";
   orchisGtk = pkgs.orchis-theme.override {
@@ -44,10 +44,19 @@ in
       picture-uri-dark = "file://${vim}/wallpapers/lake-overlook.jpg";
     };
     "org/gnome/settings-daemon/plugins/power" = {
+      idle-dim = false;
       sleep-inactive-ac-type = "nothing";
       sleep-inactive-ac-timeout = 0;
       sleep-inactive-battery-type = "nothing";
       sleep-inactive-battery-timeout = 0;
+      sleep-display-ac = 0;
+      sleep-display-battery = 0;
+    };
+    "org/gnome/desktop/session" = {
+      idle-delay = lib.hm.gvariant.mkUint32 0;
+    };
+    "org/gnome/desktop/screensaver" = {
+      lock-enabled = false;
     };
     "org/gnome/desktop/interface" = {
       enable-animations = false;
