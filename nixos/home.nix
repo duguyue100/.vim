@@ -210,12 +210,15 @@ in
     autoconf
     gettext
     libtool
+    postgresql
     libpq
     clang-tools # clang-format
     automake
     bison
     gcc
     ruby
+    openssl
+    zlib
     opencode # coding agent (was the anomalyco/tap brew formula)
   ] ++ pkgs.lib.optional (pkgs.stdenv.hostPlatform.system == "x86_64-linux") pkgs.slack;
 
