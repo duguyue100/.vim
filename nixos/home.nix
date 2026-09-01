@@ -222,6 +222,7 @@ in
   # Dotfiles. Source of truth is the ~/.vim repo; these are live symlinks.
   home.file = {
     "Templates/Blank File".text = "";
+    ".config/autostart/slack.desktop".source = "${pkgs.slack}/share/applications/slack.desktop";
     ".config/fish/config.fish".source = link "${vim}/config.fish";
     ".config/ghostty/config".source = link "${vim}/ghostty-config";
     ".config/starship.toml".source = link "${vim}/starship.toml";
