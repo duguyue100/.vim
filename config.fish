@@ -50,6 +50,7 @@ switch (uname)
         export PATH="$HOME/.local/bin:$PATH"
     case Linux
         export PATH="$HOME/.local/bin:$PATH"
+        set -gx LD_LIBRARY_PATH /run/opengl-driver/lib $LD_LIBRARY_PATH
         alias open="xdg-open"
         alias nvidia-smi="env LD_LIBRARY_PATH=/run/opengl-driver/lib nvitop --colorful"
         set FNM_PATH "$HOME/.local/share/fnm"
