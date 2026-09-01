@@ -5,7 +5,7 @@ VENV="${HOME}/DGY"
 
 if [[ ! -x "${VENV}/bin/python" ]]; then
   echo "Creating ${VENV} with Python 3.12..."
-  uv venv "${VENV}" --python python3.12
+  uv venv "${VENV}" --python 3.12
 else
   echo "${VENV} already exists; keeping it."
 fi
@@ -25,7 +25,7 @@ uv pip install --python "${VENV}/bin/python" \
 if ! uv tool list | grep -q '^ty\b'; then
   echo "Installing ty as a uv tool..."
   uv tool install ty
-  uv tool install ruff
+  uv tool install nvitop
 else
   echo "ty is already installed; keeping it."
 fi
