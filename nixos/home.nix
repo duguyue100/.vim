@@ -43,6 +43,12 @@ in
       picture-uri = "file://${vim}/wallpapers/lake-overlook.jpg";
       picture-uri-dark = "file://${vim}/wallpapers/lake-overlook.jpg";
     };
+    "org/gnome/settings-daemon/plugins/power" = {
+      sleep-inactive-ac-type = "nothing";
+      sleep-inactive-ac-timeout = 0;
+      sleep-inactive-battery-type = "nothing";
+      sleep-inactive-battery-timeout = 0;
+    };
     "org/gnome/desktop/interface" = {
       enable-animations = false;
       font-name = "Inter 11";

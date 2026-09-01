@@ -49,6 +49,14 @@
   # SSH server (openssh-server was in the Ubuntu apt list)
   services.openssh.enable = true;
 
+  services.logind.settings.Login = {
+    HandlePowerKey = "ignore";
+    HandleSuspendKey = "ignore";
+    HandleHibernateKey = "ignore";
+    HandleLidSwitch = "ignore";
+    IdleAction = "ignore";
+  };
+
   # JetBrainsMono Nerd Font, required by ghostty-config and starship
   fonts.packages = with pkgs; [
     nerd-fonts.jetbrains-mono
