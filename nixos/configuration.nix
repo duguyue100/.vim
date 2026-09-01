@@ -1,4 +1,4 @@
-{ config, pkgs, user, ... }:
+{ config, lib, pkgs, user, ... }:
 {
   # Machine-specific hardware: fileSystems, kernel modules. Generated at
   # install time; copy it into this repo (see README quick start). It does NOT
@@ -48,6 +48,21 @@
 
   # SSH server (openssh-server was in the Ubuntu apt list)
   services.openssh.enable = true;
+
+  services.syncthing = {
+    enable = true;
+    user = user;
+    group = "users";
+    dataDir = "/home/${user}/.local/share/syncthing";
+    configDir = "/home/${user}/.config/syncthing";
+    guiAddress = "127.0.0.1:5184";
+    settings.gui = {
+      user = "";
+      password = "";
+      authMode = "none";
+    };
+  };
+  networking.firewall.allowedTCPPorts = lib.range 5000 9999;
 
   services.logind.settings.Login = {
     HandlePowerKey = "ignore";
