@@ -17,6 +17,7 @@ set -Ux FZF_DEFAULT_OPTS "--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#
 
 export PATH="$HOME/.cargo/bin:$PATH"
 set -gx NPM_CONFIG_PREFIX "$HOME/.local"
+set -gx LD_LIBRARY_PATH /run/current-system/sw/share/nix-ld/lib
 
 source $HOME/.vim/macman/macman.fish
 alias n=nvim
