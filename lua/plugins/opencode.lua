@@ -149,6 +149,9 @@ return {
     config = function()
         ---@type opencode.Opts
         vim.g.opencode_opts = {
+            server = {
+                url = "http://localhost:8192",
+            },
             ask_multiline = {
                 width  = 0.5,
                 height = 0.2,

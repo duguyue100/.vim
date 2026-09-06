@@ -1,7 +1,5 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  // Theme configuration
-  "theme": "tokyonight",
   "autoupdate": true,
   "mcp": {
     "cocoindex-code": {

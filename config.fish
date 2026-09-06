@@ -16,6 +16,8 @@ set -U fish_greeting ""
 set -Ux FZF_DEFAULT_OPTS "--color=fg:#f8f8f2,bg:#282a36,hl:#bd93f9 --color=fg+:#f8f8f2,bg+:#44475a,hl+:#bd93f9 --color=info:#ffb86c,prompt:#50fa7b,pointer:#ff79c6 --color=marker:#ff79c6,spinner:#ffb86c,header:#6272a4 --preview 'cat {}'"
 
 export PATH="$HOME/.cargo/bin:$PATH"
+set -gx NPM_CONFIG_PREFIX "$HOME/.local"
+set -gx LD_LIBRARY_PATH /run/current-system/sw/share/nix-ld/lib
 
 source $HOME/.vim/macman/macman.fish
 alias n=nvim
@@ -49,8 +51,9 @@ switch (uname)
         export PATH="$HOME/.local/bin:$PATH"
     case Linux
         export PATH="$HOME/.local/bin:$PATH"
+        set -gx LD_LIBRARY_PATH /run/opengl-driver/lib $LD_LIBRARY_PATH
         alias open="xdg-open"
-        alias nvidia-smi="nvitop --colorful"
+        alias nvidia-smi="env LD_LIBRARY_PATH=/run/opengl-driver/lib nvitop --colorful"
         set FNM_PATH "$HOME/.local/share/fnm"
         if [ -d "$FNM_PATH" ]
             set PATH "$FNM_PATH" $PATH
