@@ -23,10 +23,10 @@ Run these commands in the new NixOS system.
 ### 1. Clone the repository
 
 The initial system may not have Git or flakes enabled, so use `nix-shell` for
-the first clone. The `nixos` branch contains this configuration.
+the first clone.
 
 ```bash
-nix-shell -p git --run 'git clone -b nixos https://github.com/duguyue100/.vim.git ~/.vim'
+nix-shell -p git --run 'git clone https://github.com/duguyue100/.vim.git ~/.vim'
 ```
 
 ### 2. Add the hardware configuration
