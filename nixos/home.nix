@@ -228,7 +228,6 @@ in
     ruby
     openssl
     zlib
-    opencode # coding agent (was the anomalyco/tap brew formula)
   ] ++ pkgs.lib.optional (pkgs.stdenv.hostPlatform.system == "x86_64-linux") pkgs.slack;
 
   # Dotfiles. Source of truth is the ~/.vim repo; these are live symlinks.

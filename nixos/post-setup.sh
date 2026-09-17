@@ -39,4 +39,7 @@ nvim --headless "+TSInstallSync python lua typescript javascript" +qa
 echo "Installing Midnight Captain..."
 curl -fsSL https://raw.githubusercontent.com/duguyue100/midnight-captain/main/install.sh | bash
 
+echo "Installing opencode..."
+curl -fsSL https://opencode.ai/install | bash
+
 echo "Post-setup complete."
