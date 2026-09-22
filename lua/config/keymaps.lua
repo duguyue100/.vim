@@ -48,7 +48,70 @@ map("n", "<leader>sd", "<cmd>lua require('persistence').stop()<cr>", { desc = "S
 -- map({ "n", "x" }, "<leader>oa", function() require("opencode").ask("@this: ", { submit = true }) end, { desc = "Ask opencode…" })
 map({ "n", "x" }, "<leader>oa", function() require("opencode").ask_multiline("@this: ", { submit = true }) end, { desc = "Ask opencode…" })
 map({ "n", "x" }, "<leader>os", function() require("opencode").select() end, { desc = "Execute opencode action…" })
-map({ "n", "x" }, "<leader>oc", function() vim.fn.system({"fish", "-c", "tmux split-window -h -t 1 -d && tmux send-keys -t 2 'opencode' Enter"}) end, { desc = "Open opencode in tmux" })
+-- Open (or re-open) the tmux opencode pane, attached to `session` if given.
+-- Reuses pane 2 when it exists so the pane index stays stable.
+local function open_opencode(session)
+    local cmd = session and ("opencode --session " .. session) or "opencode"
+    local quoted = vim.fn.shellescape(cmd)
+    local script = table.concat({
+        "if tmux list-panes -F '#{pane_index}' | grep -q '^2$';",
+        "tmux respawn-pane -k -t 2 " .. quoted .. ";",
+        "else;",
+        "tmux split-window -h -t 1 -d " .. quoted .. ";",
+        "end",
+    }, " ")
+    vim.fn.system({ "fish", "-c", script })
+end
+
+-- Ask the server for this project's sessions, newest first.
+local function list_sessions()
+    local raw = vim.fn.system({
+        "opencode", "api", "get", "/api/session",
+        "--param", "directory=" .. vim.fn.getcwd(),
+        "--param", "order=desc",
+        "--param", "parentID=null",
+    })
+    local ok, decoded = pcall(vim.fn.json_decode, raw)
+    return (ok and decoded and decoded.data) or {}
+end
+
+-- Start a new session and make it the target `<leader>oa` sends to.
+map("n", "<leader>oc", function()
+    local raw = vim.fn.system({
+        "opencode", "api", "post", "/api/session",
+        "--data", vim.fn.json_encode({ location = { directory = vim.fn.getcwd() } }),
+    })
+    local ok, decoded = pcall(vim.fn.json_decode, raw)
+    local session = ok and decoded and decoded.data and decoded.data.id or nil
+    _G.opencode_target = session
+    open_opencode(session)
+end, { desc = "Open opencode in tmux (new session)" })
+
+-- Pick an existing session; it becomes the `<leader>oa` target and the TUI
+-- re-opens attached to it. This is how you switch sessions (the TUI cannot
+-- report which tab is focused back to Neovim).
+map("n", "<leader>ol", function()
+    local sessions = list_sessions()
+    if #sessions == 0 then
+        vim.notify("No opencode sessions for this project", vim.log.levels.WARN, { title = "opencode" })
+        return
+    end
+    local items = {}
+    for _, session in ipairs(sessions) do
+        table.insert(items, {
+            id = session.id,
+            label = string.format("%s  (%s)", session.title or "(untitled)", session.id:sub(1, 12)),
+        })
+    end
+    vim.ui.select(items, {
+        prompt = "OpenCode session:",
+        format_item = function(item) return item.label end,
+    }, function(choice)
+        if not choice then return end
+        _G.opencode_target = choice.id
+        open_opencode(choice.id)
+    end)
+end, { desc = "Switch opencode session" })
 local function kill_opencode()
     local cmd = table.concat({
         "tmux list-panes -F '#{pane_index}' | grep -q '^2$'",

@@ -3,6 +3,9 @@
   "theme": {
     "name": "tokyonight"
   },
+  "tabs": {
+    "mode": "off"
+  },
   "keybinds": {
     "agent.cycle": "tab,shift+tab",
     "prompt.autocomplete.complete": "ctrl+space"

@@ -149,9 +149,9 @@ return {
     config = function()
         ---@type opencode.Opts
         vim.g.opencode_opts = {
-            server = {
-                url = "http://localhost:8192",
-            },
+            -- server = {
+            --     url = "http://localhost:8192",
+            -- },
             ask_multiline = {
                 width  = 0.5,
                 height = 0.2,
@@ -162,6 +162,33 @@ return {
 
         -- Required for `opts.events.reload`.
         vim.o.autoread = true
+
+        -- Neovim owns the session target (`_G.opencode_target`, set by
+        -- `<leader>oc` and `<leader>ol`). The TUI cannot report which tab is
+        -- focused, so don't guess: use the recorded target while it still
+        -- exists, otherwise fall back to the newest session.
+        local Server = require("opencode.server")
+        local Promise = require("opencode.promise")
+        Server.resolve_session = function(self)
+            return self:get_sessions():next(function(sessions)
+                local target_id = _G.opencode_target
+                if target_id then
+                    for _, session in ipairs(sessions) do
+                        if session.id == target_id and not (session.time and session.time.archived) then
+                            return Promise.resolve(session)
+                        end
+                    end
+                end
+
+                for _, session in ipairs(sessions) do
+                    if not (session.time and session.time.archived) then
+                        return Promise.resolve(session)
+                    end
+                end
+
+                return Promise.reject("No OpenCode session found for `" .. vim.fn.getcwd() .. "`.")
+            end)
+        end
 
         -- Expose ask_multiline on the public API (the upstream plugin does not
         -- include this command; we inject it here so keymaps work unchanged).
