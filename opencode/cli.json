@@ -1,0 +1,10 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "theme": {
+    "name": "tokyonight"
+  },
+  "keybinds": {
+    "agent.cycle": "tab,shift+tab",
+    "prompt.autocomplete.complete": "ctrl+space"
+  }
+}

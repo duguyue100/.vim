@@ -1,13 +1,12 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "autoupdate": true,
+  "update": "auto",
   "mcp": {
-    "cocoindex-code": {
-      "type": "local",
-      "command": [
-        "ccc",
-        "mcp"
-      ]
-    }
+    "servers": {
+      "cocoindex-code": {
+        "type": "local",
+        "command": ["ccc", "mcp"],
+      },
+    },
   },
 }
