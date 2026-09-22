@@ -75,16 +75,13 @@ local function list_sessions()
     return (ok and decoded and decoded.data) or {}
 end
 
--- Start a new session and make it the target `<leader>oa` sends to.
+-- Open a fresh opencode TUI without materializing a session yet. The draft
+-- only becomes a real session when `<leader>oa` sends its first message.
 map("n", "<leader>oc", function()
-    local raw = vim.fn.system({
-        "opencode", "api", "post", "/api/session",
-        "--data", vim.fn.json_encode({ location = { directory = vim.fn.getcwd() } }),
-    })
-    local ok, decoded = pcall(vim.fn.json_decode, raw)
-    local session = ok and decoded and decoded.data and decoded.data.id or nil
-    _G.opencode_target = session
-    open_opencode(session)
+    _G.opencode_target = nil
+    local sec, usec = vim.uv.gettimeofday()
+    _G.opencode_pending = { since = sec * 1000 + math.floor(usec / 1000) }
+    open_opencode(nil)
 end, { desc = "Open opencode in tmux (new session)" })
 
 -- Pick an existing session; it becomes the `<leader>oa` target and the TUI
@@ -109,6 +106,7 @@ map("n", "<leader>ol", function()
     }, function(choice)
         if not choice then return end
         _G.opencode_target = choice.id
+        _G.opencode_pending = nil
         open_opencode(choice.id)
     end)
 end, { desc = "Switch opencode session" })

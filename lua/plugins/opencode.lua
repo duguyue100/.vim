@@ -190,6 +190,62 @@ return {
             end)
         end
 
+        -- `oa` delivery helpers. A fresh TUI session is a client-side draft with
+        -- no id, so the first prompt after `<leader>oc` is pasted into the TUI
+        -- pane and whatever session the TUI creates becomes the target. That
+        -- avoids materializing an empty session just by opening `oc`.
+        local function has_opencode_pane()
+            vim.fn.system("tmux list-panes -F '#{pane_index}' | grep -q '^2$'")
+            return vim.v.shell_error == 0
+        end
+
+        local function paste_into_pane(text)
+            if not has_opencode_pane() then return false end
+            vim.fn.system({ "tmux", "set-buffer", "-b", "opencode-oa", text })
+            if vim.v.shell_error ~= 0 then return false end
+            vim.fn.system({ "tmux", "paste-buffer", "-p", "-d", "-b", "opencode-oa", "-t", "2" })
+            if vim.v.shell_error ~= 0 then return false end
+            vim.fn.system({ "tmux", "send-keys", "-t", "2", "Enter" })
+            return vim.v.shell_error == 0
+        end
+
+        local function create_session(server)
+            return server
+                :request("/api/session", "POST", { location = { directory = vim.fn.getcwd() } })
+                :next(function(response)
+                    local session = response and response.data
+                    if not (session and session.id) then
+                        return Promise.reject("Failed to create an OpenCode session")
+                    end
+                    return Promise.resolve(session)
+                end)
+        end
+
+        -- Poll for the session the TUI created from the pasted prompt.
+        local function adopt_tui_session(server, since)
+            local attempts = 0
+            local function attempt()
+                return server:get_sessions():next(function(sessions)
+                    for _, session in ipairs(sessions) do
+                        local created = session.time and session.time.created
+                        if created and created >= since then
+                            return Promise.resolve(session)
+                        end
+                    end
+                    attempts = attempts + 1
+                    if attempts >= 15 then
+                        return Promise.reject("Timed out waiting for the TUI to create a session")
+                    end
+                    return Promise.new(function(resolve, reject)
+                        vim.defer_fn(function()
+                            attempt():next(resolve):catch(reject)
+                        end, 300)
+                    end)
+                end)
+            end
+            return attempt()
+        end
+
         -- Expose ask_multiline on the public API (the upstream plugin does not
         -- include this command; we inject it here so keymaps work unchanged).
         local opencode = require("opencode")
@@ -206,6 +262,33 @@ return {
                     return require("opencode.ui.ask_multiline")
                         .ask_multiline(default, server, context)
                         :next(function(input) ---@param input string
+                            local pending = _G.opencode_pending
+
+                            -- First prompt after `<leader>oc`: let the TUI
+                            -- materialize its own draft, so no empty session is
+                            -- created before you actually send something.
+                            if pending and not _G.opencode_target then
+                                _G.opencode_pending = nil
+                                local plaintext = context:render(input).output:plaintext()
+                                if paste_into_pane(plaintext) then
+                                    return adopt_tui_session(server, (pending.since or 0) - 1000)
+                                        :next(function(session)
+                                            _G.opencode_target = session.id
+                                            context:clear()
+                                        end)
+                                        :catch(function(err)
+                                            context:resume()
+                                            return Promise.reject(err)
+                                        end)
+                                end
+                                -- No TUI pane to paste into: fall back to
+                                -- creating the session through the API.
+                                return create_session(server):next(function(session)
+                                    _G.opencode_target = session.id
+                                    return require("opencode.api.prompt").prompt(input, context)
+                                end)
+                            end
+
                             return require("opencode.api.prompt").prompt(input, context)
                         end)
                 end)
