@@ -40,6 +40,6 @@ echo "Installing Midnight Captain..."
 curl -fsSL https://raw.githubusercontent.com/duguyue100/midnight-captain/main/install.sh | bash
 
 echo "Installing opencode..."
-curl -fsSL https://opencode.ai/install | bash
+curl -fsSL https://opencode.ai/v2/install | bash
 
 echo "Post-setup complete."

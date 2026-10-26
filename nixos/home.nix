@@ -241,6 +241,7 @@ in
     ".darglint".source = link "${vim}/.darglint";
     ".config/mc/mc.keymap".source = link "${vim}/mc.keymap";
     ".config/opencode/opencode.jsonc".source = link "${vim}/opencode/opencode.jsonc";
+    ".config/opencode/cli.json".source = link "${vim}/opencode/cli.json";
     ".config/opencode/skills".source = link "${vim}/opencode/skills";
     ".config/wofi/config".source = link "${vim}/wofi/config";
     ".config/wofi/style.css".source = link "${vim}/wofi/style.css";
