@@ -128,6 +128,7 @@ in
       custom-keybindings = [
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ghostty/"
         "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/wofi/"
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/lock/"
       ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ghostty" = {
@@ -139,6 +140,11 @@ in
       name = "Launch applications";
       command = "wofi --show drun";
       binding = "<Super>space";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/lock" = {
+      name = "Lock screen";
+      command = "loginctl lock-session";
+      binding = "<Super>Return";
     };
   };
 
