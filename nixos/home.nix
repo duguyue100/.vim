@@ -6,6 +6,17 @@ let
   };
   # Symlink a file from the ~/.vim repo into ~/.config (like setup.sh's ln -sf).
   link = target: config.lib.file.mkOutOfStoreSymlink target;
+  # nixpkgs' gnomeExtensions merges the 49/50/51 sets, so this resolves to the
+  # GNOME 51 build while the shell is 50.x -> GNOME reports it "out of date" and
+  # never loads it, which silently drops the Orchis shell theme (floating,
+  # translucent top bar). The extension code is identical across both branches;
+  # only the metadata differs, so widen the supported shell versions.
+  userThemes = pkgs.gnomeExtensions.user-themes.overrideAttrs (old: {
+    postFixup = (old.postFixup or "") + ''
+      substituteInPlace "$out/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com/metadata.json" \
+        --replace-fail '"51"' '"50", "51"'
+    '';
+  });
 in
 {
   home.username = user;
@@ -111,6 +122,13 @@ in
     "org/gnome/shell/extensions/blur-my-shell/panel" = {
       blur = false;
     };
+    # Popup blur defaults to on and paints a square surface behind the popup;
+    # with GNOME 50's native blur reporting no corner-radius support
+    # (rounded-blur-found=false), the square corners peek out past the theme's
+    # 20px rounded popups. Static blur rounds them in-shader.
+    "org/gnome/shell/extensions/blur-my-shell/popup" = {
+      static-blur = true;
+    };
     "org/gnome/shell/extensions/vitals" = {
       hot-sensors = [
         "_memory_usage_"
@@ -181,7 +199,7 @@ in
   # All brew install / apt install packages from setup.sh, now in nixpkgs.
   home.packages = with pkgs; [
     gnomeExtensions.dash-in-panel
-    gnomeExtensions.user-themes
+    userThemes
     gnomeExtensions.blur-my-shell
     gnomeExtensions.vitals
     gnomeExtensions.automatic-theme-switcher
