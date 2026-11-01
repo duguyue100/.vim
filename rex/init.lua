@@ -29,6 +29,32 @@ rex.action{
   end,
 }
 
+-- Session picker: a floating pane running fzf over the server's sessions.
+rex.action{
+  name = "session_picker",
+  title = "Session Picker (fzf)",
+  description = "Pick a session with j/k in a floating pane.",
+  category = "Navigation",
+  run = function(ctx)
+    local res, err = rex.session.new_layer{
+      bounds = { 0.3, 0.2, 0.4, 0.5 },
+      focus = true,
+      layout = rex.layout.block{ flavor = SHELL, label = "sessions" },
+    }
+    if not res then return nil, err end
+
+    local block = res.block_ids and res.block_ids[1]
+    if not block then return nil, "no block for the picker" end
+
+    local picker = (os.getenv("HOME") or "") .. "/.vim/rex/session-picker.sh"
+    rex.block.call("com.superlogical.terminal", "write", {
+      block_id = block,
+      data = string.format("clear; '%s' '%s' '%s'\n", picker, ctx.session_id, res.layer_id),
+    })
+    return { layer_id = res.layer_id, block_id = block }
+  end,
+}
+
 -- The `m t` layout: session "main" with four tabs, each split 80/20.
 rex.action{
   name = "main_layout",
@@ -112,6 +138,7 @@ rex.bind("cmd+t", "new_tab_split")
 
 rex.bind(p .. "c", "new_tab_split")
 rex.bind(p .. "m", "main_layout")
+rex.bind(p .. "s", "session_picker")
 rex.bind(p .. "n", "client.tab.next")
 rex.bind(p .. "p", "client.tab.previous")
 for i = 1, 5 do
