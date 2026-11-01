@@ -1,0 +1,14 @@
+-- Rex configuration for DGYMac.
+--
+-- Lives here in the dotfiles repo and is symlinked to where Rex looks:
+--   ~/.config/rex/init.lua -> ~/.vim/rex/init.lua
+--
+-- Apply changes with:
+--   rex config reload
+--
+-- Validate without applying:
+--   rex config check
+
+-- Themes live in the app, not the server, so they are imported with the CLI.
+-- Our TokyoNight lives at ~/.vim/rex/themes/tokyonight and is imported with:
+--   rex -C DGYMac do client.theme.import path=$HOME/.vim/rex/themes/tokyonight
