@@ -9,6 +9,35 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
+-- C-h/j/k/l: move between vim splits, then between panes outside vim when
+-- there is no split in that direction (Rex, or tmux when running inside it).
+local pane_nav = {
+  h = { wincmd = "h", rex = "left", tmux = "-L" },
+  j = { wincmd = "j", rex = "down", tmux = "-D" },
+  k = { wincmd = "k", rex = "up", tmux = "-U" },
+  l = { wincmd = "l", rex = "right", tmux = "-R" },
+}
+
+local function navigate_pane(direction)
+  local before = vim.fn.winnr()
+  vim.cmd("wincmd " .. pane_nav[direction].wincmd)
+  if vim.fn.winnr() ~= before then return end
+
+  if vim.env.REX_SESSION then
+    pcall(vim.system, {
+      "rex", "api", "call", "-s", vim.env.REX_SESSION,
+      "session.focus_direction",
+      vim.json.encode({ direction = pane_nav[direction].rex }),
+    }, { detach = true })
+  elseif vim.env.TMUX then
+    vim.fn.system({ "tmux", "select-pane", pane_nav[direction].tmux })
+  end
+end
+
+for key, direction in pairs({ ["<C-h>"] = "h", ["<C-j>"] = "j", ["<C-k>"] = "k", ["<C-l>"] = "l" }) do
+  map("n", key, function() navigate_pane(direction) end, { desc = "Go to pane " .. direction })
+end
+
 -- Leader keymaps
 map("n", "<leader>w", "<cmd>w!<cr>", { desc = "Fast write", silent = true })
 map("n", "<leader>q", "<cmd>qall<cr>", { desc = "Fast quit" })
