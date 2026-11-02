@@ -1,8 +1,8 @@
 #!/bin/sh
 # Rex session picker: fzf over the server's sessions, inside a floating pane.
-#   enter  open the highlighted session
-#   x      kill the highlighted session (after confirmation)
-#   type   filter; a name that matches nothing offers to create it
+#   enter   open the highlighted session
+#   ctrl-x  kill the highlighted session (after confirmation)
+#   type    filter; a name that matches nothing offers to create it
 # Called by the session_picker action in init.lua:
 #   session-picker.sh <session_id> <layer_id>
 
@@ -49,11 +49,11 @@ while [ -n "$rows" ]; do
   # shellcheck disable=SC2086
   out=$(printf '%s\n' "$rows" | fzf \
     --delimiter='\t' --with-nth=1 --no-multi --reverse --cycle \
-    --preview-window=hidden --print-query --expect=x \
+    --preview-window=hidden --print-query --expect=ctrl-x \
     --bind 'j:down,k:up' \
     $colors \
     --prompt='session> ' \
-    --header='j/k move · enter open · x kill · new name + enter creates · esc cancel')
+    --header='j/k move · enter open · ctrl+x kill · new name + enter creates · esc cancel')
   status=$?
   [ "$status" -eq 130 ] && break
 
@@ -61,7 +61,7 @@ while [ -n "$rows" ]; do
   key=$(printf '%s\n' "$out" | sed -n '2p')
   selected=$(printf '%s\n' "$out" | sed -n '3p')
 
-  if [ "$key" = "x" ]; then
+  if [ "$key" = "ctrl-x" ]; then
     [ -z "$selected" ] && continue
     name=$(printf '%s' "$selected" | cut -f1)
     id=$(printf '%s' "$selected" | cut -f2)
