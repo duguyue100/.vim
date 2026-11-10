@@ -25,7 +25,16 @@ alias towork="cd $HOME/workspace"
 alias todown="cd $HOME/Downloads"
 alias tocore="cd $HOME/workspace/latticeflow-core"
 alias togo="cd $HOME/workspace/latticeflow-core/assessment"
-alias lfd="$HOME/workspace/latticeflow-core/main/assessment/tools/docker.py"
+function lfd --description 'Run docker.py from the current latticeflow-core worktree'
+    # ponytail: docker.py resolves its build context from its own path, so pick the copy
+    # belonging to the worktree we're in; fall back to main when cwd isn't one
+    set -l root (git rev-parse --show-toplevel 2>/dev/null)
+    if not test -x "$root/assessment/tools/docker.py"
+        set root $HOME/workspace/latticeflow-core/main
+    end
+    "$root/assessment/tools/docker.py" $argv
+end
+
 alias lg="lazygit"
 function slg --description 'lazygit (config + skip hooks) with dir-change on exit'
     # ponytail: lazygit writes the cwd it landed in to LAZYGIT_NEW_DIR_FILE on q (not <shift-q>); cd there
